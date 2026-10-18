@@ -1,0 +1,5 @@
+--- evidence/content-policy.original.json
++++ src/lib/content-policy.json
+@@ -1 +1 @@
+-{"schemaVersion":1,"localCandidatePreview":false,"requireHumanReview":true,"publishedTarget":10000}
++{"schemaVersion":1,"localCandidatePreview":true,"requireHumanReview":true,"publishedTarget":10000}

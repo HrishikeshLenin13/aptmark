@@ -1,0 +1,66 @@
+linear-one: 315/315
+linear-two: 315/315
+linear-functions: 315/315
+linear-systems: 315/315
+linear-inequalities: 315/315
+equivalent: 525/525
+nonlinear-equations: 525/525
+nonlinear-functions: 525/525
+ratios: 96/96
+percentages: 96/96
+one-variable: 97/97
+two-variable: 96/96
+probability: 96/96
+inference: 97/97
+statistical-claims: 96/96
+area-volume: 169/169
+lines-triangles: 169/169
+trigonometry: 169/169
+circles: 169/169
+{
+  "schemaVersion": 1,
+  "generated": 4555,
+  "structurallyValidated": 4555,
+  "approved": 0,
+  "published": 0,
+  "rejected": 0,
+  "sections": {
+    "math": 4500,
+    "rw": 55
+  },
+  "families": 41,
+  "difficulty": {
+    "easy": 547,
+    "medium": 3562,
+    "hard": 446
+  },
+  "target": 10000,
+  "estimatedGenerationCostUSD": 0,
+  "calibration": "uncalibrated",
+  "exactProblemDuplicates": 0,
+  "note": "Structural validation is not educational approval. No candidates count toward the 10,000 published target."
+}
+{"insertedMath": 279, "seconds": 7.53}
+{
+  "schemaVersion": 1,
+  "generated": 4555,
+  "structurallyValidated": 4555,
+  "approved": 0,
+  "published": 0,
+  "rejected": 0,
+  "sections": {
+    "math": 4500,
+    "rw": 55
+  },
+  "families": 41,
+  "difficulty": {
+    "easy": 547,
+    "medium": 3562,
+    "hard": 446
+  },
+  "target": 10000,
+  "estimatedGenerationCostUSD": 0,
+  "calibration": "uncalibrated",
+  "exactProblemDuplicates": 0,
+  "note": "Structural validation is not educational approval. No candidates count toward the 10,000 published target."
+}

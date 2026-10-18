@@ -1,0 +1,18 @@
+{
+  "modelVersion": "beta-weighted-first-exposure-1.0",
+  "method": "chronological prequential first-exposure evaluation",
+  "dataStatus": "no independent observations; no accuracy claim",
+  "model": {
+    "n": 0,
+    "brier": null,
+    "logLoss": null,
+    "calibrationError": null
+  },
+  "constantBaseline": {
+    "n": 0,
+    "brier": null,
+    "logLoss": null,
+    "calibrationError": null
+  },
+  "empiricallyCalibrated": false
+}

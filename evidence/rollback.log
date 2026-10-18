@@ -1,0 +1,2 @@
+localCandidatePreview=false; requireHumanReview=true; publishedTarget=10000
+ROLLBACK PASS: original hash and published-only default restored; human review still required.

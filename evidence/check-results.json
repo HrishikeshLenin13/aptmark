@@ -1,0 +1,108 @@
+{
+  "completedAt": "2026-10-18T17:09:33.430Z",
+  "results": [
+    {
+      "name": "typecheck",
+      "command": "npm run typecheck",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 5.59,
+      "log": "./evidence/typecheck.log"
+    },
+    {
+      "name": "typescript-tests",
+      "command": "npm test",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 1.16,
+      "log": "./evidence/vitest.log"
+    },
+    {
+      "name": "python-tests",
+      "command": ".venv/bin/python -m pytest tests/test_content.py -q",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 2.41,
+      "log": "./evidence/pytest.log"
+    },
+    {
+      "name": "content-replay",
+      "command": ".venv/bin/python python/pipeline.py validate --replay",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 12.48,
+      "log": "./evidence/content-validation.json"
+    },
+    {
+      "name": "deduplication",
+      "command": ".venv/bin/python python/pipeline.py dedupe",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 0.39,
+      "log": "./evidence/deduplication.json"
+    },
+    {
+      "name": "production-build",
+      "command": "npm run build",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 7.56,
+      "log": "./evidence/build.log"
+    },
+    {
+      "name": "browser-tests",
+      "command": "npm run test:e2e",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 36.71,
+      "log": "./evidence/playwright.log"
+    },
+    {
+      "name": "dependency-audit",
+      "command": "npm audit --json",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 0.8,
+      "log": "./evidence/npm-audit.json"
+    },
+    {
+      "name": "model-evaluation",
+      "command": "node --env-file=.env.local --import tsx scripts/evaluate.ts",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 0.59,
+      "log": "./evidence/model-evaluation.json"
+    },
+    {
+      "name": "reviewed-export",
+      "command": "node --env-file=.env.local --import tsx scripts/export-reviewed.ts",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 0.44,
+      "log": "./evidence/reviewed-export.json"
+    },
+    {
+      "name": "baseline-policy",
+      "command": "node scripts/check-policy.mjs evidence/content-policy.original.json",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 0.1,
+      "log": "./evidence/baseline.log"
+    },
+    {
+      "name": "modified-policy",
+      "command": "node scripts/check-policy.mjs src/lib/content-policy.json",
+      "cwd": ".",
+      "exitStatus": 0,
+      "seconds": 0.09,
+      "log": "./evidence/modified.log"
+    },
+    {
+      "name": "rollback-on-copy",
+      "command": "./ROLLBACK.sh ./evidence/rollback-test.json",
+      "cwd": ".",
+      "exitStatus": 0,
+      "originalHashRestored": true
+    }
+  ]
+}

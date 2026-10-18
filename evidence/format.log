@@ -1,0 +1,25 @@
+src/app/[[...page]]/page.tsx 74ms
+src/app/api/[...path]/route.ts 170ms
+src/app/globals.css 541ms
+src/app/layout.tsx 14ms
+src/components/figure.tsx 27ms
+src/components/folio-app.tsx 603ms
+src/components/math-text.tsx 8ms
+src/components/ui/button.tsx 11ms
+src/components/ui/dialog.tsx 7ms
+src/lib/assessment.ts 21ms
+src/lib/auth.ts 8ms
+src/lib/calculator.ts 9ms
+src/lib/db.ts 25ms
+src/lib/engine.ts 37ms
+src/lib/types.ts 10ms
+tests/app.spec.ts 98ms
+tests/engine.test.ts 53ms
+next-env.d.ts 4ms (unchanged)
+next.config.ts 4ms
+package.json 26ms (unchanged)
+playwright.config.ts 5ms
+tsconfig.json 3ms
+vitest.config.ts 3ms
+scripts/check-policy.mjs 9ms
+scripts/evaluate.ts 7ms

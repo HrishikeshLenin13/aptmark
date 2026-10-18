@@ -1,0 +1,13 @@
+
+> folio-sat@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 .
+
+
+ Test Files  1 passed (1)
+      Tests  38 passed (38)
+   Start at  12:08:31
+   Duration  532ms (tests 60%, import 34%, transform 4%, worker 2%)
+

@@ -1,0 +1,79 @@
+FOLIO — LOCAL FOUNDATION VERIFICATION
+Verified date: 2026-10-18 (America/Chicago)
+Branch: codex/folio-sat
+Change: localCandidatePreview false -> true; requireHumanReview remains true.
+This is a tested local foundation, not a completed public 10,000-question platform.
+
+FOUR ARTIFACT PATHS
+MODIFIED_FILE: ./src/lib/content-policy.json
+DIFF_FILE: ./DIFF_FILE.patch
+VERIFICATION.txt: ./VERIFICATION.txt
+ROLLBACK.sh (executable): ./ROLLBACK.sh
+
+ORIGINAL INTEGRITY
+Original policy SHA-256: 87a6901f43184c960f46347431b5bfbf6fca63d9822d59e41d4a389908ba429a
+Modified policy SHA-256: b38bc7960391a3521ad658250eaf993dde170c4160450d84f180bef4abb19f27
+Rollback-copy SHA-256: 87a6901f43184c960f46347431b5bfbf6fca63d9822d59e41d4a389908ba429a
+Preserved requirements SHA-256: 790df8dd5c1d31a1ba22b3b613c01a5bb0cca777b0082a8117f8f692b8571373
+The attachment and preserved requirements copy were compared and have the same SHA-256.
+
+EXACT POLICY TRANSACTION
+Shell variable used by the following commands:
+R=.
+Working directory: .
+The policy checker exercises the same eligibility predicates used by the app. It checks candidate preview opt-in, rejected-item exclusion, and independent human-publication requirements.
+
+BASELINE
+Command: node "$R/scripts/check-policy.mjs" "$R/evidence/content-policy.original.json"
+Input: {"schemaVersion":1,"localCandidatePreview":false,"requireHumanReview":true,"publishedTarget":10000}
+Literal output:
+localCandidatePreview=false; requireHumanReview=true; publishedTarget=10000
+Exit status: 0
+Result: unpublished candidates are excluded without the local preview branch; human approval remains required for publication.
+
+MODIFIED
+Command: node "$R/scripts/check-policy.mjs" "$R/src/lib/content-policy.json"
+Input: {"schemaVersion":1,"localCandidatePreview":true,"requireHumanReview":true,"publishedTarget":10000}
+Literal output:
+localCandidatePreview=true; requireHumanReview=true; publishedTarget=10000
+Exit status: 0
+Result: explicitly opted-in local practice can use clearly labelled candidates. Publication still requires approved validation and a named reviewer with notes.
+
+ROLLBACK (TEST COPY ONLY)
+Preparation: cp "$R/src/lib/content-policy.json" "$R/evidence/rollback-test.json"
+Command: "$R/ROLLBACK.sh" "$R/evidence/rollback-test.json"
+Input: modified policy copied to ./evidence/rollback-test.json
+Literal output:
+localCandidatePreview=false; requireHumanReview=true; publishedTarget=10000
+ROLLBACK PASS: original hash and published-only default restored; human review still required.
+Exit status: 0
+Restored behavior/status: rollback-test.json exactly matches the original published-only default; its original SHA-256 was restored. The actual MODIFIED_FILE remains changed with localCandidatePreview=true. requireHumanReview remains true in both. This rollback is bounded to the preview policy; it does not remove the app or restore an entire database.
+
+FINAL APPLICATION/CONTENT CHECKS
+Reproduce all checks: node ./scripts/verify.mjs
+All 13 recorded checks returned exit status 0. Raw commands, timings and logs: ./evidence/check-results.json
+- npm run typecheck: exit 0, no TypeScript diagnostics.
+- npm test: literal result "Tests  38 passed (38)"; exit 0.
+- .venv/bin/python -m pytest tests/test_content.py -q: literal result "45 passed in 2.06s"; exit 0.
+- .venv/bin/python python/pipeline.py validate --replay: {"checked": 4555, "replayed": 4555, "failures": []}; exit 0.
+- npm run test:e2e: literal result "11 passed (36.1s)"; exit 0. Tests use a fresh isolated QA database and a separate loopback server on port 3001.
+- npm run build: production build completed, routes /[[...page]], /api/[...path], /icon.svg; exit 0.
+- npm audit --json: total known dependency vulnerabilities = 0; exit 0.
+- Dashboard axe checks: [] at widths 1440, 820 and 390 pixels. Mobile practice axe check: []. No horizontal overflow observed in these tested layouts. This is not a full WCAG conformance certification.
+- Actual Playwright MCP interactions selected and graded an answer, displayed its reasoning, inspected snapshots/screenshots, deleted the temporary QA workspace, and reopened a fresh overview. Final overview console observed 0 errors.
+- Model evaluation has n=0 independent real observations, null predictive metrics, and empiricallyCalibrated=false. No trained-model accuracy is claimed.
+- Runtime approved export contains 0 published items. Automated test approvals never entered the actual app's database.
+
+REAL INVENTORY AND REMAINING ACCEPTANCE WORK
+Generated: 4,555 (4,500 Math, 55 Reading & Writing). Structurally validated/replayed: 4,555. Taxonomy skills represented: 30. Families/template clusters: 41. Exact problem-text duplicates: 0. Human-approved: 0. Published: 0. Empirically calibrated: 0. Published target: 10,000 (not achieved).
+Reading checks are structural and do not prove educational validity. Numerical variants are not independent question families. Greater content/distractor diversity and human editorial validation remain necessary.
+Hosted authentication/email recovery, PostgreSQL/Supabase adapter and applied RLS testing, independently calibrated full-length form pools and routing, hosted generative AI, comprehensive offline recovery, production privacy/consent/retention and independent security/accessibility reviews remain unfinished. Assessment per-question timing is currently allocated from module elapsed time, not individually observed. Question content creation timestamps currently use a deterministic release-date epoch rather than a precise job clock.
+No public deployment, public repository, service purchase, paid-model call, official-equivalent score prediction or learning-outcome superiority claim was made.
+
+HANDOFF
+Application: http://127.0.0.1:3000
+Project: .
+Status/resume commands: ./IMPLEMENTATION_STATUS.md
+Setup and content tools: ./README.md
+Research/specification/architecture/operations/roadmap: ./docs
+The four transaction artifacts were reopened and checked before handoff.

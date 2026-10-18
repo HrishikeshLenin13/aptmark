@@ -1,0 +1,47 @@
+Aptmark GitHub handoff — README, brand, and repository verification
+
+Changed field: README.md now describes Aptmark as a product and its current preview; the UI, metadata, icons, schema identity, and package metadata use Aptmark. Stable local storage/cookie names are retained.
+
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/README.md
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/aptmark-publishing/README.diff
+VERIFICATION.txt: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/aptmark-publishing/VERIFICATION.txt
+ROLLBACK.sh: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/aptmark-publishing/ROLLBACK.sh (executable)
+Snapshot: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/aptmark-publishing/README.before.md
+
+BASELINE
+Command: npm run typecheck && npm test && .venv/bin/python -m pytest tests/test_content.py -q
+Input: unchanged worktree at original local commit 75cd9470a51107cccb49d0523dd3c6dee683db51; baseline before Aptmark README/brand edits.
+Literal result: strict TypeScript check exited 0; Vitest reported "Test Files  1 passed (1)" and "Tests  38 passed (38)"; pytest reported "45 passed in 2.25s".
+Exit status: 0.
+
+MODIFIED
+Command: npm run typecheck && npm test && .venv/bin/python -m pytest tests/test_content.py -q && npm run build
+Input: Aptmark product README, metadata and UI mark, renamed app component, Aptmark schema/package names, and current generated content bank.
+Literal result: strict TypeScript check exited 0; Vitest reported "Test Files  1 passed (1)" and "Tests  38 passed (38)"; pytest reported "45 passed in 2.17s"; Next.js reported "Compiled successfully in 449ms" and generated /[[...page]], /api/[...path], and /icon.svg.
+Exit status: 0.
+
+Additional modified build
+Command: NEXT_DIST_DIR=.next-publish npm run build
+Input: same final source tree after the Aptmark logo glyph update, isolated build output directory.
+Literal result: "Compiled successfully in 449ms"; TypeScript finished; static pages generated; build listed /[[...page]], /api/[...path], and /icon.svg.
+Exit status: 0. Generated Next type-file edits were reset to the tracked source versions; `.next-publish/` is ignored.
+
+Modified browser tests
+Command: npm run test:e2e
+Input: final app on isolated loopback server, separate test database and Next output directory.
+Literal result: "11 passed (33.4s)"; coverage included guest scoring/key privacy, drafts, mistake notes, account lifecycle, preferences, timed assessments, diagnostic transitions, server-side access checks, idempotency, editorial gates, responsive overflow and automated accessibility checks.
+Exit status: 0.
+
+Modified browser brand smoke
+Command: node --input-type=module -e 'import {chromium} from "@playwright/test"; const b=await chromium.launch({headless:true}); const p=await b.newPage(); await p.goto("http://127.0.0.1:3000"); await p.waitForSelector(".app-shell"); const result={title:await p.title(),brand:(await p.locator(".brand").first().innerText()).trim()}; console.log(JSON.stringify(result)); await b.close(); if(result.title!=="Aptmark — Practice with purpose"||result.brand!=="aptmark") process.exit(1)'
+Input: local preview URL http://127.0.0.1:3000/.
+Literal output: {"title":"Aptmark — Practice with purpose","brand":"aptmark"}
+Exit status: 0.
+
+ROLLBACK
+Command: evidence/aptmark-publishing/ROLLBACK.sh /tmp/aptmark-rollback-test-20261018/README.md
+Input: a separate copy of the modified README.
+Literal output: rollback: restored /tmp/aptmark-rollback-test-20261018/README.md from README.before.md
+restored sha256: f781c72ed4f30919b495095470c2af1027236a433e96a8c75c5234d0f791a9bb
+Exit status: 0.
+Restored behavior/status: the test copy exactly matches the portable pre-edit README snapshot; its SHA-256 is f781c72ed4f30919b495095470c2af1027236a433e96a8c75c5234d0f791a9bb. The working README remains modified; SHA-256 3a9f38c671c1ef57654eccc59d7ee171a68bd61d2386bea9261c2531a1708dda.
