@@ -1,0 +1,1908 @@
+# PROJECT: BUILD THE ULTIMATE FREE DIGITAL SAT PREPARATION PLATFORM
+
+## YOUR ROLE AND MISSION
+
+You are the principal engineer, lead product designer, machine-learning architect, psychometrics specialist, educational content engineer, and quality-assurance lead for a new Digital SAT preparation platform.
+
+Your responsibility is to DESIGN AND IMPLEMENT the product, not merely propose it.
+
+We are building a genuinely competitive alternative to:
+
+- https://www.oneprep.com
+- https://psychsat.com
+
+The platform must aim to surpass these services in learning intelligence, question quality, personalization, user experience, diagnostic feedback, accessibility, and free access.
+
+The final product should feel like professionally engineered educational software built by an excellent product team.
+
+It should not feel like an AI-generated website.
+
+### Fundamental nonnegotiable requirements
+
+1. Build an original, high-quality, 10,000-question SAT-style question bank.
+2. Cover every current official Digital SAT question domain and skill.
+3. Make the questions authentic in format, reasoning, complexity, difficulty, and presentation.
+4. Build a highly reliable, reproducible question generation and verification system.
+5. Build a realistic Digital SAT testing environment closely resembling the functional experience of College Board Bluebook.
+6. Develop a real adaptive learning engine using statistical student modeling and evidence-based recommendation algorithms.
+7. Build an interactive, grounded AI tutor with misconception analysis.
+8. Build intelligent diagnostics, study planning, spaced repetition, and progress analytics.
+9. Create an exceptionally clean, minimal, refined visual design.
+10. Keep all core educational functionality completely free for students.
+11. Implement functioning software with persistent data, not prototypes filled with fake information.
+12. Verify every major feature using automated tests and actual browser interaction.
+
+**The project must prioritize educational correctness, realistic SAT preparation, excellent user experience, and trustworthy functionality above feature counts or visual spectacle.**
+
+Do not copy proprietary questions, passages, graphics, branding, source code, or protected UI assets from other platforms. Reproduce the publicly documented SAT assessment structure and general testing interaction patterns through an original implementation.
+
+Research competitors for product understanding, not for unauthorized content extraction.
+
+---
+
+# PHASE 0: ENVIRONMENT, RESEARCH, AND MCP SETUP
+
+Before developing the application, inspect the working directory, existing repositories, tools, dependencies, available MCP connections, and development environment.
+
+Do not overwrite existing user projects.
+
+If the directory contains an unrelated project, create a separate project workspace.
+
+## Required MCP integrations
+
+Use the following reputable MCP tools where applicable.
+
+### 1. Context7 MCP
+
+Purpose:
+
+- Retrieve current documentation for Next.js, React, TypeScript, Supabase, shadcn/ui, and other dependencies.
+- Avoid outdated API usage.
+- Verify recommended patterns and library compatibility.
+
+Official setup:
+
+`npx ctx7 setup --codex`
+
+Use the existing Context7 installation if already configured.
+
+### 2. Playwright MCP
+
+Purpose:
+
+- Test the working website in an actual browser.
+- Inspect accessibility trees and interface states.
+- Test question answering, navigation, exam timers, responsiveness, and authentication.
+- Detect broken interactions.
+- Capture and inspect screenshots for design quality.
+
+Codex MCP configuration:
+
+```toml
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp@latest"]
+```
+
+### 3. shadcn/ui MCP
+
+Purpose:
+
+- Find and implement accessible UI components.
+- Inspect correct component APIs.
+- Build reusable dialogs, forms, navigation systems, tables, and menus.
+
+Codex MCP configuration:
+
+```toml
+[mcp_servers.shadcn]
+command = "npx"
+args = ["shadcn@latest", "mcp"]
+```
+
+Customize all components to our original design system. Do not assemble a generic dashboard directly from stock blocks.
+
+### 4. Next.js DevTools MCP
+
+Use when compatible with the selected Next.js version.
+
+Purpose:
+
+- Inspect active Next.js routes and application behavior.
+- Diagnose runtime, build, and hydration errors.
+- Verify server/client boundaries and development behavior.
+
+Configuration:
+
+```toml
+[mcp_servers.next-devtools]
+command = "npx"
+args = ["-y", "next-devtools-mcp@latest"]
+```
+
+### 5. Supabase MCP
+
+Use the official Supabase integration for development database inspection.
+
+- Restrict access to the specific development project.
+- Prefer read-only access for analysis and diagnostics.
+- Use explicit migrations for schema changes.
+- Never expose database credentials or production student data.
+- Request approval before destructive operations.
+
+Use official instructions:
+
+https://supabase.com/docs/guides/ai-tools/mcp
+
+### 6. GitHub integration
+
+Use the existing authenticated GitHub integration where available for source control, issues, and version history.
+
+Do not automatically create public repositories or expose secrets.
+
+### 7. Additional tools
+
+Use SymPy for symbolic mathematics, Python for batch question generation and model experimentation, and standard testing tools for quality assurance.
+
+Do not install dozens of unnecessary MCP servers. Prefer trustworthy, maintained tools and minimize privileged integrations.
+
+Verify that each configured MCP actually works. If one fails, document the problem and continue using an appropriate alternative.
+
+Do not claim an integration has been configured successfully unless it has been tested.
+
+## Research sources
+
+Use these official assessment references as the primary requirements:
+
+- https://satsuite.collegeboard.org
+- https://satsuite.collegeboard.org/practice/student-question-bank/math
+- https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing
+- https://satsuite.collegeboard.org/higher-ed-professionals/sat-validity/content-domains
+- https://bluebook.collegeboard.org/students/tools
+
+Read the latest publicly available assessment framework and check for specification changes.
+
+Produce:
+
+- `RESEARCH.md`
+- `SAT_SPECIFICATION.md`
+- `COMPETITOR_ANALYSIS.md`
+- `ARCHITECTURE.md`
+- `PROJECT_ROADMAP.md`
+- `AGENTS.md`
+
+Record which requirements are official, inferred, experimental, or not independently verified.
+
+---
+
+# PHASE 1: BUILD THE 10,000-QUESTION BANK FIRST
+
+This is the first major engineering deliverable.
+
+Before spending substantial time on a marketing website, create the question schema, generation framework, validation systems, quality-control pipeline, and content management architecture.
+
+## 1.1 Question bank size
+
+Target at least **10,000 original, validated, publishable SAT-style questions**.
+
+Initial target distribution:
+
+| Section | Target |
+|---|---:|
+| Reading & Writing | 5,500 |
+| Math | 4,500 |
+| TOTAL | 10,000 |
+
+These are inventory targets, not exact test-form proportions.
+
+Each section must cover all official domains, subskills, and appropriate difficulty ranges.
+
+Do not generate thousands of questions for easy topics while leaving difficult skills inadequately covered.
+
+Create a coverage-planning algorithm that assigns content targets based on:
+
+- Official SAT content proportions.
+- Number of skills per domain.
+- Expected frequency of each question type.
+- Difficulty requirements.
+- Content diversity.
+- Educational significance.
+- Existing verified inventory.
+- Minimum coverage thresholds.
+
+Track inventory by domain, skill, type, estimated difficulty, generator family, and publication status.
+
+**Do not count unverified or unpublished questions toward the 10,000-question publishable target.**
+
+A numerical variation counts as a distinct question instance, but the content system must separately report distinct problem families and near-duplicate clusters.
+
+## 1.2 Reading & Writing: complete skill coverage
+
+Implement all four official domains.
+
+### Information and Ideas
+
+- Central Ideas and Details.
+- Command of Evidence: Textual.
+- Command of Evidence: Quantitative.
+- Inferences.
+
+### Craft and Structure
+
+- Words in Context.
+- Text Structure and Purpose.
+- Cross-Text Connections.
+
+### Expression of Ideas
+
+- Rhetorical Synthesis.
+- Transitions.
+
+### Standard English Conventions
+
+- Boundaries.
+- Form, Structure, and Sense.
+
+Question types must resemble authentic Digital SAT assessment tasks.
+
+Include:
+
+- Short independent passages.
+- Single-passage analysis.
+- Paired-text comparisons.
+- Vocabulary-in-context questions.
+- Evidence-based inference.
+- Literary excerpts from independently authored or properly licensed material.
+- History and humanities passages.
+- Science passages.
+- Informational graphics and tables.
+- Grammar and punctuation.
+- Sentence boundaries.
+- Verb agreement and tense.
+- Sentence structure.
+- Logical transitions.
+- Student-note rhetorical synthesis.
+- Quantitative evidence interpretation.
+
+Questions should use SAT-appropriate language, complexity, tone, distractors, and reasoning demands.
+
+Do not write simplistic trivia or generic school worksheet questions.
+
+### Reading passage generation requirements
+
+Build a content-generation pipeline capable of producing original passages with:
+
+- A clearly defined educational purpose.
+- Natural human-like prose.
+- Internally consistent facts.
+- Explicit evidence for answer choices.
+- Controlled linguistic complexity.
+- Varied syntax and vocabulary.
+- Realistic academic subject matter.
+- Appropriate length for the question type.
+- No irrelevant filler.
+
+For factual passages, use verified source facts or clearly self-contained fictional scenarios when appropriate.
+
+Do not fabricate scientific research findings, historical claims, quotations, citations, or author attributions.
+
+Generate realistic incorrect answer choices that correspond to recognizable reasoning errors.
+
+Examples include:
+
+- Overgeneralization.
+- Unsupported inference.
+- Partially correct reasoning.
+- Reversal of a relationship.
+- Confusion between correlation and causation.
+- Misinterpretation of tone.
+- Incorrect evidence attribution.
+- Confusion between main idea and supporting detail.
+
+Every Reading & Writing question must have a defensible, unambiguous correct answer.
+
+High-risk, subjective, or ambiguous generated items must be flagged for human review rather than automatically accepted.
+
+## 1.3 Math: complete skill coverage
+
+Implement all four official domains.
+
+### Algebra
+
+- Linear equations in one variable.
+- Linear equations in two variables.
+- Linear functions.
+- Systems of two linear equations in two variables.
+- Linear inequalities in one or two variables.
+
+### Advanced Math
+
+- Equivalent expressions.
+- Nonlinear equations in one variable.
+- Systems involving nonlinear equations.
+- Quadratic functions and equations.
+- Exponential functions.
+- Polynomial and rational expressions where aligned with official specifications.
+- Other official nonlinear-function concepts.
+
+### Problem-Solving and Data Analysis
+
+- Ratios and proportions.
+- Rates and units.
+- Percentages.
+- One-variable statistical distributions.
+- Mean, median, and measures of spread.
+- Two-variable data and scatterplots.
+- Statistical models.
+- Probability and conditional probability.
+- Statistical inference.
+- Margin of error.
+- Observational studies and experiments.
+- Evaluation of statistical claims.
+
+### Geometry and Trigonometry
+
+- Area and volume.
+- Lines and angles.
+- Triangles.
+- Similarity and congruence where appropriate.
+- Right triangles.
+- Trigonometric ratios.
+- Circles and circle equations.
+- Geometry-based modeling.
+
+Use the official framework to finalize and version this taxonomy.
+
+## 1.4 Math generation engine
+
+Create a parametric question-generation system using Python, SymPy, and appropriate plotting libraries.
+
+Do not depend exclusively on language models for mathematical correctness.
+
+Each generator family should:
+
+1. Define a specific SAT skill.
+2. Specify a realistic problem structure.
+3. Generate valid randomized parameters.
+4. Solve the problem symbolically or numerically.
+5. Independently verify the result.
+6. Construct plausible incorrect choices.
+7. Reject invalid or ambiguous instances.
+8. Generate accurate worked solutions.
+9. Attach metadata and difficulty estimates.
+10. Save the content reproducibly.
+
+Build many structurally different question families rather than only changing numbers.
+
+### Difficulty controls
+
+Question difficulty must be influenced by meaningful mathematical characteristics:
+
+- Number of reasoning steps.
+- Degree of abstraction.
+- Algebraic complexity.
+- Need to interpret context.
+- Extraneous solutions.
+- Representation changes.
+- Multi-concept dependencies.
+- Non-obvious transformations.
+- Distractor plausibility.
+- Calculation burden.
+- Expected time pressure.
+
+Do not label questions "hard" only because their numbers are large.
+
+Use expert-estimated starting difficulty. Later calibrate empirical difficulty using real student-response data.
+
+## 1.5 Math answer verification
+
+Use SymPy and independent checks whenever practical.
+
+Verify:
+
+- Unique correct answer when required.
+- Algebraic equivalence.
+- Equation solutions.
+- Inequality solutions.
+- Domain restrictions.
+- Extraneous roots.
+- Numerical approximations.
+- Fraction equivalence.
+- Acceptable decimal forms.
+- Units.
+- Graph intersections.
+- Geometric constraints.
+- Statistical calculations.
+
+Support SAT-style multiple-choice and student-produced response formats.
+
+Correctly accept mathematically equivalent permitted responses.
+
+Reject ambiguity, malformed mathematical expressions, impossible input ranges, multiple correct options, and invalid diagrams.
+
+Support test generation using constrained randomized inputs and property-based testing.
+
+## 1.6 Realistic graphs and figures
+
+Build an original figure-rendering system for questions requiring:
+
+- Cartesian graphs.
+- Functions.
+- Scatterplots.
+- Tables.
+- Bar charts.
+- Geometric diagrams.
+- Circles.
+- Triangles.
+- Coordinate geometry.
+- Number lines.
+- Data representations.
+
+Prefer deterministic SVG or canvas output from verified mathematical data.
+
+Diagrams must be legible, accessible, and visually consistent.
+
+Do not use AI image generation for precise mathematical figures when programmatic generation is more reliable.
+
+Distinguish between diagrams intended to be to scale and those that are not.
+
+## 1.7 Question schema
+
+Every question needs a robust, versioned schema.
+
+At minimum include:
+
+- Unique question ID.
+- Section.
+- Domain.
+- Skill and subskill.
+- Question type.
+- Passage type.
+- Original passage.
+- Question stem.
+- Answer options.
+- Correct answer.
+- Alternate accepted responses.
+- Difficulty estimate.
+- Difficulty calibration status.
+- Explanation.
+- Step-by-step solution.
+- Distractor explanations.
+- Misconception tags.
+- Estimated completion time.
+- Generator family.
+- Generator version.
+- Random seed.
+- Content source.
+- Licensing information.
+- Validation results.
+- Editorial review status.
+- Publication status.
+- Creation and modification timestamps.
+- Content version.
+- Optional diagram or table data.
+- Content hash.
+- Similarity-cluster ID.
+- Accessibility metadata.
+
+Include sufficient content provenance to identify precisely how every published question was produced.
+
+## 1.8 Question-generation pipeline
+
+Implement a reproducible pipeline:
+
+`Blueprint → Generate → Solve → Validate → Deduplicate → Review → Approve → Publish`
+
+Create separate tools for Math and Reading & Writing.
+
+The system must support:
+
+- Batch generation.
+- Parallel processing where safe.
+- Rate limits.
+- Retry queues.
+- Checkpointing.
+- Resumable execution.
+- Incremental database writes.
+- Structured failure logs.
+- Cost tracking.
+- Reproducible seeds.
+- Content versioning.
+- Rollback of bad releases.
+
+Create command-line scripts such as:
+
+- Generate Math questions.
+- Generate Reading & Writing questions.
+- Validate the full bank.
+- Detect near-duplicates.
+- Produce coverage reports.
+- Export an approved dataset.
+- Sample questions for editorial review.
+
+Use database transactions and idempotent operations.
+
+Large generation jobs must survive interruption without corrupting data or duplicating previously saved batches.
+
+## 1.9 Quality assurance and anti-duplication
+
+Build a multi-stage validation pipeline.
+
+### Hard requirements
+
+- No unanswered or invalid questions.
+- No known incorrect answer keys.
+- No duplicate answer choices.
+- No unintended multiple-correct-answer questions.
+- No broken mathematical notation.
+- No missing question assets.
+- No missing explanations.
+- No malformed passages.
+- No unsupported licensing status.
+- No unreviewed content published.
+
+### Similarity checks
+
+Use a combination of:
+
+- Exact text hashing.
+- Normalized mathematical expressions.
+- Parameterized-template recognition.
+- Text similarity.
+- Semantic similarity where useful.
+- Passage similarity.
+- Family-level diversity measurements.
+
+Avoid large clusters of essentially identical questions dominating the bank.
+
+Generate coverage and diversity metrics by skill, difficulty, and question family.
+
+### Editorial review
+
+Build an admin interface for approving, rejecting, correcting, and annotating generated questions.
+
+Require human review of unique source families, uncertain answer keys, ambiguous Reading & Writing items, and statistically sampled generated instances.
+
+Automated checks alone do not establish educational validity.
+
+An independently validated template may support streamlined review for mathematically verified variations, but publication criteria must remain strict.
+
+Use staged milestones: verify an initial pilot, expand to 500, then 2,000, then 5,000, and ultimately 10,000 publishable questions.
+
+Do not fabricate the final inventory if verification is incomplete.
+
+## 1.10 Question inventory dashboard
+
+Build an internal administrator view showing:
+
+- Total generated candidates.
+- Total validated.
+- Total approved.
+- Total published.
+- Total rejected.
+- Coverage by domain and skill.
+- Difficulty distribution.
+- Duplicate rate.
+- Failed validation checks.
+- Estimated generation cost.
+- Editorial-review backlog.
+
+The dashboard must show real counts from the database.
+
+## 1.11 Vocabulary support
+
+Optionally add a separate high-utility SAT vocabulary practice system.
+
+Create original examples, contextual usage questions, definitions, and review scheduling.
+
+Vocabulary practice must reinforce the actual Words in Context skill, not become disconnected memorization.
+
+Do not confuse a vocabulary word count with the 10,000-question requirement.
+
+---
+
+# PHASE 2: APPLICATION ARCHITECTURE
+
+After establishing the content-generation foundation, build the actual platform.
+
+## Technology stack
+
+Preferred architecture:
+
+### Frontend
+- Next.js with App Router.
+- React.
+- TypeScript with strict checking.
+- Tailwind CSS.
+- shadcn/ui primitives customized heavily.
+- Lucide icons where appropriate.
+- Motion for restrained interactions.
+- KaTeX for mathematical formatting.
+- Recharts or equivalent for analytics.
+
+### Backend
+- PostgreSQL.
+- Supabase for authentication and database hosting where suitable.
+- Type-safe database access.
+- Zod validation.
+- Secure server-side API routes or server actions.
+- Background job handling for expensive processing.
+
+### Machine learning
+- Python.
+- NumPy.
+- pandas.
+- scikit-learn.
+- SymPy for mathematical validation.
+- PyMC, PyTorch, or comparable libraries only when justified by actual modeling requirements.
+- Versioned prediction and evaluation interfaces.
+
+### Testing
+- Vitest.
+- Playwright.
+- Property-based testing where useful.
+- Database integration tests.
+- Automated content validation.
+
+Do not add complicated infrastructure without a clear reason.
+
+Start with a modular monolith. Scale only when usage demonstrates a need.
+
+## Database design
+
+Create relational models for:
+
+- Users.
+- Authentication identities.
+- Student preferences.
+- Test dates and goals.
+- Questions.
+- Question versions.
+- Question families.
+- Question validations.
+- Editorial reviews.
+- Question assets.
+- Skills.
+- Skill prerequisites.
+- Student attempts.
+- Answer changes.
+- Exam sessions.
+- Exam modules.
+- Test forms.
+- Study sessions.
+- Student mastery estimates.
+- Retention estimates.
+- Misconception evidence.
+- Tutor conversations.
+- Study plans.
+- Scheduled reviews.
+- Recommendation decisions.
+- Learning events.
+- Model versions.
+- Model evaluations.
+- Administrative audit logs.
+
+Design sensible indexes for high-volume question retrieval and student history.
+
+Apply correct Row Level Security policies.
+
+Do not trust client-supplied user identifiers or expose answers before submission.
+
+---
+
+# PHASE 3: DESIGN THE ENTIRE WEBSITE
+
+## 3.1 Visual identity
+
+The platform must look exceptionally clean, professional, and intentional.
+
+**The preferred style is minimalist, academically refined, and high-end.**
+
+Design references:
+
+- Linear: precision and density control.
+- Vercel: typography and spacing.
+- Apple: restrained visual confidence.
+- Notion: clarity and information structure.
+- Bluebook: examination-focused interaction patterns.
+
+Do not copy these products visually.
+
+Create an original brand with subtle personality.
+
+### Visual rules
+
+- White or warm off-white background in light mode.
+- Deep charcoal text.
+- Restrained neutral borders.
+- One carefully selected accent color.
+- Consistent spacing and alignment.
+- Professional typography.
+- Excellent numerical and mathematical legibility.
+- Clear button hierarchies.
+- Minimal icon usage.
+- No excessive decoration.
+- No visually noisy dashboards.
+- No arbitrary gradients.
+- No glowing cards.
+- No fake 3D illustrations.
+- No unnecessary glassmorphism.
+- No oversized marketing slogans.
+- No emoji-driven interfaces.
+- No generic AI-generated visual patterns.
+
+Use a coherent design-token system for typography, color, spacing, radii, shadows, and motion.
+
+Prefer flat surfaces with subtle boundaries.
+
+The product must feel serious enough to trust for academic preparation while remaining welcoming to students.
+
+## 3.2 Interface principles
+
+Every screen should answer one clear user question.
+
+- Landing page: Why should I use this?
+- Dashboard: What should I study next?
+- Practice: What is the question asking?
+- Explanation: Why is this answer correct?
+- Mistake review: What did I misunderstand?
+- Analytics: What is improving and what needs attention?
+- Planner: What should I do today?
+- Exam: What is the next question and how much time remains?
+
+Do not introduce UI elements unless they serve a meaningful purpose.
+
+Aim for excellent usability on laptop-sized screens, particularly the common student testing environment.
+
+Support mobile use without treating mobile as the primary full-exam environment.
+
+## 3.3 Landing page
+
+Build a sophisticated public marketing website featuring:
+
+- Strong, concise headline.
+- Clear explanation of completely free SAT practice.
+- Interactive realistic practice preview.
+- Product screenshots from the actual application.
+- Explanation of adaptive learning.
+- Question bank features.
+- Diagnostic capabilities.
+- Full-length practice tests.
+- Mistake correction.
+- Transparent student data policies.
+- Clear sign-up call to action.
+
+Do not use invented testimonials, usage numbers, success statistics, or university endorsements.
+
+The landing page should look excellent without relying on animated gimmicks.
+
+## 3.4 Authentication and onboarding
+
+Support secure email-based account creation and optional third-party sign-in when configured.
+
+Provide guest access to a small practice preview without requiring an account.
+
+Onboarding collects:
+
+- Target SAT date.
+- Desired score.
+- Optional existing official scores.
+- Available weekly study time.
+- Preferred study days.
+- Subject confidence.
+- Optional prior SAT experience.
+
+Provide a diagnostic recommendation without making the user complete a long questionnaire.
+
+Allow goals and availability to change later.
+
+Use progressive disclosure instead of overwhelming the user.
+
+## 3.5 Student dashboard
+
+Design a refined dashboard containing:
+
+- Recommended next action.
+- Today's study plan.
+- Upcoming review tasks.
+- Recent practice history.
+- Current skill mastery.
+- Math and Reading & Writing performance.
+- Priority weaknesses.
+- Test-date countdown.
+- Progress history.
+- Personalized recommendations.
+
+Display information based on actual student history.
+
+For new users, show understandable empty states and recommended starting activities.
+
+Never invent a predicted score without enough evidence.
+
+## 3.6 Question bank interface
+
+Allow filtering by:
+
+- Section.
+- Domain.
+- Skill.
+- Difficulty.
+- Question type.
+- Estimated time.
+- Answered versus unanswered.
+- Incorrect questions.
+- Bookmarked questions.
+- Review status.
+
+Support custom practice sessions, random practice, targeted practice, adaptive practice, timed drills, and previously missed questions.
+
+Maintain history across devices.
+
+---
+
+# PHASE 4: BUILD AN AUTHENTIC DIGITAL SAT EXAM INTERFACE
+
+This is one of the most important product requirements.
+
+Students should feel that they are practicing in an environment functionally familiar to the Digital SAT.
+
+Do not make the testing UI look like a chat application or generic quiz website.
+
+Use College Board's publicly documented Bluebook features as the behavioral reference.
+
+Do not use College Board's logo, proprietary branding, copyrighted screen assets, or imply official affiliation.
+
+## 4.1 Official test structure
+
+Implement:
+
+### Reading & Writing
+
+Module 1:
+- 27 questions.
+- 32 minutes.
+
+Module 2:
+- 27 questions.
+- 32 minutes.
+- Difficulty route determined after Module 1.
+
+### Break
+
+- 10 minutes in standard simulation mode.
+
+### Math
+
+Module 1:
+- 22 questions.
+- 35 minutes.
+
+Module 2:
+- 22 questions.
+- 35 minutes.
+- Difficulty route determined after Math Module 1.
+
+Total:
+- 98 questions.
+- 134 minutes of testing time, excluding the break.
+
+Use a versioned official-specification configuration so future changes can be supported.
+
+## 4.2 Test interface layout
+
+Create a focused exam workspace.
+
+### Header
+
+Include:
+
+- Current section.
+- Current module.
+- Remaining time.
+- Hide/show timer control.
+- Relevant testing tools.
+
+### Main question area
+
+Reading & Writing should support a clear passage and associated question presentation, including side-by-side layouts where appropriate.
+
+Math should provide ample space for equations, figures, and response options.
+
+Use realistic widths, font sizes, alignment, and spacing.
+
+### Footer
+
+Include:
+
+- Question number.
+- Previous and next controls.
+- Question navigation menu.
+- Mark-for-review functionality.
+- End-module confirmation.
+
+## 4.3 Testing tools
+
+Implement:
+
+- Module countdown timer.
+- Hide/show timer.
+- Five-minute warning.
+- Mark for Review.
+- Question navigator.
+- Eliminate answer choices.
+- Highlight text.
+- Student notes where appropriate.
+- Line reader.
+- Formula reference sheet.
+- Accessible zoom.
+- Keyboard shortcuts.
+- Calculator availability for Math.
+- Answer autosave.
+- Offline or interruption recovery where feasible.
+- Optional appropriately configured extended-time practice.
+
+For graphing calculator functionality, investigate authorized Desmos integration or other suitable lawful approaches.
+
+Do not claim the full Desmos functionality is available if it is not.
+
+Practice tools must behave reliably across supported browsers.
+
+## 4.4 Question navigation and locking
+
+Students can move between questions within the current module.
+
+Once a standard exam module has been submitted and locked, students cannot return to alter its answers.
+
+Before submission, warn about skipped questions and allow review.
+
+Store response state transactionally.
+
+Timers should be based on reliable server-validated timing rather than an easily manipulated browser-only counter.
+
+Handle refreshes, connectivity loss, and interrupted sessions without silent data loss.
+
+## 4.5 Module-level adaptive testing
+
+The official Digital SAT uses multistage adaptivity.
+
+Implement a two-stage module-routing system:
+
+- Module 1 contains a representative mixture of difficulties.
+- Student performance determines the appropriate Module 2 route.
+- Module 2 is selected from an eligible, preassembled, validated test-form pool.
+
+Keep this separate from the question-by-question adaptive learning system used for everyday practice.
+
+Use documented approximations where College Board's proprietary routing details are unavailable.
+
+Do not falsely claim the test is an exact reproduction of College Board scoring or routing.
+
+## 4.6 Test form assembly
+
+Create original exam forms from approved, calibrated questions.
+
+Use constraints including:
+
+- Domain coverage.
+- Skill distribution.
+- Difficulty balance.
+- Item exposure.
+- Question ordering.
+- Content independence.
+- Answer position balance.
+- Estimated testing time.
+- Module route requirements.
+
+Prevent excessive reuse of recently seen practice questions in diagnostic assessments.
+
+Reserve suitable questions for previously unseen assessment sets.
+
+Track form IDs and content versions.
+
+## 4.7 Score reporting
+
+Show:
+
+- Raw correct and incorrect counts.
+- Section performance.
+- Domain performance.
+- Timing statistics.
+- Wrong-answer patterns.
+- Recommended remediation.
+- Estimated score only when sufficiently supported.
+
+The official Digital SAT total score ranges from 400 to 1600.
+
+Do not simply multiply percentage correct to invent a precise official-equivalent score.
+
+Build a configurable psychometric estimation layer with uncertainty estimates.
+
+Label simulated estimates clearly.
+
+Empirically calibrate them against voluntarily supplied real scores and reliable assessment data when possible.
+
+Do not promise specific score improvements.
+
+---
+
+# PHASE 5: BUILD THE ADAPTIVE MASTERY ENGINE
+
+Develop a real statistical learning system.
+
+Do not put a prompt in front of an LLM and pretend it is a trained adaptive engine.
+
+The system must model what each student knows, what they are likely to forget, how reliable that inference is, and which educational activity could improve outcomes.
+
+## 5.1 Skill graph
+
+Construct a versioned skill graph covering every SAT domain.
+
+Each skill should contain:
+
+- Identifier.
+- Name.
+- Domain.
+- Prerequisites.
+- Related skills.
+- Estimated complexity.
+- Available question inventory.
+- Relevant lesson content.
+
+For Math, include meaningful prerequisite relationships.
+
+For Reading & Writing, distinguish skill dependencies from loosely related capabilities.
+
+Support hierarchical skill summaries without masking important weaknesses.
+
+## 5.2 Student mastery estimation
+
+Start with an interpretable statistical model.
+
+Consider Bayesian Knowledge Tracing, hierarchical Bayesian estimation, or another defensible baseline.
+
+Track:
+
+- First-attempt correctness.
+- Skill.
+- Item difficulty.
+- Whether hints were used.
+- Response time.
+- Student confidence when available.
+- Repeated attempts.
+- Prior history.
+- Time between attempts.
+- Question exposure.
+- Evidence of misconceptions.
+
+For every skill, output:
+
+- Estimated mastery.
+- Uncertainty.
+- Number of meaningful independent observations.
+- Last practiced date.
+- Retention estimate.
+- Evidence supporting the estimate.
+- Recommended next activity.
+
+Avoid treating an insufficient sample as a definitive weakness.
+
+Repeated answers to the same exposed question must not artificially inflate mastery.
+
+## 5.3 Difficulty calibration
+
+Implement an extendable Item Response Theory layer.
+
+Begin with documented provisional difficulty estimates.
+
+Support Rasch/1PL and potentially 2PL models once sufficient response data becomes available.
+
+Record:
+
+- Item difficulty.
+- Discrimination when empirically supported.
+- Parameter uncertainty.
+- Sample size.
+- Calibration version.
+- Item quality.
+
+Do not fabricate a trained model.
+
+Do not fit a complex model to tiny datasets and claim strong accuracy.
+
+Keep cold-start behavior safe and conservative.
+
+## 5.4 Recommendation algorithm
+
+Build a deterministic, explainable candidate-ranking algorithm.
+
+It should consider:
+
+- Low mastery.
+- High uncertainty.
+- Relevant prerequisites.
+- Recent mistakes.
+- Overdue reviews.
+- Student test date.
+- Difficulty match.
+- Predicted educational value.
+- Skill importance.
+- Time budget.
+- Student preferences.
+- Repetition penalties.
+- Content diversity.
+- New versus previously seen questions.
+
+Example:
+
+A student repeatedly misses systems of equations but succeeds on linear equations in one variable.
+
+The engine should identify the systems-of-equations weakness, check whether prerequisites are intact, recommend targeted practice or a lesson, then use new questions to evaluate improvement.
+
+It should not simply recommend random Math questions.
+
+Every recommendation must have an explanation such as:
+
+"You've answered 3 of your last 5 systems-of-equations questions incorrectly. This short practice set will help check whether you've improved."
+
+Use actual observations rather than fabricated examples.
+
+## 5.5 Misconception detection
+
+Create a structured misconception database.
+
+Possible categories:
+
+- Conceptual misunderstanding.
+- Incorrect mathematical procedure.
+- Algebraic manipulation error.
+- Misreading.
+- Incorrect evidence selection.
+- Grammar-rule misunderstanding.
+- Vocabulary-context confusion.
+- Time-management issue.
+- Careless execution.
+- Unsupported guess.
+- Uncertain or unknown.
+
+Infer causes cautiously using:
+
+- Incorrect answer selection.
+- Distractor metadata.
+- Student explanation when volunteered.
+- Timing patterns.
+- Similar previous mistakes.
+- Relevant tutor interactions.
+
+Do not diagnose a mental state from one wrong answer.
+
+Allow the student to correct the system's inferred reason.
+
+## 5.6 Long-term retention
+
+Implement spaced repetition for concepts and previously missed skills.
+
+Use an established retention model or documented baseline.
+
+Schedule reviews based on:
+
+- Recall success.
+- Previous review intervals.
+- Retention estimates.
+- Time until SAT.
+- Skill importance.
+- Actual independent performance.
+
+Support review reminders, but do not rely on manipulative streak mechanics.
+
+## 5.7 Learning outcome evaluation
+
+Create measurable evaluation procedures for the adaptive engine.
+
+Include:
+
+- Predictive accuracy.
+- Calibration error.
+- Brier score.
+- Log loss.
+- Stability under small samples.
+- Cold-start performance.
+- Recommendation diversity.
+- Mastery prediction over time.
+- Performance on unseen questions.
+- Retention after delayed review.
+
+Compare the advanced system against simple baselines.
+
+Do not assume a more complicated model is necessarily better.
+
+---
+
+# PHASE 6: BUILD AN ADVANCED AI TUTOR
+
+Create a deeply integrated, question-aware teaching assistant.
+
+The tutor must behave like a skilled SAT teacher rather than a generic chatbot.
+
+## Tutor capabilities
+
+It should:
+
+- Understand the current question.
+- Know the verified correct answer.
+- Understand the student's selected answer.
+- Reference the student's mastery history when permitted.
+- Identify plausible misconceptions.
+- Guide students with targeted hints.
+- Explain why incorrect answers are wrong.
+- Show efficient solving strategies.
+- Teach grammar rules.
+- Explain evidence-based reading.
+- Provide mathematical worked solutions.
+- Recommend related concepts to study.
+- Offer additional unseen practice.
+
+## Guided teaching
+
+Implement multiple levels of assistance:
+
+1. Ask the student what they tried.
+2. Point toward the relevant concept.
+3. Give a short hint.
+4. Explain the important reasoning step.
+5. Provide the full worked solution.
+6. Check understanding with a new question.
+
+Allow students to request the full answer directly when appropriate.
+
+Hints should be educational, not unnecessarily evasive.
+
+## Grounding and answer quality
+
+The tutor must receive:
+
+- Verified question data.
+- Approved answer.
+- Approved explanation.
+- Skill metadata.
+- Relevant lesson content.
+- Student's selected answer.
+- Permitted history.
+
+Use retrieval only from trusted educational material.
+
+The model should not invent missing question details.
+
+For mathematical problems, use tools to verify calculations.
+
+For reading problems, explanations must be supported by the passage and evidence.
+
+Use structured outputs where appropriate.
+
+If verification fails, prefer the approved static explanation rather than a potentially incorrect AI response.
+
+## AI cost controls
+
+Build a provider abstraction supporting multiple appropriate models.
+
+Include:
+
+- Server-side secrets.
+- Usage accounting.
+- Caching.
+- Request coalescing.
+- Task-based model routing.
+- Rate limiting.
+- Abuse prevention.
+- Safe output validation.
+- Fallback explanations.
+- Transparent availability notices.
+
+Core practice, explanations, analytics, and adaptive recommendations must not depend on an expensive hosted AI call.
+
+Do not promise unlimited paid-model usage without a sustainable operating budget.
+
+---
+
+# PHASE 7: DIAGNOSTICS AND PERSONALIZED STUDY PLANNING
+
+## Diagnostic assessment
+
+Create a short adaptive diagnostic to estimate initial proficiency.
+
+It should:
+
+- Sample important Math and Reading & Writing skills.
+- Cover multiple difficulty levels.
+- Avoid previously exposed questions when possible.
+- Identify areas needing more evidence.
+- Produce initial recommendations.
+
+A short diagnostic must not claim highly precise SAT score prediction.
+
+Use clear uncertainty and confidence indicators.
+
+## Personalized study planner
+
+Build a schedule based on:
+
+- Test date.
+- Target score.
+- Measured mastery.
+- Skill gaps.
+- Due reviews.
+- Available study time.
+- Recent activity.
+- Study consistency.
+- Estimated task duration.
+
+Plans must update dynamically after new responses.
+
+Example:
+
+If a student improves in punctuation but continues struggling with functions, future study time should shift toward functions while maintaining appropriate grammar review.
+
+If the student misses a study day, reschedule intelligently without overwhelming the next day.
+
+Provide manual plan adjustment.
+
+## Practice modes
+
+Support:
+
+- Quick Practice.
+- Adaptive Practice.
+- Skill-Specific Practice.
+- Timed Sprint.
+- Mixed Review.
+- Mistake Recovery.
+- Spaced Review.
+- Diagnostic.
+- Full-Length SAT.
+- Custom Question Set.
+
+Persist every meaningful attempt.
+
+---
+
+# PHASE 8: ANALYTICS AND PROGRESS INTELLIGENCE
+
+Develop exceptionally useful, understandable student analytics.
+
+## Core analytics
+
+Include:
+
+- Accuracy by section.
+- Accuracy by domain.
+- Accuracy by skill.
+- Difficulty-adjusted performance.
+- Average time per question.
+- Response-time distributions.
+- First-attempt versus retry performance.
+- Recent improvement.
+- Mastery estimates.
+- Retention estimates.
+- Weakness ranking.
+- Mistake patterns.
+- Study activity.
+- Exam history.
+
+## Advanced analytics
+
+Where supported by enough data, include:
+
+- Time-pressure sensitivity.
+- Areas of recurring misunderstanding.
+- Transfer performance on new questions.
+- Mastery uncertainty.
+- Changes in predicted success probability.
+- Improvement after lessons.
+- Retention after delayed practice.
+- Comparisons with the student's own baseline.
+
+Do not claim causal effects from weak observational evidence.
+
+## Dashboard visualizations
+
+Use restrained charts with readable legends.
+
+Prefer simple line charts, progress bars, and compact distributions over flashy visualization.
+
+All values must reflect real database records.
+
+Use informative empty states instead of invented sample performance.
+
+---
+
+# PHASE 9: ADDITIONAL DIFFERENTIATING FEATURES
+
+Develop useful innovations that can be experimentally evaluated.
+
+## Mistake Recovery Studio
+
+Students can see exactly which concept was involved, what went wrong, and which fresh questions will test whether they recovered.
+
+## Explain Your Reasoning
+
+Let students optionally describe their approach before viewing the answer.
+
+Compare their reasoning with a verified solution.
+
+Give targeted feedback without pretending to read their mind.
+
+## Smart Difficulty
+
+Adjust practice difficulty at the skill level.
+
+Avoid changing difficulty solely based on one correct or incorrect answer.
+
+## Desmos Strategy Lessons
+
+Teach which SAT Math problems are efficiently solved using an authorized graphing calculator and when algebra is preferable.
+
+## Practice Set Generator
+
+Create personalized sets from approved inventory.
+
+Allow users to select subject, skills, difficulty, question count, and time limit.
+
+## Vocabulary-in-Context Trainer
+
+Integrate vocabulary practice with original passages and contextual reasoning.
+
+## Personal Weakness Map
+
+Visualize specific skill gaps and prerequisite relationships.
+
+## Study Efficiency Insights
+
+Help students understand which study activities correlate with improvement, without overstating causal conclusions.
+
+## Question Reporting
+
+Allow students to report ambiguous questions, wrong answers, formatting problems, and confusing explanations.
+
+Route reports into the editorial-review system.
+
+## Feedback Loop
+
+Use aggregate student reports to identify problematic questions and prioritize human review.
+
+---
+
+# PHASE 10: FREE ACCESS, PRIVACY, AND PRODUCTION SAFETY
+
+## Student access
+
+All core content must remain free:
+
+- All published questions.
+- Question explanations.
+- Custom practice.
+- Adaptive practice.
+- Skill analytics.
+- Mistake review.
+- Study planning.
+- Diagnostic testing.
+- Full-length practice tests.
+
+Do not build paywalls or premium-only question categories.
+
+AI tutoring may require transparent fair-use and infrastructure limits, but never lock basic explanations or core learning behind payment.
+
+## Privacy
+
+Students may be minors.
+
+Implement appropriate protections:
+
+- Data minimization.
+- Secure authentication.
+- Strong authorization.
+- Row Level Security.
+- Account deletion.
+- Clear privacy disclosures.
+- Appropriate consent flows.
+- Secure data retention.
+- Limited collection of personal information.
+- Restricted administrative access.
+- Security audit logging.
+
+Do not introduce advertising trackers or unnecessary student profiling.
+
+Review applicable privacy and educational regulations before public launch.
+
+## Security
+
+Protect against:
+
+- SQL injection.
+- Cross-site scripting.
+- Authentication bypass.
+- Insecure direct object references.
+- Prompt injection.
+- Credential disclosure.
+- Answer-key exposure.
+- API abuse.
+- Expensive uncontrolled AI usage.
+- Unauthorized administrative access.
+- Data leakage across users.
+
+Keep answer keys server-side before submission.
+
+Never trust client-side scoring as authoritative.
+
+## Operational sustainability
+
+Keep the platform affordable to operate.
+
+Use caching, efficient database queries, background generation, controlled AI calls, and cost monitoring.
+
+Do not purchase paid infrastructure or make billable external API calls without explicit authorization.
+
+Provide a documented estimated operating budget.
+
+---
+
+# PHASE 11: COMPREHENSIVE TESTING
+
+Testing is mandatory.
+
+## Content tests
+
+Verify:
+
+- Correct answer validity.
+- One correct multiple-choice option.
+- Accepted numeric equivalents.
+- Difficulty metadata.
+- Graph consistency.
+- Passage-answer consistency.
+- Duplicate detection.
+- Explanation completeness.
+- Skill coverage.
+- Content provenance.
+
+## Engine tests
+
+Test:
+
+- Mastery updates.
+- Uncertainty updates.
+- Cold-start behavior.
+- Recommendation ranking.
+- Repetition avoidance.
+- Skill coverage.
+- Review scheduling.
+- Difficulty adaptation.
+- Misconception classification.
+- Model version compatibility.
+- Response-time handling.
+
+## Application tests
+
+Test:
+
+- Registration.
+- Authentication.
+- Onboarding.
+- Question retrieval.
+- Answer submission.
+- Autosave.
+- Explanation display.
+- Bookmarking.
+- Mistake review.
+- Study recommendations.
+- Diagnostic completion.
+- Exam timing.
+- Module transitions.
+- Break behavior.
+- Submission.
+- Score reporting.
+- Session recovery.
+- Account deletion.
+
+## Browser tests
+
+Use Playwright MCP to verify actual interactions.
+
+Test desktop, tablet, and mobile layouts.
+
+Inspect screenshots and fix:
+
+- Broken spacing.
+- Overflow.
+- Poor typography.
+- Inconsistent buttons.
+- Misaligned equations.
+- Broken graphs.
+- Confusing navigation.
+- Accessibility defects.
+- Hydration errors.
+- Nonfunctional controls.
+
+## Accessibility
+
+Target WCAG 2.2 AA where practical.
+
+Support keyboard operation, screen readers, focus management, accessible Math, reduced motion, and clear error feedback.
+
+Do not rely on color alone to communicate correctness or importance.
+
+---
+
+# PHASE 12: REPOSITORY ORGANIZATION AND DEVELOPMENT WORKFLOW
+
+Create a clean, maintainable structure.
+
+Suggested top-level organization:
+
+```text
+sat-platform/
+  apps/
+    web/
+  packages/
+    ui/
+    database/
+    question-schema/
+    assessment-engine/
+    mastery-engine/
+    recommendation-engine/
+    content-utils/
+  services/
+    ai-tutor/
+  python/
+    generators/
+    validators/
+    calibration/
+    evaluation/
+  content/
+    blueprints/
+    reviewed/
+    manifests/
+  scripts/
+  tests/
+  docs/
+  AGENTS.md
+  README.md
+```
+
+Adjust structure if a simpler architecture is more maintainable.
+
+Separate question-generation code from user-facing application code.
+
+Use strict typing, predictable APIs, reusable components, migration-based schema changes, and documented configuration.
+
+Create a reproducible local development environment.
+
+Provide sample environment-variable templates without secrets.
+
+Use Git commits at meaningful milestones when working in an authorized repository.
+
+Do not silently overwrite unrelated work.
+
+---
+
+# PHASE 13: IMPLEMENTATION ORDER
+
+Follow this sequence.
+
+## Milestone A: Foundations and verified SAT specification
+
+- Inspect repository.
+- Configure essential MCPs.
+- Research official SAT specifications.
+- Define taxonomy.
+- Design database schemas.
+- Define content-validation rules.
+- Implement basic project tooling.
+
+## Milestone B: Question engine
+
+- Build original Math generators.
+- Build Reading & Writing content pipeline.
+- Implement validators.
+- Implement deduplication.
+- Create question-review tooling.
+- Generate initial verified content.
+- Expand coverage toward 10,000 questions.
+- Persist detailed progress and accurate counts.
+
+This is the first major priority.
+
+## Milestone C: Working practice experience
+
+- Build the real application shell.
+- Build authentication.
+- Connect approved questions to the database.
+- Implement the minimal exam-style question interface.
+- Support answer submission, grading, explanations, and history.
+- Verify the complete user journey.
+
+## Milestone D: Adaptive intelligence
+
+- Implement skill graph.
+- Implement mastery estimates.
+- Implement mistake classification.
+- Implement recommendation ranking.
+- Implement adaptive practice.
+- Implement review scheduling.
+- Build engine evaluation tests.
+
+## Milestone E: Full-length exams
+
+- Implement timed modules.
+- Implement question navigation.
+- Implement test-taking tools.
+- Implement module-level adaptivity.
+- Implement test-form assembly.
+- Implement exam review and score reporting.
+
+## Milestone F: Tutor and personalized planning
+
+- Integrate grounded AI tutor.
+- Add structured hint progression.
+- Add misconception remediation.
+- Add personalized study planning.
+- Add diagnostics and analytics.
+
+## Milestone G: Product polish
+
+- Finish design system.
+- Refine landing page.
+- Improve onboarding.
+- Polish animations and microinteractions.
+- Optimize responsiveness.
+- Fix visual inconsistencies.
+- Improve performance and accessibility.
+
+## Milestone H: Launch readiness
+
+- Run production build.
+- Run automated tests.
+- Run security checks.
+- Verify database policies.
+- Review AI cost controls.
+- Complete content review.
+- Test recovery scenarios.
+- Document deployment.
+- Prepare for real-student pilot testing.
+
+Do not claim a milestone is complete unless its acceptance criteria are satisfied.
+
+---
+
+# PHASE 14: ACCEPTANCE CRITERIA
+
+The final platform should satisfy the following measurable goals.
+
+### Question bank
+
+- 10,000 original, approved SAT-style question instances.
+- Complete official skill coverage.
+- Recorded question-family diversity.
+- Verified answer keys.
+- Explanations for every question.
+- No known uncorrected validation failures.
+- Clear publication and review status.
+- No unauthorized copied question content.
+
+### Core application
+
+- Functional authentication.
+- Persistent student history.
+- Responsive interface.
+- Excellent question rendering.
+- Fully operational practice sessions.
+- Working diagnostics.
+- Working recommendations.
+- Working full-length test simulations.
+- No fake analytics or placeholder product functionality.
+
+### Learning engine
+
+- Reproducible mastery calculations.
+- Skill-aware recommendations.
+- Misconception evidence tracking.
+- Difficulty-aware practice.
+- Retention scheduling.
+- Statistical uncertainty reporting.
+- Offline evaluation tests.
+
+### Visual quality
+
+- Minimal, clean, professional design.
+- Authentic exam-focused practice interface.
+- No generic AI-generated aesthetic.
+- Excellent desktop usability.
+- Accessible navigation.
+- Consistent typography and spacing.
+- No broken controls or visual overflow.
+
+### Quality
+
+- Passing automated tests.
+- Successful production build.
+- Secure user data isolation.
+- No exposed secrets.
+- Documented setup.
+- Documented limitations.
+- Reproducible question generation.
+- Honest reporting of model accuracy and content readiness.
+
+---
+
+# PHASE 15: HOW YOU SHOULD OPERATE
+
+You are expected to make engineering decisions and implement the project.
+
+Do not respond with a large conceptual plan while leaving the repository unchanged.
+
+Begin by inspecting the environment, then proceed to working code.
+
+Work iteratively, with meaningful checkpoints.
+
+Whenever possible:
+
+1. Implement a feature.
+2. Run the application.
+3. Test the feature.
+4. Inspect its actual behavior.
+5. Fix issues.
+6. Record what was verified.
+7. Move to the next dependency.
+
+If a feature requires an unavailable credential, external approval, paid API, or human editorial judgment, implement the safe surrounding infrastructure and report the specific blocker.
+
+Do not pretend blocked features are complete.
+
+For large content-generation jobs, save progress and use resumable execution rather than losing generated work.
+
+Maintain a persistent progress file:
+
+`IMPLEMENTATION_STATUS.md`
+
+Record:
+
+- Completed components.
+- Tests passed.
+- Real question inventory.
+- Validated content count.
+- Published content count.
+- Working routes.
+- Known bugs.
+- Model calibration status.
+- Remaining work.
+- Exact commands for resuming.
+
+Use this record to continue development coherently across work sessions.
+
+Ask for approval only when required for destructive actions, financial costs, external service authentication, publishing, or consequential changes.
+
+Do not purchase services or deploy publicly without authorization.
+
+---
+
+# FINAL DIRECTIVE
+
+The goal is not to create another generic SAT practice website.
+
+The goal is to build a truly excellent, completely free student learning platform with:
+
+**A 10,000-question original content system, an authentic SAT practice experience, a statistically grounded adaptive learning engine, intelligent mistake analysis, personalized study planning, and an exceptionally refined minimalist interface.**
+
+Every question must be educationally valuable.
+
+Every recommendation must have a defensible reason.
+
+Every AI feature must deliver genuine value.
+
+Every screen must feel intentionally designed.
+
+Every advertised feature must actually work.
+
+No fake data, no generic AI-generated design, no unreliable answers, no fabricated training claims, and no incomplete functionality presented as finished.
+
+Start with the environment audit and official SAT specification. Then build the question-generation and validation engine as the first concrete deliverable.
+
+Proceed to implementation immediately.
