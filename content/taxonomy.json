@@ -1,0 +1,269 @@
+[
+  {
+    "id": "central-ideas",
+    "name": "Central Ideas and Details",
+    "domain": "Information and Ideas",
+    "section": "rw",
+    "weight": 0.065,
+    "prerequisites": []
+  },
+  {
+    "id": "textual-evidence",
+    "name": "Command of Evidence: Textual",
+    "domain": "Information and Ideas",
+    "section": "rw",
+    "weight": 0.065,
+    "prerequisites": []
+  },
+  {
+    "id": "quantitative-evidence",
+    "name": "Command of Evidence: Quantitative",
+    "domain": "Information and Ideas",
+    "section": "rw",
+    "weight": 0.065,
+    "prerequisites": []
+  },
+  {
+    "id": "inferences",
+    "name": "Inferences",
+    "domain": "Information and Ideas",
+    "section": "rw",
+    "weight": 0.065,
+    "prerequisites": []
+  },
+  {
+    "id": "words-context",
+    "name": "Words in Context",
+    "domain": "Craft and Structure",
+    "section": "rw",
+    "weight": 0.09333333333333334,
+    "prerequisites": []
+  },
+  {
+    "id": "text-purpose",
+    "name": "Text Structure and Purpose",
+    "domain": "Craft and Structure",
+    "section": "rw",
+    "weight": 0.09333333333333334,
+    "prerequisites": []
+  },
+  {
+    "id": "cross-text",
+    "name": "Cross-Text Connections",
+    "domain": "Craft and Structure",
+    "section": "rw",
+    "weight": 0.09333333333333334,
+    "prerequisites": []
+  },
+  {
+    "id": "synthesis",
+    "name": "Rhetorical Synthesis",
+    "domain": "Expression of Ideas",
+    "section": "rw",
+    "weight": 0.1,
+    "prerequisites": []
+  },
+  {
+    "id": "transitions",
+    "name": "Transitions",
+    "domain": "Expression of Ideas",
+    "section": "rw",
+    "weight": 0.1,
+    "prerequisites": []
+  },
+  {
+    "id": "boundaries",
+    "name": "Boundaries",
+    "domain": "Standard English Conventions",
+    "section": "rw",
+    "weight": 0.13,
+    "prerequisites": []
+  },
+  {
+    "id": "form-structure",
+    "name": "Form, Structure, and Sense",
+    "domain": "Standard English Conventions",
+    "section": "rw",
+    "weight": 0.13,
+    "prerequisites": []
+  },
+  {
+    "id": "linear-one",
+    "name": "Linear equations in one variable",
+    "domain": "Algebra",
+    "section": "math",
+    "weight": 0.06999999999999999,
+    "prerequisites": []
+  },
+  {
+    "id": "linear-two",
+    "name": "Linear equations in two variables",
+    "domain": "Algebra",
+    "section": "math",
+    "weight": 0.06999999999999999,
+    "prerequisites": [
+      "linear-one"
+    ]
+  },
+  {
+    "id": "linear-functions",
+    "name": "Linear functions",
+    "domain": "Algebra",
+    "section": "math",
+    "weight": 0.06999999999999999,
+    "prerequisites": [
+      "linear-two"
+    ]
+  },
+  {
+    "id": "linear-systems",
+    "name": "Systems of two linear equations",
+    "domain": "Algebra",
+    "section": "math",
+    "weight": 0.06999999999999999,
+    "prerequisites": [
+      "linear-one",
+      "linear-two"
+    ]
+  },
+  {
+    "id": "linear-inequalities",
+    "name": "Linear inequalities",
+    "domain": "Algebra",
+    "section": "math",
+    "weight": 0.06999999999999999,
+    "prerequisites": [
+      "linear-one"
+    ]
+  },
+  {
+    "id": "equivalent",
+    "name": "Equivalent expressions",
+    "domain": "Advanced Math",
+    "section": "math",
+    "weight": 0.11666666666666665,
+    "prerequisites": [
+      "linear-one"
+    ]
+  },
+  {
+    "id": "nonlinear-equations",
+    "name": "Nonlinear equations and systems",
+    "domain": "Advanced Math",
+    "section": "math",
+    "weight": 0.11666666666666665,
+    "prerequisites": [
+      "equivalent"
+    ]
+  },
+  {
+    "id": "nonlinear-functions",
+    "name": "Nonlinear functions",
+    "domain": "Advanced Math",
+    "section": "math",
+    "weight": 0.11666666666666665,
+    "prerequisites": [
+      "equivalent",
+      "linear-functions"
+    ]
+  },
+  {
+    "id": "ratios",
+    "name": "Ratios, rates, proportions, and units",
+    "domain": "Problem-Solving and Data Analysis",
+    "section": "math",
+    "weight": 0.02142857142857143,
+    "prerequisites": []
+  },
+  {
+    "id": "percentages",
+    "name": "Percentages",
+    "domain": "Problem-Solving and Data Analysis",
+    "section": "math",
+    "weight": 0.02142857142857143,
+    "prerequisites": [
+      "ratios"
+    ]
+  },
+  {
+    "id": "one-variable",
+    "name": "One-variable data",
+    "domain": "Problem-Solving and Data Analysis",
+    "section": "math",
+    "weight": 0.02142857142857143,
+    "prerequisites": []
+  },
+  {
+    "id": "two-variable",
+    "name": "Two-variable data",
+    "domain": "Problem-Solving and Data Analysis",
+    "section": "math",
+    "weight": 0.02142857142857143,
+    "prerequisites": [
+      "linear-functions",
+      "one-variable"
+    ]
+  },
+  {
+    "id": "probability",
+    "name": "Probability and conditional probability",
+    "domain": "Problem-Solving and Data Analysis",
+    "section": "math",
+    "weight": 0.02142857142857143,
+    "prerequisites": []
+  },
+  {
+    "id": "inference",
+    "name": "Inference and margin of error",
+    "domain": "Problem-Solving and Data Analysis",
+    "section": "math",
+    "weight": 0.02142857142857143,
+    "prerequisites": [
+      "one-variable"
+    ]
+  },
+  {
+    "id": "statistical-claims",
+    "name": "Evaluating statistical claims",
+    "domain": "Problem-Solving and Data Analysis",
+    "section": "math",
+    "weight": 0.02142857142857143,
+    "prerequisites": []
+  },
+  {
+    "id": "area-volume",
+    "name": "Area and volume",
+    "domain": "Geometry and Trigonometry",
+    "section": "math",
+    "weight": 0.0375,
+    "prerequisites": []
+  },
+  {
+    "id": "lines-triangles",
+    "name": "Lines, angles, and triangles",
+    "domain": "Geometry and Trigonometry",
+    "section": "math",
+    "weight": 0.0375,
+    "prerequisites": []
+  },
+  {
+    "id": "trigonometry",
+    "name": "Right triangles and trigonometry",
+    "domain": "Geometry and Trigonometry",
+    "section": "math",
+    "weight": 0.0375,
+    "prerequisites": [
+      "lines-triangles"
+    ]
+  },
+  {
+    "id": "circles",
+    "name": "Circles",
+    "domain": "Geometry and Trigonometry",
+    "section": "math",
+    "weight": 0.0375,
+    "prerequisites": [
+      "area-volume"
+    ]
+  }
+]

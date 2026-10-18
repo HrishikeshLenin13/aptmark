@@ -1,0 +1,6 @@
+# Competitor research — public pages inspected 2026-10-18
+[OnePrep](https://www.oneprep.com/) publicly describes diagnostics, a tailored planner, explanations, practice sets, tests, and tutor help. Its landing page advertises 4,000+ expert-written questions. These are vendor claims, not independently audited counts or outcomes. Public product presentation emphasizes an integrated learning workflow. No questions or proprietary assets were imported.
+
+[PsychSAT](https://psychsat.com/) publicly describes free adaptive practice, a rescheduling planner, a grounded hint-oriented tutor, mistake correction, and skill analytics. It advertises 5,000+ SAT-style questions, 29 repeatable patterns, and seven challenge bands. These are vendor claims, not independently verified performance. Its public description changes difficulty after single responses; Aptmark instead requires accumulated independent evidence for skill modeling.
+
+Aptmark's intended differentiation is a versioned, auditable content pipeline; explicit publication gates; honest uncertainty; first-exposure-only evidence; deterministic recommendations; and raw assessment reporting without unsupported precise score prediction. These are implementation goals/features, not proof of superior outcomes. Comparative effectiveness requires controlled evaluation with real students.
