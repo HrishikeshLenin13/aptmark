@@ -1,0 +1,81 @@
+"""55 original pilot candidates in eleven transparent template clusters.
+Self-contained hypothetical scenarios; no fabricated real studies or attributions.
+Structural validation is NOT educational approval. All need a human editor.
+"""
+import random
+
+def make_reading(skill, variant):
+    i=variant%5; table=None
+    if skill=='central-ideas':
+        data=[
+        ('a town archive','digitizing its collection','retain handwritten annotations','paper records','scanning improved access but could not preserve every physical feature'),
+        ('a theater company','streaming its productions','retain live performances','in-person productions','streaming widened access without replacing the live experience'),
+        ('a community garden','replacing fixed plots with shared beds','keep a few individual plots','the original layout','the change created flexibility while preserving a useful part of the earlier system'),
+        ('a museum','reorganizing exhibits by theme','retain dates on every label','the chronological arrangement','a thematic arrangement can offer new connections without abandoning historical context'),
+        ('a public library','adding digital lending','keep its physical collection','print borrowing','digital lending can extend a service rather than eliminate its existing form')][i]
+        who,change,keep,old,claim=data
+        passage=f'When {who} began {change}, some visitors expected {old} to disappear. The organizers instead chose to {keep}. They explained that the new approach served people the earlier system had not reached, while the older approach still offered something distinctive. Their decision treated the two approaches as complementary rather than interchangeable.'
+        stem='Which choice best states the main idea of the text?'
+        options=[claim[0].upper()+claim[1:]+'.','Any change to an established institution necessarily reduces its usefulness.','The earlier approach had no practical advantages.','The organizers abandoned the change after visitors objected.']; reason='The final two sentences explicitly describe the two approaches as complementary. The correct answer accounts for both the expanded access or flexibility and the retained older approach.'
+    elif skill=='textual-evidence':
+        contexts=[('a repair workshop','teach residents to mend household objects','participants returned with different objects and explained how they had adapted a technique'),('a writing circle','help writers revise independently','members used the same revision checklist on new drafts without prompting'),('a mapmaking class','help learners interpret unfamiliar maps','students correctly explained symbols on a map they had never seen before'),('a gardening course','teach flexible problem solving','participants adapted the watering method when their soil differed from the demonstration soil'),('a music workshop','teach a transferable listening strategy','listeners applied the strategy accurately to an unfamiliar recording')]
+        setting,goal,evidence=contexts[i]
+        passage=f'The coordinator of {setting} wanted to {goal}. Attendance was high, but the coordinator noted that attendance alone would not show whether learners could use the ideas beyond the original activity. The coordinator therefore sought evidence of independent application in a new setting.'
+        stem='Which observation, if true, would most directly support the conclusion that the workshop achieved its goal?'
+        options=[evidence[0].upper()+evidence[1:]+'.','The room used for the activity had more seats than the previous room.','Participants reported liking the refreshments.','The coordinator printed additional copies of the original instructions.']; reason='Independent, successful use in a new situation directly matches the stated goal. Attendance, comfort, and availability of materials do not demonstrate transfer of learning.'
+    elif skill=='quantitative-evidence':
+        labels=[('Library branch','North','South'),('Workshop','Morning','Evening'),('Bus route','Route A','Route B'),('Garden','East','West'),('Archive','Main','Annex')][i]
+        label,u,v=labels; a=18+7*i; b=30+9*i; c=42+8*i; d=48+9*i
+        table={'headers':[label,'Before','After'],'rows':[[u,a,c],[v,b,d]]}
+        passage=f'A hypothetical program tracked participation at two locations before and after a schedule change. A coordinator claims that {u} had a larger absolute increase in participation than {v}. The table shows the recorded counts; no claim is made about what caused any difference.'
+        stem='Which choice best uses the table to support the coordinator’s claim?'
+        options=[f'Participation rose by {c-a} at {u}, compared with {d-b} at {v}.',f'The initial count at {u} was {a}.',f'The final count at {v} was {d}.','Both locations must have had identical percentage increases.']; reason=f'The absolute increases are {c} − {a} = {c-a} and {d} − {b} = {d-b}. Comparing those differences directly supports the claim; isolated counts do not.'
+    elif skill=='inferences':
+        data=[('an illustrator','sketches','repeatedly erased the foreground while leaving the distant trees unchanged','the foreground composition'),('a composer','drafts','rewrote the final movement several times while keeping the opening intact','the ending'),('a translator','notes','listed several alternatives for one metaphor but gave single equivalents for the surrounding sentences','one metaphor'),('a designer','models','changed the entrance in each model while preserving the building’s overall dimensions','the entrance'),('an editor','marked drafts','repeatedly revised the title but left the main text untouched','the title')][i]
+        role,work,behavior,focus=data
+        passage=f'In a fictional archive, {role} left several versions of the same project. Across these {work}, the creator {behavior}. The archive contains no explanation of the revisions, and none of the versions is labeled final.'
+        stem='Which inference is most strongly supported by the text?'
+        options=[f'The creator devoted particular attention to reconsidering {focus}.','The creator considered every version a complete failure.','The creator intended never to share the project.','The versions were made by several unrelated people.']; reason='The repeated localized revisions support an inference about the creator’s attention. The text supplies no evidence about total failure, future plans, or multiple creators.'
+    elif skill=='words-context':
+        data=[('tentative','The committee described its proposal as tentative: members expected to revise it after receiving residents’ comments.','provisional',['final','unrelated','secret']),('qualified','The reviewer offered qualified praise, commending the design’s clarity while noting its limited accessibility.','conditional',['unreserved','irrelevant','hostile']),('sustain','The archive sought funding to sustain its conservation work so that the project could continue after the initial grant ended.','maintain',['conceal','accelerate','replace']),('concede','Although the critic defended the play, she did concede that its final scene was less convincing than its opening.','acknowledge',['predict','deny','celebrate']),('discern','The print was so faint that the archivist needed a magnifying lens to discern the small differences between the two signatures.','detect',['create','dismiss','erase'])][i]
+        word,passage,right,wrong=data
+        passage+=[ 'The comments would inform a new draft before the members reached a final decision.', 'The reviewer argued that the design would need changes before it could serve a broader audience.', 'The initial grant had paid for materials, but further support would be needed for ongoing work.', 'Her review distinguished between the work’s overall strengths and the weakness of one particular section.', 'At ordinary reading distance, the marks appeared nearly identical, complicating the initial comparison.' ][i]
+        stem=f'As used in the text, what does “{word}” most nearly mean?'; options=[right]+wrong; reason=f'In this context, “{word}” means “{right}.” The specific contrast or purpose in the sentence supports that meaning, rather than the other choices.'
+    elif skill=='text-purpose':
+        data=[('an exhibit','objects arranged by region','arranging the same objects by material','the alternative arrangement'),('a translation','a literal rendering of a phrase','an idiomatic rendering of that phrase','the idiomatic rendering'),('a transit proposal','a route with many stops','an express route with fewer stops','the express route'),('a curriculum','a sequence organized by dates','a sequence organized by recurring themes','the thematic sequence'),('an index','entries sorted alphabetically','entries grouped by topic','the topical grouping')][i]
+        thing,first,second,part=data
+        passage=f'A discussion of {thing} first describes {first}. It then considers {second}. The discussion identifies the advantages and limits of each approach and argues that the choice should depend on the user’s purpose, not on a rule that one arrangement is always superior.'
+        stem=f'What is the main function of the reference to {part} in the text as a whole?'
+        options=['It introduces an alternative that helps the author compare approaches to the same task.','It provides evidence that all organizational systems are equally ineffective.','It abandons the original topic to describe an unrelated event.','It establishes that the first approach is always the best choice.']; reason='The second approach is an alternative for the same task. The discussion compares their uses and explicitly rejects a universal ranking.'
+    elif skill=='cross-text':
+        data=[('community workshops','central coordination','local experimentation'),('museum displays','consistent labels','flexible presentation'),('public reading programs','shared reading lists','locally selected titles'),('school gardens','standard planting schedules','site-specific plans'),('oral-history archives','uniform metadata','community-specific descriptions')][i]
+        topic,central,local=data
+        passage=f'Text 1\nFor {topic}, {central} makes it easier to compare results across locations. Organizers should preserve common standards even when individual sites differ.\n\nText 2\nCommon standards have value, but {topic} can lose important local knowledge if they exclude {local}. A shared framework should leave room for adaptation.'
+        stem='How would the author of Text 2 most likely respond to Text 1?'
+        options=['By accepting the usefulness of common standards while questioning whether they should exclude local adaptation.','By denying that any comparison between locations is possible.','By arguing that every site must use exactly the same approach.','By claiming that local knowledge is always irrelevant.']; reason='Text 2 explicitly accepts that standards have value, then argues for local flexibility. It qualifies Text 1 rather than rejecting all coordination.'
+    elif skill=='synthesis':
+        data=[('a fictional town archive','oral histories','handwritten diaries'),('a fictional museum','ceramic vessels','woven textiles'),('a fictional library','printed maps','digital maps'),('a fictional exhibition','early sketches','finished paintings'),('a fictional garden collection','local seeds','imported seeds')][i]
+        place,one,two=data; n=12+3*i; m=25+5*i
+        passage=f'While researching {place}, a student takes these notes:\n• The collection includes {one} and {two}.\n• The collection contains {n} examples of {one}.\n• The collection contains {m} examples of {two}.\n• Both groups are available for visitors to study.'
+        stem='The student wants to emphasize a numerical contrast between the two groups. Which choice most effectively uses the notes to accomplish this goal?'
+        options=[f'The collection contains {m} examples of {two}, compared with {n} examples of {one}.',f'Visitors can study both {one} and {two}.',f'The collection is held in {place}.',f'The collection includes {n} examples of {one}.']; reason='The rhetorical goal is a numerical contrast, so the sentence must include both groups and both counts. The other choices omit the comparison.'
+    elif skill=='transitions':
+        data=[('The proposed footbridge would shorten the walk to the library.','it would also make the route accessible to wheelchair users.','Moreover,',['Nevertheless,','Instead,','For example,'],'addition'),('The first design used less material than the second.','the second proved easier to repair.','However,',['Therefore,','Similarly,','For instance,'],'contrast'),('The workshop had no remaining seats.','the organizers scheduled an additional session.','Consequently,',['Nevertheless,','Likewise,','For example,'],'cause and effect'),('The archive preserves several types of local records.','it holds handwritten meeting notes and annotated maps.','For example,',['Instead,','Nevertheless,','As a result,'],'example'),('The first route takes forty minutes.','the second route takes the same amount of time.','Similarly,',['In contrast,','Consequently,','Instead,'],'similarity')][i]
+        first,second,right,wrong,relation=data
+        passage=f'{first} _____ {second} The organizers included both points in their written assessment of the proposal, so the relationship between the statements matters to the reader.'
+        stem='Which choice completes the text with the most logical transition?'; options=[right]+wrong; reason=f'The second statement expresses {relation} in relation to the first. “{right}” makes that relationship explicit; the other transitions signal a different relationship.'
+    elif skill=='boundaries':
+        data=[('The archive contains fragile papers','visitors must use book supports when examining them'),('The hall has limited seating','reservations are therefore required'),('The printer ran out of ink','the editor postponed the mailing'),('The trail crosses a protected habitat','visitors must stay on the marked path'),('The performance has no intermission','audience members should arrive before it begins')][i]
+        first,second=data
+        passage=f'{first}_____ {second}. The staff includes this information in the introductory materials so that every participant can prepare before the activity begins.'
+        stem='Which choice completes the text so that it conforms to the conventions of Standard English?'; options=[';',',','[no punctuation]',': and']; reason='The blank joins two independent clauses without a coordinating conjunction. A semicolon correctly separates them; a comma creates a comma splice, no punctuation creates a run-on, and “: and” does not correctly connect these clauses.'
+    elif skill=='form-structure':
+        data=[('The collection of illustrated manuscripts','is','are'),('The arrangement of the display cases','has','have'),('The list of approved routes','includes','include'),('The group of volunteer archivists','meets','meet'),('The sequence of rehearsal exercises','begins','begin')][i]
+        subject,right,wrong=data
+        after={'is':'available for study on request','has':'changed since the previous exhibition','includes':'several options near the river','meets':'in the reading room each week','begins':'with a short listening task'}[right]
+        passage=f'{subject} _____ {after}. The coordinator describes this detail in a notice that introduces the project to visitors who have not seen it before.'
+        stem='Which choice completes the text so that it conforms to the conventions of Standard English?'
+        options=[right,wrong,'being','to be']; reason=f'The grammatical subject is the singular head noun, not the plural noun in the prepositional phrase. The singular finite verb “{right}” agrees with it; the plural verb does not, and the other choices leave the clause without the required finite verb.'
+    else: raise ValueError(skill)
+    correct=options[0]; r=random.Random(f'{skill}-{i}'); r.shuffle(options)
+    return dict(passage=passage,stem=stem,options=options,correctAnswer=correct,steps=[reason],explanation=reason,difficulty='medium',verification='structure-only-editorial-required',diagram=None,table=table)
