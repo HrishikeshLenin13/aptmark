@@ -46,6 +46,7 @@ import {
   ExternalLink,
   Layers3,
   GraduationCap,
+  Download,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Modal } from "./ui/dialog";
@@ -1889,12 +1890,24 @@ function Planner({
         title="Make a little room for progress."
         description="A flexible rhythm, shaped by your available time and independent answers."
         action={
-          <Button variant="secondary" onClick={onSettings}>
-            <Settings2 size={15} />
-            Edit your goals
-          </Button>
+          <div className="planner-actions">
+            <Button asChild variant="secondary">
+              <a href="/api/planner/calendar" download="aptmark-study-plan.ics">
+                <Download size={15} />
+                Export calendar
+              </a>
+            </Button>
+            <Button variant="secondary" onClick={onSettings}>
+              <Settings2 size={15} />
+              Edit your goals
+            </Button>
+          </div>
         }
       />
+      <p className="planner-export-note">
+        Calendar export creates all-day study reminders. It is a one-time .ics
+        download, not live calendar sync.
+      </p>
       <div className="planner-summary">
         <div>
           <Target size={20} />

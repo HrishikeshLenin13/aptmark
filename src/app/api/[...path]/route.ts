@@ -1,3 +1,4 @@
+import { studyCalendar } from "@/lib/study-calendar";
 import { LESSONS, publicLesson } from "@/lib/lessons";
 import { lessonProgress, recordLessonCheck } from "@/lib/lesson-store";
 import policy from "@/lib/content-policy.json";
@@ -333,6 +334,17 @@ async function handler(req: NextRequest) {
         exams,
         readiness: formReadiness(bank),
         serverTime: now(),
+      });
+    }
+    if (path === "planner/calendar" && !write) {
+      const plan = studyPlan(skills(), attempts(user.id), preferences(user.id));
+      return new NextResponse(studyCalendar(plan, user.id), {
+        headers: {
+          "Content-Type": "text/calendar; charset=utf-8",
+          "Content-Disposition":
+            'attachment; filename="aptmark-study-plan.ics"',
+          "Cache-Control": "private, no-store",
+        },
       });
     }
     if (path === "lessons" && !write) {

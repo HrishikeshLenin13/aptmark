@@ -20,7 +20,7 @@ Updated: 2026-10-18. Active local development; not a complete or hosted release.
 The pipeline contains 4,800 Math and 605 Reading and Writing candidates (5,405 total), across 30 skills and 75 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
 
 ## Verification record
-- 43 TypeScript tests and 83 Python tests passed.
+- 48 TypeScript tests and 83 Python tests passed.
 - 17 isolated browser integration tests passed for practice, scoring, key privacy, drafts, bookmarks, notes, account lifecycle, assessment recovery, diagnostic transitions, ownership isolation, and publication gates.
 - All 5,405 candidates replayed from recorded seeds with zero mismatches or structural failures; exact problem-text duplicate count is zero. The 75 template clusters remain separately reported.
 - Production build and strict TypeScript checks passed.
@@ -54,3 +54,8 @@ See [Development notes](docs/DEVELOPMENT.md) for local preview, content workflow
 - Production-mode verification returned zero visible unreviewed lessons and rejected lesson checks with 404. The lessons remain previews pending independent editorial review; there is no automatic lesson publication path.
 - 43 TypeScript tests, 83 Python tests, strict typechecking, the production build and all 5,405 content seed replays passed. Evidence is under evidence/website-studio/. A first lesson unit run referenced a nonexistent taxonomy filename; it failed, was corrected, and the rerun passed.
 - Upcoming website milestones: portable study-plan calendar export, bounded persistent pacing drills, and deeper onboarding and study-flow refinement. Existing publication, identity and mastery boundaries remain intact.
+
+## Portable calendar export — 2026-10-18
+- Added authenticated, owner-derived .ics downloads from the planner. Events use all-day date values, exclusive next-day ends, private non-cacheable responses, escaped text and Unicode-safe line folding. No email/raw account IDs or session tokens are embedded.
+- Five calendar unit tests and one isolated download/ownership/accessibility browser test passed. The latest complete suite remains the 17-test studio run; this additional calendar test passed separately.
+- Calendar screenshots passed automated accessibility and overflow checks at 1440, 820 and 390px and were visually inspected. This is portable export, not external calendar sync. See docs/CALENDAR_EXPORT.md and evidence/calendar/.

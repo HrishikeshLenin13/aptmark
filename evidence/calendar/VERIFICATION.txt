@@ -1,0 +1,26 @@
+Aptmark portable study-plan calendar milestone
+Branch: codex/website-studio
+Changed behavior: authenticated GET /api/planner/calendar derives the plan from the current session owner, and the planner exposes a real .ics download. Export does not connect or synchronize an external calendar.
+
+command: npm test
+input: engine, privacy, lesson, and calendar unit contracts
+literal result: Tests 48 passed (48)
+exit status: 0
+command: npm run typecheck
+literal result: tsc --noEmit; no diagnostics
+exit status: 0
+command: NEXT_DIST_DIR=.next-publish npm run build
+literal result: Compiled successfully; dynamic page and API routes built
+exit status: 0
+command: .venv/bin/python -m pytest tests/test_content.py -q
+literal result: 83 passed in 3.90s
+exit status: 0
+command: .venv/bin/python python/pipeline.py validate --replay
+literal output: {"checked": 5405, "replayed": 5405, "failures": []}
+exit status: 0
+command: npm run test:e2e -- tests/calendar.spec.ts
+input: isolated QA database, real .ics download, unauthorized and owner-ignored query cases, 1440/820/390px automated accessibility/overflow audits
+literal result: 1 passed (7.7s)
+exit status: 0
+Screenshots were reopened and visually inspected. Existing question inventory and editorial status were not changed.
+The root-layout integration rollback proof remains in evidence/website-studio/VERIFICATION.txt and restores that bounded import only, not this endpoint.

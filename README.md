@@ -10,6 +10,7 @@
 - **Build the idea first.** Explore 12 original foundation lesson previews, worked examples, and saved understanding checks. Lesson completion stays separate from independent practice mastery.
 - **Find your next step.** Search pages and skills, open saved questions, or choose vocabulary and challenging practice from a keyboard-accessible workspace.
 - **Understand the reasoning.** Review worked explanations, progressive hints, and common-mistake notes alongside each question.
+- **Make space for study.** Shape a weekly plan around your available days and export its real study reminders to a portable calendar file.
 - **Keep your progress honest.** See actual practice history, skill-level signals, review reminders, and study plans—without invented activity or unsupported score predictions.
 - **Prepare with structure.** Use a short diagnostic, a timed Math assessment preview, a formula reference, and a simple calculator.
 - **Keep content accountable.** Aptmark separates generated candidates from reviewed and published questions; content tools record validation, editorial decisions, and release status.

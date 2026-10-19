@@ -17,7 +17,7 @@ Aptmark uses these capabilities as product requirements, not a source of questio
 | Vocabulary and challenging practice | Implemented explicit entry points into context vocabulary, hard practice and saved questions |
 | Timed drills | Next website behavior milestone: persistent bounded sessions, not an ornamental timer |
 | Conversational AI | Static grounded guide works; provider, operating budget and evaluation remain open |
-| Calendar sync | Not connected; implement portable schedule export before external calendar authorization |
+| Calendar sync | Portable all-day .ics export implemented; no external provider connection or live sync |
 | Full-length tests / predicted scores | Not advertised as ready without reviewed forms and psychometric support |
 | ACT/AP, college planning, native apps, parent/teacher workflows | Separate product tracks, currently unimplemented; no fake tabs or parity claim |
 
