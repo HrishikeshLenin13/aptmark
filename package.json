@@ -13,7 +13,10 @@
     "content:validate": ".venv/bin/python python/pipeline.py validate",
     "content:report": ".venv/bin/python python/pipeline.py report",
     "model:evaluate": "node --env-file=.env.local --import tsx scripts/evaluate.ts",
-    "format": "prettier --write src tests scripts *.ts *.json"
+    "format": "prettier --write src tests scripts *.ts *.json",
+    "content:expand": ".venv/bin/python python/pipeline.py expand --per-family 25 --max-per-family 25",
+    "content:plan": ".venv/bin/python python/pipeline.py plan",
+    "content:review-pack": ".venv/bin/python python/pipeline.py review-pack --per-family 1 --output content/reviewed/review-pack.md"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

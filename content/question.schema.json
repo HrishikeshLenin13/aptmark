@@ -1,24 +1,305 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema",
-  "$id":"https://aptmark.local/schemas/question-v1.json",
-  "title":"Aptmark original question v1",
-  "type":"object",
-  "required":["id","schemaVersion","contentVersion","section","domain","skill","subskill","type","stem","passage","options","correctAnswer","acceptedResponses","difficulty","difficultyCalibration","explanation","steps","distractorExplanations","misconceptionTags","estimatedSeconds","family","generatorVersion","seed","source","license","validationResults","editorialStatus","publicationStatus","createdAt","updatedAt","contentHash","problemHash","similarityCluster","accessibility"],
-  "properties":{
-    "id":{"type":"string","minLength":1},"schemaVersion":{"const":1},"contentVersion":{"type":"integer","minimum":1},
-    "section":{"enum":["rw","math"]},"type":{"enum":["mcq","spr"]},
-    "stem":{"type":"string","minLength":10},"passage":{"type":["string","null"]},
-    "options":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},
-    "correctAnswer":{"type":"string","minLength":1},"acceptedResponses":{"type":"array","items":{"type":"string"}},
-    "difficulty":{"enum":["easy","medium","hard"]},"difficultyCalibration":{"const":"provisional-uncalibrated"},
-    "steps":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},
-    "explanation":{"type":"string","minLength":15},"license":{"const":"CC0-1.0-original"},
-    "editorialStatus":{"enum":["pending","approved","rejected"]},"publicationStatus":{"enum":["candidate","published"]},
-    "contentHash":{"type":"string","pattern":"^[a-f0-9]{64}$"},"problemHash":{"type":"string","pattern":"^[a-f0-9]{64}$"},
-    "seed":{"type":"integer","minimum":1},"reviewer":{"type":["string","null"]},"reviewNotes":{"type":["string","null"]}
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aptmark.local/schemas/question-v1.json",
+  "title": "Aptmark original question v1",
+  "type": "object",
+  "required": [
+    "id",
+    "schemaVersion",
+    "contentVersion",
+    "section",
+    "domain",
+    "skill",
+    "subskill",
+    "type",
+    "stem",
+    "passage",
+    "options",
+    "correctAnswer",
+    "acceptedResponses",
+    "difficulty",
+    "difficultyCalibration",
+    "explanation",
+    "steps",
+    "distractorExplanations",
+    "misconceptionTags",
+    "estimatedSeconds",
+    "family",
+    "generatorVersion",
+    "seed",
+    "source",
+    "license",
+    "validationResults",
+    "editorialStatus",
+    "publicationStatus",
+    "createdAt",
+    "updatedAt",
+    "contentHash",
+    "problemHash",
+    "similarityCluster",
+    "accessibility"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "contentVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "section": {
+      "enum": [
+        "rw",
+        "math"
+      ]
+    },
+    "type": {
+      "enum": [
+        "mcq",
+        "spr"
+      ]
+    },
+    "stem": {
+      "type": "string",
+      "minLength": 10
+    },
+    "passage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "options": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "correctAnswer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptedResponses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "difficulty": {
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "difficultyCalibration": {
+      "const": "provisional-uncalibrated"
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "explanation": {
+      "type": "string",
+      "minLength": 15
+    },
+    "license": {
+      "const": "CC0-1.0-original"
+    },
+    "editorialStatus": {
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ]
+    },
+    "publicationStatus": {
+      "enum": [
+        "candidate",
+        "published"
+      ]
+    },
+    "contentHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "problemHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reviewer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewNotes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "generatorVersion": {
+      "type": "string"
+    },
+    "answerEvidence": {
+      "type": "object",
+      "required": [
+        "quotes",
+        "reasoning"
+      ],
+      "properties": {
+        "quotes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reasoning": {
+          "type": "string",
+          "minLength": 15
+        }
+      }
+    },
+    "alignment": {
+      "type": "object",
+      "required": [
+        "source",
+        "basis",
+        "frameworkVersion"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "format": "uri"
+        },
+        "basis": {
+          "type": "string"
+        },
+        "frameworkVersion": {
+          "type": "string"
+        }
+      }
+    },
+    "qualityMetadata": {
+      "type": "object",
+      "required": [
+        "difficultyBasis",
+        "reviewFlags"
+      ],
+      "properties": {
+        "difficultyBasis": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "reviewFlags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
   },
-  "allOf":[
-    {"if":{"properties":{"type":{"const":"mcq"}}},"then":{"properties":{"options":{"minItems":4,"maxItems":4}}}},
-    {"if":{"properties":{"publicationStatus":{"const":"published"}}},"then":{"required":["reviewer","reviewNotes"],"properties":{"editorialStatus":{"const":"approved"},"reviewer":{"type":"string","minLength":3},"reviewNotes":{"type":"string","minLength":15}}}}
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "mcq"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "options": {
+            "minItems": 4,
+            "maxItems": 4
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "publicationStatus": {
+            "const": "published"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "reviewer",
+          "reviewNotes"
+        ],
+        "properties": {
+          "editorialStatus": {
+            "const": "approved"
+          },
+          "reviewer": {
+            "type": "string",
+            "minLength": 3
+          },
+          "reviewNotes": {
+            "type": "string",
+            "minLength": 15
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "generatorVersion"
+        ],
+        "properties": {
+          "generatorVersion": {
+            "const": "2.0.0"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "alignment",
+          "qualityMetadata",
+          "distractorExplanations"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "section": {
+                  "const": "rw"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "answerEvidence"
+              ]
+            }
+          }
+        ]
+      }
+    }
   ]
 }

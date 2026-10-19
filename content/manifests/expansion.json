@@ -1,0 +1,211 @@
+{
+  "inserted": 0,
+  "families": [
+    {
+      "family": "rw2-competing-explanations",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-character-tension",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-control-evidence",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-counterevidence",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-rate-comparison",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-table-exception",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-sampling-limit",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-constraint-inference",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-context-blank",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-context-nuance",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-counterargument-role",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-example-role",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-qualified-agreement",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-evidence-response",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-notes-contrast",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-notes-method",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-concession",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-specific-example",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-appositive",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-list-colon",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-finite-verb",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "rw2-modifier-attachment",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-inconsistent-system",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-negative-coefficient-bound",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-rational-domain",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-discriminant-parameter",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-exponential-initial",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-shifted-intercept",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-area-unit-conversion",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-spread-scaling",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-sample-size-margin",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-similar-solid-volume",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-arc-coefficient",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    },
+    {
+      "family": "m2-complementary-ratios",
+      "have": 25,
+      "target": 25,
+      "shortfall": 0
+    }
+  ],
+  "allPendingReview": true,
+  "publishedByGeneration": 0
+}

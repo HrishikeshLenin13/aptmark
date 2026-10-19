@@ -1,0 +1,553 @@
+{
+  "checkedAt": "2026-10-18",
+  "sources": [
+    {
+      "url": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+      "version": "4, September 2026",
+      "usedFor": "Domain/skill definitions and response/stimulus constraints; no question text imported."
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+      "usedFor": "Public task descriptions."
+    },
+    {
+      "url": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+      "usedFor": "Public skill descriptions."
+    }
+  ],
+  "originality": "All passages, datasets, values and explanations independently authored. Official materials guide task structure, not paraphrasing of question content.",
+  "families": [
+    {
+      "family": "rw2-competing-explanations",
+      "skill": "central-ideas",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "reconcile conflicting evidence",
+        "distinguish observation from explanation"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-character-tension",
+      "skill": "central-ideas",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "interpret behavior",
+        "integrate contrasting details"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-control-evidence",
+      "skill": "textual-evidence",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "match evidence to hypothesis",
+        "distinguish outcome from preference"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-counterevidence",
+      "skill": "textual-evidence",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "evaluate competing cause",
+        "avoid exclusive causal inference"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-rate-comparison",
+      "skill": "quantitative-evidence",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "distinguish rate from count",
+        "cross multiply fractions"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-table-exception",
+      "skill": "quantitative-evidence",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "find counterexample",
+        "read table direction"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-sampling-limit",
+      "skill": "inferences",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "bound inference by sampling frame",
+        "distinguish accuracy from representativeness"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-constraint-inference",
+      "skill": "inferences",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "combine necessary conditions",
+        "separate present from future"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-context-blank",
+      "skill": "words-context",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "resolve concessive contrast",
+        "select contextual sense"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-context-nuance",
+      "skill": "words-context",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "track contrast",
+        "use explanatory restatement"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-counterargument-role",
+      "skill": "text-purpose",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "trace argumentative structure",
+        "identify concession and response"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-example-role",
+      "skill": "text-purpose",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "connect example to claim"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-qualified-agreement",
+      "skill": "cross-text",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "find intersection of qualified claims"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-evidence-response",
+      "skill": "cross-text",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "evaluate alternative explanation across texts"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-notes-contrast",
+      "skill": "synthesis",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "distinguish rhetorical goal from factual accuracy"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-notes-method",
+      "skill": "synthesis",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "distinguish rhetorical goal from factual accuracy"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-concession",
+      "skill": "transitions",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "contrast expectation with outcome"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-specific-example",
+      "skill": "transitions",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "link generalization to specific illustration"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-appositive",
+      "skill": "boundaries",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "identify nonessential appositive",
+        "preserve subject-verb connection"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-list-colon",
+      "skill": "boundaries",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "distinguish complete clause from list"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-finite-verb",
+      "skill": "form-structure",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "distinguish finite verb from participle",
+        "track subject across modifier"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "rw2-modifier-attachment",
+      "skill": "form-structure",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "attach modifier to logical subject"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+        "basis": "public task descriptions; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-inconsistent-system",
+      "skill": "linear-systems",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "classify solution counts",
+        "compare coefficient and constant ratios"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-negative-coefficient-bound",
+      "skill": "linear-inequalities",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "reverse inequality for negative divisor",
+        "interpret strict integer bound"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-rational-domain",
+      "skill": "equivalent",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "factor difference of squares",
+        "retain excluded input"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-discriminant-parameter",
+      "skill": "nonlinear-equations",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "discriminant condition",
+        "interpret requested parameter"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-exponential-initial",
+      "skill": "nonlinear-functions",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "interpret shifted exponential model",
+        "evaluate negative exponent"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-shifted-intercept",
+      "skill": "linear-functions",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "change input representation",
+        "distinguish intercept from shifted value"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-area-unit-conversion",
+      "skill": "ratios",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "convert squared units"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-spread-scaling",
+      "skill": "one-variable",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "distinguish center from spread",
+        "distinguish variance from standard deviation"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-sample-size-margin",
+      "skill": "inference",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "interpret inverse square-root model",
+        "separate model from empirical guarantee"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-similar-solid-volume",
+      "skill": "area-volume",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "model cubic scaling"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-arc-coefficient",
+      "skill": "circles",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "distinguish sector area and arc length"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    },
+    {
+      "family": "m2-complementary-ratios",
+      "skill": "trigonometry",
+      "version": "2.0.0",
+      "difficultyBasis": [
+        "use complementary-angle identity",
+        "identify opposite side and hypotenuse"
+      ],
+      "batchCap": 25,
+      "humanReviewRequired": true,
+      "sourceAlignment": {
+        "source": "https://satsuite.collegeboard.org/practice/student-question-bank/math",
+        "basis": "public skill specifications; independently authored",
+        "frameworkVersion": "4 (September 2026)"
+      }
+    }
+  ]
+}

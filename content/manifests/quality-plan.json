@@ -1,0 +1,583 @@
+{
+  "schemaVersion": 1,
+  "targetPublished": 10000,
+  "candidates": 5405,
+  "published": 0,
+  "publishableTargetMet": false,
+  "candidateTargetMet": false,
+  "skills": [
+    {
+      "id": "central-ideas",
+      "domain": "Information and Ideas",
+      "section": "rw",
+      "target": 358,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 358,
+      "candidateDeficit": 303,
+      "families": 3,
+      "difficulty": {
+        "medium": 30,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "textual-evidence",
+      "domain": "Information and Ideas",
+      "section": "rw",
+      "target": 357,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 357,
+      "candidateDeficit": 302,
+      "families": 3,
+      "difficulty": {
+        "medium": 30,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "quantitative-evidence",
+      "domain": "Information and Ideas",
+      "section": "rw",
+      "target": 358,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 358,
+      "candidateDeficit": 303,
+      "families": 3,
+      "difficulty": {
+        "medium": 30,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "inferences",
+      "domain": "Information and Ideas",
+      "section": "rw",
+      "target": 358,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 358,
+      "candidateDeficit": 303,
+      "families": 3,
+      "difficulty": {
+        "medium": 30,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "words-context",
+      "domain": "Craft and Structure",
+      "section": "rw",
+      "target": 513,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 513,
+      "candidateDeficit": 458,
+      "families": 3,
+      "difficulty": {
+        "medium": 55
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "text-purpose",
+      "domain": "Craft and Structure",
+      "section": "rw",
+      "target": 513,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 513,
+      "candidateDeficit": 458,
+      "families": 3,
+      "difficulty": {
+        "medium": 30,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "cross-text",
+      "domain": "Craft and Structure",
+      "section": "rw",
+      "target": 513,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 513,
+      "candidateDeficit": 458,
+      "families": 3,
+      "difficulty": {
+        "medium": 5,
+        "hard": 50
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "synthesis",
+      "domain": "Expression of Ideas",
+      "section": "rw",
+      "target": 550,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 550,
+      "candidateDeficit": 495,
+      "families": 3,
+      "difficulty": {
+        "medium": 55
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "transitions",
+      "domain": "Expression of Ideas",
+      "section": "rw",
+      "target": 550,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 550,
+      "candidateDeficit": 495,
+      "families": 3,
+      "difficulty": {
+        "medium": 55
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "boundaries",
+      "domain": "Standard English Conventions",
+      "section": "rw",
+      "target": 715,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 715,
+      "candidateDeficit": 660,
+      "families": 3,
+      "difficulty": {
+        "medium": 55
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "form-structure",
+      "domain": "Standard English Conventions",
+      "section": "rw",
+      "target": 715,
+      "candidates": 55,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 715,
+      "candidateDeficit": 660,
+      "families": 3,
+      "difficulty": {
+        "medium": 55
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "linear-one",
+      "domain": "Algebra",
+      "section": "math",
+      "target": 315,
+      "candidates": 315,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 315,
+      "candidateDeficit": 0,
+      "families": 3,
+      "difficulty": {
+        "easy": 107,
+        "medium": 208
+      },
+      "missingDifficultyBands": [
+        "hard"
+      ]
+    },
+    {
+      "id": "linear-two",
+      "domain": "Algebra",
+      "section": "math",
+      "target": 315,
+      "candidates": 315,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 315,
+      "candidateDeficit": 0,
+      "families": 2,
+      "difficulty": {
+        "easy": 162,
+        "medium": 153
+      },
+      "missingDifficultyBands": [
+        "hard"
+      ]
+    },
+    {
+      "id": "linear-functions",
+      "domain": "Algebra",
+      "section": "math",
+      "target": 315,
+      "candidates": 340,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 315,
+      "candidateDeficit": 0,
+      "families": 3,
+      "difficulty": {
+        "medium": 315,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "linear-systems",
+      "domain": "Algebra",
+      "section": "math",
+      "target": 315,
+      "candidates": 340,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 315,
+      "candidateDeficit": 0,
+      "families": 3,
+      "difficulty": {
+        "medium": 315,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "linear-inequalities",
+      "domain": "Algebra",
+      "section": "math",
+      "target": 315,
+      "candidates": 340,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 315,
+      "candidateDeficit": 0,
+      "families": 2,
+      "difficulty": {
+        "medium": 315,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "equivalent",
+      "domain": "Advanced Math",
+      "section": "math",
+      "target": 525,
+      "candidates": 550,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 525,
+      "candidateDeficit": 0,
+      "families": 3,
+      "difficulty": {
+        "medium": 303,
+        "hard": 247
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "nonlinear-equations",
+      "domain": "Advanced Math",
+      "section": "math",
+      "target": 525,
+      "candidates": 550,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 525,
+      "candidateDeficit": 0,
+      "families": 4,
+      "difficulty": {
+        "medium": 506,
+        "hard": 44
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "nonlinear-functions",
+      "domain": "Advanced Math",
+      "section": "math",
+      "target": 525,
+      "candidates": 550,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 525,
+      "candidateDeficit": 0,
+      "families": 3,
+      "difficulty": {
+        "medium": 525,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "ratios",
+      "domain": "Problem-Solving and Data Analysis",
+      "section": "math",
+      "target": 96,
+      "candidates": 121,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 96,
+      "candidateDeficit": 0,
+      "families": 2,
+      "difficulty": {
+        "easy": 96,
+        "medium": 25
+      },
+      "missingDifficultyBands": [
+        "hard"
+      ]
+    },
+    {
+      "id": "percentages",
+      "domain": "Problem-Solving and Data Analysis",
+      "section": "math",
+      "target": 96,
+      "candidates": 96,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 96,
+      "candidateDeficit": 0,
+      "families": 1,
+      "difficulty": {
+        "hard": 96
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "medium"
+      ]
+    },
+    {
+      "id": "one-variable",
+      "domain": "Problem-Solving and Data Analysis",
+      "section": "math",
+      "target": 97,
+      "candidates": 122,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 97,
+      "candidateDeficit": 0,
+      "families": 3,
+      "difficulty": {
+        "medium": 97,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "easy"
+      ]
+    },
+    {
+      "id": "two-variable",
+      "domain": "Problem-Solving and Data Analysis",
+      "section": "math",
+      "target": 96,
+      "candidates": 96,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 96,
+      "candidateDeficit": 0,
+      "families": 1,
+      "difficulty": {
+        "medium": 96
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "probability",
+      "domain": "Problem-Solving and Data Analysis",
+      "section": "math",
+      "target": 96,
+      "candidates": 96,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 96,
+      "candidateDeficit": 0,
+      "families": 1,
+      "difficulty": {
+        "medium": 96
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "inference",
+      "domain": "Problem-Solving and Data Analysis",
+      "section": "math",
+      "target": 97,
+      "candidates": 122,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 97,
+      "candidateDeficit": 0,
+      "families": 2,
+      "difficulty": {
+        "easy": 97,
+        "hard": 25
+      },
+      "missingDifficultyBands": [
+        "medium"
+      ]
+    },
+    {
+      "id": "statistical-claims",
+      "domain": "Problem-Solving and Data Analysis",
+      "section": "math",
+      "target": 96,
+      "candidates": 96,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 96,
+      "candidateDeficit": 0,
+      "families": 1,
+      "difficulty": {
+        "medium": 96
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "area-volume",
+      "domain": "Geometry and Trigonometry",
+      "section": "math",
+      "target": 169,
+      "candidates": 194,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 169,
+      "candidateDeficit": 0,
+      "families": 2,
+      "difficulty": {
+        "medium": 194
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "lines-triangles",
+      "domain": "Geometry and Trigonometry",
+      "section": "math",
+      "target": 169,
+      "candidates": 169,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 169,
+      "candidateDeficit": 0,
+      "families": 1,
+      "difficulty": {
+        "medium": 169
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "trigonometry",
+      "domain": "Geometry and Trigonometry",
+      "section": "math",
+      "target": 169,
+      "candidates": 194,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 169,
+      "candidateDeficit": 0,
+      "families": 2,
+      "difficulty": {
+        "medium": 194
+      },
+      "missingDifficultyBands": [
+        "easy",
+        "hard"
+      ]
+    },
+    {
+      "id": "circles",
+      "domain": "Geometry and Trigonometry",
+      "section": "math",
+      "target": 169,
+      "candidates": 194,
+      "approved": 0,
+      "published": 0,
+      "publishedDeficit": 169,
+      "candidateDeficit": 0,
+      "families": 3,
+      "difficulty": {
+        "easy": 85,
+        "hard": 84,
+        "medium": 25
+      },
+      "missingDifficultyBands": []
+    }
+  ],
+  "numericNormalizedTextClusters": 405,
+  "instancesInNumericNormalizedClusters": 4489,
+  "deduplicationMethod": "exact problem hashes + explicit family clusters + number-normalized exact text; semantic equivalence not established",
+  "nextAction": "Review representative families, improve missing difficulty bands and distractors, then scale reviewed templates. Do not auto-publish."
+}
