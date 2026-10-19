@@ -6,6 +6,11 @@ import { Modal } from "./ui/dialog";
 import type { Skill } from "@/lib/types";
 const pages = [
   {
+    title: "Learning center",
+    description: "Short lessons, worked examples and understanding checks",
+    href: "/learn",
+  },
+  {
     title: "Overview",
     description: "Your next step and study activity",
     href: "/",

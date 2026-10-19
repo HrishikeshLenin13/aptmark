@@ -35,6 +35,7 @@ export function db() {
  CREATE TABLE IF NOT EXISTS reports(id TEXT PRIMARY KEY,user_id TEXT REFERENCES users(id) ON DELETE SET NULL,question_id TEXT NOT NULL REFERENCES questions(id),message TEXT NOT NULL,created_at TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS editorial(id TEXT PRIMARY KEY,question_id TEXT NOT NULL REFERENCES questions(id),reviewer TEXT NOT NULL,action TEXT NOT NULL,notes TEXT NOT NULL,created_at TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS tutor_usage(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,question_id TEXT NOT NULL,level INTEGER NOT NULL,created_at TEXT NOT NULL);
+ CREATE TABLE IF NOT EXISTS lesson_progress(user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,lesson_id TEXT NOT NULL,content_version INTEGER NOT NULL,attempts INTEGER NOT NULL DEFAULT 0,completed_at TEXT,updated_at TEXT NOT NULL,PRIMARY KEY(user_id,lesson_id));
  CREATE TABLE IF NOT EXISTS rate_limits(key TEXT PRIMARY KEY,count INTEGER NOT NULL,reset_at INTEGER NOT NULL);
  `);
   if (

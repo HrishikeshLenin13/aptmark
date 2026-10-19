@@ -1,0 +1,31 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /Users/HrishiL/Documents/ChatGPT/Lm
+
+ ❯ tests/lessons.test.ts (4 tests | 1 failed) 27ms
+   ❯ original foundation lesson contract (4)
+     × has unique ids and a valid four-option check in every lesson 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/lessons.test.ts > original foundation lesson contract > has unique ids and a valid four-option check in every lesson
+Error: ENOENT: no such file or directory, open 'content/skills.json'
+ ❯ tests/lessons.test.ts:10:10
+      8|     expect(new Set(LESSONS.map((l) => l.id)).size).toBe(LESSONS.length…
+      9|     const skills = JSON.parse(
+     10|       fs.readFileSync("content/skills.json", "utf8"),
+       |          ^
+     11|     ) as { id: string }[];
+     12|     for (const lesson of LESSONS) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 42 passed (43)
+   Start at  19:20:12
+   Duration  733ms (tests 55%, import 25%, transform 17%, worker 2%)
+

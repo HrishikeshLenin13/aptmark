@@ -1,3 +1,5 @@
+import { LESSONS, publicLesson } from "@/lib/lessons";
+import { lessonProgress, recordLessonCheck } from "@/lib/lesson-store";
 import policy from "@/lib/content-policy.json";
 import { questionEligible } from "@/lib/content-policy";
 import { NextRequest, NextResponse } from "next/server";
@@ -332,6 +334,27 @@ async function handler(req: NextRequest) {
         readiness: formReadiness(bank),
         serverTime: now(),
       });
+    }
+    if (path === "lessons" && !write) {
+      return json({
+        lessons: previewEnabled() ? LESSONS.map(publicLesson) : [],
+        progress: lessonProgress(user.id),
+        preview: previewEnabled(),
+      });
+    }
+    if (path === "lessons/check" && write) {
+      if (!previewEnabled())
+        throw new APIError("These lesson previews are not published yet.", 404);
+      if (!rateLimit("lesson-check:" + user.id, 60))
+        throw new APIError("Please wait a minute before checking again.", 429);
+      const value = z
+        .object({ lessonId: z.string().min(1).max(100), answer: answerSchema })
+        .parse(body);
+      const lesson = LESSONS.find((lesson) => lesson.id === value.lessonId);
+      if (!lesson) throw new APIError("Lesson not found.", 404);
+      if (!lesson.check.options.includes(value.answer))
+        throw new APIError("Choose one of the lesson’s answer options.", 400);
+      return json(recordLessonCheck(user.id, value.lessonId, value.answer));
     }
     if (path === "questions" && !write) {
       const u = req.nextUrl.searchParams;

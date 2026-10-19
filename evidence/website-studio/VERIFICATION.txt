@@ -50,3 +50,30 @@ literal result: 3 passed (11.8s)
 exit status: 0
 log: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/website-studio/playwright-studio-final.log
 The mobile settings flow closes the drawer before opening its modal, then returns focus to the menu trigger.
+
+Integrated original learning-center milestone
+command: npm test
+input: engine, public-question serializer, original lesson contracts
+literal result: Tests 43 passed (43)
+exit status: 0
+command: npm run typecheck
+literal result: tsc --noEmit (no diagnostics)
+exit status: 0
+command: NEXT_DIST_DIR=.next-publish npm run build
+literal result: Compiled successfully; dynamic page and API routes built
+exit status: 0
+command: .venv/bin/python -m pytest tests/test_content.py -q
+literal result: 83 passed in 7.15s
+exit status: 0
+command: .venv/bin/python python/pipeline.py validate --replay
+literal output: {"checked": 5405, "replayed": 5405, "failures": []}
+exit status: 0
+command: npm run test:e2e
+input: isolated QA database; existing workflows plus lesson library, check persistence, ownership and responsive accessibility
+literal result: 17 passed (1.1m)
+exit status: 0
+command: node scripts/check-lesson-publication.mjs
+input: isolated production-mode server with CONTENT_PREVIEW=false and temporary account
+literal output: production lesson gate: 0 visible; checks=404; isolated account deleted
+exit status: 0
+Full literal command logs and visually inspected screenshots are alongside this file. The first lesson unit run failed on a wrong taxonomy filename; unit-initial-failure.log retains that result. Corrected runs passed. No questions were newly approved or published.

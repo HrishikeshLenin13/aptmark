@@ -13,8 +13,8 @@ Aptmark uses these capabilities as product requirements, not a source of questio
 | Skill-filtered practice, explanations, bookmarks | Working persistent local implementation; improve discovery, deep links and session tools |
 | Diagnostics and assessment tools | Diagnostic and Math preview work; full validated forms remain gated |
 | Planning and analytics | Actual-record local features; add schedule export and clearer pacing insights |
-| Lessons and guided practice | Next implementation: original lesson library, comprehension checks, persisted completion |
-| Vocabulary and challenging practice | Add explicit, discoverable entry points into available context/skill practice |
+| Lessons and guided practice | Implemented local preview: 12 original short lessons, server-graded comprehension checks and version-aware owner-scoped completion |
+| Vocabulary and challenging practice | Implemented explicit entry points into context vocabulary, hard practice and saved questions |
 | Timed drills | Next website behavior milestone: persistent bounded sessions, not an ornamental timer |
 | Conversational AI | Static grounded guide works; provider, operating budget and evaluation remain open |
 | Calendar sync | Not connected; implement portable schedule export before external calendar authorization |
@@ -42,3 +42,15 @@ Critique before implementation: the existing screen is attractive but has small 
 
 ## Verification
 Each milestone must pass relevant unit and browser tests, keyboard/focus checks, mobile/tablet/desktop overflow checks and screenshots. Working milestones are pushed as meaningful Git commits. Passing a UI audit is not a claim of educational superiority or completed feature parity.
+
+## Reusable continuation brief
+```text
+Continue Aptmark website-first from IMPLEMENTATION_STATUS.md. Read the current
+capability matrix, preserve all question IDs/hashes and session-derived ownership,
+and choose one complete student workflow. Keep unreviewed content preview-only
+and separate lesson completion from independent mastery. Use current framework
+docs, implement the real interaction, test server behavior and keyboard focus,
+inspect 1440/820/390px screenshots, run the documented checks, update evidence,
+and push a meaningful feature commit. Do not generate the proposed 20,000-item
+bank until the website foundation and editorial plan are ready.
+```

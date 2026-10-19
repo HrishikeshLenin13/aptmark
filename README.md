@@ -7,6 +7,8 @@
 ## A more deliberate way to study
 
 - **Practice that responds.** Build focused Math or Reading and Writing sets, then let each submitted response guide what comes next.
+- **Build the idea first.** Explore 12 original foundation lesson previews, worked examples, and saved understanding checks. Lesson completion stays separate from independent practice mastery.
+- **Find your next step.** Search pages and skills, open saved questions, or choose vocabulary and challenging practice from a keyboard-accessible workspace.
 - **Understand the reasoning.** Review worked explanations, progressive hints, and common-mistake notes alongside each question.
 - **Keep your progress honest.** See actual practice history, skill-level signals, review reminders, and study plans—without invented activity or unsupported score predictions.
 - **Prepare with structure.** Use a short diagnostic, a timed Math assessment preview, a formula reference, and a simple calculator.

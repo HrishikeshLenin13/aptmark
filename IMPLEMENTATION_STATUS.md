@@ -10,6 +10,8 @@ Updated: 2026-10-18. Active local development; not a complete or hosted release.
 - Server-authoritative answer checking, explanations, issue reports, reasoning notes, and mistake reflections.
 - Interpretable first-exposure mastery baseline, uncertainty, spaced review, deterministic explainable selection, preference-based planning, and real-record analytics.
 - Time-based assessment state machine, locking and recovery; a diagnostic and Math preview.
+- Searchable 12-lesson original foundation preview library, worked examples, server-graded understanding checks, version-aware completion and owner-isolated progress. These checks do not update independent practice mastery.
+- Refined desktop/tablet/mobile spacing and reading sizes, keyboard workspace search, a focus-managed mobile drawer, and vocabulary/challenge/bookmark shortcuts.
 - Grounded static learning guide with progressive hints; no connected generative AI tutor.
 - Token-protected editorial queue with review notes, approval/rejection, publication/unpublication, and audit records.
 - PostgreSQL/Supabase migration scaffold; no active cloud adapter.
@@ -18,8 +20,8 @@ Updated: 2026-10-18. Active local development; not a complete or hosted release.
 The pipeline contains 4,800 Math and 605 Reading and Writing candidates (5,405 total), across 30 skills and 75 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
 
 ## Verification record
-- 39 TypeScript tests and 83 Python tests passed.
-- 12 isolated browser integration tests passed for practice, scoring, key privacy, drafts, bookmarks, notes, account lifecycle, assessment recovery, diagnostic transitions, ownership isolation, and publication gates.
+- 43 TypeScript tests and 83 Python tests passed.
+- 17 isolated browser integration tests passed for practice, scoring, key privacy, drafts, bookmarks, notes, account lifecycle, assessment recovery, diagnostic transitions, ownership isolation, and publication gates.
 - All 5,405 candidates replayed from recorded seeds with zero mismatches or structural failures; exact problem-text duplicate count is zero. The 75 template clusters remain separately reported.
 - Production build and strict TypeScript checks passed.
 - Automated axe checks passed at 1440, 820, and 390 px for the dashboard and mobile practice; no horizontal overflow was observed at those viewports. These checks are not a WCAG conformance certification.
@@ -29,7 +31,7 @@ The pipeline contains 4,800 Math and 605 Reading and Writing candidates (5,405 t
 Initial checks found and fixed recommendation-field shadowing, same-origin hostname handling, an empty punctuation option, duplicate questions hidden by choice shuffling, password labeling, locked-module error ordering, low contrast, a mobile off-canvas transition, and a duplicate-initial-load race that could reset a fresh answer. Failed intermediate runs are not recorded as passing acceptance checks.
 
 ## Current routes
-`/`, `/welcome`, `/practice`, `/planner`, `/analytics`, `/mistakes`, `/tests`, `/exam`, `/content`; server endpoints under `/api/`.
+`/`, `/welcome`, `/practice`, `/learn`, `/planner`, `/analytics`, `/mistakes`, `/tests`, `/exam`, `/content`; server endpoints under `/api/`.
 
 ## Remaining acceptance work
 Independent editorial review and 10,000 published items; broader family/distractor diversity and advanced reading quality; psychometric calibration and student-outcome evaluation; validated full-length forms and route pools; cloud/PostgreSQL adapter and RLS tests; hosted authentication and email recovery; grounded AI provider; production privacy/consent/security/accessibility review; full exam tool parity, offline write queue, and stronger version-pinned forms. See the [roadmap](docs/PROJECT_ROADMAP.md).
@@ -45,3 +47,10 @@ See [Development notes](docs/DEVELOPMENT.md) for local preview, content workflow
 - See docs/CONTENT_QUALITY.md, content/manifests/quality-plan.json and evidence/content-expansion/ for current verification evidence.
 - Next content priority: human review of representative families, correction of ambiguities/distractors, additional distinct reading/literature families and missing difficulty bands. The 10,000 approved/published acceptance gate remains unmet.
 - Resume: `.venv/bin/python python/pipeline.py expand --per-family 25 --max-per-family 25` (idempotent); `validate --replay`; `plan`; `review-pack --per-family 1`.
+
+## Website studio — 2026-10-18
+- Website-first work now precedes large-scale question generation. The public OnePrep capability audit is recorded in docs/WEBSITE_DIRECTION.md; no full parity or educational superiority claim is made.
+- The latest complete browser run passed 17 tests. The final mobile settings/focus correction also passed a separate three-test studio rerun. Lesson pages and understanding checks passed automated accessibility/overflow checks at 1440, 820 and 390px; screenshots were visually reviewed and inherited label direction was corrected.
+- Production-mode verification returned zero visible unreviewed lessons and rejected lesson checks with 404. The lessons remain previews pending independent editorial review; there is no automatic lesson publication path.
+- 43 TypeScript tests, 83 Python tests, strict typechecking, the production build and all 5,405 content seed replays passed. Evidence is under evidence/website-studio/. A first lesson unit run referenced a nonexistent taxonomy filename; it failed, was corrected, and the rerun passed.
+- Upcoming website milestones: portable study-plan calendar export, bounded persistent pacing drills, and deeper onboarding and study-flow refinement. Existing publication, identity and mastery boundaries remain intact.

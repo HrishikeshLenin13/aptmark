@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import * as NavigationDialog from "@radix-ui/react-dialog";
 import { WorkspaceSearch } from "./workspace-search";
+import { LearningCenter } from "./learning-center";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   ArrowUpRight,
@@ -112,6 +113,7 @@ type AppState = {
 const nav = [
   { path: "/", label: "Overview", icon: LayoutDashboard },
   { path: "/practice", label: "Question bank", icon: BookOpen },
+  { path: "/learn", label: "Learning center", icon: GraduationCap },
   { path: "/planner", label: "Study plan", icon: CalendarDays },
   { path: "/analytics", label: "Your progress", icon: ChartNoAxesCombined },
   { path: "/mistakes", label: "Mistake studio", icon: RotateCcw },
@@ -430,6 +432,7 @@ export default function AptmarkApp() {
             {pathname === "/practice" && (
               <Practice state={state} refresh={refresh} notify={notify} />
             )}
+            {pathname === "/learn" && <LearningCenter />}
             {pathname === "/planner" && (
               <Planner
                 state={state}
@@ -458,6 +461,7 @@ export default function AptmarkApp() {
             {![
               "/",
               "/practice",
+              "/learn",
               "/planner",
               "/analytics",
               "/mistakes",
@@ -739,7 +743,7 @@ function Dashboard({
                 <small>
                   {first.length
                     ? `${first.length} first, unassisted answers`
-                    : "Your first session starts this"}
+                    : "After your first session"}
                 </small>
               </strong>
             </div>
