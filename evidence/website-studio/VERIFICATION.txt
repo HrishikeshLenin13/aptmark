@@ -1,0 +1,52 @@
+Aptmark study-studio integration transaction
+Branch: codex/website-studio
+Changed field: root layout stylesheet imports; adds @/styles/studio.css after globals.css.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/src/app/layout.tsx
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/website-studio/layout.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/website-studio/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/website-studio/ROLLBACK.sh
+Original SHA256: 7f99167132e959d7ab091c31778ba09184beea36dec5647309dc2d94d1e96806
+Modified SHA256: 0c09cb4467cdae64620408424bc47b28d9fad9431a7bf6ec5737e81c979d611e
+Scope: rollback restores only the stylesheet import in the supplied layout copy, not the complete website milestone or database. The actual root layout is intentionally left modified.
+
+BASELINE
+command: python3 scripts/check-studio-integration.py /Users/HrishiL/Documents/ChatGPT/Lm/evidence/website-studio/layout.original.tsx
+input: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/website-studio/layout.original.tsx
+literal output:
+study studio stylesheet: absent
+exit status: 0
+
+MODIFIED
+command: python3 scripts/check-studio-integration.py /Users/HrishiL/Documents/ChatGPT/Lm/src/app/layout.tsx
+input: /Users/HrishiL/Documents/ChatGPT/Lm/src/app/layout.tsx
+literal output:
+study studio stylesheet: present
+exit status: 0
+
+ROLLBACK
+command: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/website-studio/ROLLBACK.sh /tmp/aptmark-studio-layout-rollback.tsx
+input: /tmp/aptmark-studio-layout-rollback.tsx
+literal output:
+restored sha256=7f99167132e959d7ab091c31778ba09184beea36dec5647309dc2d94d1e96806
+exit status: 0
+
+RESTORED
+command: python3 scripts/check-studio-integration.py /tmp/aptmark-studio-layout-rollback.tsx
+input: /tmp/aptmark-studio-layout-rollback.tsx
+literal output:
+study studio stylesheet: absent
+exit status: 0
+
+LEFT_MODIFIED
+command: python3 scripts/check-studio-integration.py /Users/HrishiL/Documents/ChatGPT/Lm/src/app/layout.tsx
+input: /Users/HrishiL/Documents/ChatGPT/Lm/src/app/layout.tsx
+literal output:
+study studio stylesheet: present
+exit status: 0
+UI behavior acceptance
+command: npm run test:e2e -- tests/studio.spec.ts
+input: isolated QA database, desktop/tablet/mobile views, workspace search, navigation, hard preset
+literal result: 3 passed (11.8s)
+exit status: 0
+log: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/website-studio/playwright-studio-final.log
+The mobile settings flow closes the drawer before opening its modal, then returns focus to the menu trigger.

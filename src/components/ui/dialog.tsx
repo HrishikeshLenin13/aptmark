@@ -7,18 +7,40 @@ export function Modal({
   title,
   description,
   children,
+  restoreFocus,
+  focusOnOpen,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title: string;
   description?: string;
   children: React.ReactNode;
+  restoreFocus?: () => void;
+  focusOnOpen?: () => void;
 }) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay" />
-        <Dialog.Content className="modal-content">
+        <Dialog.Content
+          className="modal-content"
+          onOpenAutoFocus={
+            focusOnOpen
+              ? (event) => {
+                  event.preventDefault();
+                  focusOnOpen();
+                }
+              : undefined
+          }
+          onCloseAutoFocus={
+            restoreFocus
+              ? (event) => {
+                  event.preventDefault();
+                  restoreFocus();
+                }
+              : undefined
+          }
+        >
           <Dialog.Title className="modal-title">{title}</Dialog.Title>
           <Dialog.Description className="muted">
             {description ?? "Manage your Aptmark workspace."}

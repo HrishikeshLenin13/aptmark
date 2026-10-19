@@ -1,0 +1,600 @@
+/* Aptmark study studio: one spacing rhythm, quiet hierarchy, deliberate reading measures. */
+:root {
+  --paper: #f6f8f7;
+  --sidebar: 244px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+}
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+strong,
+output,
+.tag,
+.metric-row,
+.exam-timer {
+  font-variant-numeric: tabular-nums;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.studio-shell {
+  min-height: 100dvh;
+}
+.studio-shell .sidebar {
+  padding: 0 18px max(16px, env(safe-area-inset-bottom));
+  overflow-y: auto;
+}
+.studio-shell .sidebar-brand {
+  min-height: 96px;
+  height: 96px;
+  padding: 28px 12px;
+  flex-shrink: 0;
+}
+.studio-shell .brand {
+  font-size: 29px;
+}
+.studio-shell .workspace-label {
+  margin: 4px 0 24px;
+  padding: 12px;
+  background: #f9fbfa;
+}
+.studio-shell nav {
+  display: grid;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.studio-shell .nav-item {
+  min-height: 44px;
+  padding: 12px;
+  font-size: 13px;
+  border-radius: 7px;
+}
+.studio-shell .sidebar-bottom {
+  padding-bottom: 0;
+}
+.studio-shell .free-note {
+  padding: 16px;
+  margin: 24px 0 16px;
+}
+.studio-shell .free-note strong {
+  font-size: 13px;
+}
+.studio-shell .profile {
+  min-height: 64px;
+}
+.studio-shell .topbar {
+  min-height: 72px;
+  height: 72px;
+  padding: 0 clamp(24px, 3vw, 48px);
+}
+.studio-shell .breadcrumb {
+  font-size: 13px;
+}
+.studio-shell .topbar-actions {
+  gap: 16px;
+}
+.studio-shell .main-content {
+  max-width: 1360px;
+  padding: 40px clamp(24px, 3vw, 48px) 56px;
+}
+.studio-shell .page-heading {
+  gap: 24px;
+  margin-bottom: 32px;
+  align-items: center;
+}
+.studio-shell .page-heading h1 {
+  font-size: clamp(27px, 2.5vw, 34px);
+  line-height: 1.22;
+  font-weight: 600;
+}
+.studio-shell .page-heading p:not(.heading-date) {
+  font-size: 14px;
+  line-height: 1.65;
+  margin-top: 12px;
+  max-width: 68ch;
+}
+.studio-shell .heading-date {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.studio-shell .page-heading > .button {
+  margin: 0;
+}
+.studio-shell .button {
+  min-height: 44px;
+  padding: 11px 16px;
+  font-size: 13px;
+  border-radius: 7px;
+}
+.studio-shell .button-small {
+  min-height: 40px;
+  padding: 9px 13px;
+}
+.studio-shell .icon-button {
+  width: 40px;
+  height: 40px;
+}
+.studio-shell .dashboard-grid {
+  grid-template-columns: minmax(0, 1fr) 288px;
+  gap: 28px;
+}
+.studio-shell .focus-copy {
+  padding: 32px;
+}
+.studio-shell .focus-label {
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.studio-shell .focus-copy h2 {
+  font-size: clamp(30px, 2.8vw, 38px);
+  max-width: 430px;
+  line-height: 1.16;
+}
+.studio-shell .focus-copy p {
+  font-size: 14px;
+  line-height: 1.75;
+  max-width: 42ch;
+  margin: 20px 0 24px;
+}
+.studio-shell .focus-art {
+  width: 170px;
+  flex-shrink: 0;
+}
+.studio-shell .focus-buttons {
+  gap: 16px;
+}
+.studio-shell .focus-buttons > span {
+  font-size: 12px;
+}
+.studio-shell .metric-row {
+  padding: 28px 0;
+}
+.studio-shell .metric-row > div > span {
+  font-size: 12px;
+}
+.studio-shell .metric-row strong {
+  font-size: 30px;
+}
+.studio-shell .section {
+  margin-top: 32px;
+}
+.studio-shell .section-header {
+  margin-bottom: 16px;
+  min-height: 28px;
+}
+.studio-shell .section-header h2 {
+  font-size: 16px;
+}
+.studio-shell .subject-row {
+  padding: 24px;
+  gap: 20px;
+}
+.studio-shell .subject-row p {
+  font-size: 13px;
+  margin-top: 6px;
+}
+.studio-shell .subject-row > div > span {
+  font-size: 12px;
+}
+.studio-shell .learning-panel {
+  padding: 24px;
+}
+.studio-shell .rhythm-card {
+  padding: 24px;
+}
+.studio-shell .preview-notice {
+  padding: 14px 16px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.studio-shell .set-builder {
+  padding: 28px;
+}
+.studio-shell .builder-grid {
+  gap: 24px;
+}
+.studio-shell .builder-grid label {
+  font-size: 13px;
+}
+.studio-shell .domain-card {
+  padding: 24px;
+}
+.studio-shell .domain-card h3 {
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+.studio-shell .domain-card button {
+  min-height: 44px;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 10px 0;
+}
+.studio-shell .question-stem {
+  font-size: 17px;
+  line-height: 1.75;
+}
+.studio-shell .passage-text {
+  font-size: 16px;
+  line-height: 1.9;
+  max-width: 70ch;
+}
+.studio-shell .choice {
+  min-height: 56px;
+  padding: 15px 16px;
+  font-size: 15px;
+}
+.studio-shell .eliminate {
+  min-width: 32px;
+  min-height: 40px;
+}
+.studio-shell .response-area,
+.studio-shell .passage-area {
+  padding: 28px;
+}
+.studio-shell .question-footer {
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 18px 24px;
+}
+.studio-shell .app-footer {
+  padding: 24px clamp(24px, 3vw, 48px);
+  font-size: 11px;
+  gap: 20px;
+}
+.workspace-search-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 7px;
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--paper);
+}
+.workspace-search-trigger kbd {
+  font: inherit;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1px 5px;
+  background: var(--surface);
+}
+.workspace-search {
+  margin-top: 24px;
+}
+.workspace-search label {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #bacbc0;
+  border-radius: 8px;
+  padding: 0 12px;
+}
+.search-input-wrap input {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  padding-left: 0;
+}
+.search-input-wrap:focus-within {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+.search-input-wrap input:focus-visible {
+  outline: 0;
+}
+.search-result-count {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 12px 0 20px;
+}
+.workspace-search section + section {
+  margin-top: 24px;
+}
+.workspace-search section h3 {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.workspace-search ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.workspace-search li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 7px;
+  min-height: 64px;
+}
+.workspace-search li a:hover {
+  background: var(--green-light);
+}
+.workspace-search li strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+.workspace-search li small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.search-empty {
+  padding: 24px 0;
+  text-align: center;
+}
+.search-empty h3 {
+  margin: 12px 0 8px;
+}
+.search-empty p {
+  font-size: 13px;
+}
+.practice-entry-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.practice-entry-points a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 96px;
+  padding: 20px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.practice-entry-points a:hover {
+  border-color: #96b4a1;
+}
+.practice-entry-points a > svg:first-child {
+  color: var(--green);
+}
+.practice-entry-points a > svg:last-child {
+  margin-left: auto;
+}
+.practice-entry-points strong {
+  display: block;
+  font-size: 13px;
+}
+.practice-entry-points small {
+  display: block;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.mobile-sidebar,
+.navigation-overlay {
+  display: none;
+}
+@media (min-width: 761px) and (max-width: 1200px) {
+  :root {
+    --sidebar: 220px;
+  }
+  .studio-shell .main-content {
+    padding: 32px 28px 48px;
+  }
+  .studio-shell .dashboard-grid {
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 24px;
+  }
+  .studio-shell .focus-copy {
+    padding: 28px;
+  }
+  .studio-shell .focus-art {
+    display: none;
+  }
+  .workspace-search-trigger span,
+  .workspace-search-trigger kbd {
+    display: none;
+  }
+  .practice-entry-points {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .practice-entry-points a {
+    min-height: 76px;
+  }
+}
+@media (max-width: 980px) {
+  .studio-shell .dashboard-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-shell .dashboard-secondary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .studio-shell .page-heading {
+    align-items: flex-start;
+  }
+  .studio-shell .page-heading > .button {
+    margin-top: 4px;
+  }
+}
+@media (max-width: 760px) {
+  :root {
+    --sidebar: 0px;
+  }
+  .studio-shell .desktop-sidebar {
+    display: none;
+  }
+  .navigation-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: #13251d66;
+  }
+  .sidebar.mobile-sidebar {
+    display: flex;
+    width: min(304px, calc(100vw - 48px));
+    padding: 0 20px max(20px, env(safe-area-inset-bottom));
+    transform: none;
+    visibility: visible;
+    z-index: 50;
+    overflow-y: auto;
+    outline: none;
+  }
+  .mobile-sidebar .nav-item {
+    min-height: 44px;
+    font-size: 14px;
+  }
+  .mobile-sidebar .sidebar-brand {
+    flex-shrink: 0;
+  }
+  .mobile-sidebar nav {
+    display: grid;
+    gap: 4px;
+  }
+  .mobile-sidebar .sidebar-bottom {
+    margin-top: 24px;
+  }
+  .mobile-sidebar .free-note {
+    display: none;
+  }
+  .studio-shell .topbar {
+    padding: 0 20px;
+    height: 64px;
+    min-height: 64px;
+    gap: 12px;
+  }
+  .studio-shell .topbar-actions {
+    gap: 8px;
+  }
+  .workspace-search-trigger {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    justify-content: center;
+  }
+  .workspace-search-trigger span,
+  .workspace-search-trigger kbd {
+    display: none;
+  }
+  .studio-shell .date-button {
+    font-size: 12px;
+  }
+  .studio-shell .main-content {
+    padding: 28px 20px 40px;
+  }
+  .studio-shell .page-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .studio-shell .page-heading h1 {
+    font-size: 28px;
+  }
+  .studio-shell .page-heading p:not(.heading-date) {
+    font-size: 14px;
+  }
+  .studio-shell .dashboard-secondary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-shell .focus-copy {
+    padding: 28px 24px;
+  }
+  .studio-shell .focus-copy h2 {
+    font-size: 34px;
+  }
+  .studio-shell .focus-copy p {
+    font-size: 14px;
+  }
+  .studio-shell .focus-art {
+    display: none;
+  }
+  .studio-shell .metric-row {
+    padding: 24px 0;
+  }
+  .studio-shell .metric-row strong {
+    font-size: 26px;
+  }
+  .studio-shell .metric-row > div > span {
+    font-size: 11px;
+  }
+  .studio-shell .metric-row small {
+    font-size: 11px;
+  }
+  .studio-shell .subject-row {
+    padding: 22px;
+    gap: 16px;
+  }
+  .studio-shell .button,
+  .studio-shell .button-small {
+    min-height: 44px;
+  }
+  .practice-entry-points {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .practice-entry-points a {
+    min-height: 80px;
+    padding: 18px;
+  }
+  .studio-shell .set-builder,
+  .studio-shell .domain-card {
+    padding: 22px;
+  }
+  .studio-shell .response-area,
+  .studio-shell .passage-area {
+    padding: 24px 20px;
+  }
+  .studio-shell .question-footer {
+    padding: 16px;
+  }
+  .studio-shell .question-footer-nav {
+    width: 100%;
+    gap: 8px;
+    margin: 0;
+  }
+  .studio-shell .question-footer-nav .button {
+    flex: 1;
+  }
+  .studio-shell .question-footer > .autosave {
+    display: block;
+    margin-left: auto;
+    font-size: 11px;
+  }
+  .studio-shell .app-footer {
+    padding: 24px 20px max(24px, env(safe-area-inset-bottom));
+  }
+  .modal-content {
+    max-height: calc(100dvh - 40px);
+    overflow-y: auto;
+  }
+}

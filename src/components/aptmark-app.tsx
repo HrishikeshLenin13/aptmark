@@ -1,6 +1,8 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import * as NavigationDialog from "@radix-ui/react-dialog";
+import { WorkspaceSearch } from "./workspace-search";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   ArrowUpRight,
@@ -195,6 +197,16 @@ export default function AptmarkApp() {
     router = useRouter();
   const active = nav.find((n) => n.path === pathname);
   const firstLoad = useRef(false);
+  const searchTrigger = useRef<HTMLButtonElement>(null);
+  const navigationTrigger = useRef<HTMLButtonElement>(null);
+  const modalOpener = useRef<HTMLElement | null>(null);
+  const openUtility = (name: string) => {
+    modalOpener.current = mobile
+      ? navigationTrigger.current
+      : (document.activeElement as HTMLElement);
+    setMobile(false);
+    setModal(name);
+  };
   const refresh = useCallback(async () => {
     const s = await api<AppState>("state");
     setState(s);
@@ -217,6 +229,17 @@ export default function AptmarkApp() {
       return () => clearTimeout(t);
     }
   }, [notice]);
+  useEffect(() => {
+    const shortcut = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setMobile(false);
+        setModal((current) => (current === "search" ? "" : "search"));
+      }
+    };
+    window.addEventListener("keydown", shortcut);
+    return () => window.removeEventListener("keydown", shortcut);
+  }, []);
   const notify = (s: string) => setNotice(s);
   const goPractice = (opts: Record<string, string> = {}) =>
     router.push("/practice?" + new URLSearchParams(opts).toString());
@@ -244,233 +267,270 @@ export default function AptmarkApp() {
         onPractice={() => goPractice()}
       />
     );
-  return (
-    <div className="app-shell">
-      <a className="skip-link" href="#main-content">
-        Skip to content
-      </a>
-      <aside className={"sidebar " + (mobile ? "sidebar-open" : "")}>
-        <div className="sidebar-brand">
-          <Link href="/" aria-label="Aptmark overview">
-            <Logo />
-          </Link>
-          <button
-            className="icon-button mobile-only"
-            aria-label="Close navigation"
-            onClick={() => setMobile(false)}
-          >
-            <X size={18} />
-          </button>
-        </div>
-        <div className="workspace-label">
-          <span className="workspace-square">
-            <GraduationCap size={17} />
-          </span>
-          <div>
-            Your workspace<small>Digital SAT preparation</small>
-          </div>
-          <ChevronRight size={14} />
-        </div>
-        <nav aria-label="Main navigation">
-          {nav.map((n) => (
-            <Link
-              key={n.path}
-              href={n.path}
-              className={"nav-item " + (pathname === n.path ? "active" : "")}
-              onClick={() => setMobile(false)}
-              aria-current={pathname === n.path ? "page" : undefined}
-            >
-              <n.icon size={18} />
-              <span>{n.label}</span>
-              {n.path === "/mistakes" &&
-                state.attempts.some((a) => !a.correct) && (
-                  <span className="nav-count">
-                    {
-                      new Set(
-                        state.attempts
-                          .filter((a) => !a.correct)
-                          .map((a) => a.questionId),
-                      ).size
-                    }
-                  </span>
-                )}
-            </Link>
-          ))}
-        </nav>
-        <div className="sidebar-bottom">
-          <div className="free-note">
-            <span className="free-symbol">
-              <BookOpen size={19} />
-            </span>
-            <strong>
-              Good preparation.
-              <br />
-              Open to everyone.
-            </strong>
-            <p>Core learning stays free.</p>
-            <Link href="/welcome">
-              Our approach <ArrowUpRight size={13} />
-            </Link>
-          </div>
-          <Link
-            href="/content"
-            className={"nav-item " + (pathname === "/content" ? "active" : "")}
-          >
-            <Layers3 size={17} />
-            Content studio
-          </Link>
-          <button className="nav-item" onClick={() => setModal("settings")}>
-            <Settings2 size={17} />
-            Settings
-          </button>
-          <button className="profile" onClick={() => setModal("account")}>
-            <span className="avatar">
-              {state.user.email?.[0].toUpperCase() ?? "G"}
-            </span>
-            <span>
-              {state.user.guest ? "Guest workspace" : state.user.email}
-              <small>
-                {state.user.guest ? "Saved on this server" : "Local account"}
-              </small>
-            </span>
-            <ChevronRight size={14} />
-          </button>
-        </div>
-      </aside>
-      {mobile && (
+  const sidebarContent = (
+    <>
+      <div className="sidebar-brand">
+        <Link href="/" aria-label="Aptmark overview">
+          <Logo />
+        </Link>
         <button
-          className="mobile-scrim"
-          onClick={() => setMobile(false)}
+          className="icon-button mobile-only"
           aria-label="Close navigation"
-        />
-      )}
-      <div className="app-body" inert={mobile}>
-        <header className="topbar">
-          <div className="breadcrumb">
-            <button
-              className="icon-button mobile-only"
-              onClick={() => setMobile(true)}
-              aria-label="Open navigation"
-            >
-              <Menu size={20} />
-            </button>
-            <span>Workspace</span>
-            <ChevronRight size={12} />
-            <strong>
-              {active?.label ??
-                (pathname === "/exam" ? "Assessment" : "Content studio")}
-            </strong>
-          </div>
-          <div className="topbar-actions">
-            {state.preview && (
-              <Tag tone="preview">
-                <span className="status-dot" />
-                Local content preview
-              </Tag>
-            )}
-            <button
-              className="date-button"
-              onClick={() => setModal("settings")}
-            >
-              <CalendarDays size={15} />
-              {state.preferences.testDate
-                ? date(state.preferences.testDate)
-                : "Set your test date"}
-            </button>
-          </div>
-        </header>
-        <main
-          id="main-content"
-          className={
-            pathname === "/exam" ? "main-content exam-main" : "main-content"
-          }
+          onClick={() => setMobile(false)}
         >
-          {pathname === "/" && (
-            <Dashboard
-              state={state}
-              onPractice={goPractice}
-              onSettings={() => setModal("settings")}
-              onDiagnostic={() => router.push("/tests")}
-            />
-          )}
-          {pathname === "/practice" && (
-            <Practice state={state} refresh={refresh} notify={notify} />
-          )}
-          {pathname === "/planner" && (
-            <Planner
-              state={state}
-              onPractice={goPractice}
-              onSettings={() => setModal("settings")}
-            />
-          )}
-          {pathname === "/analytics" && (
-            <Analytics state={state} onPractice={goPractice} />
-          )}
-          {pathname === "/mistakes" && (
-            <Mistakes
-              state={state}
-              onPractice={goPractice}
-              refresh={refresh}
-              notify={notify}
-            />
-          )}
-          {pathname === "/tests" && <Tests state={state} notify={notify} />}
-          {pathname === "/exam" && (
-            <ExamWorkspace state={state} refresh={refresh} notify={notify} />
-          )}
-          {pathname === "/content" && (
-            <ContentStudio state={state} refresh={refresh} notify={notify} />
-          )}
-          {![
-            "/",
-            "/practice",
-            "/planner",
-            "/analytics",
-            "/mistakes",
-            "/tests",
-            "/exam",
-            "/content",
-          ].includes(pathname) && (
-            <Empty
-              title="Find your next step"
-              description="This page is not part of your workspace."
-              action={
-                <Button asChild>
-                  <Link href="/">Back to overview</Link>
-                </Button>
-              }
-            />
-          )}
-        </main>
-        <footer className="app-footer">
-          <span>Made for the work that matters.</span>
-          <span>
-            Independent SAT-style preparation. Not affiliated with College
-            Board.
-          </span>
-        </footer>
+          <X size={18} />
+        </button>
       </div>
-      <SettingsModal
-        open={modal === "settings"}
-        close={() => setModal("")}
-        state={state}
-        refresh={refresh}
-        notify={notify}
-      />
-      <AccountModal
-        open={modal === "account"}
-        close={() => setModal("")}
-        state={state}
-        refresh={refresh}
-        notify={notify}
-      />
-      {notice && (
-        <div className="toast" role="status">
-          <CheckCircle2 size={17} />
-          {notice}
+      <div className="workspace-label">
+        <span className="workspace-square">
+          <GraduationCap size={17} />
+        </span>
+        <div>
+          Your workspace<small>Digital SAT preparation</small>
         </div>
-      )}
-    </div>
+        <ChevronRight size={14} />
+      </div>
+      <nav aria-label="Main navigation">
+        {nav.map((n) => (
+          <Link
+            key={n.path}
+            href={n.path}
+            className={"nav-item " + (pathname === n.path ? "active" : "")}
+            onClick={() => setMobile(false)}
+            aria-current={pathname === n.path ? "page" : undefined}
+          >
+            <n.icon size={18} />
+            <span>{n.label}</span>
+            {n.path === "/mistakes" &&
+              state.attempts.some((a) => !a.correct) && (
+                <span className="nav-count">
+                  {
+                    new Set(
+                      state.attempts
+                        .filter((a) => !a.correct)
+                        .map((a) => a.questionId),
+                    ).size
+                  }
+                </span>
+              )}
+          </Link>
+        ))}
+      </nav>
+      <div className="sidebar-bottom">
+        <div className="free-note">
+          <span className="free-symbol">
+            <BookOpen size={19} />
+          </span>
+          <strong>
+            Good preparation.
+            <br />
+            Open to everyone.
+          </strong>
+          <p>Core learning stays free.</p>
+          <Link href="/welcome" onClick={() => setMobile(false)}>
+            Our approach <ArrowUpRight size={13} />
+          </Link>
+        </div>
+        <Link
+          href="/content"
+          onClick={() => setMobile(false)}
+          className={"nav-item " + (pathname === "/content" ? "active" : "")}
+        >
+          <Layers3 size={17} />
+          Content studio
+        </Link>
+        <button className="nav-item" onClick={() => openUtility("settings")}>
+          <Settings2 size={17} />
+          Settings
+        </button>
+        <button className="profile" onClick={() => openUtility("account")}>
+          <span className="avatar">
+            {state.user.email?.[0].toUpperCase() ?? "G"}
+          </span>
+          <span>
+            {state.user.guest ? "Guest workspace" : state.user.email}
+            <small>
+              {state.user.guest ? "Saved on this server" : "Local account"}
+            </small>
+          </span>
+          <ChevronRight size={14} />
+        </button>
+      </div>
+    </>
+  );
+  return (
+    <NavigationDialog.Root open={mobile} onOpenChange={setMobile}>
+      <div className="app-shell studio-shell">
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <aside className="sidebar desktop-sidebar">{sidebarContent}</aside>
+
+        <div className="app-body" inert={mobile}>
+          <header className="topbar">
+            <div className="breadcrumb">
+              <NavigationDialog.Trigger asChild>
+                <button
+                  className="icon-button mobile-only"
+                  ref={navigationTrigger}
+                  aria-label="Open navigation"
+                >
+                  <Menu size={20} />
+                </button>
+              </NavigationDialog.Trigger>
+              <span>Workspace</span>
+              <ChevronRight size={12} />
+              <strong>
+                {active?.label ??
+                  (pathname === "/exam" ? "Assessment" : "Content studio")}
+              </strong>
+            </div>
+            <div className="topbar-actions">
+              <button
+                ref={searchTrigger}
+                className="workspace-search-trigger"
+                onClick={() => setModal("search")}
+                aria-label="Search workspace"
+              >
+                <Search size={16} />
+                <span>Search your workspace</span>
+                <kbd>⌘ K</kbd>
+              </button>
+              {state.preview && (
+                <Tag tone="preview">
+                  <span className="status-dot" />
+                  Local content preview
+                </Tag>
+              )}
+              <button
+                className="date-button"
+                onClick={() => openUtility("settings")}
+              >
+                <CalendarDays size={15} />
+                {state.preferences.testDate
+                  ? date(state.preferences.testDate)
+                  : "Set your test date"}
+              </button>
+            </div>
+          </header>
+          <main
+            id="main-content"
+            className={
+              pathname === "/exam" ? "main-content exam-main" : "main-content"
+            }
+          >
+            {pathname === "/" && (
+              <Dashboard
+                state={state}
+                onPractice={goPractice}
+                onSettings={() => openUtility("settings")}
+                onDiagnostic={() => router.push("/tests")}
+              />
+            )}
+            {pathname === "/practice" && (
+              <Practice state={state} refresh={refresh} notify={notify} />
+            )}
+            {pathname === "/planner" && (
+              <Planner
+                state={state}
+                onPractice={goPractice}
+                onSettings={() => openUtility("settings")}
+              />
+            )}
+            {pathname === "/analytics" && (
+              <Analytics state={state} onPractice={goPractice} />
+            )}
+            {pathname === "/mistakes" && (
+              <Mistakes
+                state={state}
+                onPractice={goPractice}
+                refresh={refresh}
+                notify={notify}
+              />
+            )}
+            {pathname === "/tests" && <Tests state={state} notify={notify} />}
+            {pathname === "/exam" && (
+              <ExamWorkspace state={state} refresh={refresh} notify={notify} />
+            )}
+            {pathname === "/content" && (
+              <ContentStudio state={state} refresh={refresh} notify={notify} />
+            )}
+            {![
+              "/",
+              "/practice",
+              "/planner",
+              "/analytics",
+              "/mistakes",
+              "/tests",
+              "/exam",
+              "/content",
+            ].includes(pathname) && (
+              <Empty
+                title="Find your next step"
+                description="This page is not part of your workspace."
+                action={
+                  <Button asChild>
+                    <Link href="/">Back to overview</Link>
+                  </Button>
+                }
+              />
+            )}
+          </main>
+          <footer className="app-footer">
+            <span>Made for the work that matters.</span>
+            <span>
+              Independent SAT-style preparation. Not affiliated with College
+              Board.
+            </span>
+          </footer>
+        </div>
+        <WorkspaceSearch
+          open={modal === "search"}
+          close={() => setModal("")}
+          skills={state.skills}
+          restoreFocus={() => searchTrigger.current?.focus()}
+        />
+        <SettingsModal
+          restoreFocus={() => modalOpener.current?.focus()}
+          open={modal === "settings"}
+          close={() => setModal("")}
+          state={state}
+          refresh={refresh}
+          notify={notify}
+        />
+        <AccountModal
+          restoreFocus={() => modalOpener.current?.focus()}
+          open={modal === "account"}
+          close={() => setModal("")}
+          state={state}
+          refresh={refresh}
+          notify={notify}
+        />
+        {notice && (
+          <div className="toast" role="status">
+            <CheckCircle2 size={17} />
+            {notice}
+          </div>
+        )}
+      </div>
+      <NavigationDialog.Portal>
+        <NavigationDialog.Overlay className="navigation-overlay" />
+        <NavigationDialog.Content
+          className="sidebar mobile-sidebar"
+          onCloseAutoFocus={(event) => {
+            if (modal) event.preventDefault();
+          }}
+        >
+          <NavigationDialog.Title className="sr-only">
+            Workspace navigation
+          </NavigationDialog.Title>
+          <NavigationDialog.Description className="sr-only">
+            Choose a study page or manage your workspace.
+          </NavigationDialog.Description>
+          {sidebarContent}
+        </NavigationDialog.Content>
+      </NavigationDialog.Portal>
+    </NavigationDialog.Root>
   );
 }
 function PageHeading({
@@ -974,7 +1034,7 @@ function Practice({
   const params = useSearchParams();
   const [section, setSection] = useState(params.get("section") ?? "all"),
     [skill, setSkill] = useState(params.get("skill") ?? ""),
-    [difficulty, setDifficulty] = useState("all"),
+    [difficulty, setDifficulty] = useState(params.get("difficulty") ?? "all"),
     [mode, setMode] = useState(params.get("mode") ?? "adaptive"),
     [count, setCount] = useState(params.get("count") ?? "8");
   const [qs, setQs] = useState<PublicQuestion[]>([]),
@@ -1010,6 +1070,7 @@ function Practice({
       skill?: string;
       mode?: string;
       count?: string;
+      difficulty?: string;
     }) => {
       const request = ++setRequest.current;
       setLoading(true);
@@ -1018,7 +1079,7 @@ function Practice({
         const search = new URLSearchParams({
           section: opts?.section ?? section,
           skill: opts?.skill ?? skill,
-          difficulty,
+          difficulty: opts?.difficulty ?? difficulty,
           mode: opts?.mode ?? mode,
           count: opts?.count ?? count,
         });
@@ -1052,6 +1113,8 @@ function Practice({
     setSection(params.get("section") ?? "all");
     setSkill(params.get("skill") ?? "");
     setMode(params.get("mode") ?? "adaptive");
+    setDifficulty(params.get("difficulty") ?? "all");
+    setCount(params.get("count") ?? "8");
     if (
       (params.get("skill") || params.get("count") || params.get("mode")) &&
       autoSetKey.current !== query
@@ -1062,6 +1125,7 @@ function Practice({
         skill: params.get("skill") ?? "",
         mode: params.get("mode") ?? "adaptive",
         count: params.get("count") ?? "8",
+        difficulty: params.get("difficulty") ?? "all",
       });
     }
   }, [query]); // URL defines a new explicit set.
@@ -1217,6 +1281,32 @@ function Practice({
           description="Choose a focus, or let your learning history guide the next question."
         />
         {s.preview && <PreviewNotice />}
+        <div className="practice-entry-points" aria-label="Practice shortcuts">
+          <Link href="/practice?section=rw&skill=words-context&count=5">
+            <BookOpen size={20} />
+            <span>
+              <strong>Vocabulary in context</strong>
+              <small>Read the clues, not a word list.</small>
+            </span>
+            <ChevronRight size={16} />
+          </Link>
+          <Link href="/practice?difficulty=hard&mode=mixed&count=5">
+            <Target size={20} />
+            <span>
+              <strong>A thoughtful challenge</strong>
+              <small>Five provisionally hard questions.</small>
+            </span>
+            <ChevronRight size={16} />
+          </Link>
+          <Link href="/practice?mode=bookmarks&count=8">
+            <Bookmark size={20} />
+            <span>
+              <strong>Your saved questions</strong>
+              <small>Return to something worth revisiting.</small>
+            </span>
+            <ChevronRight size={16} />
+          </Link>
+        </div>
         <section className="set-builder">
           <div className="section-header">
             <div>
@@ -3439,12 +3529,14 @@ function ContentStudio({
 }
 function SettingsModal({
   open,
+  restoreFocus,
   close,
   state: s,
   refresh,
   notify,
 }: {
   open: boolean;
+  restoreFocus?: () => void;
   close: () => void;
   state: AppState;
   refresh: () => Promise<void>;
@@ -3458,6 +3550,7 @@ function SettingsModal({
   }, [s.preferences, open]);
   return (
     <Modal
+      restoreFocus={restoreFocus}
       open={open}
       onOpenChange={(o) => !o && close()}
       title="A plan that fits your life"
@@ -3552,12 +3645,14 @@ function SettingsModal({
 }
 function AccountModal({
   open,
+  restoreFocus,
   close,
   state: s,
   refresh,
   notify,
 }: {
   open: boolean;
+  restoreFocus?: () => void;
   close: () => void;
   state: AppState;
   refresh: () => Promise<void>;
@@ -3572,6 +3667,7 @@ function AccountModal({
     [confirmation, setConfirmation] = useState("");
   return (
     <Modal
+      restoreFocus={restoreFocus}
       open={open}
       onOpenChange={(o) => !o && close()}
       title={

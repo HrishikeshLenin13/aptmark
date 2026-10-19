@@ -1,0 +1,11 @@
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index ac8f0dc..2de58bd 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -1,5 +1,6 @@
+ import type { Metadata } from "next";
+ import "./globals.css";
++import "@/styles/studio.css";
+ import "katex/dist/katex.min.css";
+ export const metadata: Metadata = {
+   title: "Aptmark — Practice with purpose",
