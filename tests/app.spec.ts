@@ -461,3 +461,86 @@ test("desktop and mobile layouts have no horizontal overflow and pass automated 
     fullPage: true,
   });
 });
+
+test("evidence-mapped review queue is restricted and student serialization hides editorial fields", async ({
+  page,
+}) => {
+  await ready(page);
+  const denied = await page.request.get(
+    "/api/admin?version=2.0.0&family=rw2-control-evidence",
+  );
+  expect(denied.status()).toBe(403);
+  const response = await page.request.get(
+    "/api/admin?version=2.0.0&family=rw2-control-evidence",
+    {
+      headers: { "x-admin-token": "folio-e2e-only" },
+    },
+  );
+  expect(response.ok()).toBe(true);
+  const queue = await response.json();
+  expect(queue.questions).toHaveLength(25);
+  expect(
+    queue.questions.every(
+      (q: Question) =>
+        q.generatorVersion === "2.0.0" && q.family === "rw2-control-evidence",
+    ),
+  ).toBe(true);
+  const item = queue.questions[0];
+  expect(
+    item.answerEvidence.quotes.every((quote: string) =>
+      item.passage.includes(quote),
+    ),
+  ).toBe(true);
+  const questions = await (
+    await page.request.get(
+      "/api/questions?section=rw&skill=textual-evidence&count=30&mode=custom",
+    )
+  ).json();
+  expect(
+    questions.questions.some(
+      (q: Question) => q.generatorVersion === "2.0.0" || q.seed >= 1000000,
+    ),
+  ).toBe(true);
+  for (const q of questions.questions) {
+    for (const field of [
+      "correctAnswer",
+      "answerEvidence",
+      "distractorExplanations",
+      "qualityMetadata",
+      "reviewer",
+      "reviewNotes",
+    ])
+      expect(q).not.toHaveProperty(field);
+  }
+  await page.goto("/content");
+  await page.getByLabel("Administrator token").fill("folio-e2e-only");
+  await page.getByRole("button", { name: "Open review queue" }).click();
+  const batchResponse = page.waitForResponse(
+    (response) =>
+      response.url().includes("/api/admin?") &&
+      new URL(response.url()).searchParams.get("version") === "2.0.0" &&
+      response.ok(),
+  );
+  await page.getByLabel("Generation batch").selectOption("2.0.0");
+  await batchResponse;
+  await page
+    .getByRole("combobox", { name: "Editorial skill", exact: true })
+    .selectOption("central-ideas");
+  await expect(
+    page.getByText("Passage evidence for review", { exact: true }),
+  ).toBeVisible();
+  await page
+    .getByText("Difficulty basis & review flags", { exact: true })
+    .click();
+  await expect(
+    page.getByRole("link", { name: "Official task reference" }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: "evidence/content-expansion/editorial-desktop.png",
+    fullPage: true,
+  });
+  await page
+    .getByRole("button", { name: "Lock workspace", exact: true })
+    .click();
+  await expect(page.getByLabel("Administrator token")).toHaveValue("");
+});

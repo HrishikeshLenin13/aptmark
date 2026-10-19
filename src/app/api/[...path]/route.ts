@@ -680,7 +680,9 @@ async function handler(req: NextRequest) {
           .filter(
             (q) =>
               (!u.get("skill") || q.skill === u.get("skill")) &&
-              (!u.get("status") || q.editorialStatus === u.get("status")),
+              (!u.get("status") || q.editorialStatus === u.get("status")) &&
+              (!u.get("version") || q.generatorVersion === u.get("version")) &&
+              (!u.get("family") || q.family === u.get("family")),
           )
           .slice(
             Math.max(0, Number(u.get("offset")) || 0),

@@ -57,6 +57,7 @@ import type {
   Mastery,
   Preferences,
   PublicQuestion,
+  Question,
   Skill,
 } from "@/lib/types";
 
@@ -2997,12 +2998,19 @@ function ContentStudio({
     [notes, setNotes] = useState(""),
     [filter, setFilter] = useState(""),
     [offset, setOffset] = useState(0),
+    [generationVersion, setGenerationVersion] = useState(""),
     [data, setData] = useState<{
       questions: (PublicQuestion & {
         correctAnswer: string;
         explanation: string;
         steps: string[];
-      })[];
+      } & Pick<
+          Question,
+          | "answerEvidence"
+          | "qualityMetadata"
+          | "distractorExplanations"
+          | "alignment"
+        >)[];
       reports: {
         id: string;
         question_id: string;
@@ -3013,12 +3021,17 @@ function ContentStudio({
     [selected, setSelected] = useState(0),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
-  const fetchQueue = async (at = offset, sk = filter) => {
+  const fetchQueue = async (
+    at = offset,
+    sk = filter,
+    version = generationVersion,
+  ) => {
     setBusy(true);
     setError("");
     try {
       const d = await api<NonNullable<typeof data>>(
-        "admin?" + new URLSearchParams({ skill: sk, offset: String(at) }),
+        "admin?" +
+          new URLSearchParams({ skill: sk, offset: String(at), version }),
         undefined,
         { "x-admin-token": token },
       );
@@ -3161,6 +3174,7 @@ function ContentStudio({
               <label>
                 Skill
                 <select
+                  aria-label="Editorial skill"
                   value={filter}
                   onChange={(e) => {
                     setFilter(e.target.value);
@@ -3173,6 +3187,20 @@ function ContentStudio({
                       {sk.name}
                     </option>
                   ))}
+                </select>
+              </label>
+              <label>
+                Generation batch
+                <select
+                  value={generationVersion}
+                  onChange={(event) => {
+                    setGenerationVersion(event.target.value);
+                    void fetchQueue(0, filter, event.target.value);
+                  }}
+                >
+                  <option value="">All generations</option>
+                  <option value="2.0.0">Evidence-mapped expansion</option>
+                  <option value="1.0.0">Original pilot</option>
                 </select>
               </label>
               <Button
@@ -3264,6 +3292,57 @@ function ContentStudio({
                   <p>
                     <MathText text={q.explanation} />
                   </p>
+                  {q.answerEvidence && (
+                    <details open>
+                      <summary>Passage evidence for review</summary>
+                      {q.answerEvidence.quotes.map((quote) => (
+                        <blockquote key={quote}>{quote}</blockquote>
+                      ))}
+                      <p>{q.answerEvidence.reasoning}</p>
+                    </details>
+                  )}
+                  {q.qualityMetadata && (
+                    <details>
+                      <summary>Difficulty basis & review flags</summary>
+                      <p>
+                        Provisional reasoning demands:{" "}
+                        {q.qualityMetadata.difficultyBasis.join(" · ")}
+                      </p>
+                      <p>
+                        Review required:{" "}
+                        {q.qualityMetadata.reviewFlags.join(" · ")}
+                      </p>
+                      {q.alignment && (
+                        <p>
+                          <a
+                            href={q.alignment.source}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Official task reference
+                          </a>{" "}
+                          · {q.alignment.frameworkVersion}. {q.alignment.basis}.
+                        </p>
+                      )}
+                    </details>
+                  )}
+                  {q.distractorExplanations && (
+                    <details>
+                      <summary>Option-by-option rationale</summary>
+                      <ul>
+                        {Object.entries(q.distractorExplanations).map(
+                          ([option, reason]) => (
+                            <li key={option}>
+                              <strong>
+                                <MathText text={option} />
+                              </strong>
+                              : <MathText text={reason} />
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    </details>
+                  )}
                   <details>
                     <summary>Provenance & cluster</summary>
                     <p>

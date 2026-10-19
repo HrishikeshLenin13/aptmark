@@ -15,12 +15,12 @@ Updated: 2026-10-18. Active local development; not a complete or hosted release.
 - PostgreSQL/Supabase migration scaffold; no active cloud adapter.
 
 ## Content inventory
-The pipeline contains 4,500 Math and 55 Reading and Writing candidates (4,555 total), across 30 skills and 41 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
+The pipeline contains 4,800 Math and 605 Reading and Writing candidates (5,405 total), across 30 skills and 75 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
 
 ## Verification record
-- 38 TypeScript tests and 45 Python tests passed.
-- 11 isolated browser integration tests passed for practice, scoring, key privacy, drafts, bookmarks, notes, account lifecycle, assessment recovery, diagnostic transitions, ownership isolation, and publication gates.
-- All 4,555 candidates replayed from recorded seeds with zero mismatches or structural failures; exact problem-text duplicate count is zero. The 41 template clusters remain separately reported.
+- 39 TypeScript tests and 83 Python tests passed.
+- 12 isolated browser integration tests passed for practice, scoring, key privacy, drafts, bookmarks, notes, account lifecycle, assessment recovery, diagnostic transitions, ownership isolation, and publication gates.
+- All 5,405 candidates replayed from recorded seeds with zero mismatches or structural failures; exact problem-text duplicate count is zero. The 75 template clusters remain separately reported.
 - Production build and strict TypeScript checks passed.
 - Automated axe checks passed at 1440, 820, and 390 px for the dashboard and mobile practice; no horizontal overflow was observed at those viewports. These checks are not a WCAG conformance certification.
 - npm audit reported zero known vulnerabilities in the recorded check.
@@ -36,3 +36,12 @@ Independent editorial review and 10,000 published items; broader family/distract
 
 ## Resume
 See [Development notes](docs/DEVELOPMENT.md) for local preview, content workflow, and verification commands. Keep local environment and database files out of version control.
+
+## Content expansion — 2026-10-18
+- Checked the official framework version 4 (September 2026) and public task/skill descriptions. New material is original, not copied official questions.
+- Added 22 evidence-mapped Reading and Writing families and 12 exact-verified Math families; generated 25 pending candidates per family (850 new). The original 4,555 item IDs and hashes remain unchanged.
+- Reading now carries passage evidence, item-specific distractor rationale and difficulty basis. The private editorial queue filters generation batches and exposes that metadata. Student serialization is an explicit allowlist.
+- Added a fresh-clone generator-DB bootstrap, bounded resumable expansion, per-skill coverage/difficulty/publication deficits, lexical/template duplicate reporting, and a representative 34-item review pack.
+- See docs/CONTENT_QUALITY.md, content/manifests/quality-plan.json and evidence/content-expansion/ for current verification evidence.
+- Next content priority: human review of representative families, correction of ambiguities/distractors, additional distinct reading/literature families and missing difficulty bands. The 10,000 approved/published acceptance gate remains unmet.
+- Resume: `.venv/bin/python python/pipeline.py expand --per-family 25 --max-per-family 25` (idempotent); `validate --replay`; `plan`; `review-pack --per-family 1`.

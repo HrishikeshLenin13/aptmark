@@ -1,0 +1,37 @@
+Aptmark content expansion checkpoint — 2026-10-18
+Branch: codex/content-quality-expansion; intended merge: main.
+Changed field: deterministic generation registry, CLI expand/plan/review-pack commands, v2 evidence validation, private student serializer and editorial evidence view.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/python/pipeline.py
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/content-expansion/pipeline.diff
+VERIFICATION.txt: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/content-expansion/VERIFICATION.txt
+ROLLBACK.sh: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/content-expansion/ROLLBACK.sh (mode 755)
+Original pipeline SHA256: d7e378f801bd8904b65cc23fcaf7c0930714a804adb54d114b4d8ce95bfe6280
+Modified pipeline SHA256: b87830c27a943a7353826a42de930d38afa49cf8eac6f033a1d4b8310957d553
+
+BASELINE command: .venv/bin/python scripts/check-content-cli.py evidence/content-expansion/pipeline.original.py --expected absent
+Input: preserved original pipeline source.
+Literal output: content expansion CLI: absent
+Exit status: 0.
+MODIFIED command: .venv/bin/python scripts/check-content-cli.py python/pipeline.py --expected present
+Input: live modified pipeline source.
+Literal output: content expansion CLI: present
+Exit status: 0.
+ROLLBACK command: evidence/content-expansion/ROLLBACK.sh /tmp/aptmark-pipeline-rollback.py && .venv/bin/python scripts/check-content-cli.py /tmp/aptmark-pipeline-rollback.py --expected absent
+Input: separate copy of modified source, not the live pipeline.
+Literal output: rollback: pipeline original restored
+restored sha256: d7e378f801bd8904b65cc23fcaf7c0930714a804adb54d114b4d8ce95bfe6280
+content expansion CLI: absent
+Exit status: 0.
+Restored behavior: original CLI lacks expansion commands; live source still has expansion commands. This bounded rollback restores only pipeline source, not database or whole application history.
+
+Content replay: .venv/bin/python python/pipeline.py validate --replay
+Literal output: {"checked": 5405, "replayed": 5405, "failures": []}
+Exit status: 0.
+Expansion: 850 new candidates, 25 per new family; repeat expansion returns {"inserted": 0, "shortfall": 0, "publishedByGeneration": 0}; exit status 0.
+Legacy check: all 4,555 prior item IDs/content hashes preserved. Current totals 5,405 candidates, 75 families, 30 skills, 0 human approvals, 0 publications, 0 calibrated items.
+Python tests: .venv/bin/python -m pytest tests/test_content.py -q — 83 passed in 7.97s; exit status 0.
+TypeScript: npm run typecheck — exit status 0; npm test — 39 passed, exit status 0.
+Production build: npm run build — Compiled successfully; exit status 0.
+Browser: prior full run passed 11 tests and found an exact-label locator problem in the new editorial test. An explicit Editorial skill accessible label corrected that issue. Targeted command npm run test:e2e -- --grep 'evidence-mapped review' returned 1 passed (12.2s), exit status 0. A fresh full-suite result will be recorded with the website pass; the earlier full-suite failure log is retained, not represented as a pass.
+Playwright MCP observed live inventory: 5,405 generated/automated checks passed, 75 families, 4,800 Math, 605 Reading/Writing, 0 approved/published, and zero current-page console errors.
+No local environment secrets or SQLite databases among publishable files. Original question source material was not copied. All new items remain editorial candidates.

@@ -56,16 +56,42 @@ export type Question = {
   similarityCluster: string;
   calibration: { difficulty: number; n: number };
   source: string;
+  generatorVersion?: string;
+  answerEvidence?: { quotes: string[]; reasoning: string };
+  alignment?: { source: string; basis: string; frameworkVersion: string };
+  qualityMetadata?: {
+    difficultyBasis: string[];
+    reviewFlags: string[];
+    passageOrigin?: string;
+  };
 };
-export type PublicQuestion = Omit<
+export type PublicQuestion = Pick<
   Question,
-  | "correctAnswer"
-  | "acceptedResponses"
-  | "explanation"
-  | "steps"
-  | "hints"
-  | "distractorExplanations"
-  | "validationResults"
+  | "id"
+  | "schemaVersion"
+  | "section"
+  | "domain"
+  | "skill"
+  | "subskill"
+  | "type"
+  | "stem"
+  | "passage"
+  | "options"
+  | "difficulty"
+  | "difficultyCalibration"
+  | "estimatedSeconds"
+  | "family"
+  | "seed"
+  | "contentVersion"
+  | "contentHash"
+  | "license"
+  | "editorialStatus"
+  | "publicationStatus"
+  | "diagram"
+  | "table"
+  | "similarityCluster"
+  | "calibration"
+  | "source"
 >;
 export type Attempt = {
   id: string;

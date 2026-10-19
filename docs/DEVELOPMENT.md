@@ -1,7 +1,7 @@
 # Aptmark
 ### Free, focused SAT preparation — a working local foundation
 
-Original-content pipeline + a real persistent practice application. **Not a finished public platform:** the inventory currently contains **4,555 candidates (4,500 Math + 55 Reading & Writing), 41 families, 30 skills, 0 human-approved, 0 published, 0 empirically calibrated.** The 10,000-published-question target remains open.
+Original-content pipeline + a real persistent practice application. **Not a finished public platform:** the inventory currently contains **5,405 candidates (4,800 Math + 605 Reading & Writing), 75 families, 30 skills, 0 human-approved, 0 published, 0 empirically calibrated.** The 10,000-published-question target remains open.
 
 ## Run locally
 Requires Node 24+ (tested with 26.8.1), npm, and Python 3.10+ for the offline content tools.

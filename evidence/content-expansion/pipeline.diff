@@ -1,0 +1,212 @@
+--- a/python/pipeline.py
++++ b/python/pipeline.py
+@@ -6,11 +6,15 @@
+ from taxonomy import SKILLS, BY_ID, coverage_plan
+ from math_generators import FAMILIES, make
+ from reading_generators import make_reading
++from reading_expansion import FAMILIES as RW2, make as make_rw2
++from math_expansion import FAMILIES as MATH2, make as make_math2
+ ROOT=Path(__file__).resolve().parents[1]
+ CONTENT=ROOT/'content'; DB=CONTENT/'candidates.sqlite'; EPOCH='2026-10-18T00:00:00Z'
+ 
+ def canonical(q):
+     fields={k:q.get(k) for k in ('stem','passage','options','correctAnswer','table','diagram','explanation','steps')}
++    if q.get('generatorVersion') == '2.0.0':
++        fields.update({k:q.get(k) for k in ('answerEvidence','distractorExplanations','alignment','qualityMetadata','schemaVersion','contentVersion','generatorVersion','family','seed','section','domain','skill','subskill','type','acceptedResponses','estimatedSeconds','difficulty','difficultyCalibration','source','license','similarityCluster')})
+     return json.dumps(fields,sort_keys=True,ensure_ascii=False)
+ 
+ def problem_hash(q):
+@@ -21,6 +25,8 @@
+     for f in ('id','skill','stem','correctAnswer','explanation','steps','contentHash','source','license','family','seed'):
+         if q.get(f) is None or q.get(f)=='' or q.get(f)==[]: errors.append('missing:'+f)
+     if q.get('skill') not in BY_ID: errors.append('unknown-skill')
++    elif q.get('section')!=BY_ID[q['skill']]['section'] or q.get('domain')!=BY_ID[q['skill']]['domain']: errors.append('taxonomy-mismatch')
++    if q.get('difficulty') not in ('easy','medium','hard'): errors.append('invalid-difficulty')
+     opts=q.get('options',[])
+     if q.get('type')=='mcq':
+         if len(opts)!=4 or len(set(opts))!=4 or any(not str(o).strip() for o in opts): errors.append('option-count-or-duplicate')
+@@ -33,15 +39,33 @@
+     if q.get('section')=='rw' and len((q.get('passage') or '').split())<20: errors.append('short-passage-review')
+     if q.get('contentHash')!=hashlib.sha256(canonical(q).encode()).hexdigest(): errors.append('hash-mismatch')
+     if q.get('license')!='CC0-1.0-original': errors.append('license')
+-    if q.get('publicationStatus')=='published' and (q.get('editorialStatus')!='approved' or not q.get('reviewer') or not q.get('reviewNotes')): errors.append('unreviewed-publication')
++    if q.get('problemHash') and q['problemHash']!=problem_hash(q): errors.append('problem-hash-mismatch')
++    if q.get('generatorVersion')=='2.0.0':
++        if not q.get('qualityMetadata',{}).get('difficultyBasis'): errors.append('missing-difficulty-basis')
++        if not q.get('alignment',{}).get('source','').startswith('https://satsuite.collegeboard.org/'): errors.append('missing-official-alignment')
++        rationales=q.get('distractorExplanations',{})
++        if any(not rationales.get(option) for option in opts): errors.append('missing-option-rationale')
++        if q.get('section')=='rw':
++            text=(q.get('passage') or '')+' '+q.get('stem','')
++            quotes=q.get('answerEvidence',{}).get('quotes',[])
++            if not quotes or any(quote not in text for quote in quotes): errors.append('evidence-span-missing')
++            # Character-length proxy mirrors the framework's six-character-word convention.
++            length=len(q.get('passage') or '')/6
++            if not 25<=length<=150: errors.append('passage-length-outside-blueprint')
++            if q.get('type')!='mcq': errors.append('reading-must-be-mcq')
++    if q.get('publicationStatus')=='published' and (q.get('editorialStatus')!='approved' or len(str(q.get('reviewer') or '').strip())<3 or len(str(q.get('reviewNotes') or '').strip())<15): errors.append('unreviewed-publication')
+     return errors
+ 
+ def wrap(raw,skill,family,seed):
+-    meta=BY_ID[skill]; q=dict(raw)
+-    q.update(id=f'{skill}-{seed:08d}',schemaVersion=1,contentVersion=1,section=meta['section'],domain=meta['domain'],skill=skill,subskill=family,type='mcq',passageType='self-contained-hypothetical' if meta['section']=='rw' else 'math',acceptedResponses=[],difficultyCalibration='provisional-uncalibrated',estimatedSeconds=80 if meta['section']=='math' else 65,family=family,generatorVersion='1.0.0',seed=seed,source='Folio deterministic original generator / '+family,license='CC0-1.0-original',editorialStatus='pending',publicationStatus='candidate',reviewer=None,reviewNotes=None,createdAt=EPOCH,updatedAt=EPOCH,similarityCluster=family,misconceptionTags=['unsupported-inference'] if meta['section']=='rw' else ['procedure-error'],accessibility={'textAlternative':(raw.get('diagram') or {}).get('alt'),'mathFormat':'latex-delimited','tableHeaders':bool(raw.get('table'))},calibration={'model':'Rasch-1PL-provisional','difficulty':{'easy':-1,'medium':0,'hard':1}[raw['difficulty']],'n':0,'standardError':None},generationCostUSD=0)
+-    if meta['section']=='math' and seed%4==0 and raw['verification']!='logical-template-requires-editorial-review':
++    meta=BY_ID[skill]; q=dict(raw); version=raw.get('generatorVersion','1.0.0')
++    q.update(id=f'{skill}-{seed:08d}',schemaVersion=1,contentVersion=1,section=meta['section'],domain=meta['domain'],skill=skill,subskill=family,type='mcq',passageType='self-contained-hypothetical' if meta['section']=='rw' else 'math',acceptedResponses=[],difficultyCalibration='provisional-uncalibrated',estimatedSeconds=80 if meta['section']=='math' else 65,family=family,generatorVersion=version,seed=seed,source='Folio deterministic original generator / '+family,license='CC0-1.0-original',editorialStatus='pending',publicationStatus='candidate',reviewer=None,reviewNotes=None,createdAt=EPOCH,updatedAt=EPOCH,similarityCluster=family,misconceptionTags=['unsupported-inference'] if meta['section']=='rw' else ['procedure-error'],accessibility={'textAlternative':(raw.get('diagram') or {}).get('alt'),'mathFormat':'latex-delimited','tableHeaders':bool(raw.get('table'))},calibration={'model':'Rasch-1PL-provisional','difficulty':{'easy':-1,'medium':0,'hard':1}[raw['difficulty']],'n':0,'standardError':None},generationCostUSD=0)
++    if version=='2.0.0':
++        q['source']='Aptmark deterministic original generator / '+family
++        q['estimatedSeconds']=70+10*len(raw.get('qualityMetadata',{}).get('difficultyBasis',[]))
++    if meta['section']=='math' and seed%4==0 and not raw.get('forceMCQ') and raw['verification']!='logical-template-requires-editorial-review':
+         q['type']='spr'; q['options']=[]; q['acceptedResponses']=[q['correctAnswer']]
+-    q['distractorExplanations']={v:('This is the keyed response. '+q['explanation'] if v==q['correctAnswer'] else 'This response does not satisfy the question. Compare it with the verified reasoning: '+q['explanation']) for v in q['options']}
++    q.pop('forceMCQ',None)
++    q['distractorExplanations']=raw.get('distractorExplanations') or {v:('This is the keyed response. '+q['explanation'] if v==q['correctAnswer'] else 'This response does not satisfy the question. Compare it with the verified reasoning: '+q['explanation']) for v in q['options']}
+     q['hints']=[f'Which relationship or rule connects the given information to {meta["name"].lower()}?', q['steps'][0]]
+     q['contentHash']=hashlib.sha256(canonical(q).encode()).hexdigest()
+     q['problemHash']=problem_hash(q)
+@@ -55,6 +79,13 @@
+     db.execute('CREATE TABLE IF NOT EXISTS candidates (id TEXT PRIMARY KEY, skill TEXT, hash TEXT UNIQUE, family TEXT, data TEXT)')
+     db.execute('CREATE TABLE IF NOT EXISTS checkpoints (skill TEXT PRIMARY KEY, next_seed INTEGER)')
+     db.execute('CREATE TABLE IF NOT EXISTS failures (skill TEXT, seed INTEGER, reason TEXT)')
++    # A fresh clone has a committed bank but no ignored generator DB. Hydrate it
++    # rather than reporting an empty bank or silently dropping prior generations.
++    if not db.execute('SELECT 1 FROM candidates LIMIT 1').fetchone() and (CONTENT/'bank.json').exists():
++        for q in json.loads((CONTENT/'bank.json').read_text()):
++            db.execute('INSERT OR IGNORE INTO candidates VALUES (?,?,?,?,?)',
++                       (q['id'],q['skill'],problem_hash(q),q['family'],json.dumps(q,ensure_ascii=False)))
++        db.commit()
+     return db
+ 
+ def generate(total):
+@@ -97,7 +128,105 @@
+ def report(db):
+     rows=[json.loads(r[0]) for r in db.execute('SELECT data FROM candidates')]
+     summary={'schemaVersion':1,'generated':len(rows),'structurallyValidated':sum(not validate(q) for q in rows),'approved':sum(q['editorialStatus']=='approved' for q in rows),'published':sum(q['publicationStatus']=='published' for q in rows),'rejected':sum(q['editorialStatus']=='rejected' for q in rows),'sections':dict(collections.Counter(q['section'] for q in rows)),'families':len({q['family'] for q in rows}),'clusters':dict(collections.Counter(q['family'] for q in rows)),'difficulty':dict(collections.Counter(q['difficulty'] for q in rows)),'skills':dict(collections.Counter(q['skill'] for q in rows)),'target':10000,'estimatedGenerationCostUSD':0,'calibration':'uncalibrated','exactProblemDuplicates':len(rows)-len({problem_hash(q) for q in rows}),'note':'Structural validation is not educational approval. No candidates count toward the 10,000 published target.'}
++    (CONTENT/'manifests').mkdir(exist_ok=True)
+     (CONTENT/'manifests/inventory.json').write_text(json.dumps(summary,indent=2)); print(json.dumps({k:v for k,v in summary.items() if k not in ('clusters','skills')},indent=2)); return summary
++
++
++def replay_raw(q):
++    if q.get('generatorVersion')=='2.0.0':
++        return make_rw2(q['family'],q['seed']) if q['section']=='rw' else make_math2(q['family'],q['seed'])
++    return make(q['family'],q['seed']) if q['section']=='math' else make_reading(q['skill'],q['seed']-1)
++
++
++def expansion_registry():
++    return [(skill,family,generator) for mapping,generator in ((RW2,make_rw2),(MATH2,make_math2))
++            for skill,families in mapping.items() for family in families]
++
++
++def expand(per_family=25,max_per_family=25):
++    if not 1<=per_family<=max_per_family<=100:
++        raise ValueError('Require 1 <= per-family <= max-per-family <= 100; editorial capacity is bounded.')
++    db=connect(); db.execute('CREATE TABLE IF NOT EXISTS family_checkpoints (family TEXT PRIMARY KEY,next_seed INTEGER)')
++    inserted=0; results=[]
++    for index,(skill,family,generator) in enumerate(expansion_registry()):
++        have=db.execute('SELECT count(*) FROM candidates WHERE family=?',(family,)).fetchone()[0]
++        row=db.execute('SELECT next_seed FROM family_checkpoints WHERE family=?',(family,)).fetchone()
++        cursor=row[0] if row else 1000000+index*10000
++        attempts=0
++        while have<per_family and attempts<per_family*20:
++            seed=cursor;cursor+=1;attempts+=1
++            try:
++                raw=generator(family,seed)
++                if raw is None: continue
++                q=wrap(raw,skill,family,seed); errors=validate(q)
++                if errors: raise ValueError(','.join(errors))
++                change=db.execute('INSERT OR IGNORE INTO candidates VALUES (?,?,?,?,?)',
++                     (q['id'],skill,q['problemHash'],family,json.dumps(q,ensure_ascii=False))).rowcount
++                have+=change;inserted+=change
++            except (ValueError,AssertionError,TypeError,KeyError) as error:
++                db.execute('INSERT INTO failures VALUES (?,?,?)',(skill,seed,f'{family}: {error}'))
++            if attempts%10==0:
++                db.execute('INSERT OR REPLACE INTO family_checkpoints VALUES (?,?)',(family,cursor));db.commit()
++        db.execute('INSERT OR REPLACE INTO family_checkpoints VALUES (?,?)',(family,cursor));db.commit()
++        results.append({'family':family,'have':have,'target':per_family,'shortfall':max(0,per_family-have)})
++        print(f'{family}: {have}/{per_family}',flush=True)
++    export_all(db)
++    summary={'inserted':inserted,'families':results,'allPendingReview':True,'publishedByGeneration':0}
++    (CONTENT/'manifests/expansion.json').write_text(json.dumps(summary,indent=2)+'\n')
++    rows=[json.loads(row[0]) for row in db.execute('SELECT data FROM candidates')]
++    (CONTENT/'manifests/quality-plan.json').write_text(json.dumps(quality_plan(rows),indent=2)+'\n')
++    print(json.dumps({'inserted':inserted,'shortfall':sum(r['shortfall'] for r in results),'publishedByGeneration':0}))
++    return summary
++
++
++def quality_plan(rows):
++    counts=collections.Counter(q['skill'] for q in rows)
++    approved=collections.Counter(q['skill'] for q in rows if q['editorialStatus']=='approved' and not validate(q))
++    published=collections.Counter(q['skill'] for q in rows if q['publicationStatus']=='published' and not validate(q))
++    targets={**coverage_plan(4500,'math'),**coverage_plan(5500,'rw')}
++    skills=[]
++    for s in SKILLS:
++        qs=[q for q in rows if q['skill']==s['id']]
++        skills.append({'id':s['id'],'domain':s['domain'],'section':s['section'],'target':targets[s['id']],
++          'candidates':counts[s['id']],'approved':approved[s['id']],'published':published[s['id']],
++          'publishedDeficit':max(0,targets[s['id']]-published[s['id']]),
++          'candidateDeficit':max(0,targets[s['id']]-counts[s['id']]),
++          'families':len({q['family'] for q in qs}),
++          'difficulty':dict(collections.Counter(q['difficulty'] for q in qs)),
++          'missingDifficultyBands':[d for d in ('easy','medium','hard') if not any(q['difficulty']==d for q in qs)]})
++    # A transparent lexical/template signal, NOT semantic embedding deduplication.
++    skeletons=collections.Counter(re.sub(r'\b\d+(?:[./]\d+)?\b','<n>',(q.get('passage') or '')+' '+q['stem']).casefold() for q in rows)
++    return {'schemaVersion':1,'targetPublished':10000,'candidates':len(rows),'published':sum(published.values()),
++       'publishableTargetMet':sum(published.values())>=10000,
++       'candidateTargetMet':len(rows)>=10000,'skills':skills,
++       'numericNormalizedTextClusters':sum(n>1 for n in skeletons.values()),
++       'instancesInNumericNormalizedClusters':sum(n for n in skeletons.values() if n>1),
++       'deduplicationMethod':'exact problem hashes + explicit family clusters + number-normalized exact text; semantic equivalence not established',
++       'nextAction':'Review representative families, improve missing difficulty bands and distractors, then scale reviewed templates. Do not auto-publish.'}
++
++
++def review_pack(rows,output,per_family=1):
++    if not 1<=per_family<=5: raise ValueError('per-family must be between 1 and 5')
++    groups=collections.defaultdict(list)
++    for q in rows:
++        if q.get('generatorVersion')=='2.0.0': groups[q['family']].append(q)
++    lines=['# Aptmark editorial review pack','',
++        'Unapproved original candidates. This pack contains answer keys; it is for editorial review, not student delivery.',
++        'Review: answer unambiguity, evidence, distractors, complexity, accessibility, and topic diversity. Generation is not approval.','']
++    for family,questions in sorted(groups.items()):
++        for q in sorted(questions,key=lambda q:q['seed'])[:per_family]:
++            lines += [f"## {family} — {q['id']}",f"Skill: {q['skill']} | provisional difficulty: {q['difficulty']} | seed: {q['seed']}",
++                '',q.get('passage') or '',q['stem'],'']
++            if q.get('table'): lines += [json.dumps(q['table'],ensure_ascii=False),'']
++            for i,option in enumerate(q['options']): lines.append(f'{chr(65+i)}. {option}')
++            lines += ['',f"**Key:** {q['correctAnswer']}",q['explanation'],'']
++            for option,reason in q['distractorExplanations'].items(): lines += [f'- {option}: {reason}']
++            lines += ['', 'Evidence: '+json.dumps(q.get('answerEvidence',{}),ensure_ascii=False),
++                'Difficulty basis: '+', '.join(q['qualityMetadata']['difficultyBasis']),
++                'Reviewer: ______  Decision: ______  Notes: ______','']
++    Path(output).parent.mkdir(parents=True,exist_ok=True)
++    Path(output).write_text('\n'.join(lines)+'\n')
++    print(json.dumps({'families':len(groups),'items':sum(min(per_family,len(v)) for v in groups.values()),'path':output,'approved':0}))
+ 
+ def main():
+     p=argparse.ArgumentParser(); sub=p.add_subparsers(dest='cmd',required=True)
+@@ -105,18 +234,24 @@
+     v=sub.add_parser('validate'); v.add_argument('--replay',action='store_true'); sub.add_parser('report'); sub.add_parser('dedupe')
+     e=sub.add_parser('export-approved'); e.add_argument('--output',required=True)
+     s=sub.add_parser('sample'); s.add_argument('--count',type=int,default=20); s.add_argument('--seed',type=int,default=2026)
++    x=sub.add_parser('expand'); x.add_argument('--per-family',type=int,default=25); x.add_argument('--max-per-family',type=int,default=25)
++    sub.add_parser('plan')
++    pack=sub.add_parser('review-pack'); pack.add_argument('--output',default='content/reviewed/review-pack.md'); pack.add_argument('--per-family',type=int,default=1)
+     args=p.parse_args()
+     if args.cmd=='generate': return generate(args.math)
++    if args.cmd=='expand': return expand(args.per_family,args.max_per_family)
+     db=connect(); rows=[json.loads(r[0]) for r in db.execute('SELECT data FROM candidates ORDER BY id')]
+     if args.cmd=='validate':
+         failures=[{'id':q['id'],'errors':validate(q)} for q in rows if validate(q)]
+         if args.replay:
+             for q in rows:
+-                raw=make(q['family'],q['seed']) if q['section']=='math' else make_reading(q['skill'],q['seed']-1)
++                raw=replay_raw(q)
+                 expected=wrap(raw,q['skill'],q['family'],q['seed'])
+                 if expected['contentHash']!=q['contentHash']: failures.append({'id':q['id'],'errors':['replay-mismatch']})
+         print(json.dumps({'checked':len(rows),'replayed':len(rows) if args.replay else 0,'failures':failures})); sys.exit(bool(failures))
+     if args.cmd=='report': report(db)
++    if args.cmd=='plan': print(json.dumps(quality_plan(rows),indent=2))
++    if args.cmd=='review-pack': review_pack(rows,args.output,args.per_family)
+     if args.cmd=='dedupe': print(json.dumps({'exactDuplicates':len(rows)-len({problem_hash(q) for q in rows}),'templateClusters':dict(collections.Counter(q['family'] for q in rows)),'semanticSimilarity':'not-implemented; template clusters explicitly reported'}))
+     if args.cmd=='export-approved': Path(args.output).write_text(json.dumps([q for q in rows if q['publicationStatus']=='published' and not validate(q)],indent=2))
+     if args.cmd=='sample':

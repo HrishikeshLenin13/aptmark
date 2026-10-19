@@ -1,3 +1,4 @@
+import { serializePublicQuestion } from "./public-question";
 import { DatabaseSync } from "node:sqlite";
 import fs from "node:fs";
 import path from "node:path";
@@ -125,19 +126,7 @@ export function question(id: string): Question | undefined {
     { data: string } | undefined;
   return row ? JSON.parse(row.data) : undefined;
 }
-export function publicQuestion(q: Question): PublicQuestion {
-  const {
-    correctAnswer: _a,
-    acceptedResponses: _b,
-    explanation: _c,
-    steps: _d,
-    hints: _e,
-    distractorExplanations: _f,
-    validationResults: _g,
-    ...rest
-  } = q;
-  return rest;
-}
+export const publicQuestion = serializePublicQuestion;
 export function attempts(user: string): Attempt[] {
   return (
     db()

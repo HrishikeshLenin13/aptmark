@@ -24,3 +24,6 @@ The initial dependency audit identified development-tool advisories in Vitest/Ti
 
 ## Final local checks
 Context7, shadcn MCP and Playwright MCP were actually exercised. Browser QA also used the installed Playwright runner and axe. At the end, a direct browser fetch of `/api/state` observed 4,555 candidates, 4,555 structurally validated, 0 approved, 0 published, 41 families, and a fresh workspace with zero student attempts. MCP browser console checks observed zero errors on the final overview page. See VERIFICATION.txt for command/status evidence.
+
+## 2026-10-18 content refresh
+The live College Board assessment framework identifies itself as Version 4 (September 2026). The new generation registry maps 34 independently authored families to the public task and skill descriptions, without importing official question text. See [CONTENT_QUALITY.md](CONTENT_QUALITY.md) and the blueprint registry for source links and limits.

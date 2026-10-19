@@ -1,0 +1,58 @@
+rw2-competing-explanations: 25/25
+rw2-character-tension: 25/25
+rw2-control-evidence: 25/25
+rw2-counterevidence: 25/25
+rw2-rate-comparison: 25/25
+rw2-table-exception: 25/25
+rw2-sampling-limit: 25/25
+rw2-constraint-inference: 25/25
+rw2-context-blank: 25/25
+rw2-context-nuance: 25/25
+rw2-counterargument-role: 25/25
+rw2-example-role: 25/25
+rw2-qualified-agreement: 25/25
+rw2-evidence-response: 25/25
+rw2-notes-contrast: 25/25
+rw2-notes-method: 25/25
+rw2-concession: 25/25
+rw2-specific-example: 25/25
+rw2-appositive: 25/25
+rw2-list-colon: 25/25
+rw2-finite-verb: 25/25
+rw2-modifier-attachment: 25/25
+m2-inconsistent-system: 25/25
+m2-negative-coefficient-bound: 25/25
+m2-rational-domain: 25/25
+m2-discriminant-parameter: 25/25
+m2-exponential-initial: 25/25
+m2-shifted-intercept: 25/25
+m2-area-unit-conversion: 25/25
+m2-spread-scaling: 25/25
+m2-sample-size-margin: 25/25
+m2-similar-solid-volume: 25/25
+m2-arc-coefficient: 25/25
+m2-complementary-ratios: 25/25
+{
+  "schemaVersion": 1,
+  "generated": 5405,
+  "structurallyValidated": 5405,
+  "approved": 0,
+  "published": 0,
+  "rejected": 0,
+  "sections": {
+    "math": 4800,
+    "rw": 605
+  },
+  "families": 75,
+  "difficulty": {
+    "easy": 547,
+    "medium": 4062,
+    "hard": 796
+  },
+  "target": 10000,
+  "estimatedGenerationCostUSD": 0,
+  "calibration": "uncalibrated",
+  "exactProblemDuplicates": 0,
+  "note": "Structural validation is not educational approval. No candidates count toward the 10,000 published target."
+}
+{"inserted": 850, "shortfall": 0, "publishedByGeneration": 0}
