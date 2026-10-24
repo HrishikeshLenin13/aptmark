@@ -4,6 +4,7 @@ export function calculate(source: string): number {
   if (!input || input.length > 160 || /[^\d.+\-*/()]/.test(input))
     throw Error("Use numbers, parentheses, and + − × ÷.");
   const tokens = input.match(/(?:\d+(?:\.\d*)?|\.\d+)|[+\-*/()]/g) ?? [];
+  if (tokens.join("") !== input) throw Error("Enter a complete number or expression.");
   let i = 0;
   function atom(): number {
     if (tokens[i] === "-") {

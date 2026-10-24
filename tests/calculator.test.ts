@@ -8,3 +8,9 @@ describe('study calculator', () => {
     expect(calculate('2 + 3 * 4')).toBe(14);
   });
 });
+
+it('rejects stray decimal points rather than silently changing the expression', () => {
+  for (const input of ['1..+2', '.', '1+.', '2...*3', '1.2.3']) expect(() => calculate(input)).toThrow();
+  expect(calculate('.5 + 1.')).toBe(1.5);
+  expect(() => calculate('1 / 0')).toThrow();
+});
