@@ -1,6 +1,6 @@
 /** Whitelisted arithmetic parser. Never evals user input. */
 export function calculate(source: string): number {
-  const input = source.replace(/\s/g, "");
+  const input = source.replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/\s/g, "");
   if (!input || input.length > 160 || /[^\d.+\-*/()]/.test(input))
     throw Error("Use numbers, parentheses, and + − × ÷.");
   const tokens = input.match(/(?:\d+(?:\.\d*)?|\.\d+)|[+\-*/()]/g) ?? [];
