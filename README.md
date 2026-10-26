@@ -34,3 +34,9 @@ Aptmark is independent of College Board. SAT is a trademark of College Board.
 - [Roadmap](docs/PROJECT_ROADMAP.md)
 
 See [question quality and the review workflow](docs/CONTENT_QUALITY.md) for the current content expansion and its review gates.
+
+## Study calculator
+
+The workspace calculator accepts pasted `×`, `÷`, and `−` symbols as well as keyboard arithmetic operators. Parentheses and normal arithmetic precedence are preserved. Stray decimal punctuation, incomplete expressions, and non-finite results are rejected rather than silently rewritten.
+
+Check it with `npm test`; the full project checks remain in [Development notes](docs/DEVELOPMENT.md). This utility change does not publish questions, change answer keys, or alter assessment scoring.
