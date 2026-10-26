@@ -97,3 +97,7 @@ assert.equal(calculate("12 \u00d7 3 \u00f7 4"), 9);
 test("pasted-en-dash-is-an-arithmetic-minus", () => {
 assert.equal(calculate("9 \u2013 4"), 5);
 });
+
+test("pasted-root-symbol-uses-the-function-grammar", () => {
+assert.equal(calculate("\u221a(81)+1"), 10);
+});
