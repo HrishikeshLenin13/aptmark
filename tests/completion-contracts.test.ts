@@ -157,3 +157,7 @@ for(const source of ["abs()", "sqrt()", "round()"]) assert.throws(()=>calculate(
 test("nonfinite-power-results-fail-at-the-operation", () => {
 for(const source of ["10^999", "(-1)^.5"]) assert.throws(()=>calculate(source));
 });
+
+test("division-errors-cannot-be-masked-by-zero-powers", () => {
+for(const source of ["(0/0)^0", "(1/0)^0"]) assert.throws(()=>calculate(source));
+});
