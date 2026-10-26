@@ -173,3 +173,7 @@ for(const source of ["sqrt(-4)^0"]) assert.throws(()=>calculate(source));
 test("length-limits-bound-parser-work", () => {
 for(const source of ["1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1"]) assert.throws(()=>calculate(source));
 });
+
+test("finite-calculation-does-not-mutate-source-input", () => {
+const source='[3+4]^2'; assert.equal(calculate(source),49); assert.equal(source,'[3+4]^2');
+});
