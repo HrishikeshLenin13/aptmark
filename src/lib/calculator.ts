@@ -1,9 +1,9 @@
 /** Whitelisted arithmetic parser. Never evals user input. */
 export function calculate(source: string): number {
   const input = source.replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/\s/g, "");
-  if (!input || input.length > 160 || /[^\d.+\-*/()^]/.test(input))
+  if (!input || input.length > 160 || /[^\d.+\-*/()^%]/.test(input))
     throw Error("Use numbers, parentheses, and + − × ÷.");
-  const tokens = input.match(/(?:\d+(?:\.\d*)?|\.\d+)|[+\-*/()^]/g) ?? [];
+  const tokens = input.match(/(?:\d+(?:\.\d*)?|\.\d+)|[+\-*/()^%]/g) ?? [];
   if (tokens.join("") !== input) throw Error("Enter a complete number or expression.");
   let i = 0;
   function atom(): number {
@@ -11,11 +11,15 @@ export function calculate(source: string): number {
       i++;
       const v = expression();
       if (tokens[i++] !== ")") throw Error("Close each parenthesis.");
-      return v;
+      return percent(v);
     }
     const t = tokens[i++];
     if (!t || !/^\d|^\./.test(t)) throw Error("Enter a complete expression.");
-    return Number(t);
+    return percent(Number(t));
+  }
+  function percent(value: number): number {
+    while (tokens[i] === "%") { i++; value /= 100; }
+    return value;
   }
   function power(): number {
     const base = atom();
