@@ -1,7 +1,15 @@
 /** Whitelisted arithmetic parser. Never evals user input. */
 export function calculate(source: string): number {
   if (/[\d.]\s+(?=[\d.eE])|[eE]\s+(?=[+\-\d])/.test(source)) throw Error("Separate numbers with an operator.");
-  const input = source.replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/√/g, "sqrt").replace(/\s/g, "");
+  const brackets: string[] = [];
+  for (const char of source) {
+    if (char === "(" || char === "[") brackets.push(char);
+    else if (char === ")" || char === "]") {
+      if (brackets.pop() !== (char === ")" ? "(" : "[")) throw Error("Match each grouping bracket.");
+    }
+  }
+  if (brackets.length) throw Error("Close each grouping bracket.");
+  const input = source.replace(/\[/g,"(").replace(/\]/g,")").replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/√/g, "sqrt").replace(/\s/g, "");
   if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrtpieEabc]/.test(input))
     throw Error("Use numbers, parentheses, and + − × ÷.");
   const tokens = input.match(/sqrt|cbrt|abs|pi|e|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?|[+\-*/()^%sqrteE]/g) ?? [];
