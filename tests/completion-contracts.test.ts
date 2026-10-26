@@ -49,3 +49,7 @@ assert.equal(calculate("2E3/4E1"), 50);
 test("decimal-leading-dot-in-function", () => {
 assert.equal(calculate("abs(-.5)"), 0.5);
 });
+
+test("decimal-trailing-dot-remains-numeric", () => {
+assert.equal(calculate("12. + 3"), 15);
+});
