@@ -77,3 +77,7 @@ assert.equal(calculate("floor(-2.01)"), -3);
 test("ceil-respects-positive-fractions", () => {
 assert.equal(calculate("ceil(2.01)"), 3);
 });
+
+test("round-ties-follow-the-documented-math-rule", () => {
+assert.equal(calculate("round(-1.5)"), -1);
+});
