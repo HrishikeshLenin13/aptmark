@@ -41,3 +41,7 @@ assert.equal(calculate("-2.5e-2"), -0.025);
 test("scientific-plus-sign-does-not-start-addition", () => {
 assert.equal(calculate("1e+2+3"), 103);
 });
+
+test("scientific-uppercase-exponent-in-products", () => {
+assert.equal(calculate("2E3/4E1"), 50);
+});
