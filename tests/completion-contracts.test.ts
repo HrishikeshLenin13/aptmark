@@ -113,3 +113,7 @@ assert.equal(calculate("--2 + +-3"), -1);
 test("mismatched-crossed-brackets-are-not-repaired", () => {
 for(const source of ["[(1])", "([2)]"]) assert.throws(()=>calculate(source));
 });
+
+test("unclosed-square-groups-are-rejected", () => {
+for(const source of ["[1+2", "[[1]"]) assert.throws(()=>calculate(source));
+});
