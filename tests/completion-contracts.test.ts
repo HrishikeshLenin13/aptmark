@@ -37,3 +37,7 @@ assert.equal(calculate("100%%"), 0.01);
 test("scientific-negative-exponent-with-unary", () => {
 assert.equal(calculate("-2.5e-2"), -0.025);
 });
+
+test("scientific-plus-sign-does-not-start-addition", () => {
+assert.equal(calculate("1e+2+3"), 103);
+});
