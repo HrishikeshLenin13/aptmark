@@ -2,18 +2,18 @@
 export function calculate(source: string): number {
   if (/[\d.]\s+(?=[\d.eE])|[eE]\s+(?=[+\-\d])/.test(source)) throw Error("Separate numbers with an operator.");
   const input = source.replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/√/g, "sqrt").replace(/\s/g, "");
-  if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrtpieE]/.test(input))
+  if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrtpieEabc]/.test(input))
     throw Error("Use numbers, parentheses, and + − × ÷.");
-  const tokens = input.match(/sqrt|pi|e|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?|[+\-*/()^%sqrteE]/g) ?? [];
+  const tokens = input.match(/sqrt|cbrt|abs|pi|e|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?|[+\-*/()^%sqrteE]/g) ?? [];
   if (tokens.join("") !== input) throw Error("Enter a complete number or expression.");
   let i = 0;
   function atom(): number {
-    if (tokens[i] === "sqrt") {
-      i++;
+    if (["sqrt", "cbrt", "abs"].includes(tokens[i])) {
+      const fn = tokens[i++];
       if (tokens[i++] !== "(") throw Error("Use sqrt(expression).");
       const value = expression();
       if (tokens[i++] !== ")") throw Error("Close each parenthesis.");
-      return percent(Math.sqrt(value));
+      return percent(fn === "sqrt" ? Math.sqrt(value) : fn === "cbrt" ? Math.cbrt(value) : Math.abs(value));
     }
     if (tokens[i] === "(") {
       i++;
