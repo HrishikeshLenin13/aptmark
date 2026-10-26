@@ -1,5 +1,6 @@
 /** Whitelisted arithmetic parser. Never evals user input. */
 export function calculate(source: string): number {
+  if (/[\d.]\s+(?=[\d.eE])|[eE]\s+(?=[+\-\d])/.test(source)) throw Error("Separate numbers with an operator.");
   const input = source.replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/√/g, "sqrt").replace(/\s/g, "");
   if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrteE]/.test(input))
     throw Error("Use numbers, parentheses, and + − × ÷.");
