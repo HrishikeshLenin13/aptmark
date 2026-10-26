@@ -40,3 +40,7 @@ See [question quality and the review workflow](docs/CONTENT_QUALITY.md) for the 
 The workspace calculator accepts pasted `×`, `÷`, and `−` symbols as well as keyboard arithmetic operators. Parentheses and normal arithmetic precedence are preserved. Stray decimal punctuation, incomplete expressions, and non-finite results are rejected rather than silently rewritten.
 
 Check it with `npm test`; the full project checks remain in [Development notes](docs/DEVELOPMENT.md). This utility change does not publish questions, change answer keys, or alter assessment scoring.
+
+## Developer resources
+
+- [Feature usage and API contracts](docs/RECENT_IMPROVEMENTS.md)
