@@ -149,3 +149,7 @@ for(const source of ["1e+-2", "2E--1", "3e++4"]) assert.throws(()=>calculate(sou
 test("split-decimal-literals-do-not-merge", () => {
 for(const source of [". 5", "2. 3", "1 23"]) assert.throws(()=>calculate(source));
 });
+
+test("empty-functions-do-not-default-to-zero", () => {
+for(const source of ["abs()", "sqrt()", "round()"]) assert.throws(()=>calculate(source));
+});
