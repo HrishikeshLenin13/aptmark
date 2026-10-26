@@ -101,3 +101,7 @@ assert.equal(calculate("9 \u2013 4"), 5);
 test("pasted-root-symbol-uses-the-function-grammar", () => {
 assert.equal(calculate("\u221a(81)+1"), 10);
 });
+
+test("whitespace-between-function-and-group", () => {
+assert.equal(calculate("abs ( -7 )"), 7);
+});
