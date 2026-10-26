@@ -61,3 +61,7 @@ assert.equal(calculate("e - e"), 0);
 test("constant-pi-inside-root", () => {
 assert.equal(calculate("sqrt(pi^2)"), Math.PI);
 });
+
+test("nested-real-cube-root", () => {
+assert.equal(calculate("cbrt(cbrt(-19683))"), -3);
+});
