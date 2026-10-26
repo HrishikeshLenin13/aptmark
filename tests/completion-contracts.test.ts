@@ -145,3 +145,7 @@ for(const source of ["\"2\"", "'2'", "`2`"]) assert.throws(()=>calculate(source)
 test("malformed-exponent-signs-are-rejected", () => {
 for(const source of ["1e+-2", "2E--1", "3e++4"]) assert.throws(()=>calculate(source));
 });
+
+test("split-decimal-literals-do-not-merge", () => {
+for(const source of [". 5", "2. 3", "1 23"]) assert.throws(()=>calculate(source));
+});
