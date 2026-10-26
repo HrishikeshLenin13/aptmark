@@ -25,3 +25,7 @@ assert.equal(calculate("(-3)^4"), 81);
 test("percentage-binds-to-base-before-power", () => {
 assert.equal(calculate("200%^3"), 8);
 });
+
+test("percentage-applies-to-a-completed-group", () => {
+assert.equal(calculate("(50+50)%"), 1);
+});
