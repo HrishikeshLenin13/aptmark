@@ -10,9 +10,9 @@ export function calculate(source: string): number {
   }
   if (brackets.length) throw Error("Close each grouping bracket.");
   const input = source.replace(/\[/g,"(").replace(/\]/g,")").replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/√/g, "sqrt").replace(/\s/g, "");
-  if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrtpieEabc]/.test(input))
-    throw Error("Use numbers, parentheses, and + − × ÷.");
-  const tokens = input.match(/sqrt|cbrt|abs|pi|e|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?|[+\-*/()^%sqrteE]/g) ?? [];
+  if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrtpieEabcflound]/.test(input))
+    throw Error("Use numbers, pi/e, grouping, supported functions, and arithmetic operators.");
+  const tokens = input.match(/sqrt|cbrt|abs|floor|ceil|round|pi|e|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?|[+\-*/()^%sqrteE]/g) ?? [];
   if (tokens.join("") !== input) throw Error("Enter a complete number or expression.");
   const finite = (value: number): number => {
     if (!Number.isFinite(value)) throw Error("Every calculation step must have a finite real result.");
@@ -20,12 +20,12 @@ export function calculate(source: string): number {
   };
   let i = 0;
   function atom(): number {
-    if (["sqrt", "cbrt", "abs"].includes(tokens[i])) {
+    if (["sqrt", "cbrt", "abs", "floor", "ceil", "round"].includes(tokens[i])) {
       const fn = tokens[i++];
-      if (tokens[i++] !== "(") throw Error("Use sqrt(expression).");
+      if (tokens[i++] !== "(") throw Error("Use a supported function followed by (expression).");
       const value = expression();
       if (tokens[i++] !== ")") throw Error("Close each parenthesis.");
-      return percent(finite(fn === "sqrt" ? Math.sqrt(value) : fn === "cbrt" ? Math.cbrt(value) : Math.abs(value)));
+      return percent(finite(fn === "sqrt" ? Math.sqrt(value) : fn === "cbrt" ? Math.cbrt(value) : fn === "abs" ? Math.abs(value) : fn === "floor" ? Math.floor(value) : fn === "ceil" ? Math.ceil(value) : Math.round(value)));
     }
     if (tokens[i] === "(") {
       i++;

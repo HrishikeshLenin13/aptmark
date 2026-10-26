@@ -35,3 +35,7 @@ Run from the repository root:
 npm test && npm run typecheck
 ```
 
+
+## Extended closed grammar
+
+Explicit constants `pi` and `e`, `abs`, `cbrt`, `floor`, `ceil`, and `round` are supported. Scientific literals such as `2e3` retain their numeric meaning; `2*pi` requires explicit multiplication. Square brackets may group expressions, but bracket types must match. Every intermediate operation must remain a finite real number, so `(1/0)^0` is rejected instead of hiding division by zero. Rounding follows JavaScript Math semantics. No arbitrary function lookup or evaluation is used.
