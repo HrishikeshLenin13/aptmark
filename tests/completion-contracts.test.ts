@@ -33,3 +33,7 @@ assert.equal(calculate("(50+50)%"), 1);
 test("repeated-percentage-is-explicit-scaling", () => {
 assert.equal(calculate("100%%"), 0.01);
 });
+
+test("scientific-negative-exponent-with-unary", () => {
+assert.equal(calculate("-2.5e-2"), -0.025);
+});
