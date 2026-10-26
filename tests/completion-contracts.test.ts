@@ -65,3 +65,7 @@ assert.equal(calculate("sqrt(pi^2)"), Math.PI);
 test("nested-real-cube-root", () => {
 assert.equal(calculate("cbrt(cbrt(-19683))"), -3);
 });
+
+test("absolute-value-of-a-difference", () => {
+assert.equal(calculate("abs(3-8)"), 5);
+});
