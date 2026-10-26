@@ -1,20 +1,12 @@
 /** Whitelisted arithmetic parser. Never evals user input. */
 export function calculate(source: string): number {
   const input = source.replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/\s/g, "");
-  if (!input || input.length > 160 || /[^\d.+\-*/()]/.test(input))
+  if (!input || input.length > 160 || /[^\d.+\-*/()^]/.test(input))
     throw Error("Use numbers, parentheses, and + − × ÷.");
-  const tokens = input.match(/(?:\d+(?:\.\d*)?|\.\d+)|[+\-*/()]/g) ?? [];
+  const tokens = input.match(/(?:\d+(?:\.\d*)?|\.\d+)|[+\-*/()^]/g) ?? [];
   if (tokens.join("") !== input) throw Error("Enter a complete number or expression.");
   let i = 0;
   function atom(): number {
-    if (tokens[i] === "-") {
-      i++;
-      return -atom();
-    }
-    if (tokens[i] === "+") {
-      i++;
-      return atom();
-    }
     if (tokens[i] === "(") {
       i++;
       const v = expression();
@@ -25,11 +17,22 @@ export function calculate(source: string): number {
     if (!t || !/^\d|^\./.test(t)) throw Error("Enter a complete expression.");
     return Number(t);
   }
+  function power(): number {
+    const base = atom();
+    if (tokens[i] !== "^") return base;
+    i++;
+    return base ** unary();
+  }
+  function unary(): number {
+    if (tokens[i] === "+") { i++; return unary(); }
+    if (tokens[i] === "-") { i++; return -unary(); }
+    return power();
+  }
   function product(): number {
-    let v = atom();
+    let v = unary();
     while (["*", "/"].includes(tokens[i])) {
       const op = tokens[i++],
-        n = atom();
+        n = unary();
       v = op === "*" ? v * n : v / n;
     }
     return v;
