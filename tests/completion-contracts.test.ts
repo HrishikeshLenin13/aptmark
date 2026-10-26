@@ -73,3 +73,7 @@ assert.equal(calculate("abs(3-8)"), 5);
 test("floor-respects-negative-fractions", () => {
 assert.equal(calculate("floor(-2.01)"), -3);
 });
+
+test("ceil-respects-positive-fractions", () => {
+assert.equal(calculate("ceil(2.01)"), 3);
+});
