@@ -129,3 +129,7 @@ for(const source of ["2pi", "3(4)", "[2][3]"]) assert.throws(()=>calculate(sourc
 test("function-argument-lists-are-not-supported", () => {
 for(const source of ["abs(1,2)", "sqrt(1,4)"]) assert.throws(()=>calculate(source));
 });
+
+test("unknown-math-names-are-rejected", () => {
+for(const source of ["sin(0)", "log(10)", "Math.PI"]) assert.throws(()=>calculate(source));
+});
