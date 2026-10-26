@@ -45,3 +45,4 @@ Check it with `npm test`; the full project checks remain in [Development notes](
 
 - [Feature usage and API contracts](docs/RECENT_IMPROVEMENTS.md)
 - [Troubleshooting and recovery](docs/TROUBLESHOOTING.md)
+- [Contributor checks and change review](docs/CONTRIBUTOR_CHECKLIST.md)
