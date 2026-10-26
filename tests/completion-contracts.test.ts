@@ -133,3 +133,7 @@ for(const source of ["abs(1,2)", "sqrt(1,4)"]) assert.throws(()=>calculate(sourc
 test("unknown-math-names-are-rejected", () => {
 for(const source of ["sin(0)", "log(10)", "Math.PI"]) assert.throws(()=>calculate(source));
 });
+
+test("member-access-and-brackets-cannot-execute-code", () => {
+for(const source of ["constructor()", "e.toString()", "[1][0]"]) assert.throws(()=>calculate(source));
+});
