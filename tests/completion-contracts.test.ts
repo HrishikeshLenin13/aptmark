@@ -105,3 +105,7 @@ assert.equal(calculate("\u221a(81)+1"), 10);
 test("whitespace-between-function-and-group", () => {
 assert.equal(calculate("abs ( -7 )"), 7);
 });
+
+test("explicit-unary-chain-is-not-code-evaluation", () => {
+assert.equal(calculate("--2 + +-3"), -1);
+});
