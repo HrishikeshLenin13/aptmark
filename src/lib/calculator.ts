@@ -1,9 +1,9 @@
 /** Whitelisted arithmetic parser. Never evals user input. */
 export function calculate(source: string): number {
   const input = source.replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/√/g, "sqrt").replace(/\s/g, "");
-  if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrt]/.test(input))
+  if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrteE]/.test(input))
     throw Error("Use numbers, parentheses, and + − × ÷.");
-  const tokens = input.match(/sqrt|(?:\d+(?:\.\d*)?|\.\d+)|[+\-*/()^%sqrt]/g) ?? [];
+  const tokens = input.match(/sqrt|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?|[+\-*/()^%sqrteE]/g) ?? [];
   if (tokens.join("") !== input) throw Error("Enter a complete number or expression.");
   let i = 0;
   function atom(): number {
