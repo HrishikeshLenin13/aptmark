@@ -57,3 +57,7 @@ assert.equal(calculate("12. + 3"), 15);
 test("constant-e-with-spaced-subtraction", () => {
 assert.equal(calculate("e - e"), 0);
 });
+
+test("constant-pi-inside-root", () => {
+assert.equal(calculate("sqrt(pi^2)"), Math.PI);
+});
