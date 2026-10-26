@@ -53,3 +53,7 @@ assert.equal(calculate("abs(-.5)"), 0.5);
 test("decimal-trailing-dot-remains-numeric", () => {
 assert.equal(calculate("12. + 3"), 15);
 });
+
+test("constant-e-with-spaced-subtraction", () => {
+assert.equal(calculate("e - e"), 0);
+});
