@@ -137,3 +137,7 @@ for(const source of ["sin(0)", "log(10)", "Math.PI"]) assert.throws(()=>calculat
 test("member-access-and-brackets-cannot-execute-code", () => {
 for(const source of ["constructor()", "e.toString()", "[1][0]"]) assert.throws(()=>calculate(source));
 });
+
+test("string-and-template-literals-are-not-expressions", () => {
+for(const source of ["\"2\"", "'2'", "`2`"]) assert.throws(()=>calculate(source));
+});
