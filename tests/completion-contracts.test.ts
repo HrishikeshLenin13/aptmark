@@ -45,3 +45,7 @@ assert.equal(calculate("1e+2+3"), 103);
 test("scientific-uppercase-exponent-in-products", () => {
 assert.equal(calculate("2E3/4E1"), 50);
 });
+
+test("decimal-leading-dot-in-function", () => {
+assert.equal(calculate("abs(-.5)"), 0.5);
+});
