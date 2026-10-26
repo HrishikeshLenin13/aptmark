@@ -29,3 +29,7 @@ assert.equal(calculate("200%^3"), 8);
 test("percentage-applies-to-a-completed-group", () => {
 assert.equal(calculate("(50+50)%"), 1);
 });
+
+test("repeated-percentage-is-explicit-scaling", () => {
+assert.equal(calculate("100%%"), 0.01);
+});
