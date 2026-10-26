@@ -161,3 +161,7 @@ for(const source of ["10^999", "(-1)^.5"]) assert.throws(()=>calculate(source));
 test("division-errors-cannot-be-masked-by-zero-powers", () => {
 for(const source of ["(0/0)^0", "(1/0)^0"]) assert.throws(()=>calculate(source));
 });
+
+test("overflowing-addition-cannot-be-masked", () => {
+for(const source of ["(1e308+1e308)^0"]) assert.throws(()=>calculate(source));
+});
