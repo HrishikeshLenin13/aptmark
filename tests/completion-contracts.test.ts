@@ -109,3 +109,7 @@ assert.equal(calculate("abs ( -7 )"), 7);
 test("explicit-unary-chain-is-not-code-evaluation", () => {
 assert.equal(calculate("--2 + +-3"), -1);
 });
+
+test("mismatched-crossed-brackets-are-not-repaired", () => {
+for(const source of ["[(1])", "([2)]"]) assert.throws(()=>calculate(source));
+});
