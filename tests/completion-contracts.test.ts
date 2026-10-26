@@ -85,3 +85,7 @@ assert.equal(calculate("round(-1.5)"), -1);
 test("rounding-result-can-be-used-as-an-exponent", () => {
 assert.equal(calculate("2^round(2.8)"), 8);
 });
+
+test("square-and-round-groups-can-nest", () => {
+assert.equal(calculate("[2*(3+[4-1])]"), 12);
+});
