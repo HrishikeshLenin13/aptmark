@@ -93,3 +93,7 @@ assert.equal(calculate("[2*(3+[4-1])]"), 12);
 test("pasted-multiplication-and-division-normalize", () => {
 assert.equal(calculate("12 \u00d7 3 \u00f7 4"), 9);
 });
+
+test("pasted-en-dash-is-an-arithmetic-minus", () => {
+assert.equal(calculate("9 \u2013 4"), 5);
+});
