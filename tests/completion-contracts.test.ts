@@ -13,3 +13,7 @@ assert.equal(calculate("2^(1+2^2)"), 32);
 test("negative-exponent-binds-after-unary", () => {
 assert.equal(calculate("-2^-3"), -0.125);
 });
+
+test("parenthesized-negative-base-odd-power", () => {
+assert.equal(calculate("(-3)^3"), -27);
+});
