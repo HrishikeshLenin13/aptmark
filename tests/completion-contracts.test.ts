@@ -153,3 +153,7 @@ for(const source of [". 5", "2. 3", "1 23"]) assert.throws(()=>calculate(source)
 test("empty-functions-do-not-default-to-zero", () => {
 for(const source of ["abs()", "sqrt()", "round()"]) assert.throws(()=>calculate(source));
 });
+
+test("nonfinite-power-results-fail-at-the-operation", () => {
+for(const source of ["10^999", "(-1)^.5"]) assert.throws(()=>calculate(source));
+});
