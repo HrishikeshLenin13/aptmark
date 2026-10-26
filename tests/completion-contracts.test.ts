@@ -169,3 +169,7 @@ for(const source of ["(1e308+1e308)^0"]) assert.throws(()=>calculate(source));
 test("root-domain-errors-cannot-be-masked", () => {
 for(const source of ["sqrt(-4)^0"]) assert.throws(()=>calculate(source));
 });
+
+test("length-limits-bound-parser-work", () => {
+for(const source of ["1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1"]) assert.throws(()=>calculate(source));
+});
