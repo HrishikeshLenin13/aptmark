@@ -21,3 +21,7 @@ assert.equal(calculate("(-3)^3"), -27);
 test("parenthesized-negative-base-even-power", () => {
 assert.equal(calculate("(-3)^4"), 81);
 });
+
+test("percentage-binds-to-base-before-power", () => {
+assert.equal(calculate("200%^3"), 8);
+});
