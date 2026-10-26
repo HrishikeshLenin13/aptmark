@@ -165,3 +165,7 @@ for(const source of ["(0/0)^0", "(1/0)^0"]) assert.throws(()=>calculate(source))
 test("overflowing-addition-cannot-be-masked", () => {
 for(const source of ["(1e308+1e308)^0"]) assert.throws(()=>calculate(source));
 });
+
+test("root-domain-errors-cannot-be-masked", () => {
+for(const source of ["sqrt(-4)^0"]) assert.throws(()=>calculate(source));
+});
