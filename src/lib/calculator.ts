@@ -2,9 +2,9 @@
 export function calculate(source: string): number {
   if (/[\d.]\s+(?=[\d.eE])|[eE]\s+(?=[+\-\d])/.test(source)) throw Error("Separate numbers with an operator.");
   const input = source.replace(/[−–]/g, "-").replace(/×/g, "*").replace(/÷/g, "/").replace(/√/g, "sqrt").replace(/\s/g, "");
-  if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrteE]/.test(input))
+  if (!input || input.length > 160 || /[^\d.+\-*/()^%sqrtpieE]/.test(input))
     throw Error("Use numbers, parentheses, and + − × ÷.");
-  const tokens = input.match(/sqrt|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?|[+\-*/()^%sqrteE]/g) ?? [];
+  const tokens = input.match(/sqrt|pi|e|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?|[+\-*/()^%sqrteE]/g) ?? [];
   if (tokens.join("") !== input) throw Error("Enter a complete number or expression.");
   let i = 0;
   function atom(): number {
@@ -22,6 +22,7 @@ export function calculate(source: string): number {
       return percent(v);
     }
     const t = tokens[i++];
+    if (t === "pi" || t === "e") return percent(t === "pi" ? Math.PI : Math.E);
     if (!t || !/^\d|^\./.test(t)) throw Error("Enter a complete expression.");
     return percent(Number(t));
   }
