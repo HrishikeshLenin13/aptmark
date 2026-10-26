@@ -69,3 +69,7 @@ assert.equal(calculate("cbrt(cbrt(-19683))"), -3);
 test("absolute-value-of-a-difference", () => {
 assert.equal(calculate("abs(3-8)"), 5);
 });
+
+test("floor-respects-negative-fractions", () => {
+assert.equal(calculate("floor(-2.01)"), -3);
+});
