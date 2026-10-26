@@ -1,6 +1,6 @@
 /** Whitelisted arithmetic parser. Never evals user input. */
 export function calculate(source: string): number {
-  if (/[\d.]\s+(?=[\d.eE])|[\d.][eE]\s+(?=[+\-\d])/.test(source)) throw Error("Separate numbers with an operator.");
+  if (/[\d.]\s+(?=[\d.eE])|[\d.][eE]\s+(?=[+\-\d])|[\d.][eE][+\-]\s+(?=\d)/.test(source)) throw Error("Separate numbers with an operator.");
   const brackets: string[] = [];
   for (const char of source) {
     if (char === "(" || char === "[") brackets.push(char);
