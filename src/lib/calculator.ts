@@ -6,6 +6,10 @@ export function calculate(source: string): number {
     throw Error("Use numbers, parentheses, and + − × ÷.");
   const tokens = input.match(/sqrt|cbrt|abs|pi|e|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?|[+\-*/()^%sqrteE]/g) ?? [];
   if (tokens.join("") !== input) throw Error("Enter a complete number or expression.");
+  const finite = (value: number): number => {
+    if (!Number.isFinite(value)) throw Error("Every calculation step must have a finite real result.");
+    return value;
+  };
   let i = 0;
   function atom(): number {
     if (["sqrt", "cbrt", "abs"].includes(tokens[i])) {
@@ -13,7 +17,7 @@ export function calculate(source: string): number {
       if (tokens[i++] !== "(") throw Error("Use sqrt(expression).");
       const value = expression();
       if (tokens[i++] !== ")") throw Error("Close each parenthesis.");
-      return percent(fn === "sqrt" ? Math.sqrt(value) : fn === "cbrt" ? Math.cbrt(value) : Math.abs(value));
+      return percent(finite(fn === "sqrt" ? Math.sqrt(value) : fn === "cbrt" ? Math.cbrt(value) : Math.abs(value)));
     }
     if (tokens[i] === "(") {
       i++;
@@ -24,7 +28,7 @@ export function calculate(source: string): number {
     const t = tokens[i++];
     if (t === "pi" || t === "e") return percent(t === "pi" ? Math.PI : Math.E);
     if (!t || !/^\d|^\./.test(t)) throw Error("Enter a complete expression.");
-    return percent(Number(t));
+    return percent(finite(Number(t)));
   }
   function percent(value: number): number {
     while (tokens[i] === "%") { i++; value /= 100; }
@@ -34,7 +38,7 @@ export function calculate(source: string): number {
     const base = atom();
     if (tokens[i] !== "^") return base;
     i++;
-    return base ** unary();
+    return finite(base ** unary());
   }
   function unary(): number {
     if (tokens[i] === "+") { i++; return unary(); }
@@ -46,7 +50,7 @@ export function calculate(source: string): number {
     while (["*", "/"].includes(tokens[i])) {
       const op = tokens[i++],
         n = unary();
-      v = op === "*" ? v * n : v / n;
+      v = finite(op === "*" ? v * n : v / n);
     }
     return v;
   }
@@ -55,7 +59,7 @@ export function calculate(source: string): number {
     while (["+", "-"].includes(tokens[i])) {
       const op = tokens[i++],
         n = product();
-      v = op === "+" ? v + n : v - n;
+      v = finite(op === "+" ? v + n : v - n);
     }
     return v;
   }
