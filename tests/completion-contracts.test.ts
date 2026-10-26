@@ -125,3 +125,7 @@ for(const source of ["1+2)", "]1["]) assert.throws(()=>calculate(source));
 test("implicit-multiplication-is-not-guessed", () => {
 for(const source of ["2pi", "3(4)", "[2][3]"]) assert.throws(()=>calculate(source));
 });
+
+test("function-argument-lists-are-not-supported", () => {
+for(const source of ["abs(1,2)", "sqrt(1,4)"]) assert.throws(()=>calculate(source));
+});
