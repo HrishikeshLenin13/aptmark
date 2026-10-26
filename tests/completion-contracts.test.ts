@@ -117,3 +117,7 @@ for(const source of ["[(1])", "([2)]"]) assert.throws(()=>calculate(source));
 test("unclosed-square-groups-are-rejected", () => {
 for(const source of ["[1+2", "[[1]"]) assert.throws(()=>calculate(source));
 });
+
+test("extra-closing-delimiters-are-rejected", () => {
+for(const source of ["1+2)", "]1["]) assert.throws(()=>calculate(source));
+});
