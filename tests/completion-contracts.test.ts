@@ -141,3 +141,7 @@ for(const source of ["constructor()", "e.toString()", "[1][0]"]) assert.throws((
 test("string-and-template-literals-are-not-expressions", () => {
 for(const source of ["\"2\"", "'2'", "`2`"]) assert.throws(()=>calculate(source));
 });
+
+test("malformed-exponent-signs-are-rejected", () => {
+for(const source of ["1e+-2", "2E--1", "3e++4"]) assert.throws(()=>calculate(source));
+});
