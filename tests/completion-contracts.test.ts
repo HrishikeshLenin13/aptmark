@@ -121,3 +121,7 @@ for(const source of ["[1+2", "[[1]"]) assert.throws(()=>calculate(source));
 test("extra-closing-delimiters-are-rejected", () => {
 for(const source of ["1+2)", "]1["]) assert.throws(()=>calculate(source));
 });
+
+test("implicit-multiplication-is-not-guessed", () => {
+for(const source of ["2pi", "3(4)", "[2][3]"]) assert.throws(()=>calculate(source));
+});
