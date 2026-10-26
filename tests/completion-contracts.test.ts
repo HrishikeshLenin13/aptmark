@@ -89,3 +89,7 @@ assert.equal(calculate("2^round(2.8)"), 8);
 test("square-and-round-groups-can-nest", () => {
 assert.equal(calculate("[2*(3+[4-1])]"), 12);
 });
+
+test("pasted-multiplication-and-division-normalize", () => {
+assert.equal(calculate("12 \u00d7 3 \u00f7 4"), 9);
+});
