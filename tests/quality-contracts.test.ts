@@ -123,3 +123,7 @@ const source="                                                                  
 test("utf8-fold-combining", () => {
 const source="e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301";const result=foldCalendarLine(source);assert.equal(result.replace(/\r\n /g,''),source);for(const line of result.split('\r\n'))assert.ok(Buffer.byteLength(line,'utf8')<=75);assert.equal(result.includes('�'),false);
 });
+
+test("all-day-end-2024-02-28", () => {
+const day={...sample,date:"2024-02-28"};const output=studyCalendar([day],'owner',stamp).replace(/\r\n /g,'');assert.ok(output.includes('DTSTART;VALUE=DATE:'+"20240228"+'\r\n'));assert.ok(output.includes('DTEND;VALUE=DATE:'+"20240229"+'\r\n'));assert.ok(output.includes('CLASS:PRIVATE\r\n'));assert.ok(output.endsWith('END:VCALENDAR\r\n'));
+});
