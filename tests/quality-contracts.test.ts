@@ -187,3 +187,7 @@ const day={...sample,date:"2026-10-27"};const output=studyCalendar([day],'owner'
 test("invalid-calendar-date-1", () => {
 assert.throws(()=>studyCalendar([{...sample,date:"2023-02-29"}],'owner',stamp));
 });
+
+test("invalid-calendar-date-2", () => {
+assert.throws(()=>studyCalendar([{...sample,date:"1900-02-29"}],'owner',stamp));
+});
