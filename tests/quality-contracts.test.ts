@@ -67,3 +67,7 @@ assert.equal(calendarText("x\r\nBEGIN:VEVENT"),"x\\nBEGIN:VEVENT");
 test("utf8-fold-ascii-74", () => {
 const source="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";const result=foldCalendarLine(source);assert.equal(result.replace(/\r\n /g,''),source);for(const line of result.split('\r\n'))assert.ok(Buffer.byteLength(line,'utf8')<=75);assert.equal(result.includes('�'),false);
 });
+
+test("utf8-fold-ascii-75", () => {
+const source="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";const result=foldCalendarLine(source);assert.equal(result.replace(/\r\n /g,''),source);for(const line of result.split('\r\n'))assert.ok(Buffer.byteLength(line,'utf8')<=75);assert.equal(result.includes('�'),false);
+});
