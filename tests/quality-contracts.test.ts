@@ -163,3 +163,7 @@ const day={...sample,date:"2026-04-30"};const output=studyCalendar([day],'owner'
 test("all-day-end-2026-03-08", () => {
 const day={...sample,date:"2026-03-08"};const output=studyCalendar([day],'owner',stamp).replace(/\r\n /g,'');assert.ok(output.includes('DTSTART;VALUE=DATE:'+"20260308"+'\r\n'));assert.ok(output.includes('DTEND;VALUE=DATE:'+"20260309"+'\r\n'));assert.ok(output.includes('CLASS:PRIVATE\r\n'));assert.ok(output.endsWith('END:VCALENDAR\r\n'));
 });
+
+test("all-day-end-2026-11-01", () => {
+const day={...sample,date:"2026-11-01"};const output=studyCalendar([day],'owner',stamp).replace(/\r\n /g,'');assert.ok(output.includes('DTSTART;VALUE=DATE:'+"20261101"+'\r\n'));assert.ok(output.includes('DTEND;VALUE=DATE:'+"20261102"+'\r\n'));assert.ok(output.includes('CLASS:PRIVATE\r\n'));assert.ok(output.endsWith('END:VCALENDAR\r\n'));
+});
