@@ -239,3 +239,7 @@ assert.throws(()=>studyCalendar([{...sample,date:" 2026-01-01"}],'owner',stamp))
 test("invalid-calendar-date-14", () => {
 assert.throws(()=>studyCalendar([{...sample,date:"2026-01-01\n"}],'owner',stamp));
 });
+
+test("invalid-calendar-date-15", () => {
+assert.throws(()=>studyCalendar([{...sample,date:"invalid"}],'owner',stamp));
+});
