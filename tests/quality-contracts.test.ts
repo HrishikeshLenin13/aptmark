@@ -111,3 +111,7 @@ const source="\ud83d\udcda\ud83d\udcda\ud83d\udcda\ud83d\udcda\ud83d\udcda\ud83d
 test("utf8-fold-mixed", () => {
 const source="SUMMARY:\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9\u5b66\ud83d\udcda\u00e9";const result=foldCalendarLine(source);assert.equal(result.replace(/\r\n /g,''),source);for(const line of result.split('\r\n'))assert.ok(Buffer.byteLength(line,'utf8')<=75);assert.equal(result.includes('�'),false);
 });
+
+test("utf8-fold-empty", () => {
+const source="";const result=foldCalendarLine(source);assert.equal(result.replace(/\r\n /g,''),source);for(const line of result.split('\r\n'))assert.ok(Buffer.byteLength(line,'utf8')<=75);assert.equal(result.includes('�'),false);
+});
