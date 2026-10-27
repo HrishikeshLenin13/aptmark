@@ -11,3 +11,7 @@ assert.equal(calendarText("a\u0000b"),"ab");
 test("calendar-text-backslash", () => {
 assert.equal(calendarText("a\\b"),"a\\\\b");
 });
+
+test("calendar-text-semicolon", () => {
+assert.equal(calendarText("a;b"),"a\\;b");
+});
