@@ -55,3 +55,7 @@ assert.equal(calendarText("\u6570\u5b66 \ud83d\udcda"),"\u6570\u5b66 \ud83d\udcd
 test("calendar-text-mixed", () => {
 assert.equal(calendarText("a\\;\nb"),"a\\\\\\;\\nb");
 });
+
+test("calendar-text-empty", () => {
+assert.equal(calendarText(""),"");
+});
