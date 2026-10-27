@@ -127,3 +127,7 @@ const source="e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u0301e\u
 test("all-day-end-2024-02-28", () => {
 const day={...sample,date:"2024-02-28"};const output=studyCalendar([day],'owner',stamp).replace(/\r\n /g,'');assert.ok(output.includes('DTSTART;VALUE=DATE:'+"20240228"+'\r\n'));assert.ok(output.includes('DTEND;VALUE=DATE:'+"20240229"+'\r\n'));assert.ok(output.includes('CLASS:PRIVATE\r\n'));assert.ok(output.endsWith('END:VCALENDAR\r\n'));
 });
+
+test("all-day-end-2024-02-29", () => {
+const day={...sample,date:"2024-02-29"};const output=studyCalendar([day],'owner',stamp).replace(/\r\n /g,'');assert.ok(output.includes('DTSTART;VALUE=DATE:'+"20240229"+'\r\n'));assert.ok(output.includes('DTEND;VALUE=DATE:'+"20240301"+'\r\n'));assert.ok(output.includes('CLASS:PRIVATE\r\n'));assert.ok(output.endsWith('END:VCALENDAR\r\n'));
+});
