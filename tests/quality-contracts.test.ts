@@ -183,3 +183,7 @@ const day={...sample,date:"2400-02-29"};const output=studyCalendar([day],'owner'
 test("all-day-end-2026-10-27", () => {
 const day={...sample,date:"2026-10-27"};const output=studyCalendar([day],'owner',stamp).replace(/\r\n /g,'');assert.ok(output.includes('DTSTART;VALUE=DATE:'+"20261027"+'\r\n'));assert.ok(output.includes('DTEND;VALUE=DATE:'+"20261028"+'\r\n'));assert.ok(output.includes('CLASS:PRIVATE\r\n'));assert.ok(output.endsWith('END:VCALENDAR\r\n'));
 });
+
+test("invalid-calendar-date-1", () => {
+assert.throws(()=>studyCalendar([{...sample,date:"2023-02-29"}],'owner',stamp));
+});
