@@ -15,3 +15,7 @@ assert.equal(calendarText("a\\b"),"a\\\\b");
 test("calendar-text-semicolon", () => {
 assert.equal(calendarText("a;b"),"a\\;b");
 });
+
+test("calendar-text-comma", () => {
+assert.equal(calendarText("a,b"),"a\\,b");
+});
