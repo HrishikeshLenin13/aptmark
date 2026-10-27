@@ -47,3 +47,7 @@ assert.equal(calendarText("a\u0007b"),"ab");
 test("calendar-text-tab", () => {
 assert.equal(calendarText("a\tb"),"a\tb");
 });
+
+test("calendar-text-unicode", () => {
+assert.equal(calendarText("\u6570\u5b66 \ud83d\udcda"),"\u6570\u5b66 \ud83d\udcda");
+});
