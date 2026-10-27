@@ -7,3 +7,7 @@ const sample={date:'2026-10-27',skill:{id:'algebra',name:'Algebra',section:'math
 test("calendar-text-nul", () => {
 assert.equal(calendarText("a\u0000b"),"ab");
 });
+
+test("calendar-text-backslash", () => {
+assert.equal(calendarText("a\\b"),"a\\\\b");
+});
