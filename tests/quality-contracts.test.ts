@@ -35,3 +35,7 @@ assert.equal(calendarText("a\r\nb"),"a\\nb");
 test("calendar-text-delete", () => {
 assert.equal(calendarText("a\u007fb"),"ab");
 });
+
+test("calendar-text-control", () => {
+assert.equal(calendarText("a\u001fb"),"ab");
+});
