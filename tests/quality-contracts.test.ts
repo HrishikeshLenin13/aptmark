@@ -59,3 +59,7 @@ assert.equal(calendarText("a\\;\nb"),"a\\\\\\;\\nb");
 test("calendar-text-empty", () => {
 assert.equal(calendarText(""),"");
 });
+
+test("calendar-text-injection", () => {
+assert.equal(calendarText("x\r\nBEGIN:VEVENT"),"x\\nBEGIN:VEVENT");
+});
