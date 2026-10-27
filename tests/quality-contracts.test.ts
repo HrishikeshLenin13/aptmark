@@ -43,3 +43,7 @@ assert.equal(calendarText("a\u001fb"),"ab");
 test("calendar-text-bell", () => {
 assert.equal(calendarText("a\u0007b"),"ab");
 });
+
+test("calendar-text-tab", () => {
+assert.equal(calendarText("a\tb"),"a\tb");
+});
