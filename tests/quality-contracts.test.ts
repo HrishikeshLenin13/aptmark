@@ -23,3 +23,7 @@ assert.equal(calendarText("a,b"),"a\\,b");
 test("calendar-text-lf", () => {
 assert.equal(calendarText("a\nb"),"a\\nb");
 });
+
+test("calendar-text-cr", () => {
+assert.equal(calendarText("a\rb"),"a\\nb");
+});
