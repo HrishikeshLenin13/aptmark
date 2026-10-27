@@ -275,3 +275,7 @@ const owner="\ud83d\udcda";const original=studyCalendar([sample],owner,stamp);co
 test("private-owner-uid-8", () => {
 const owner="owner with spaces";const original=studyCalendar([sample],owner,stamp);const same=studyCalendar([{...sample,minutes:35,reason:'Changed'}],owner,stamp);const getUid=(s:string)=>s.replace(/\r\n /g,'').split('\r\n').find(x=>x.startsWith('UID:'));assert.equal(getUid(original),getUid(same));assert.match(getUid(original)!,/^UID:[0-9a-f]{64}@aptmark.local$/);assert.notEqual(getUid(original),getUid(studyCalendar([sample],owner+'!',stamp)));assert.equal(original.includes('secret@example.invalid'),false);
 });
+
+test("private-owner-uid-9", () => {
+const owner="owner=1";const original=studyCalendar([sample],owner,stamp);const same=studyCalendar([{...sample,minutes:35,reason:'Changed'}],owner,stamp);const getUid=(s:string)=>s.replace(/\r\n /g,'').split('\r\n').find(x=>x.startsWith('UID:'));assert.equal(getUid(original),getUid(same));assert.match(getUid(original)!,/^UID:[0-9a-f]{64}@aptmark.local$/);assert.notEqual(getUid(original),getUid(studyCalendar([sample],owner+'!',stamp)));assert.equal(original.includes('secret@example.invalid'),false);
+});
