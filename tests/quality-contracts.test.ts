@@ -19,3 +19,7 @@ assert.equal(calendarText("a;b"),"a\\;b");
 test("calendar-text-comma", () => {
 assert.equal(calendarText("a,b"),"a\\,b");
 });
+
+test("calendar-text-lf", () => {
+assert.equal(calendarText("a\nb"),"a\\nb");
+});
