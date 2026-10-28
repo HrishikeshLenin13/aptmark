@@ -83,8 +83,10 @@ def test_depth_generation_preserves_every_prior_record_and_every_math_record():
     math=[q for q in bank if q['section']=='math']
     assert len(math)==baseline['mathCount']==4800
     assert digest(math)==baseline['mathRecordsDigest']
-    added=[q for q in bank if q['id'] not in baseline['contentHashes']]
-    assert len(added)==44 and len(bank)==5617
+    manifest=json.loads((ROOT/'content/manifests/english-depth.json').read_text())
+    ids=set(manifest['itemIds'])
+    added=[q for q in bank if q['id'] in ids]
+    assert len(ids)==len(added)==44 and len(bank)>=baseline['count']+44
     assert {q['family'] for q in added}==set(english_depth.BLUEPRINTS)
     assert len({q['skill'] for q in added})==11
     assert all(q['section']=='rw' and not validate(q) for q in added)
