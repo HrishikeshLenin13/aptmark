@@ -1,0 +1,35 @@
+name: Content regression
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: content-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install bounded content dependencies
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install -r requirements.txt
+      - name: Content contracts and prior-record preservation
+        run: .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py
+      - name: Replay every committed candidate from its recorded seed
+        run: .venv/bin/python python/pipeline.py validate --replay
+      - name: Fresh-clone English generation must be idempotent
+        run: |
+          .venv/bin/python python/pipeline.py expand-english --per-family 4
+          git diff --exit-code -- content/bank.json
