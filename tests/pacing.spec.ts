@@ -132,6 +132,10 @@ test("pacing configuration, answer privacy, saved recovery, ownership, submissio
     expect(q).not.toHaveProperty("explanation");
   }
   const answer = await answerFirst(page, data);
+  await page.getByText("Notes", { exact: true }).click();
+  await page
+    .getByRole("textbox", { name: "Assessment notes" })
+    .fill("Match each word to the passage evidence.");
   await page.getByRole("button", { name: "Mark for review" }).click();
   await expect(
     page.getByText("All changes saved", { exact: true }),
@@ -144,6 +148,9 @@ test("pacing configuration, answer privacy, saved recovery, ownership, submissio
   const recovered = await (await page.request.get("/api/exam?id=" + id)).json();
   expect(recovered.exam.modules[0].deadline).toBe(deadline);
   expect(recovered.exam.modules[0].answers[data.questions[0].id]).toBe(answer);
+  expect(recovered.exam.modules[0].notes[data.questions[0].id]).toBe(
+    "Match each word to the passage evidence.",
+  );
   expect(
     (
       await post(page, "tutor", { questionId: data.questions[0].id, level: 0 })
@@ -383,6 +390,9 @@ test("all 11 English skills can assemble, grade and review an owner-scoped timed
     const result = await (await page.request.get("/api/exam?id=" + id)).json();
     expect(result.exam.status).toBe("complete");
     expect(result.exam.modules[0].correct).toBe(1);
+    expect(result.exam.modules[0].notes[q.id]).toBe(
+      "Check the evidence before choosing.",
+    );
     expect(result.review).toHaveLength(5);
     expect(result.review[0].correctAnswer).toBe(key);
     expect((await post(page, "exam/submit", { id, index: 0 })).status()).toBe(

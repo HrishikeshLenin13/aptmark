@@ -22,3 +22,5 @@ Keep the existing paper/white surfaces, forest-green actions, muted text and sys
 
 ## Acceptance
 Unit contracts cover every supported section/count/time combination, exact-deadline writes, filter/count mismatch, configuration snapshots, completion and elapsed-time bounds. Browser tests cover the real API/UI round-trip, unavailable inventory, all 11 English skills, answer privacy, ownership, recovery, expiry, duplicate-start protection, submission retry, keyboard focus and automated accessibility/overflow checks at 1440/820/390 px. See `evidence/pacing-completion/VERIFICATION.txt` for commands and observed results. Automated checks do not replace independent accessibility, editorial or psychometric review.
+
+GitHub Core regression also installs Chromium with its system dependencies, builds the production application, and runs the complete isolated browser suite. The separate Content regression workflow continues to validate Python contracts, replay every seed and enforce fresh-clone English-generation idempotency.

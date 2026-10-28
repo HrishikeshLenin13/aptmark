@@ -1,0 +1,36 @@
+Aptmark browser/build CI — 2026-10-28
+Branch: codex/website-studio -> origin/main
+Changed field: Core regression jobs adds browser alongside check.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/.github/workflows/core-regression.yml
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/browser-ci/core.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/browser-ci/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/browser-ci/ROLLBACK.sh (executable)
+Original SHA256: d9c5fed49029d2a6098a7835edebe160d5f4d86787d0a2bdbde1de5a3a8fc4f3
+Modified SHA256: ac829f68a789d8cb4e6745924c8acc63c94a82d9117b90fccb22593af51347a0
+
+Command variables:
+C=/Users/HrishiL/Documents/ChatGPT/Lm/evidence/browser-ci
+W=/Users/HrishiL/Documents/ChatGPT/Lm/.github/workflows/core-regression.yml
+BASELINE command: ruby "$C/probe.rb" "$C/core.original.txt"
+Input: preserved original workflow. Literal output: jobs=check
+Exit: 0
+MODIFIED command: ruby "$C/probe.rb" "$W"
+Input: live modified workflow. Literal output: jobs=check,browser
+Exit: 0
+The probe parses YAML and checks the new job contains package installation, Chromium/system dependency installation, a production build, and the complete browser suite. It is not a substitute for executing GitHub Actions.
+ROLLBACK command: cp "$W" "$C/rollback-copy.txt" && "$C/ROLLBACK.sh" "$C/rollback-copy.txt" && ruby "$C/probe.rb" "$C/rollback-copy.txt"
+Input: disposable modified workflow copy. Literal output:
+restored_sha256=d9c5fed49029d2a6098a7835edebe160d5f4d86787d0a2bdbde1de5a3a8fc4f3
+jobs=check
+Exit: 0
+Restored status: disposable workflow returns to the original single check job; live workflow retains check,browser. This component-only rollback never changes the live workflow.
+
+Feature commit 479bfcc73ae11968383640cde34e24e3984f13c6 is pushed to public main and GitHub resolves its author to HrishikeshLenin13. Both its Core and Content regression workflows completed successfully (feature-ci.json).
+
+Additional local verification for this change:
+- npm run test:e2e -- tests/pacing.spec.ts -> 7 passed (32.8s); exit 0. Notes are now explicitly checked after the UI blur/flag/reload sequence and after locking sets for every English skill.
+- npm test -> 196 passed; exit 0.
+- npm run typecheck -> tsc --noEmit; exit 0.
+- Runtime source is unchanged from the 38-browser-test/277-Python-test/5749-replay clean-index pacing acceptance. The new CI job additionally runs npm run build and npm run test:e2e on GitHub, alongside the existing unit/type and Python/content gates. Use the Actions run for the pushed commit as the authoritative remote result; YAML parsing alone does not establish runtime success.
+
+No paid API or hosted application deployment is added. Question content and publication/calibration status are unchanged.
