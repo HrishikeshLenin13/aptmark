@@ -1,6 +1,6 @@
 {
   "generatorVersion": "3.0.0",
-  "candidates": 212,
+  "candidates": 256,
   "families": [
     {
       "skill": "textual-evidence",
@@ -17,6 +17,12 @@
     {
       "skill": "boundaries",
       "family": "rw3-complete-clause-colon",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "boundaries",
+      "family": "rw3-complex-series",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -51,8 +57,20 @@
       "authoredVariants": 4
     },
     {
+      "skill": "words-context",
+      "family": "rw3-context-verb-sense",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
       "skill": "boundaries",
       "family": "rw3-coordinating-join",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "cross-text",
+      "family": "rw3-cross-analysis-scale",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -89,6 +107,12 @@
     {
       "skill": "inferences",
       "family": "rw3-evidence-boundary",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "textual-evidence",
+      "family": "rw3-exclusive-explanation",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -142,6 +166,12 @@
     },
     {
       "skill": "central-ideas",
+      "family": "rw3-narrative-reappraisal",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "central-ideas",
       "family": "rw3-narrative-shift",
       "candidates": 4,
       "authoredVariants": 4
@@ -149,6 +179,12 @@
     {
       "skill": "inferences",
       "family": "rw3-necessary-condition",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "inferences",
+      "family": "rw3-necessity-control",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -167,6 +203,12 @@
     {
       "skill": "form-structure",
       "family": "rw3-pronoun-antecedent",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "text-purpose",
+      "family": "rw3-purpose-concession",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -209,6 +251,12 @@
     {
       "skill": "central-ideas",
       "family": "rw3-reconciled-observations",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "form-structure",
+      "family": "rw3-relative-possession",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -261,8 +309,20 @@
       "authoredVariants": 4
     },
     {
+      "skill": "synthesis",
+      "family": "rw3-synthesis-procedure",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
       "skill": "quantitative-evidence",
       "family": "rw3-table-claim-support",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "quantitative-evidence",
+      "family": "rw3-table-crossover",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -315,6 +375,12 @@
       "authoredVariants": 4
     },
     {
+      "skill": "transitions",
+      "family": "rw3-transition-generalization",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
       "skill": "boundaries",
       "family": "rw3-unbroken-core-clause",
       "candidates": 4,
@@ -322,23 +388,23 @@
     }
   ],
   "skills": {
-    "boundaries": 36,
-    "central-ideas": 20,
-    "cross-text": 16,
-    "form-structure": 28,
-    "inferences": 16,
-    "quantitative-evidence": 16,
-    "synthesis": 16,
-    "text-purpose": 16,
-    "textual-evidence": 16,
-    "transitions": 16,
-    "words-context": 16
+    "boundaries": 40,
+    "central-ideas": 24,
+    "cross-text": 20,
+    "form-structure": 32,
+    "inferences": 20,
+    "quantitative-evidence": 20,
+    "synthesis": 20,
+    "text-purpose": 20,
+    "textual-evidence": 20,
+    "transitions": 20,
+    "words-context": 20
   },
   "keyPositions": {
-    "A": 44,
-    "B": 61,
-    "C": 53,
-    "D": 54
+    "A": 54,
+    "B": 74,
+    "C": 60,
+    "D": 68
   },
   "approved": 0,
   "published": 0,

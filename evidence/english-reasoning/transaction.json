@@ -1,0 +1,23 @@
+[
+  {
+    "name": "BASELINE",
+    "command": ".venv/bin/python scripts/check-english-catalog.py evidence/english-reasoning/english_methods.original.txt",
+    "input": "evidence/english-reasoning/english_methods.original.txt",
+    "output": "{\"families\": 53, \"authoredVariants\": 212, \"skills\": 11}",
+    "exit": 0
+  },
+  {
+    "name": "MODIFIED",
+    "command": ".venv/bin/python scripts/check-english-catalog.py python/english_methods.py",
+    "input": "python/english_methods.py",
+    "output": "{\"families\": 64, \"authoredVariants\": 256, \"skills\": 11}",
+    "exit": 0
+  },
+  {
+    "name": "ROLLBACK",
+    "command": "cp python/english_methods.py /tmp/aptmark-reasoning-rollback.py && evidence/english-reasoning/ROLLBACK.sh /tmp/aptmark-reasoning-rollback.py && .venv/bin/python scripts/check-english-catalog.py /tmp/aptmark-reasoning-rollback.py",
+    "input": "disposable modified registry copy",
+    "output": "restored_sha256=0eebbdf64279012d51769160dbffe82a0cf735f8540161bab7288c12b360d04a\n{\"families\": 53, \"authoredVariants\": 212, \"skills\": 11}",
+    "exit": 0
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "stateStatus": 200,
+  "inventory": {
+    "generated": 5661,
+    "validated": 5661,
+    "approved": 0,
+    "published": 0,
+    "rejected": 0,
+    "families": 139,
+    "math": 4800,
+    "rw": 861,
+    "target": 10000
+  },
+  "newSkillRepresentativesLoaded": 11,
+  "itemIds": [
+    "boundaries-14209500436",
+    "central-ideas-3317273528",
+    "cross-text-7524209432",
+    "form-structure-261798440",
+    "inferences-958290648",
+    "quantitative-evidence-9446861488",
+    "synthesis-12369760448",
+    "text-purpose-5530552024",
+    "textual-evidence-14059293120",
+    "transitions-578530180",
+    "words-context-16701149468"
+  ],
+  "privateFieldsAbsent": true,
+  "practiceAnswersSubmitted": 0,
+  "previewRestart": "existing project-local Next dev process refreshed with the same startup command; no custom preview/database/dist overrides were present"
+}

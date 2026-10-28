@@ -51,6 +51,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-complex-series",
+      "seedBase": 14209500436,
+      "skill": "boundaries",
+      "method": "Identify the outer list elements separately from their internal commas and use a consistent semicolon boundary.",
+      "formula": "element 1 with an internal comma ; element 2 with an internal comma ; and element 3",
+      "structure": "A three-element series includes internal appositives or descriptions; the blank ends the second element.",
+      "misconceptions": [
+        "missing outer boundary",
+        "period creates an incomplete remainder",
+        "colon makes a separate list element appear to elaborate the previous one"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-conjunctive-adverb",
       "seedBase": 9169987552,
       "skill": "boundaries",
@@ -121,6 +135,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-context-verb-sense",
+      "seedBase": 16701149468,
+      "skill": "words-context",
+      "method": "Identify the action the surrounding sentences describe, then substitute the locally appropriate sense of the verb.",
+      "formula": "grammatical role + contextual action + limiting contrast -> local verb meaning",
+      "structure": "A familiar academic verb has multiple senses; the passage selects one through an explicit contrast.",
+      "misconceptions": [
+        "more familiar but contextually wrong sense",
+        "opposite action",
+        "related action not established by the context"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-coordinating-join",
       "seedBase": 7332169328,
       "skill": "boundaries",
@@ -131,6 +159,20 @@
         "comma splice without a conjunction",
         "comma after rather than before a coordinator",
         "semicolon after a coordinator"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-cross-analysis-scale",
+      "seedBase": 7524209432,
+      "skill": "cross-text",
+      "method": "Identify each author’s unit of analysis before comparing the claims; different scales need not contradict one another.",
+      "formula": "same topic + different unit/scale of evaluation -> different questions, not automatic factual disagreement",
+      "structure": "Two original texts assess an aggregate, local experience, component or larger whole at different scales.",
+      "misconceptions": [
+        "different units mistaken for opposite data",
+        "one author’s measure assigned to both",
+        "unsupported motive or policy preference"
       ],
       "variants": 4
     },
@@ -215,6 +257,20 @@
         "absence of record as absence of event",
         "unobserved population generalization",
         "measurement proxy as direct measurement"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-exclusive-explanation",
+      "seedBase": 14059293120,
+      "skill": "textual-evidence",
+      "method": "Find the exclusive causal claim and choose a comparison that varies or removes its proposed necessary cause.",
+      "formula": "claim: only A explains B; relevant counterevidence: B without A, or different B with A held fixed",
+      "structure": "A hypothetical explanation rules out alternatives; a targeted finding challenges that exclusion.",
+      "misconceptions": [
+        "mere restatement of the outcome",
+        "compatible fact mistaken for counterevidence",
+        "difference on an unmeasured outcome"
       ],
       "variants": 4
     },
@@ -331,6 +387,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-narrative-reappraisal",
+      "seedBase": 3317273528,
+      "skill": "central-ideas",
+      "method": "Connect an initial judgment, a revealing encounter, and a changed action to infer the narrative focus.",
+      "formula": "initial appraisal -> new observation -> revised response; retain the direction and scope of the change",
+      "structure": "Original fiction conveys a reassessment through concrete behavior rather than an explicit thesis.",
+      "misconceptions": [
+        "incidental object replaces the narrative change",
+        "initial judgment mistaken for final attitude",
+        "limited reassessment exaggerated into a universal rule"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-narrative-shift",
       "seedBase": 377823772,
       "skill": "central-ideas",
@@ -355,6 +425,20 @@
         "affirming the consequent",
         "ignoring one required condition",
         "turning a present limit into a permanent one"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-necessity-control",
+      "seedBase": 958290648,
+      "skill": "inferences",
+      "method": "Use an outcome observed without a proposed requirement to limit a necessity claim, without inferring irrelevance everywhere.",
+      "formula": "B occurs while A is absent -> A is not necessary for every occurrence of B; A may still matter elsewhere",
+      "structure": "An explicitly checked control preserves an outcome after a suggested necessary condition is removed.",
+      "misconceptions": [
+        "not necessary confused with never relevant",
+        "control observation reversed",
+        "unidentified alternative asserted as established"
       ],
       "variants": 4
     },
@@ -397,6 +481,20 @@
         "singular-plural mismatch",
         "possessive versus contraction confusion",
         "subject versus object or possessive case"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-purpose-concession",
+      "seedBase": 5530552024,
+      "skill": "text-purpose",
+      "method": "Distinguish the value an author concedes from the limitation or revision the surrounding argument still maintains.",
+      "formula": "acknowledged merit + retained limitation -> qualified evaluation, not abandonment of the argument",
+      "structure": "A specified sentence acknowledges a method or work’s value while the passage argues for a narrower use.",
+      "misconceptions": [
+        "concession mistaken for total endorsement",
+        "qualification mistaken for total rejection",
+        "function replaced by unrelated literal detail"
       ],
       "variants": 4
     },
@@ -495,6 +593,20 @@
         "discarding one observation",
         "asserting an untested cause",
         "overgeneralizing the reconciliation"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-relative-possession",
+      "seedBase": 261798440,
+      "skill": "form-structure",
+      "method": "Recognize that a relative determiner must express the relationship between an antecedent and the following noun.",
+      "formula": "antecedent + whose + possessed noun + relative-clause predicate",
+      "structure": "A relative clause identifies an owner or associated whole; a noun immediately after the blank requires a possessive determiner.",
+      "misconceptions": [
+        "possessive relative confused with who is",
+        "object pronoun used as a determiner",
+        "nonpossessive relative leaves the noun phrase unconnected"
       ],
       "variants": 4
     },
@@ -611,6 +723,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-synthesis-procedure",
+      "seedBase": 12369760448,
+      "skill": "synthesis",
+      "method": "Reconstruct the note-supported order of operations and connect that order to the specified procedural purpose.",
+      "formula": "goal + relevant steps in their stated order + purpose -> effective procedural synthesis",
+      "structure": "Unordered research notes include both relevant procedures and distracting facts; the goal asks how the method works.",
+      "misconceptions": [
+        "operations reversed",
+        "accurate but irrelevant descriptive notes",
+        "unstated step or causal guarantee added"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-table-claim-support",
       "seedBase": 11040422204,
       "skill": "quantitative-evidence",
@@ -621,6 +747,20 @@
         "true but irrelevant statistic",
         "reversed column labels",
         "claim broader than data"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-table-crossover",
+      "seedBase": 9446861488,
+      "skill": "quantitative-evidence",
+      "method": "Compare the same two groups in both conditions and preserve the reversal in their ordering.",
+      "formula": "A > B under condition 1 and A < B under condition 2 -> condition-dependent ranking",
+      "structure": "A labeled two-condition table supports a bounded crossover claim rather than a uniform advantage.",
+      "misconceptions": [
+        "one condition substituted for both",
+        "ordering or table cell reversed",
+        "descriptive comparison turned into an unrestricted causal conclusion"
       ],
       "variants": 4
     },
@@ -733,6 +873,20 @@
         "cause invented",
         "opposition invented",
         "summary substituted for next step"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-transition-generalization",
+      "seedBase": 578530180,
+      "skill": "transitions",
+      "method": "Track the move from several concrete observations to the broader statement they jointly support.",
+      "formula": "specific observations -> shared implication -> summary/generalization transition",
+      "structure": "Multiple examples precede a sentence synthesizing their common, bounded significance.",
+      "misconceptions": [
+        "example marker reverses the level of generality",
+        "unsupported contrast",
+        "time sequence substituted for a logical relationship"
       ],
       "variants": 4
     },

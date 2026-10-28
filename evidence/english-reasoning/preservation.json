@@ -1,0 +1,23 @@
+{
+  "preservedRecords": 5617,
+  "allPriorRecordsEquivalentAsCanonicalObjects": true,
+  "mathPreserved": 4800,
+  "newCandidates": 44,
+  "englishTotal": 861,
+  "total": 5661,
+  "newSkills": {
+    "boundaries": 4,
+    "central-ideas": 4,
+    "cross-text": 4,
+    "form-structure": 4,
+    "inferences": 4,
+    "quantitative-evidence": 4,
+    "synthesis": 4,
+    "text-purpose": 4,
+    "textual-evidence": 4,
+    "transitions": 4,
+    "words-context": 4
+  },
+  "approved": 0,
+  "published": 0
+}

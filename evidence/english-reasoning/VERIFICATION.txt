@@ -1,0 +1,65 @@
+Aptmark English reasoning / structure batch — 2026-10-28
+Changed branch/field: registry() imports and registers english_reasoning; 11 new finite families, four original contexts per family.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/python/english_methods.py
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-reasoning/registry.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-reasoning/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-reasoning/ROLLBACK.sh
+Original registry SHA256: 0eebbdf64279012d51769160dbffe82a0cf735f8540161bab7288c12b360d04a
+Modified registry SHA256: 25524b4ed31dc685d279706b0a01b55cc3c223953c2fab4af12382111f0e212c
+Working directory: /Users/HrishiL/Documents/ChatGPT/Lm
+
+BASELINE
+Command: .venv/bin/python scripts/check-english-catalog.py evidence/english-reasoning/english_methods.original.txt
+Input: immutable pre-change registry source snapshot.
+Literal output: {"families": 53, "authoredVariants": 212, "skills": 11}
+Exit status: 0
+Baseline test command: .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py
+Literal result: 167 passed in 7.99s
+Exit status: 0
+
+MODIFIED
+Command: .venv/bin/python scripts/check-english-catalog.py python/english_methods.py
+Input: live modified registry source.
+Literal output: {"families": 64, "authoredVariants": 256, "skills": 11}
+Exit status: 0
+Generation command: .venv/bin/python python/pipeline.py expand-english --per-family 4
+Literal result: {"inserted": 44, "englishCandidates": 256, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
+Exit status: 0
+One precommit transition correction replaced an awkward Collectively with In sum. Only that uncommitted candidate was regenerated (inserted: 1, same ID). See draft-correction.json. No prior committed record was changed.
+Final bank: 5,661 total; 861 English; 4,800 Math; 139 full-bank families. Method catalog: 256 contexts, 64 families, all 11 English skills. This batch: 44 contexts, four per skill. Human approvals, publications and empirical calibration: 0.
+All 5,617 prior complete records and all 4,800 Math records match their saved canonical full-record digests and exact content hashes (preservation.json, baseline.json).
+
+ROLLBACK
+Preparation: cp python/english_methods.py /tmp/aptmark-reasoning-rollback.py
+Command: evidence/english-reasoning/ROLLBACK.sh /tmp/aptmark-reasoning-rollback.py && .venv/bin/python scripts/check-english-catalog.py /tmp/aptmark-reasoning-rollback.py
+Input: a disposable copy of the modified registry.
+Literal output:
+restored_sha256=0eebbdf64279012d51769160dbffe82a0cf735f8540161bab7288c12b360d04a
+{"families": 53, "authoredVariants": 212, "skills": 11}
+Exit status: 0
+Restored behavior/status: the copy registers the original 53 families and 212 authored variants across 11 skills, and is byte-identical to the original snapshot. The live registry remains modified (64/256/11). This test does not delete candidates or roll back the complete application.
+Another original copy was patched with registry.diff and cmp matched the live modified registry; exit 0. The executable rollback script rejects the live registry and unexpected target hashes.
+
+VERIFICATION RESULTS
+Python command: .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py
+Result: 204 tests passed; exit 0. Numerical contracts independently recompute table orderings and keyed cell comparisons; structural checks are not a general grammar or semantic oracle.
+Command: .venv/bin/python python/pipeline.py validate --replay
+Literal output: {"checked": 5661, "replayed": 5661, "failures": []}
+Exit status: 0
+Command: npm test; npm run typecheck; NEXT_DIST_DIR=.next-publish npm run build
+Results: 193 workspace unit tests passed (including five separate pacing tests), strict typecheck and production build passed; all exit 0.
+Clean export command: (cd "$VERIFY_DIR" && npm test && npm run typecheck && NEXT_DIST_DIR=.next-verify npm run build && .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py && .venv/bin/python python/pipeline.py validate --replay && .venv/bin/python python/pipeline.py expand-english --per-family 4)
+Results: 188 committed-scope unit tests, typecheck, build, 204 Python tests, 5,661 seed replays, and fresh-clone English generation inserted zero; exit 0. The disposable index export excludes unfinished pacing source. See clean-tree.log.
+Repeat command: .venv/bin/python python/pipeline.py expand-english --per-family 4
+Literal result: {"inserted": 0, "englishCandidates": 256, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
+Exit status: 0; bank SHA256 unchanged on repeat.
+Browser command: (cd "$VERIFY_DIR" && npm run test:e2e -- tests/english-reasoning.spec.ts tests/editorial-methods.spec.ts tests/english-depth.spec.ts tests/english-content.spec.ts tests/app.spec.ts tests/calendar.spec.ts tests/learning.spec.ts tests/studio.spec.ts)
+Literal result: 29 passed (4.4m)
+Exit status: 0. All 44 new keys, one representative wrong answer per skill, payload privacy, content hashes and phone/desktop readability were checked. Automated axe and overflow checks passed; screenshots were visually inspected. See playwright-clean.log.
+Public task references checked: College Board Reading and Writing question-stem guide; Assessment Framework version 4, September 2026, Appendix B. New passages, findings, tables, notes and options are original; only task categories/format inform the batch.
+Named-human review and independent privacy, accessibility, security, psychometric and release gates remain open. No auto-publication, paid API or hosted deployment was performed. Tests use isolated guest fixtures, not real learning histories.
+Attempts: initial review-pack helper used system Python without SymPy and was corrected to use .venv. Initial browser suite passed 28 and failed the copied dash assertion; the test now checks the actual semicolon/relative-possession/paired-text structures. Failed runs are retained separately, not passing acceptance.
+Preservation-contract commit 30aeba7 was pushed to public main; both Core regression and Content regression passed (preservation-ci.json). Final content-batch GitHub checks are verified after push and reported separately.
+
+LIVE PREVIEW
+The existing project-local development server initially reported 5,617 / 817 English. Its verified Next dev process was refreshed using the same npm run dev command and configuration. The new process reports 5,661 / 861 English / 4,800 Math, with 0 approved and 0 published. Eleven new skill representatives loaded with matching content hashes and no private key/method fields; no practice answers were submitted. The ephemeral probe guest was deleted. See live-preview-before.json and live-preview-after.json.

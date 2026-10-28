@@ -1,0 +1,13 @@
+--- evidence/english-reasoning/english_methods.original.txt	2026-10-28 01:58:24
++++ python/english_methods.py	2026-10-28 02:05:12
+@@ -8,8 +8,9 @@
+     import english_conventions
+     import english_detail_boundaries
+     import english_depth
++    import english_reasoning
+     rows = []
+-    for module in (english_information, english_craft_expression, english_conventions, english_detail_boundaries, english_depth):
++    for module in (english_information, english_craft_expression, english_conventions, english_detail_boundaries, english_depth, english_reasoning):
+         for skill, families in module.FAMILIES.items():
+             for family in families:
+                 blueprint = module.BLUEPRINTS[family]

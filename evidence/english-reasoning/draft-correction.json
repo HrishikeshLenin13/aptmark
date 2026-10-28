@@ -1,0 +1,124 @@
+{
+  "reason": "Use the idiomatic summary transition In sum rather than the awkward collectively modifying the singular discussion. Draft-only correction, not an editorial approval.",
+  "before": {
+    "stem": "Which choice completes the text with the most logical transition?",
+    "passage": "An original discussion describes a stage door that becomes a wall when a panel is turned, a bench that opens into a storage chest, and a painted frame that suggests different windows under different lighting. Each example uses one object for more than one scenic purpose. _____ the discussion presents flexible use, rather than a large inventory of objects, as the common principle behind these designs.",
+    "options": [
+      "Conversely,",
+      "For one particular instance,",
+      "Collectively,",
+      "Several decades beforehand,"
+    ],
+    "correctAnswer": "Collectively,",
+    "steps": [
+      "The examples differ in form but share flexible use of existing objects.",
+      "The final sentence brings them together under that principle, requiring a collective transition."
+    ],
+    "explanation": "The examples differ in form but share flexible use of existing objects. The final sentence brings them together under that principle, requiring a collective transition.",
+    "difficulty": "medium",
+    "verification": "method-mapped-structure-checked-editorial-required",
+    "diagram": null,
+    "table": null,
+    "generatorVersion": "3.0.0",
+    "distractorExplanations": {
+      "Collectively,": "The examples differ in form but share flexible use of existing objects. The final sentence brings them together under that principle, requiring a collective transition.",
+      "Conversely,": "The concluding principle is consistent with the examples’ multiple uses, not their inverse.",
+      "For one particular instance,": "The final sentence synthesizes all the designs rather than narrowing to a single additional instance.",
+      "Several decades beforehand,": "The passage gives no decades-long chronology; the conclusion groups the designs by a shared principle."
+    },
+    "answerEvidence": {
+      "quotes": [
+        "one object for more than one scenic purpose",
+        "the common principle behind these designs"
+      ],
+      "reasoning": "The examples differ in form but share flexible use of existing objects. The final sentence brings them together under that principle, requiring a collective transition."
+    },
+    "alignment": {
+      "source": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+      "frameworkVersion": "4 (September 2026)",
+      "basis": "Public skill and task descriptions; passage, options, and explanations independently authored."
+    },
+    "qualityMetadata": {
+      "difficultyBasis": [
+        "follow a move from examples to general significance",
+        "distinguish synthesis from contrast and chronology"
+      ],
+      "passageOrigin": "original hypothetical context",
+      "topic": "original stage-design discussion",
+      "reviewFlags": [
+        "independent-human-editorial-review-required",
+        "difficulty-is-provisional",
+        "semantic-uniqueness-not-established"
+      ]
+    },
+    "solutionMethod": {
+      "blueprintId": "rw3-transition-generalization",
+      "skill": "transitions",
+      "method": "Track the move from several concrete observations to the broader statement they jointly support.",
+      "formula": "specific observations -> shared implication -> summary/generalization transition",
+      "structure": "Multiple examples precede a sentence synthesizing their common, bounded significance.",
+      "misconceptions": [
+        "example marker reverses the level of generality",
+        "unsupported contrast",
+        "time sequence substituted for a logical relationship"
+      ],
+      "variantIndex": 3,
+      "authoredVariantCount": 4,
+      "formulaStatus": "instructional-heuristic-not-score-formula"
+    },
+    "id": "transitions-578530183",
+    "schemaVersion": 1,
+    "contentVersion": 1,
+    "section": "rw",
+    "domain": "Expression of Ideas",
+    "skill": "transitions",
+    "subskill": "rw3-transition-generalization",
+    "type": "mcq",
+    "passageType": "self-contained-hypothetical",
+    "acceptedResponses": [],
+    "difficultyCalibration": "provisional-uncalibrated",
+    "estimatedSeconds": 90,
+    "family": "rw3-transition-generalization",
+    "seed": 578530183,
+    "source": "Aptmark deterministic original generator / rw3-transition-generalization",
+    "license": "CC0-1.0-original",
+    "editorialStatus": "pending",
+    "publicationStatus": "candidate",
+    "reviewer": null,
+    "reviewNotes": null,
+    "createdAt": "2026-10-27T00:00:00Z",
+    "updatedAt": "2026-10-27T00:00:00Z",
+    "similarityCluster": "rw3-transition-generalization",
+    "misconceptionTags": [
+      "example marker reverses the level of generality",
+      "unsupported contrast",
+      "time sequence substituted for a logical relationship"
+    ],
+    "accessibility": {
+      "textAlternative": null,
+      "mathFormat": "latex-delimited",
+      "tableHeaders": false
+    },
+    "calibration": {
+      "model": "Rasch-1PL-provisional",
+      "difficulty": 0,
+      "n": 0,
+      "standardError": null
+    },
+    "generationCostUSD": 0,
+    "hints": [
+      "Track the move from several concrete observations to the broader statement they jointly support.",
+      "The examples differ in form but share flexible use of existing objects."
+    ],
+    "contentHash": "7bd02f7ffa3f83289b57eaa35fc675abef384b53ac2e750667669e5b8eb86ad3",
+    "problemHash": "d19482f74b369851a197b26af1d87c2420e56ef2489356d865189056b59314d8",
+    "validationResults": {
+      "structural": true,
+      "answerCheck": "method-mapped-structure-checked-editorial-required",
+      "educationalValidity": "human-review-required"
+    }
+  },
+  "afterContentHash": "4b5ffbc1f63ed17f1d4ac3f60b12821153f748da19cfbaa81612b02c23b84f48",
+  "afterAnswer": "In sum,",
+  "priorCommittedRecordsChanged": 0
+}
