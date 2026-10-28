@@ -393,11 +393,12 @@ export default function AptmarkApp() {
                 ref={searchTrigger}
                 className="workspace-search-trigger"
                 onClick={() => setModal("search")}
-                aria-label="Search workspace"
+                aria-label="Search workspace ⌘ K"
+                aria-keyshortcuts="Control+K Meta+K"
               >
                 <Search size={16} />
-                <span>Search your workspace</span>
-                <kbd>⌘ K</kbd>
+                <span>Search workspace</span>
+                <kbd aria-hidden="true">⌘ K</kbd>
               </button>
               {state.preview && (
                 <Tag tone="preview">

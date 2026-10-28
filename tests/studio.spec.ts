@@ -17,9 +17,13 @@ test("workspace search supports real skill navigation, an empty state, and focus
 }) => {
   await ready(page);
   const trigger = page.getByRole("button", {
-    name: "Search workspace",
+    name: "Search workspace ⌘ K",
     exact: true,
   });
+  await expect(trigger).toHaveAttribute(
+    "aria-keyshortcuts",
+    "Control+K Meta+K",
+  );
   await trigger.click();
   const dialog = page.getByRole("dialog", { name: "Find your next step" });
   await expect(dialog).toBeVisible();
