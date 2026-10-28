@@ -24,8 +24,8 @@ def digest(rows):
 
 def test_all_eleven_skills_have_method_blueprints():
     assert {row[0] for row in CATALOG}=={s['id'] for s in SKILLS if s['section']=='rw'}
-    assert len(CATALOG)==42
-    assert len({row[1] for row in CATALOG})==len({row[2] for row in CATALOG})==42
+    assert len(CATALOG)==53
+    assert len({row[1] for row in CATALOG})==len({row[2] for row in CATALOG})==53
     for skill,family,base,bp,_ in CATALOG:
         assert base%4==0 and bp['skill']==skill and bp['variants']==4
         assert all(bp.get(k) for k in ('method','formula','structure','misconceptions'))
@@ -104,16 +104,16 @@ def test_english_generation_is_bounded_resumable_and_math_preserving(tmp_path,mo
     with pytest.raises(ValueError):pipeline.expand_english(5)
     with pytest.raises(ValueError):pipeline.expand_english(0)
     first=pipeline.expand_english(1)
-    assert first['inserted']==42
+    assert first['inserted']==53
     second=pipeline.expand_english(4)
-    assert second['inserted']==126 and second['candidates']==168
+    assert second['inserted']==159 and second['candidates']==212
     bank_bytes=(tmp_path/'bank.json').read_bytes()
     third=pipeline.expand_english(4)
     assert third['inserted']==0
     assert (tmp_path/'bank.json').read_bytes()==bank_bytes
     bank=json.loads(bank_bytes)
     assert [q for q in bank if q['section']=='math']==[original]
-    assert len(bank)==169
+    assert len(bank)==213
     assert not any(q['publicationStatus']=='published' for q in bank)
     assert len({pipeline.problem_hash(q) for q in bank})==len(bank)
     assert json.loads((tmp_path/'blueprints/english-methods.json').read_text())==blueprint_manifest()
@@ -144,8 +144,8 @@ def test_committed_bank_preserves_all_previous_questions_and_every_math_record()
     assert len(math)==baseline['mathCount']==4800
     assert digest(math)==baseline['mathRecordsDigest']
     added=[q for q in bank if q.get('generatorVersion')=='3.0.0']
-    assert len(added)==168 and len(bank)==5573
-    assert len({q['family'] for q in added})==42
+    assert len(added)==212 and len(bank)==5617
+    assert len({q['family'] for q in added})==53
     assert len({q['skill'] for q in added})==11
     assert set(Counter(q['family'] for q in added).values())=={4}
     assert all(q['section']=='rw' and not pipeline.validate(q) for q in added)
@@ -181,6 +181,6 @@ def test_full_bank_fresh_clone_generation_is_byte_identical(tmp_path,monkeypatch
     monkeypatch.setattr(pipeline,'CONTENT',tmp_path)
     monkeypatch.setattr(pipeline,'DB',tmp_path/'fresh-clone.sqlite')
     result=pipeline.expand_english(4)
-    assert result['inserted']==0 and result['candidates']==168
+    assert result['inserted']==0 and result['candidates']==212
     assert (tmp_path/'bank.json').read_bytes()==bank_bytes
     assert result['approved']==result['published']==result['mathGeneratedByThisCommand']==0

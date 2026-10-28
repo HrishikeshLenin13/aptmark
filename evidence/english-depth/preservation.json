@@ -1,0 +1,27 @@
+{
+  "previousRecordsUnchanged": 5573,
+  "mathRecordsUnchanged": 4800,
+  "newEnglishCandidates": 44,
+  "newFamilies": 11,
+  "newSkillCounts": {
+    "boundaries": 4,
+    "central-ideas": 4,
+    "cross-text": 4,
+    "form-structure": 4,
+    "inferences": 4,
+    "quantitative-evidence": 4,
+    "synthesis": 4,
+    "text-purpose": 4,
+    "textual-evidence": 4,
+    "transitions": 4,
+    "words-context": 4
+  },
+  "bankTotal": 5617,
+  "englishTotal": 817,
+  "approved": 0,
+  "published": 0,
+  "difficulty": {
+    "hard": 42,
+    "medium": 2
+  }
+}

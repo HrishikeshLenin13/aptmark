@@ -23,6 +23,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-claim-assumption",
+      "seedBase": 10715328460,
+      "skill": "textual-evidence",
+      "method": "Identify the missing connection required by the proposed explanation, then select evidence addressing that connection.",
+      "formula": "proposed cause -> necessary intermediate link -> outcome; evidence about the link strengthens the explanation",
+      "structure": "A hypothetical explanation has an explicitly unresolved intermediate step; the best finding bears on that step.",
+      "misconceptions": [
+        "outcome repeated without testing the link",
+        "irrelevant shared feature",
+        "evidence about a rival process"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-complete-clause-colon",
       "seedBase": 11158504552,
       "skill": "boundaries",
@@ -47,6 +61,20 @@
         "comma splice around a conjunctive adverb",
         "adverb mistaken for a coordinator",
         "punctuation placed on the wrong side of the adverb"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-context-evaluation",
+      "seedBase": 4062388236,
+      "skill": "words-context",
+      "method": "Distinguish the precise evaluative force required by the described evidence from nearby meanings.",
+      "formula": "degree + evaluative direction + contextual evidence -> precise word",
+      "structure": "Context distinguishes ambiguity from error, restraint from indecision, or weak support from disproof.",
+      "misconceptions": [
+        "evaluation too strong",
+        "opposite evaluative direction",
+        "related but unsupported trait"
       ],
       "variants": 4
     },
@@ -107,6 +135,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-cross-conditions",
+      "seedBase": 9962292620,
+      "skill": "cross-text",
+      "method": "Compare the conditions attached to each author’s position before drawing a connection.",
+      "formula": "claim + condition in text 1; claim + condition in text 2 -> specific conditional overlap or difference",
+      "structure": "Two texts share a broad goal but use different conditions for accepting an interpretation or recommendation.",
+      "misconceptions": [
+        "qualification erased",
+        "shared goal mistaken for identical policy",
+        "one author’s condition assigned to both"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-cross-disagreement",
       "seedBase": 15264116780,
       "skill": "cross-text",
@@ -145,6 +187,20 @@
         "agreement made absolute",
         "one author’s view attributed to both",
         "shared topic mistaken for shared claim"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-embedded-predicate",
+      "seedBase": 6986692204,
+      "skill": "form-structure",
+      "method": "Separate finite verbs inside modifiers from the missing predicate of the main clause.",
+      "formula": "main subject + [embedded clause containing its own verb] + main finite predicate",
+      "structure": "A relative clause or parenthetical contains a tempting finite verb but does not complete the larger clause.",
+      "misconceptions": [
+        "embedded verb mistaken for main predicate",
+        "nonfinite form leaves main clause incomplete",
+        "infinitive substituted for finite predicate"
       ],
       "variants": 4
     },
@@ -219,6 +275,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-inference-qualifier",
+      "seedBase": 8961086624,
+      "skill": "inferences",
+      "method": "Combine a stated comparison with its limiting condition and preserve both in the completion.",
+      "formula": "observed relationship under condition C -> bounded inference for C, not an unrestricted general rule",
+      "structure": "An observation and a carefully stated exception constrain a conclusion about a mechanism or interpretation.",
+      "misconceptions": [
+        "condition dropped",
+        "comparison reversed",
+        "possible explanation stated as certainty"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-mechanism-completion",
       "seedBase": 2390430128,
       "skill": "inferences",
@@ -285,6 +355,20 @@
         "affirming the consequent",
         "ignoring one required condition",
         "turning a present limit into a permanent one"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-paired-dashes",
+      "seedBase": 14415490992,
+      "skill": "boundaries",
+      "method": "Temporarily remove the interruption, identify the intact main clause, and pair the opening em dash with its closing dash.",
+      "formula": "subject — nonessential interruption — finite predicate",
+      "structure": "A nonessential phrase interrupts the main clause after an opening em dash; the sentence continues after the blank.",
+      "misconceptions": [
+        "mixed opening and closing punctuation",
+        "semicolon separating subject from predicate",
+        "colon after an incomplete main clause"
       ],
       "variants": 4
     },
@@ -359,6 +443,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-purpose-question",
+      "seedBase": 11720237912,
+      "skill": "text-purpose",
+      "method": "Identify the assumption a rhetorical question tests and how the following sentences use that challenge.",
+      "formula": "preceding assumption -> rhetorical question -> subsequent reframing = function in argument",
+      "structure": "A question in an original argument challenges a criterion, introduces a distinction, or redirects attention.",
+      "misconceptions": [
+        "literal request mistaken for rhetorical function",
+        "challenged position attributed to author",
+        "question detached from its later use"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-qualified-argument",
       "seedBase": 722228332,
       "skill": "central-ideas",
@@ -401,6 +499,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-scope-correction",
+      "seedBase": 9983572028,
+      "skill": "central-ideas",
+      "method": "Track the initial generalization, the counterexample, and the narrower conclusion that survives it.",
+      "formula": "overbroad claim + relevant counterexample -> revised scope, not automatic reversal",
+      "structure": "An account challenges a universal interpretation while retaining a limited version of the underlying idea.",
+      "misconceptions": [
+        "universal claim retained",
+        "counterexample overgeneralized",
+        "supporting detail substituted for revised conclusion"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-series-elements",
       "seedBase": 15684472232,
       "skill": "boundaries",
@@ -439,6 +551,20 @@
         "semicolon treating a dependent clause as independent",
         "colon after a dependent clause",
         "period creating a dependent-clause fragment"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-synthesis-bound",
+      "seedBase": 2783174700,
+      "skill": "synthesis",
+      "method": "Use the notes to state the requested result while retaining the limitation specified by the rhetorical goal.",
+      "formula": "requested finding + relevant sample/condition limit -> accurate qualified synthesis",
+      "structure": "Research notes support a result but not a broader causal, population-wide, or all-conditions claim.",
+      "misconceptions": [
+        "universal claim from a bounded observation",
+        "accurate detail that omits the requested limitation",
+        "causation invented"
       ],
       "variants": 4
     },
@@ -495,6 +621,20 @@
         "true but irrelevant statistic",
         "reversed column labels",
         "claim broader than data"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-table-denominator",
+      "seedBase": 15488663496,
+      "skill": "quantitative-evidence",
+      "method": "Read the outcome count together with its population base before comparing proportions.",
+      "formula": "proportion = relevant count / stated total; larger count does not necessarily mean larger proportion",
+      "structure": "A table supplies different group sizes and outcomes; a verbal claim distinguishes counts from shares.",
+      "misconceptions": [
+        "count mistaken for rate",
+        "denominators swapped",
+        "descriptive association turned into a cause"
       ],
       "variants": 4
     },
@@ -565,6 +705,20 @@
         "consequence instead of concession",
         "parallelism instead of contrast",
         "example instead of reversal"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-transition-correction",
+      "seedBase": 12522940012,
+      "skill": "transitions",
+      "method": "Identify the interpretation explicitly rejected and the replacement the next sentence supplies.",
+      "formula": "not interpretation A -> replacement interpretation B -> correction/replacement transition",
+      "structure": "A negated explanation or proposal is followed by a more precise alternative, not a consequence or example.",
+      "misconceptions": [
+        "consequence instead of replacement",
+        "example instead of correction",
+        "time sequence invented"
       ],
       "variants": 4
     },

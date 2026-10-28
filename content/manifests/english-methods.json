@@ -1,10 +1,16 @@
 {
   "generatorVersion": "3.0.0",
-  "candidates": 168,
+  "candidates": 212,
   "families": [
     {
       "skill": "textual-evidence",
       "family": "rw3-alternative-cause",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "textual-evidence",
+      "family": "rw3-claim-assumption",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -17,6 +23,12 @@
     {
       "skill": "boundaries",
       "family": "rw3-conjunctive-adverb",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "words-context",
+      "family": "rw3-context-evaluation",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -46,6 +58,12 @@
     },
     {
       "skill": "cross-text",
+      "family": "rw3-cross-conditions",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "cross-text",
       "family": "rw3-cross-disagreement",
       "candidates": 4,
       "authoredVariants": 4
@@ -59,6 +77,12 @@
     {
       "skill": "cross-text",
       "family": "rw3-cross-qualified-common",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "form-structure",
+      "family": "rw3-embedded-predicate",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -94,6 +118,12 @@
     },
     {
       "skill": "inferences",
+      "family": "rw3-inference-qualifier",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "inferences",
       "family": "rw3-mechanism-completion",
       "candidates": 4,
       "authoredVariants": 4
@@ -119,6 +149,12 @@
     {
       "skill": "inferences",
       "family": "rw3-necessary-condition",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "boundaries",
+      "family": "rw3-paired-dashes",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -153,6 +189,12 @@
       "authoredVariants": 4
     },
     {
+      "skill": "text-purpose",
+      "family": "rw3-purpose-question",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
       "skill": "central-ideas",
       "family": "rw3-qualified-argument",
       "candidates": 4,
@@ -171,6 +213,12 @@
       "authoredVariants": 4
     },
     {
+      "skill": "central-ideas",
+      "family": "rw3-scope-correction",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
       "skill": "boundaries",
       "family": "rw3-series-elements",
       "candidates": 4,
@@ -185,6 +233,12 @@
     {
       "skill": "boundaries",
       "family": "rw3-subordinating-join",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "synthesis",
+      "family": "rw3-synthesis-bound",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -209,6 +263,12 @@
     {
       "skill": "quantitative-evidence",
       "family": "rw3-table-claim-support",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "quantitative-evidence",
+      "family": "rw3-table-denominator",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -244,6 +304,12 @@
     },
     {
       "skill": "transitions",
+      "family": "rw3-transition-correction",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "transitions",
       "family": "rw3-transition-elaboration",
       "candidates": 4,
       "authoredVariants": 4
@@ -256,23 +322,23 @@
     }
   ],
   "skills": {
-    "boundaries": 32,
-    "central-ideas": 16,
-    "cross-text": 12,
-    "form-structure": 24,
-    "inferences": 12,
-    "quantitative-evidence": 12,
-    "synthesis": 12,
-    "text-purpose": 12,
-    "textual-evidence": 12,
-    "transitions": 12,
-    "words-context": 12
+    "boundaries": 36,
+    "central-ideas": 20,
+    "cross-text": 16,
+    "form-structure": 28,
+    "inferences": 16,
+    "quantitative-evidence": 16,
+    "synthesis": 16,
+    "text-purpose": 16,
+    "textual-evidence": 16,
+    "transitions": 16,
+    "words-context": 16
   },
   "keyPositions": {
-    "A": 36,
-    "B": 48,
-    "C": 43,
-    "D": 41
+    "A": 44,
+    "B": 61,
+    "C": 53,
+    "D": 54
   },
   "approved": 0,
   "published": 0,

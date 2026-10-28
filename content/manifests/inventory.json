@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generated": 5573,
-  "structurallyValidated": 5573,
+  "generated": 5617,
+  "structurallyValidated": 5617,
   "approved": 0,
   "published": 0,
   "rejected": 0,
   "sections": {
     "math": 4800,
-    "rw": 773
+    "rw": 817
   },
-  "families": 117,
+  "families": 128,
   "clusters": {
     "linear-isolate": 107,
     "linear-distribute": 103,
@@ -127,12 +127,23 @@
     "rw3-unbroken-core-clause": 4,
     "rw3-conjunctive-adverb": 4,
     "rw3-explicit-detail": 4,
-    "rw3-series-elements": 4
+    "rw3-series-elements": 4,
+    "rw3-claim-assumption": 4,
+    "rw3-context-evaluation": 4,
+    "rw3-cross-conditions": 4,
+    "rw3-embedded-predicate": 4,
+    "rw3-inference-qualifier": 4,
+    "rw3-paired-dashes": 4,
+    "rw3-purpose-question": 4,
+    "rw3-scope-correction": 4,
+    "rw3-synthesis-bound": 4,
+    "rw3-table-denominator": 4,
+    "rw3-transition-correction": 4
   },
   "difficulty": {
     "easy": 562,
-    "medium": 4188,
-    "hard": 823
+    "medium": 4190,
+    "hard": 865
   },
   "skills": {
     "linear-one": 315,
@@ -154,17 +165,17 @@
     "lines-triangles": 169,
     "trigonometry": 194,
     "circles": 194,
-    "central-ideas": 71,
-    "textual-evidence": 67,
-    "quantitative-evidence": 67,
-    "inferences": 67,
-    "words-context": 67,
-    "text-purpose": 67,
-    "cross-text": 67,
-    "synthesis": 67,
-    "transitions": 67,
-    "boundaries": 87,
-    "form-structure": 79
+    "central-ideas": 75,
+    "textual-evidence": 71,
+    "quantitative-evidence": 71,
+    "inferences": 71,
+    "words-context": 71,
+    "text-purpose": 71,
+    "cross-text": 71,
+    "synthesis": 71,
+    "transitions": 71,
+    "boundaries": 91,
+    "form-structure": 83
   },
   "target": 10000,
   "estimatedGenerationCostUSD": 0,

@@ -1,6 +1,6 @@
 # Aptmark implementation status
 
-Updated: 2026-10-27. Active local development; not a complete or hosted release.
+Updated: 2026-10-28. Active local development; not a complete or hosted release.
 
 ## Implemented
 - SAT specification and source research, a 30-skill taxonomy, and weighted coverage allocation.
@@ -17,7 +17,7 @@ Updated: 2026-10-27. Active local development; not a complete or hosted release.
 - PostgreSQL/Supabase migration scaffold; no active cloud adapter.
 
 ## Content inventory
-The pipeline contains 4,800 Math and 773 Reading and Writing candidates (5,573 total), across 30 skills and 117 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
+The pipeline contains 4,800 Math and 817 Reading and Writing candidates (5,617 total), across 30 skills and 128 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
 
 ## Earlier website verification record
 - 48 TypeScript tests and 83 Python tests passed.
@@ -74,3 +74,9 @@ See [Development notes](docs/DEVELOPMENT.md) for local preview, content workflow
 - Added a read-only, pinned-action GitHub content workflow for Python contracts, complete seed replay, and fresh-clone English idempotency; it does not publish or deploy content.
 - Final supplemental verification: 134 Python tests; 187 workspace TypeScript tests (182 excluding the separate pacing work); typecheck and production build; 20 selected browser integration tests all passed. All 5,573 seeds replayed without mismatches, and real full-bank fresh-clone generation was byte-identical. The three uncommitted pacing browser tests are not included in that 20-test claim.
 - GitHub Content regression and Core regression passed on the new content-workflow commit (5be87ea); final supplemental-commit workflow status is checked after push. See docs/CONTENT_CHECKS.md.
+
+## English depth batch — 2026-10-27
+- Added 44 original contexts, four in each of the 11 English skills; the method catalog now has 212 candidates across 53 authored families. The bank contains 817 English and 4,800 Math candidates (5,617 total, 128 total families).
+- All prior 5,573 complete records remain unchanged. Additional tests independently verify the unequal-denominator percentages, paired dash structure, embedded-predicate keys and full-bank preservation. Candidate approval/publication/calibration remain zero.
+- GitHub content CI includes the depth-batch contracts. New browser tests exercise all 44 keys, one wrong response per skill, private metadata, table/grammar rendering and automated accessibility. See docs/ENGLISH_DEPTH.md and evidence/english-depth/. Verification results follow the completed runs, not this implementation note.
+- Final depth verification (2026-10-28): 167 Python tests, 182 committed-scope TypeScript tests (187 including five separate pacing tests), typecheck, build, all 5,617 seed replays and 22 selected browser integration tests passed. Every new key, representative wrong responses and content-version hashes were verified against the real server. All prior 5,573 complete records and all Math records remain unchanged. Two draft-only rationale corrections are recorded; no independent human review is implied.

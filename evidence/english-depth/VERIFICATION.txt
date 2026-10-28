@@ -1,0 +1,68 @@
+Aptmark English depth batch — final local verification, 2026-10-28
+Authored batch: 2026-10-27; finalized after the client date changed.
+Branch: codex/website-studio
+Changed field: python/english_methods.py registry module list adds english_depth; 11 new families with four authored variants each.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/python/english_methods.py
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-depth/registry.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-depth/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-depth/ROLLBACK.sh
+Original SHA-256: 6f15df0511282580fd3314ae1269d1c3373e06178ac32239b76586235bf82948
+Modified SHA-256: 0eebbdf64279012d51769160dbffe82a0cf735f8540161bab7288c12b360d04a
+All commands below use working directory /Users/HrishiL/Documents/ChatGPT/Lm.
+
+BASELINE command: .venv/bin/python scripts/check-english-registry.py evidence/english-depth/english_methods.original.py
+Input: preserved 42-family registry fixture; no content DB opened.
+Literal output: {"families": 42, "skills": 11, "authoredVariants": 168}
+Exit: 0; baseline-registry.log.
+BASELINE test command: .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py
+Input: pre-depth 5,573-record bank, original registry and pre-depth tests.
+Literal final output: 134 passed in 7.59s
+Exit: 0; baseline-tests.log. The append-only supplemental test was separately corrected and passed 134 tests before commit 914b573.
+
+MODIFIED command: .venv/bin/python scripts/check-english-registry.py python/english_methods.py
+Input: active registry including english_depth.
+Literal output: {"families": 53, "skills": 11, "authoredVariants": 212}
+Exit: 0; modified-registry.log.
+MODIFIED generation command: .venv/bin/python python/pipeline.py expand-english --per-family 4
+Input: 5,573 prior records and 53-family catalog, four contexts per family.
+Literal final output: {"inserted": 44, "englishCandidates": 212, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
+Exit: 0; generation.log.
+MODIFIED repeat command: .venv/bin/python python/pipeline.py expand-english --per-family 4
+Input: final 5,617-record bank.
+Literal final output: {"inserted": 0, "englishCandidates": 212, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
+Exit: 0; repeat-generation.log. SHA-256 check literal output: content/bank.json: OK (exit 0).
+MODIFIED replay command: .venv/bin/python python/pipeline.py validate --replay
+Literal output: {"checked": 5617, "replayed": 5617, "failures": []}
+Exit: 0; validation.log.
+MODIFIED content test command: .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py
+Literal final output: 167 passed in 24.98s
+Exit: 0; python-tests.log. Checks all contexts, exact evidence, separate option rationales, independent Fraction oracles for table percentages, dash pairing, finite main keys, full prior-record preservation and fresh-clone idempotency. It does not prove semantic uniqueness or educational effectiveness.
+
+ROLLBACK preparation: cp python/english_methods.py /tmp/aptmark-depth-registry-rollback.py
+ROLLBACK command: evidence/english-depth/ROLLBACK.sh /tmp/aptmark-depth-registry-rollback.py
+Input: a disposable copy with the recorded modified SHA-256.
+Literal output: restored_sha256=6f15df0511282580fd3314ae1269d1c3373e06178ac32239b76586235bf82948
+Exit: 0; rollback.log.
+ROLLBACK behavior command: .venv/bin/python scripts/check-english-registry.py /tmp/aptmark-depth-registry-rollback.py
+Literal output: {"families": 42, "skills": 11, "authoredVariants": 168}
+Exit: 0; original registry hash and behavior restored on the disposable copy.
+The live modified registry remains at 53 families / 212 authored variants. Rollback does not delete the bank or unrelated work.
+DIFF command: patch /tmp/aptmark-depth-registry-apply.py < evidence/english-depth/registry.diff
+Input: another preserved-original copy. cmp against the live registry passes; literal result: diff_reproduces_modified=true; exit 0.
+
+Unit command: npm test
+Result: 187 tests passed, exit 0; unit-tests.log. Includes five separate uncommitted pacing unit tests.
+Committed-unit command: npm test -- --exclude tests/pacing.test.ts
+Result: 182 tests passed, exit 0; committed-unit-tests.log.
+Typecheck command: npm run typecheck
+Result: tsc --noEmit succeeds; exit 0; typecheck.log.
+Build command: NEXT_DIST_DIR=.next-publish npm run build
+Result: production build succeeds; exit 0; build.log.
+Browser command: npm run test:e2e -- tests/english-depth.spec.ts tests/english-content.spec.ts tests/app.spec.ts tests/calendar.spec.ts tests/learning.spec.ts tests/studio.spec.ts
+Literal final output: 22 passed (3.3m)
+Exit: 0; playwright.log. All 44 depth keys and one wrong option per skill were submitted to the real server. Public/graded content hashes match the bank. Private method/key serialization, mobile/desktop layouts, paired text, notes, tables, grammar, owner isolation, publication gates, saved state, calendar, lessons and navigation are checked. Three earlier uncommitted pacing browser tests are not part of that 22-test claim.
+
+Preservation: all 5,573 prior complete records and all 4,800 Math records remain unchanged under saved full-record digests and IDs/hashes. Final inventory: 5,617 total, 817 English; method catalog: 212 contexts / 53 families. This depth batch: 44 contexts / 11 families / all 11 English skills. 0 human-approved, 0 published, 0 empirically calibrated.
+Two failed intermediate Python runs remain archived. They identified two short cross-text rationale records, which were clarified before the content commit. Draft corrections changed no previously committed question. The final passing run is separate from those failures.
+The three new mobile screenshots were reopened for visual inspection. Both review packs were reopened and counted. All four transaction artifacts were reopened; the rollback script is executable.
+Commit 914b573 was pushed with the append-only contract correction and registry probe. Its GitHub Core and Content regression checks succeeded. The depth commit and its expanded content workflow are pushed after local verification, with final GitHub status inspected afterward.

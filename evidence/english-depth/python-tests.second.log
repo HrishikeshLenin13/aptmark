@@ -1,0 +1,26 @@
+........................................................................ [ 43%]
+........................................................................ [ 86%]
+....F..................                                                  [100%]
+=================================== FAILURES ===================================
+_ test_each_depth_context_has_evidence_distinct_rationale_records_and_private_method[rw3-cross-conditions] _
+
+skill = 'cross-text', family = 'rw3-cross-conditions', base = 9962292620
+bp = {'skill': 'cross-text', 'method': 'Compare the conditions attached to each author’s position before drawing a connecti...': 'Two texts share a broad goal but use different conditions for accepting an interpretation or recommendation.', ...}
+generator = <function make at 0x10ada7a30>
+
+    @pytest.mark.parametrize('skill,family,base,bp,generator',ROWS,ids=[r[1] for r in ROWS])
+    def test_each_depth_context_has_evidence_distinct_rationale_records_and_private_method(skill,family,base,bp,generator):
+        hashes=set()
+        for variant in range(4):
+            q=wrap(generator(family,base+variant),skill,family,base+variant)
+            assert not validate(q)
+            assert len(q['options'])==4
+            assert len(q['qualityMetadata']['difficultyBasis'])>=2
+>           assert all(len(q['distractorExplanations'][o])>=35 for o in q['options'])
+E           assert False
+E            +  where False = all(<generator object test_each_depth_context_has_evidence_distinct_rationale_records_and_private_method.<locals>.<genexpr> at 0x10b039af0>)
+
+tests/test_english_depth.py:37: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_english_depth.py::test_each_depth_context_has_evidence_distinct_rationale_records_and_private_method[rw3-cross-conditions]
+1 failed, 166 passed in 7.90s
