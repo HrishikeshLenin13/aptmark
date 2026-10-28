@@ -2,7 +2,7 @@
 
 ## Current expansion
 
-Aptmark now contains **5,405 original candidates**: **4,800 Math** and **605 Reading and Writing**, spanning **75 explicit generator families** and all 30 taxonomy skills. This adds 850 candidates from 34 new families to the unchanged 4,555-item foundation. Family variants remain family variants, not claims of 850 different problem structures. Every item is pending review; **0 human-approved and 0 published**.
+Aptmark now contains **5,561 original candidates**: **4,800 Math** and **761 Reading and Writing**, spanning **114 explicit generator families** and all 30 taxonomy skills. The earlier v2 expansion added 850 candidates from 34 families to the 4,555-item foundation; the English-only v3 catalog adds 156 separately authored contexts in 39 further families, preserving all 5,405 earlier records. Family variants remain family variants, not claims of 850 different problem structures. Every item is pending review; **0 human-approved and 0 published**.
 
 ## Official alignment, original content
 
@@ -16,7 +16,7 @@ These sources guide alignment, not copying. No official question or passage is i
 - Reading records exact passage evidence spans and option-specific reasons. Validators check that spans occur, each option has a rationale, and the passage fits a six-character-word length proxy. These checks do **not** establish semantic entailment, a unique defensible interpretation, or SAT-level quality.
 - New difficulty labels carry explicit reasoning demands, not just large-number heuristics. They remain provisional and uncalibrated.
 - Content hashes protect question text, keys, explanations, evidence, rationales, alignment, and quality metadata for new items. Earlier items retain their original replay version and hashes.
-- A bounded batch creates at most 25 candidates per new family. SQLite transactions/checkpoints preserve progress. Repeating the same expansion inserts zero additional items.
+- The v2 bounded batch creates at most 25 candidates per family; the v3 English catalog contains exactly four explicitly authored contexts per family. SQLite transactions/checkpoints preserve progress. Repeating the same expansion inserts zero additional items.
 - A fresh clone rehydrates the ignored generator database from the committed bank rather than silently treating it as empty.
 - Student APIs use an explicit field allowlist. Answer evidence, editorial notes, rationales and unknown future fields stay private before grading. The token-restricted editor exposes evidence, rationale, difficulty basis and source alignment for review.
 
@@ -49,3 +49,7 @@ specific distractor flaws. Report estimated reasoning demands without claiming c
 Return proposed corrections and review notes; do not mark an item human-approved or publish
 it unless a named human reviewer has actually made and recorded that decision.
 ```
+
+## English method-first catalog — 2026-10-27
+
+See [English methods](ENGLISH_METHODS.md) for the 156-item batch, all-skill matrix, finite seed registry, full editorial pack, validation and remaining structural gaps. These items add explicit solution-method metadata to the hashed, private editorial record. No Math questions were generated or revised by this batch.

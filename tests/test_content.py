@@ -122,7 +122,7 @@ def test_new_family_inventory_and_review_metadata():
     from collections import Counter
     families=Counter(q['family'] for q in expanded)
     assert len(families)==34 and set(families.values())=={25}
-    assert len(bank)==5405
+    assert len([q for q in bank if q.get('generatorVersion') in ('1.0.0','2.0.0')])==5405
     assert all(not validate(q) for q in expanded)
     plan=quality_plan(bank)
     assert all(s['families']>=1 for s in plan['skills'])

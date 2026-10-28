@@ -1,0 +1,558 @@
+{
+  "schemaVersion": 1,
+  "generatorVersion": "3.0.0",
+  "source": "https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf",
+  "frameworkVersion": "4 (September 2026)",
+  "sourceUse": "Task categories only; original passages and options.",
+  "formulaStatus": "instructional-heuristic-not-score-formula",
+  "editorialStatus": "pending",
+  "publicationStatus": "candidate",
+  "families": [
+    {
+      "id": "rw3-alternative-cause",
+      "seedBase": 9397033440,
+      "skill": "textual-evidence",
+      "method": "Identify a finding that gives a competing explanation for an observed change without claiming exclusive causation.",
+      "formula": "observed change with A and B; evidence connecting B to change weakens A-only claim",
+      "structure": "Hypothetical account attributes an outcome to one cause although a concurrent factor is present.",
+      "misconceptions": [
+        "supporting the favored cause",
+        "irrelevant operational detail",
+        "describing the outcome again"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-complete-clause-colon",
+      "seedBase": 11158504552,
+      "skill": "boundaries",
+      "method": "Confirm that the words before the blank form a complete clause and that the following material specifies that clause.",
+      "formula": "complete introducing clause : specifying list or noun phrase",
+      "structure": "A complete clause introduces a list or appositive phrase that does not itself form a sentence.",
+      "misconceptions": [
+        "semicolon before a fragment",
+        "period creating a fragment",
+        "conjunction inserted before a specifying list"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-context-polysemy",
+      "seedBase": 11839568856,
+      "skill": "words-context",
+      "method": "Identify the local sense of a familiar word rather than its most common dictionary sense.",
+      "formula": "Local action or description → contextual sense → a substitutable paraphrase.",
+      "structure": "A word with multiple senses appears in a self-contained passage; options distinguish those senses.",
+      "misconceptions": [
+        "literal-for-figurative substitution",
+        "wrong dictionary sense",
+        "ignored local relation"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-context-precision",
+      "seedBase": 9996851448,
+      "skill": "words-context",
+      "method": "Predict the missing meaning from two contextual constraints, then test each word in place.",
+      "formula": "Contextual evidence + required nuance → a precise completion; familiarity alone is insufficient.",
+      "structure": "A short prose explanation contains one lexical blank constrained by surrounding details.",
+      "misconceptions": [
+        "opposite meaning",
+        "topic association without contextual fit",
+        "excessive certainty"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-context-restatement",
+      "seedBase": 10275824392,
+      "skill": "words-context",
+      "method": "Use an explicit contrast or explanatory restatement to constrain the missing word.",
+      "formula": "Contrast/restatement cue + supporting detail → required semantic relation.",
+      "structure": "A blank is clarified by an opposing idea or a following explanation.",
+      "misconceptions": [
+        "reversed contrast",
+        "plausible topic but wrong relation",
+        "unsupported intensity"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-coordinating-join",
+      "seedBase": 7332169328,
+      "skill": "boundaries",
+      "method": "Identify two independent clauses and place the comma before their coordinating conjunction.",
+      "formula": "independent clause , coordinating conjunction + independent clause",
+      "structure": "A contrast, result, addition, or unexpected continuation joins two full clauses.",
+      "misconceptions": [
+        "comma splice without a conjunction",
+        "comma after rather than before a coordinator",
+        "semicolon after a coordinator"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-cross-disagreement",
+      "seedBase": 15264116780,
+      "skill": "cross-text",
+      "method": "State the same disputed proposition for both texts and compare each author’s position.",
+      "formula": "Same proposition + opposing evaluations → specific point of disagreement.",
+      "structure": "Paired passages agree on some background but dispute a criterion, interpretation, or policy.",
+      "misconceptions": [
+        "background agreement treated as dispute",
+        "difference in topic mistaken for disagreement",
+        "unmentioned position"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-cross-evidence-response",
+      "seedBase": 4970083648,
+      "skill": "cross-text",
+      "method": "Apply the second author’s evidence standard or alternative explanation to the first author’s claim.",
+      "formula": "Claim in text 1 + relevant evidence/standard in text 2 → warranted response with limits.",
+      "structure": "A second passage supplies evidence that qualifies, challenges, or narrows an earlier inference.",
+      "misconceptions": [
+        "counterevidence overextended",
+        "evidence ignored",
+        "alternative explanation treated as proof"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-cross-qualified-common",
+      "seedBase": 9383336852,
+      "skill": "cross-text",
+      "method": "Find a proposition both authors support without erasing either author’s qualification.",
+      "formula": "Supported claims in text 1 ∩ supported claims in text 2 → shared limited position.",
+      "structure": "Two passages differ in emphasis but overlap on a conditional or qualified conclusion.",
+      "misconceptions": [
+        "agreement made absolute",
+        "one author’s view attributed to both",
+        "shared topic mistaken for shared claim"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-evidence-boundary",
+      "seedBase": 3202671592,
+      "skill": "inferences",
+      "method": "Infer what a source can establish while respecting an explicit limitation in what it records.",
+      "formula": "observed evidence E under limitation L -> narrow conclusion C, not unsupported broader claim",
+      "structure": "Hypothetical research or historical account contrasts available records with information those records omit.",
+      "misconceptions": [
+        "absence of record as absence of event",
+        "unobserved population generalization",
+        "measurement proxy as direct measurement"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-finite-nonfinite-verb",
+      "seedBase": 7734760124,
+      "skill": "form-structure",
+      "method": "Count existing finite predicates and identify whether the blank must supply a clause predicate or a nonfinite modifier/complement.",
+      "formula": "independent clause needs a finite predicate; modifiers and infinitival complements do not add a new finite clause",
+      "structure": "Variants distinguish a missing main predicate, an infinitival complement, and a reduced passive modifier.",
+      "misconceptions": [
+        "participle substituted for a finite predicate",
+        "infinitive substituted for a finite predicate",
+        "finite clause substituted for a nonfinite phrase"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-genitives-plurals",
+      "seedBase": 13077946204,
+      "skill": "form-structure",
+      "method": "Determine whether the noun marks a count or possession, identify the possessor's number, and place any apostrophe accordingly.",
+      "formula": "regular plural: -s; singular possessive: 's; regular plural possessive: s'; irregular plural possessive: 's",
+      "structure": "Four contexts separately require regular plural possession, singular possession, a nonpossessive plural, and irregular plural possession.",
+      "misconceptions": [
+        "singular versus plural possessive",
+        "apostrophe added to a simple plural",
+        "regular plural possessive applied to an irregular plural"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-independent-boundary",
+      "seedBase": 13994637664,
+      "skill": "boundaries",
+      "method": "Identify the subject and finite predicate on each side of the blank before selecting the boundary.",
+      "formula": "independent clause ; independent clause",
+      "structure": "Two related but independently complete clauses; no coordinating conjunction is supplied.",
+      "misconceptions": [
+        "comma splice",
+        "fused sentences",
+        "punctuation placed after a coordinating conjunction"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-mechanism-completion",
+      "seedBase": 2390430128,
+      "skill": "inferences",
+      "method": "Combine the stated mechanism and case conditions to infer a likely outcome using appropriately limited language.",
+      "formula": "stated mechanism + case conditions -> expected consequence; do not add unstated properties",
+      "structure": "Hypothetical explanatory passage ends at a logical implication of two or more stated premises.",
+      "misconceptions": [
+        "reversing mechanism",
+        "ignoring a limiting condition",
+        "adding an unsupported absolute outcome"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-mechanism-support",
+      "seedBase": 7290401872,
+      "skill": "textual-evidence",
+      "method": "Match a proposed mechanism to an outcome comparison that distinguishes it from a named alternative.",
+      "formula": "mechanism M predicts difference D under controlled contrast; observed D supports M",
+      "structure": "Hypothetical study states a mechanism and an alternative; answer choices describe possible findings.",
+      "misconceptions": [
+        "preference instead of performance",
+        "evidence for the alternative",
+        "nondiagnostic similarity"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-modifier-placement",
+      "seedBase": 13783853152,
+      "skill": "form-structure",
+      "method": "Identify who performs an introductory action or what bears an introductory description, then make that entity the following subject.",
+      "formula": "introductory modifier of X , X + predicate",
+      "structure": "Action, physical description, or comparison must attach to the logical subject rather than a nearby associated noun.",
+      "misconceptions": [
+        "dangling action modifier",
+        "physical description attached to a person rather than an object",
+        "comparison between unlike grammatical referents"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-narrative-shift",
+      "seedBase": 377823772,
+      "skill": "central-ideas",
+      "method": "Integrate a character’s initial stance, a consequential observation, and the final response.",
+      "formula": "initial stance + turning detail + revised response -> bounded character summary",
+      "structure": "Original literary scene with a change in attitude shown through action rather than directly announced.",
+      "misconceptions": [
+        "retaining only the initial attitude",
+        "inventing a motive",
+        "mistaking a setting detail for the central change"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-necessary-condition",
+      "seedBase": 4648712576,
+      "skill": "inferences",
+      "method": "Apply an explicitly required condition without treating that condition as sufficient.",
+      "formula": "eligible -> required condition; not required condition -> not yet eligible; condition alone does not guarantee selection",
+      "structure": "Hypothetical selection or classification account supplies a necessary condition and an item’s status.",
+      "misconceptions": [
+        "affirming the consequent",
+        "ignoring one required condition",
+        "turning a present limit into a permanent one"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-paired-nonessential",
+      "seedBase": 9722373984,
+      "skill": "boundaries",
+      "method": "Remove the nonessential insertion temporarily, check the remaining core clause, and close the opening comma.",
+      "formula": "subject , nonessential insertion , predicate",
+      "structure": "An appositive, relative clause, or parenthetical interrupts a subject-predicate relationship.",
+      "misconceptions": [
+        "unclosed nonessential insertion",
+        "semicolon between subject and predicate",
+        "colon after an incomplete subject phrase"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-pronoun-antecedent",
+      "seedBase": 5239791364,
+      "skill": "form-structure",
+      "method": "Identify the explicitly named inanimate antecedent, then check number and the pronoun's grammatical role.",
+      "formula": "singular antecedent → it/its; plural antecedent → they/their (role-dependent)",
+      "structure": "A clear singular or plural inanimate antecedent requires a matching subject or possessive pronoun.",
+      "misconceptions": [
+        "singular-plural mismatch",
+        "possessive versus contraction confusion",
+        "subject versus object or possessive case"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-purpose-function",
+      "seedBase": 1695793872,
+      "skill": "text-purpose",
+      "method": "Locate the quoted portion in its argumentative context and identify its contribution.",
+      "formula": "Surrounding claim + quoted portion + subsequent use → rhetorical function.",
+      "structure": "A particular sentence or detail serves a concession, qualification, analogy, or demonstration.",
+      "misconceptions": [
+        "content paraphrase without function",
+        "reversal of support",
+        "unsupported causal role"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-purpose-main",
+      "seedBase": 7315041472,
+      "skill": "text-purpose",
+      "method": "Separate what the whole text does from a fact it mentions along the way.",
+      "formula": "Opening concern + development + ending emphasis → whole-text purpose.",
+      "structure": "A compact argument or literary discussion develops a recognizable communicative aim.",
+      "misconceptions": [
+        "detail substituted for purpose",
+        "unsupported authorial aim",
+        "overbroad claim"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-purpose-organization",
+      "seedBase": 8057060012,
+      "skill": "text-purpose",
+      "method": "Track the sequence of rhetorical moves, preserving how later moves relate to earlier ones.",
+      "formula": "Move 1 → move 2 → move 3, with relations intact, → organizational summary.",
+      "structure": "Three linked moves form a mini-argument, interpretation, or problem-response account.",
+      "misconceptions": [
+        "sequence reversal",
+        "invented dispute",
+        "confusing example with counterexample"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-qualified-argument",
+      "seedBase": 722228332,
+      "skill": "central-ideas",
+      "method": "Retain both the advocated position and the condition that limits it.",
+      "formula": "qualified thesis = proposed benefit + stated limitation; example alone != thesis",
+      "structure": "Argument identifies a useful practice, rejects an overextension, and explains the narrower recommendation.",
+      "misconceptions": [
+        "dropping the qualification",
+        "reversing the recommendation",
+        "summarizing a supporting detail only"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-quotation-support",
+      "seedBase": 14128111144,
+      "skill": "textual-evidence",
+      "method": "Choose the quoted action that supplies the specific behavioral evidence required by the interpretation.",
+      "formula": "claim about motive or attitude -> quoted behavior supporting that exact claim",
+      "structure": "An original literary interpretation is paired with four original potential quotations.",
+      "misconceptions": [
+        "matching a repeated object rather than the claim",
+        "confusing preparation with motivation",
+        "selecting a compatible but nondiagnostic detail"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-reconciled-observations",
+      "seedBase": 9039664208,
+      "skill": "central-ideas",
+      "method": "Identify the distinction that allows two apparently conflicting observations to coexist.",
+      "formula": "apparent conflict + differing measurement or condition -> compatible interpretation",
+      "structure": "Hypothetical research account contrasts results and identifies a variable that reconciles them.",
+      "misconceptions": [
+        "discarding one observation",
+        "asserting an untested cause",
+        "overgeneralizing the reconciliation"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-subject-verb-agreement",
+      "seedBase": 633508144,
+      "skill": "form-structure",
+      "method": "Find the grammatical subject's head or coordinated heads, ignore intervening nouns, and match the finite verb's number.",
+      "formula": "singular subject + singular finite verb; plural subject + plural finite verb",
+      "structure": "Prepositional phrases, coordination, or each separate the grammatical subject from a tempting nearby noun.",
+      "misconceptions": [
+        "agreement with a nearby noun",
+        "treating two coordinated heads as singular",
+        "treating each as plural"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-subordinating-join",
+      "seedBase": 13848176156,
+      "skill": "boundaries",
+      "method": "Recognize the introductory subordinating word and attach its dependent clause to the following main clause.",
+      "formula": "introductory dependent clause , independent clause",
+      "structure": "An introductory although, because, when, or if clause must remain attached to a main clause.",
+      "misconceptions": [
+        "semicolon treating a dependent clause as independent",
+        "colon after a dependent clause",
+        "period creating a dependent-clause fragment"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-synthesis-compare",
+      "seedBase": 1672782148,
+      "skill": "synthesis",
+      "method": "Choose a shared comparison dimension and accurately relate the two subjects on it.",
+      "formula": "Requested comparison dimension + matched facts about both subjects → targeted comparison.",
+      "structure": "Notes contain similarities and differences; the stem selects one precise dimension.",
+      "misconceptions": [
+        "wrong comparison dimension",
+        "fact reversal",
+        "unsupported evaluation"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-synthesis-exemplify",
+      "seedBase": 3457147016,
+      "skill": "synthesis",
+      "method": "Connect a specific fact to the requested generalization without claiming more than the notes show.",
+      "formula": "Stated general point + relevant concrete case → supported illustration.",
+      "structure": "Notes mix instances and background; a goal requires an example or a bounded generalization.",
+      "misconceptions": [
+        "isolated detail without connection",
+        "universal claim from limited cases",
+        "irrelevant example"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-synthesis-introduce",
+      "seedBase": 11067412188,
+      "skill": "synthesis",
+      "method": "Choose notes that supply the definition or explanation required by the stated audience and goal.",
+      "formula": "Audience knowledge + rhetorical goal → relevant factual notes → concise synthesis.",
+      "structure": "Bulleted research notes support an introduction or explanation, not a comprehensive summary.",
+      "misconceptions": [
+        "accurate but irrelevant note",
+        "assumed background knowledge",
+        "unsupported mechanism"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-table-claim-support",
+      "seedBase": 11040422204,
+      "skill": "quantitative-evidence",
+      "method": "Locate the table row or column that directly instantiates the stated claim.",
+      "formula": "verbal claim -> relevant labeled quantities -> supporting comparison",
+      "structure": "Hypothetical numerical table accompanies a narrow verbal claim; some distractors are true but off-claim.",
+      "misconceptions": [
+        "true but irrelevant statistic",
+        "reversed column labels",
+        "claim broader than data"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-table-group-comparison",
+      "seedBase": 2518708824,
+      "skill": "quantitative-evidence",
+      "method": "Compare the same outcome across groups within each named condition before choosing the supported statement.",
+      "formula": "within-condition comparison + cross-condition check -> bounded group relationship",
+      "structure": "Hypothetical table crosses groups and conditions; interpretation depends on consistent or changing rankings.",
+      "misconceptions": [
+        "mixing conditions",
+        "one-column generalization",
+        "inferring mechanism from descriptive counts"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-table-trajectory",
+      "seedBase": 3575627860,
+      "skill": "quantitative-evidence",
+      "method": "Read a sequence in order, preserving reversals, stability, and the distinction between a value and a trend.",
+      "formula": "ordered values -> directional pattern; endpoint alone does not establish intermediate trend",
+      "structure": "Hypothetical table gives repeated observations and asks for evidence about a change pattern.",
+      "misconceptions": [
+        "assuming monotonic change from endpoints",
+        "reversing time order",
+        "confusing largest value with largest change"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-tense-aspect",
+      "seedBase": 4378892524,
+      "skill": "form-structure",
+      "method": "Map explicit time cues onto the order and duration of the events before selecting tense and aspect.",
+      "formula": "prior to a past reference → past perfect; continuing past-to-present → present perfect progressive; future cue → future; closed past date → past",
+      "structure": "Four distinct timelines establish prior completion, continuing activity, future scheduling, and a completed dated event.",
+      "misconceptions": [
+        "future tense in a completed past sequence",
+        "present perfect with a closed past event",
+        "past perfect without the required past reference"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-transition-causal",
+      "seedBase": 10912030264,
+      "skill": "transitions",
+      "method": "Identify whether the next statement is a consequence and distinguish causation from sequence.",
+      "formula": "Stated reason or constraint → resulting action/outcome → consequence transition.",
+      "structure": "An explicit condition motivates a later decision or produces a described result.",
+      "misconceptions": [
+        "chronology substituted for cause",
+        "example substituted for effect",
+        "contrast invented"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-transition-concessive",
+      "seedBase": 14610624548,
+      "skill": "transitions",
+      "method": "Compare the first statement’s implication with the next statement’s actual direction.",
+      "formula": "Expected implication ≠ next statement, or paired differences → contrast/concession transition.",
+      "structure": "The second statement limits an expectation or presents a directly contrasting case.",
+      "misconceptions": [
+        "consequence instead of concession",
+        "parallelism instead of contrast",
+        "example instead of reversal"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-transition-elaboration",
+      "seedBase": 5864795048,
+      "skill": "transitions",
+      "method": "Distinguish an example, a restatement, and a procedural next step from a change of argument.",
+      "formula": "General claim → instance; statement → clarification; or completed step → next step.",
+      "structure": "A prose sequence requires one exact relationship, with no synonymous valid alternatives.",
+      "misconceptions": [
+        "cause invented",
+        "opposition invented",
+        "summary substituted for next step"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-unbroken-core-clause",
+      "seedBase": 6416924596,
+      "skill": "boundaries",
+      "method": "Locate the core grammatical dependency and keep an obligatory subject, verb, or complement connection intact.",
+      "formula": "subject + predicate; verb + object; preposition + object; to + infinitive",
+      "structure": "A sentence needs no interrupting boundary inside its core clause or phrase.",
+      "misconceptions": [
+        "comma splitting an essential dependency",
+        "semicolon inside a phrase",
+        "colon before an unfinished constituent"
+      ],
+      "variants": 4
+    }
+  ]
+}

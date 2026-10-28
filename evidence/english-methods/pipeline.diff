@@ -1,0 +1,180 @@
+--- evidence/english-methods/pipeline.original.py	2026-10-20 11:26:22
++++ python/pipeline.py	2026-10-27 20:32:42
+@@ -13,8 +13,10 @@
+ 
+ def canonical(q):
+     fields={k:q.get(k) for k in ('stem','passage','options','correctAnswer','table','diagram','explanation','steps')}
+-    if q.get('generatorVersion') == '2.0.0':
++    if q.get('generatorVersion') in ('2.0.0', '3.0.0'):
+         fields.update({k:q.get(k) for k in ('answerEvidence','distractorExplanations','alignment','qualityMetadata','schemaVersion','contentVersion','generatorVersion','family','seed','section','domain','skill','subskill','type','acceptedResponses','estimatedSeconds','difficulty','difficultyCalibration','source','license','similarityCluster')})
++    if q.get('generatorVersion') == '3.0.0':
++        fields['solutionMethod'] = q.get('solutionMethod')
+     return json.dumps(fields,sort_keys=True,ensure_ascii=False)
+ 
+ def problem_hash(q):
+@@ -40,7 +42,7 @@
+     if q.get('contentHash')!=hashlib.sha256(canonical(q).encode()).hexdigest(): errors.append('hash-mismatch')
+     if q.get('license')!='CC0-1.0-original': errors.append('license')
+     if q.get('problemHash') and q['problemHash']!=problem_hash(q): errors.append('problem-hash-mismatch')
+-    if q.get('generatorVersion')=='2.0.0':
++    if q.get('generatorVersion') in ('2.0.0','3.0.0'):
+         if not q.get('qualityMetadata',{}).get('difficultyBasis'): errors.append('missing-difficulty-basis')
+         if not q.get('alignment',{}).get('source','').startswith('https://satsuite.collegeboard.org/'): errors.append('missing-official-alignment')
+         rationales=q.get('distractorExplanations',{})
+@@ -53,13 +55,36 @@
+             length=len(q.get('passage') or '')/6
+             if not 25<=length<=150: errors.append('passage-length-outside-blueprint')
+             if q.get('type')!='mcq': errors.append('reading-must-be-mcq')
++    if q.get('generatorVersion')=='3.0.0':
++        method=q.get('solutionMethod') or {}
++        if q.get('section')!='rw': errors.append('method-catalog-is-english-only')
++        for key in ('method','formula','structure'):
++            if not isinstance(method.get(key),str) or not method[key].strip():
++                errors.append('missing-solution-method:'+key)
++        if method.get('blueprintId')!=q.get('family') or method.get('skill')!=q.get('skill'):
++            errors.append('method-blueprint-mismatch')
++        if method.get('formulaStatus')!='instructional-heuristic-not-score-formula':
++            errors.append('method-formula-status')
++        if method.get('authoredVariantCount')!=4 or type(method.get('variantIndex')) is not int or method.get('variantIndex') not in range(4) or method.get('variantIndex') != q.get('seed',-1)%4:
++            errors.append('method-variant-bounds')
++        if not isinstance(method.get('misconceptions'),list) or not method['misconceptions']:
++            errors.append('missing-method-misconceptions')
++        if len(q.get('steps',[]))<2: errors.append('missing-method-steps')
++        table=q.get('table')
++        if q.get('skill')=='quantitative-evidence' and not table: errors.append('missing-quantitative-table')
++        if table:
++            headers=table.get('headers',[]); rows=table.get('rows',[])
++            if len(headers)<2 or len(set(headers))!=len(headers) or not all(isinstance(h,str) and h.strip() for h in headers):
++                errors.append('invalid-table-headers')
++            if not rows or any(not isinstance(row,list) or len(row)!=len(headers) for row in rows):
++                errors.append('invalid-table-shape')
+     if q.get('publicationStatus')=='published' and (q.get('editorialStatus')!='approved' or len(str(q.get('reviewer') or '').strip())<3 or len(str(q.get('reviewNotes') or '').strip())<15): errors.append('unreviewed-publication')
+     return errors
+ 
+ def wrap(raw,skill,family,seed):
+     meta=BY_ID[skill]; q=dict(raw); version=raw.get('generatorVersion','1.0.0')
+     q.update(id=f'{skill}-{seed:08d}',schemaVersion=1,contentVersion=1,section=meta['section'],domain=meta['domain'],skill=skill,subskill=family,type='mcq',passageType='self-contained-hypothetical' if meta['section']=='rw' else 'math',acceptedResponses=[],difficultyCalibration='provisional-uncalibrated',estimatedSeconds=80 if meta['section']=='math' else 65,family=family,generatorVersion=version,seed=seed,source='Folio deterministic original generator / '+family,license='CC0-1.0-original',editorialStatus='pending',publicationStatus='candidate',reviewer=None,reviewNotes=None,createdAt=EPOCH,updatedAt=EPOCH,similarityCluster=family,misconceptionTags=['unsupported-inference'] if meta['section']=='rw' else ['procedure-error'],accessibility={'textAlternative':(raw.get('diagram') or {}).get('alt'),'mathFormat':'latex-delimited','tableHeaders':bool(raw.get('table'))},calibration={'model':'Rasch-1PL-provisional','difficulty':{'easy':-1,'medium':0,'hard':1}[raw['difficulty']],'n':0,'standardError':None},generationCostUSD=0)
+-    if version=='2.0.0':
++    if version in ('2.0.0','3.0.0'):
+         q['source']='Aptmark deterministic original generator / '+family
+         q['estimatedSeconds']=70+10*len(raw.get('qualityMetadata',{}).get('difficultyBasis',[]))
+     if meta['section']=='math' and seed%4==0 and not raw.get('forceMCQ') and raw['verification']!='logical-template-requires-editorial-review':
+@@ -67,6 +92,10 @@
+     q.pop('forceMCQ',None)
+     q['distractorExplanations']=raw.get('distractorExplanations') or {v:('This is the keyed response. '+q['explanation'] if v==q['correctAnswer'] else 'This response does not satisfy the question. Compare it with the verified reasoning: '+q['explanation']) for v in q['options']}
+     q['hints']=[f'Which relationship or rule connects the given information to {meta["name"].lower()}?', q['steps'][0]]
++    if version=='3.0.0':
++        q['hints']=[raw['solutionMethod']['method'], q['steps'][0]]
++        q['misconceptionTags']=list(raw['solutionMethod']['misconceptions'])
++        q['createdAt']=q['updatedAt']='2026-10-27T00:00:00Z'
+     q['contentHash']=hashlib.sha256(canonical(q).encode()).hexdigest()
+     q['problemHash']=problem_hash(q)
+     q['validationResults']={'structural':not validate(q),'answerCheck':raw['verification'],'educationalValidity':'human-review-required'}
+@@ -133,6 +162,9 @@
+ 
+ 
+ def replay_raw(q):
++    if q.get('generatorVersion')=='3.0.0':
++        from english_methods import make as make_english
++        return make_english(q['family'],q['seed'])
+     if q.get('generatorVersion')=='2.0.0':
+         return make_rw2(q['family'],q['seed']) if q['section']=='rw' else make_math2(q['family'],q['seed'])
+     return make(q['family'],q['seed']) if q['section']=='math' else make_reading(q['skill'],q['seed']-1)
+@@ -204,12 +236,60 @@
+        'deduplicationMethod':'exact problem hashes + explicit family clusters + number-normalized exact text; semantic equivalence not established',
+        'nextAction':'Review representative families, improve missing difficulty bands and distractors, then scale reviewed templates. Do not auto-publish.'}
+ 
++def expand_english(per_family=4):
++    """Insert only authored English variants, atomically and idempotently."""
++    from english_methods import registry, blueprint_manifest
++    if not 1<=per_family<=4:
++        raise ValueError('Require 1 <= per-family <= 4; author new contexts before expanding this catalog.')
++    catalog=registry()
++    if {row[0] for row in catalog}!={s['id'] for s in SKILLS if s['section']=='rw'}:
++        raise ValueError('English catalog must cover exactly the eleven Reading and Writing skills.')
++    db=connect(); inserted=0; results=[]
++    try:
++        with db:
++            for skill,family,base,blueprint,generator in catalog:
++                for variant in range(per_family):
++                    seed=base+variant
++                    q=wrap(generator(family,seed),skill,family,seed)
++                    errors=validate(q)
++                    if errors: raise ValueError(f'{family}/{variant}: {errors}')
++                    existing=db.execute('SELECT data FROM candidates WHERE id=?',(q['id'],)).fetchone()
++                    if existing:
++                        if json.loads(existing[0])['contentHash']!=q['contentHash']:
++                            raise ValueError('Existing authored variant changed; version it explicitly: '+q['id'])
++                        continue
++                    # Unlike INSERT OR IGNORE, collisions abort the batch rather
++                    # than silently dropping a promised authored variant.
++                    db.execute('INSERT INTO candidates VALUES (?,?,?,?,?)',
++                        (q['id'],skill,q['problemHash'],family,json.dumps(q,ensure_ascii=False)))
++                    inserted+=1
++                have=db.execute('SELECT count(*) FROM candidates WHERE family=?',(family,)).fetchone()[0]
++                results.append({'skill':skill,'family':family,'candidates':have,'authoredVariants':blueprint['variants']})
++        export_all(db)
++        (CONTENT/'blueprints').mkdir(exist_ok=True)
++        (CONTENT/'blueprints/english-methods.json').write_text(json.dumps(blueprint_manifest(),indent=2,ensure_ascii=False)+'\n')
++        rows=[json.loads(row[0]) for row in db.execute('SELECT data FROM candidates')]
++        new=[q for q in rows if q.get('generatorVersion')=='3.0.0']
++        summary={'generatorVersion':'3.0.0','candidates':len(new),'families':results,
++            'skills':dict(sorted(collections.Counter(q['skill'] for q in new).items())),
++            'keyPositions':dict(sorted(collections.Counter(chr(65+q['options'].index(q['correctAnswer'])) for q in new).items())),
++            'approved':sum(q['editorialStatus']=='approved' for q in new),
++            'published':sum(q['publicationStatus']=='published' for q in new),
++            'calibration':'provisional-uncalibrated','mathGeneratedByThisCommand':0,
++            'finiteCatalog':True,'semanticUniqueness':'not-established; family clusters retained'}
++        (CONTENT/'manifests/english-methods.json').write_text(json.dumps(summary,indent=2)+'\n')
++        (CONTENT/'manifests/quality-plan.json').write_text(json.dumps(quality_plan(rows),indent=2)+'\n')
++        print(json.dumps({'inserted':inserted,'englishCandidates':len(new),'skills':len(summary['skills']),
++                          'mathGenerated':0,'publishedByGeneration':0}))
++        return {'inserted':inserted,**summary}
++    finally:
++        db.close()
+ 
+-def review_pack(rows,output,per_family=1):
++def review_pack(rows,output,per_family=1,version='2.0.0'):
+     if not 1<=per_family<=5: raise ValueError('per-family must be between 1 and 5')
+     groups=collections.defaultdict(list)
+     for q in rows:
+-        if q.get('generatorVersion')=='2.0.0': groups[q['family']].append(q)
++        if q.get('generatorVersion')==version: groups[q['family']].append(q)
+     lines=['# Aptmark editorial review pack','',
+         'Unapproved original candidates. This pack contains answer keys; it is for editorial review, not student delivery.',
+         'Review: answer unambiguity, evidence, distractors, complexity, accessibility, and topic diversity. Generation is not approval.','']
+@@ -224,6 +304,10 @@
+             lines += ['', 'Evidence: '+json.dumps(q.get('answerEvidence',{}),ensure_ascii=False),
+                 'Difficulty basis: '+', '.join(q['qualityMetadata']['difficultyBasis']),
+                 'Reviewer: ______  Decision: ______  Notes: ______','']
++            if q.get('solutionMethod'):
++                lines += ['Method: '+q['solutionMethod']['method'],
++                          'Rule / heuristic: '+q['solutionMethod']['formula'],
++                          'Structure: '+q['solutionMethod']['structure'],'']
+     Path(output).parent.mkdir(parents=True,exist_ok=True)
+     Path(output).write_text('\n'.join(lines)+'\n')
+     print(json.dumps({'families':len(groups),'items':sum(min(per_family,len(v)) for v in groups.values()),'path':output,'approved':0}))
+@@ -235,11 +319,14 @@
+     e=sub.add_parser('export-approved'); e.add_argument('--output',required=True)
+     s=sub.add_parser('sample'); s.add_argument('--count',type=int,default=20); s.add_argument('--seed',type=int,default=2026)
+     x=sub.add_parser('expand'); x.add_argument('--per-family',type=int,default=25); x.add_argument('--max-per-family',type=int,default=25)
++    english=sub.add_parser('expand-english'); english.add_argument('--per-family',type=int,default=4)
+     sub.add_parser('plan')
+     pack=sub.add_parser('review-pack'); pack.add_argument('--output',default='content/reviewed/review-pack.md'); pack.add_argument('--per-family',type=int,default=1)
++    pack.add_argument('--version',choices=['2.0.0','3.0.0'],default='2.0.0')
+     args=p.parse_args()
+     if args.cmd=='generate': return generate(args.math)
+     if args.cmd=='expand': return expand(args.per_family,args.max_per_family)
++    if args.cmd=='expand-english': return expand_english(args.per_family)
+     db=connect(); rows=[json.loads(r[0]) for r in db.execute('SELECT data FROM candidates ORDER BY id')]
+     if args.cmd=='validate':
+         failures=[{'id':q['id'],'errors':validate(q)} for q in rows if validate(q)]
+@@ -251,7 +338,7 @@
+         print(json.dumps({'checked':len(rows),'replayed':len(rows) if args.replay else 0,'failures':failures})); sys.exit(bool(failures))
+     if args.cmd=='report': report(db)
+     if args.cmd=='plan': print(json.dumps(quality_plan(rows),indent=2))
+-    if args.cmd=='review-pack': review_pack(rows,args.output,args.per_family)
++    if args.cmd=='review-pack': review_pack(rows,args.output,args.per_family,args.version)
+     if args.cmd=='dedupe': print(json.dumps({'exactDuplicates':len(rows)-len({problem_hash(q) for q in rows}),'templateClusters':dict(collections.Counter(q['family'] for q in rows)),'semanticSimilarity':'not-implemented; template clusters explicitly reported'}))
+     if args.cmd=='export-approved': Path(args.output).write_text(json.dumps([q for q in rows if q['publicationStatus']=='published' and not validate(q)],indent=2))
+     if args.cmd=='sample':

@@ -40,3 +40,28 @@ it("never serializes editorial answer evidence or future unknown fields before g
   expect(output.id).toBe(q.id);
   expect(output.options).toEqual(q.options);
 });
+
+it("keeps every new English method and answer rationale private before grading", () => {
+  const bank = JSON.parse(
+    fs.readFileSync("content/bank.json", "utf8"),
+  ) as Question[];
+  const added = bank.filter((q) => q.generatorVersion === "3.0.0");
+  expect(added.length).toBeGreaterThanOrEqual(156);
+  for (const q of added) {
+    const output = serializePublicQuestion(q);
+    for (const key of [
+      "solutionMethod",
+      "answerEvidence",
+      "distractorExplanations",
+      "steps",
+      "hints",
+      "explanation",
+      "correctAnswer",
+      "qualityMetadata",
+      "alignment",
+    ])
+      expect(output).not.toHaveProperty(key);
+    expect(output.options).toHaveLength(4);
+    expect(output.section).toBe("rw");
+  }
+});

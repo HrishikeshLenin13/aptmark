@@ -9,6 +9,7 @@
 - **Practice that responds.** Build focused Math or Reading and Writing sets, then let each submitted response guide what comes next.
 - **Build the idea first.** Explore 12 original foundation lesson previews, worked examples, and saved understanding checks. Lesson completion stays separate from independent practice mastery.
 - **Find your next step.** Search pages and skills, open saved questions, or choose vocabulary and challenging practice from a keyboard-accessible workspace.
+- **English, method first.** Explore original Reading and Writing candidates across all 11 skills, with evidence-based explanations and distinct question structures.
 - **Understand the reasoning.** Review worked explanations, progressive hints, and common-mistake notes alongside each question.
 - **Make space for study.** Shape a weekly plan around your available days and export its real study reminders to a portable calendar file.
 - **Keep your progress honest.** See actual practice history, skill-level signals, review reminders, and study plans—without invented activity or unsupported score predictions.
@@ -21,7 +22,7 @@ Aptmark is designed around transparent recommendations and an explicit editorial
 
 ## Current preview
 
-Aptmark is an active local preview, not a finished hosted service. Its content pipeline currently contains **5,405 generated candidates**—4,800 Math and 605 Reading and Writing—across **30 skill areas** and **75 generator families**. No candidates have received human editorial approval, none are published, and the learning model has not been empirically calibrated. Automated checks are useful quality controls, not a substitute for editorial review or student-outcome research. Full-length SAT forms, hosted accounts, cloud synchronization, and a production deployment remain future work.
+Aptmark is an active local preview, not a finished hosted service. Its content pipeline currently contains **5,561 generated candidates**—4,800 Math and 761 Reading and Writing—across **30 skill areas** and **114 generator families**. No candidates have received human editorial approval, none are published, and the learning model has not been empirically calibrated. Automated checks are useful quality controls, not a substitute for editorial review or student-outcome research. Full-length SAT forms, hosted accounts, cloud synchronization, and a production deployment remain future work.
 
 Aptmark is independent of College Board. SAT is a trademark of College Board.
 
@@ -46,3 +47,5 @@ Check it with `npm test`; the full project checks remain in [Development notes](
 - [Feature usage and API contracts](docs/RECENT_IMPROVEMENTS.md)
 - [Troubleshooting and recovery](docs/TROUBLESHOOTING.md)
 - [Contributor checks and change review](docs/CONTRIBUTOR_CHECKLIST.md)
+
+See [English methods and question structures](docs/ENGLISH_METHODS.md) for the latest original Reading and Writing batch.

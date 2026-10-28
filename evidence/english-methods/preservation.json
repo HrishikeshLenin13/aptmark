@@ -1,0 +1,14 @@
+{
+  "priorRecordsUnchanged": 5405,
+  "mathRecordsUnchanged": 4800,
+  "addedEnglish": 156,
+  "skills": 11,
+  "families": 39,
+  "structuralDuplicates": 0,
+  "status": "candidate-pending-human-review",
+  "difficulty": {
+    "easy": 15,
+    "medium": 114,
+    "hard": 27
+  }
+}

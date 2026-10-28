@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "targetPublished": 10000,
-  "candidates": 5405,
+  "candidates": 5561,
   "published": 0,
   "publishableTargetMet": false,
   "candidateTargetMet": false,
@@ -11,15 +11,15 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 358,
-      "candidates": 55,
+      "candidates": 67,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 358,
-      "candidateDeficit": 303,
-      "families": 3,
+      "candidateDeficit": 291,
+      "families": 6,
       "difficulty": {
-        "medium": 30,
-        "hard": 25
+        "medium": 38,
+        "hard": 29
       },
       "missingDifficultyBands": [
         "easy"
@@ -30,15 +30,15 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 357,
-      "candidates": 55,
+      "candidates": 67,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 357,
-      "candidateDeficit": 302,
-      "families": 3,
+      "candidateDeficit": 290,
+      "families": 6,
       "difficulty": {
-        "medium": 30,
-        "hard": 25
+        "medium": 35,
+        "hard": 32
       },
       "missingDifficultyBands": [
         "easy"
@@ -49,34 +49,33 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 358,
-      "candidates": 55,
+      "candidates": 67,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 358,
-      "candidateDeficit": 303,
-      "families": 3,
+      "candidateDeficit": 291,
+      "families": 6,
       "difficulty": {
-        "medium": 30,
-        "hard": 25
+        "medium": 38,
+        "hard": 26,
+        "easy": 3
       },
-      "missingDifficultyBands": [
-        "easy"
-      ]
+      "missingDifficultyBands": []
     },
     {
       "id": "inferences",
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 358,
-      "candidates": 55,
+      "candidates": 67,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 358,
-      "candidateDeficit": 303,
-      "families": 3,
+      "candidateDeficit": 291,
+      "families": 6,
       "difficulty": {
-        "medium": 30,
-        "hard": 25
+        "medium": 40,
+        "hard": 27
       },
       "missingDifficultyBands": [
         "easy"
@@ -87,18 +86,18 @@
       "domain": "Craft and Structure",
       "section": "rw",
       "target": 513,
-      "candidates": 55,
+      "candidates": 67,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 513,
-      "candidateDeficit": 458,
-      "families": 3,
+      "candidateDeficit": 446,
+      "families": 6,
       "difficulty": {
-        "medium": 55
+        "medium": 65,
+        "hard": 2
       },
       "missingDifficultyBands": [
-        "easy",
-        "hard"
+        "easy"
       ]
     },
     {
@@ -106,15 +105,15 @@
       "domain": "Craft and Structure",
       "section": "rw",
       "target": 513,
-      "candidates": 55,
+      "candidates": 67,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 513,
-      "candidateDeficit": 458,
-      "families": 3,
+      "candidateDeficit": 446,
+      "families": 6,
       "difficulty": {
-        "medium": 30,
-        "hard": 25
+        "medium": 40,
+        "hard": 27
       },
       "missingDifficultyBands": [
         "easy"
@@ -125,15 +124,15 @@
       "domain": "Craft and Structure",
       "section": "rw",
       "target": 513,
-      "candidates": 55,
+      "candidates": 67,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 513,
-      "candidateDeficit": 458,
-      "families": 3,
+      "candidateDeficit": 446,
+      "families": 6,
       "difficulty": {
-        "medium": 5,
-        "hard": 50
+        "medium": 13,
+        "hard": 54
       },
       "missingDifficultyBands": [
         "easy"
@@ -144,14 +143,14 @@
       "domain": "Expression of Ideas",
       "section": "rw",
       "target": 550,
-      "candidates": 55,
+      "candidates": 67,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 550,
-      "candidateDeficit": 495,
-      "families": 3,
+      "candidateDeficit": 483,
+      "families": 6,
       "difficulty": {
-        "medium": 55
+        "medium": 67
       },
       "missingDifficultyBands": [
         "easy",
@@ -163,18 +162,18 @@
       "domain": "Expression of Ideas",
       "section": "rw",
       "target": 550,
-      "candidates": 55,
+      "candidates": 67,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 550,
-      "candidateDeficit": 495,
-      "families": 3,
+      "candidateDeficit": 483,
+      "families": 6,
       "difficulty": {
-        "medium": 55
+        "medium": 66,
+        "hard": 1
       },
       "missingDifficultyBands": [
-        "easy",
-        "hard"
+        "easy"
       ]
     },
     {
@@ -182,38 +181,36 @@
       "domain": "Standard English Conventions",
       "section": "rw",
       "target": 715,
-      "candidates": 55,
+      "candidates": 79,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 715,
-      "candidateDeficit": 660,
-      "families": 3,
+      "candidateDeficit": 636,
+      "families": 9,
       "difficulty": {
-        "medium": 55
+        "medium": 71,
+        "easy": 5,
+        "hard": 3
       },
-      "missingDifficultyBands": [
-        "easy",
-        "hard"
-      ]
+      "missingDifficultyBands": []
     },
     {
       "id": "form-structure",
       "domain": "Standard English Conventions",
       "section": "rw",
       "target": 715,
-      "candidates": 55,
+      "candidates": 79,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 715,
-      "candidateDeficit": 660,
-      "families": 3,
+      "candidateDeficit": 636,
+      "families": 9,
       "difficulty": {
-        "medium": 55
+        "medium": 71,
+        "hard": 1,
+        "easy": 7
       },
-      "missingDifficultyBands": [
-        "easy",
-        "hard"
-      ]
+      "missingDifficultyBands": []
     },
     {
       "id": "linear-one",

@@ -1,6 +1,6 @@
 # Aptmark implementation status
 
-Updated: 2026-10-18. Active local development; not a complete or hosted release.
+Updated: 2026-10-27. Active local development; not a complete or hosted release.
 
 ## Implemented
 - SAT specification and source research, a 30-skill taxonomy, and weighted coverage allocation.
@@ -17,9 +17,9 @@ Updated: 2026-10-18. Active local development; not a complete or hosted release.
 - PostgreSQL/Supabase migration scaffold; no active cloud adapter.
 
 ## Content inventory
-The pipeline contains 4,800 Math and 605 Reading and Writing candidates (5,405 total), across 30 skills and 75 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
+The pipeline contains 4,800 Math and 761 Reading and Writing candidates (5,561 total), across 30 skills and 114 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
 
-## Verification record
+## Earlier website verification record
 - 48 TypeScript tests and 83 Python tests passed.
 - 17 isolated browser integration tests passed for practice, scoring, key privacy, drafts, bookmarks, notes, account lifecycle, assessment recovery, diagnostic transitions, ownership isolation, and publication gates.
 - All 5,405 candidates replayed from recorded seeds with zero mismatches or structural failures; exact problem-text duplicate count is zero. The 75 template clusters remain separately reported.
@@ -59,3 +59,11 @@ See [Development notes](docs/DEVELOPMENT.md) for local preview, content workflow
 - Added authenticated, owner-derived .ics downloads from the planner. Events use all-day date values, exclusive next-day ends, private non-cacheable responses, escaped text and Unicode-safe line folding. No email/raw account IDs or session tokens are embedded.
 - Five calendar unit tests and one isolated download/ownership/accessibility browser test passed. The latest complete suite remains the 17-test studio run; this additional calendar test passed separately.
 - Calendar screenshots passed automated accessibility and overflow checks at 1440, 820 and 390px and were visually inspected. This is portable export, not external calendar sync. See docs/CALENDAR_EXPORT.md and evidence/calendar/.
+
+## English method catalog — 2026-10-27
+- Current user priority: original SAT-style Reading and Writing generation across all 11 skills; defer Math expansion. The earlier website-first note is historical, not the present generation priority.
+- Added 156 separately authored contexts in 39 families, with four finite variants each. Methods, rules/heuristics, structures, evidence and option-specific rationales are retained. The command adds no Math; all 5,405 prior records are unchanged.
+- Generator version 3.0.0 hashes method metadata, bounds the authored catalog, aborts collisions, and keeps candidate/publication states separate. Repeated generation inserts zero.
+- See docs/ENGLISH_METHODS.md, content/blueprints/english-methods.json, the complete editorial pack and evidence/english-methods/. No human approvals, publications or empirical calibration are asserted.
+- Prior uncommitted pacing work remains separate from this English content change; its earlier browser failures are not represented as passing verification.
+- English verification: 129 Python tests; 187 TypeScript workspace tests (182 excluding the separate pacing work); typecheck and production build passed. The corrected focused browser run passed five English/studio tests. Earlier failing browser attempts are retained in the evidence and are not acceptance runs. The broader English integration run is recorded separately when complete.
