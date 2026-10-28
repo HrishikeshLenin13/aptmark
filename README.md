@@ -14,7 +14,7 @@
 - **Make space for study.** Shape a weekly plan around your available days and export its real study reminders to a portable calendar file.
 - **Keep your progress honest.** See actual practice history, skill-level signals, review reminders, and study plans—without invented activity or unsupported score predictions.
 - **Prepare with structure.** Use a short diagnostic, a timed Math assessment preview, a formula reference, and a simple calculator.
-- **Keep content accountable.** Aptmark separates generated candidates from reviewed and published questions; content tools record validation, editorial decisions, and release status.
+- **Keep content accountable.** Aptmark separates generated candidates from reviewed and published questions; private review tools expose question methods, reasoning steps, distractor patterns, validation, and editorial release status.
 
 ## Learning, not guesswork
 

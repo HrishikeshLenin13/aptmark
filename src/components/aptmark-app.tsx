@@ -4,6 +4,11 @@ import Link from "next/link";
 import * as NavigationDialog from "@radix-ui/react-dialog";
 import { WorkspaceSearch } from "./workspace-search";
 import { LearningCenter } from "./learning-center";
+import { EditorialMethodReview } from "./editorial-method-review";
+import type {
+  EditorialFamily,
+  EditorialPagination,
+} from "@/lib/editorial-catalog";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   ArrowUpRight,
@@ -3101,12 +3106,14 @@ function ContentStudio({
   refresh: () => Promise<void>;
   notify: (s: string) => void;
 }) {
+  const editorialRequestEpoch = useRef(0);
   const [token, setToken] = useState(""),
     [reviewer, setReviewer] = useState(""),
     [notes, setNotes] = useState(""),
     [filter, setFilter] = useState(""),
     [offset, setOffset] = useState(0),
-    [generationVersion, setGenerationVersion] = useState(""),
+    [generationVersion, setGenerationVersion] = useState("3.0.0"),
+    [family, setFamily] = useState(""),
     [data, setData] = useState<{
       questions: (PublicQuestion & {
         correctAnswer: string;
@@ -3118,7 +3125,16 @@ function ContentStudio({
           | "qualityMetadata"
           | "distractorExplanations"
           | "alignment"
+          | "solutionMethod"
         >)[];
+      families: EditorialFamily[];
+      counts: {
+        matching: number;
+        pending: number;
+        approved: number;
+        published: number;
+      };
+      pagination: EditorialPagination;
       reports: {
         id: string;
         question_id: string;
@@ -3128,49 +3144,76 @@ function ContentStudio({
     } | null>(null),
     [selected, setSelected] = useState(0),
     [error, setError] = useState(""),
-    [busy, setBusy] = useState(false);
+    [busy, setBusy] = useState(false),
+    [reviewing, setReviewing] = useState(false);
   const fetchQueue = async (
     at = offset,
     sk = filter,
     version = generationVersion,
+    selectedFamily = family,
   ) => {
+    const requestEpoch = ++editorialRequestEpoch.current;
+    setNotes("");
     setBusy(true);
     setError("");
     try {
       const d = await api<NonNullable<typeof data>>(
         "admin?" +
-          new URLSearchParams({ skill: sk, offset: String(at), version }),
+          new URLSearchParams({
+            skill: sk,
+            offset: String(at),
+            version,
+            family: selectedFamily,
+          }),
         undefined,
         { "x-admin-token": token },
       );
+      if (requestEpoch !== editorialRequestEpoch.current) return;
       setData(d);
+      setNotes("");
       setSelected(0);
-      setOffset(at);
+      setOffset(d.pagination.offset);
     } catch (e) {
-      setError((e as Error).message);
+      if (requestEpoch === editorialRequestEpoch.current)
+        setError((e as Error).message);
     } finally {
-      setBusy(false);
+      if (requestEpoch === editorialRequestEpoch.current) setBusy(false);
     }
   };
   const review = async (action: string) => {
     const q = data?.questions[selected];
     if (!q) return;
+    const mutationEpoch = ++editorialRequestEpoch.current;
+    let followupEpoch: number | undefined;
     setError("");
     setBusy(true);
+    setReviewing(true);
     try {
       await api(
         "admin/review",
         { questionId: q.id, action, reviewer, notes },
         { "x-admin-token": token },
       );
+      if (mutationEpoch !== editorialRequestEpoch.current) return;
+      followupEpoch = mutationEpoch + 1;
       await fetchQueue();
+      if (followupEpoch !== editorialRequestEpoch.current) return;
       await refresh();
+      if (followupEpoch !== editorialRequestEpoch.current) return;
       notify("Editorial decision saved with an audit record.");
       setNotes("");
     } catch (e) {
-      setError((e as Error).message);
+      if (
+        [mutationEpoch, followupEpoch].includes(editorialRequestEpoch.current)
+      )
+        setError((e as Error).message);
     } finally {
-      setBusy(false);
+      if (
+        [mutationEpoch, followupEpoch].includes(editorialRequestEpoch.current)
+      ) {
+        setReviewing(false);
+        setBusy(false);
+      }
     }
   };
   const q = data?.questions[selected];
@@ -3282,11 +3325,13 @@ function ContentStudio({
               <label>
                 Skill
                 <select
+                  disabled={reviewing}
                   aria-label="Editorial skill"
                   value={filter}
                   onChange={(e) => {
                     setFilter(e.target.value);
-                    void fetchQueue(0, e.target.value);
+                    setFamily("");
+                    void fetchQueue(0, e.target.value, generationVersion, "");
                   }}
                 >
                   <option value="">All skills</option>
@@ -3301,20 +3346,47 @@ function ContentStudio({
                 Generation batch
                 <select
                   value={generationVersion}
+                  disabled={reviewing}
                   onChange={(event) => {
                     setGenerationVersion(event.target.value);
-                    void fetchQueue(0, filter, event.target.value);
+                    setFamily("");
+                    void fetchQueue(0, filter, event.target.value, "");
                   }}
                 >
                   <option value="">All generations</option>
+                  <option value="3.0.0">English method catalog</option>
                   <option value="2.0.0">Evidence-mapped expansion</option>
                   <option value="1.0.0">Original pilot</option>
+                </select>
+              </label>
+              <label>
+                Question family
+                <select
+                  disabled={reviewing || busy}
+                  aria-label="Editorial family"
+                  value={family}
+                  onChange={(event) => {
+                    setFamily(event.target.value);
+                    void fetchQueue(
+                      0,
+                      filter,
+                      generationVersion,
+                      event.target.value,
+                    );
+                  }}
+                >
+                  <option value="">All families</option>
+                  {data.families.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.id} ({item.count})
+                    </option>
+                  ))}
                 </select>
               </label>
               <Button
                 variant="secondary"
                 size="small"
-                disabled={offset === 0 || busy}
+                disabled={!data.pagination.hasPrevious || busy}
                 onClick={() => fetchQueue(Math.max(0, offset - 50))}
               >
                 Previous batch
@@ -3322,7 +3394,7 @@ function ContentStudio({
               <Button
                 variant="secondary"
                 size="small"
-                disabled={data.questions.length < 50 || busy}
+                disabled={!data.pagination.hasNext || busy}
                 onClick={() => fetchQueue(offset + 50)}
               >
                 Next batch
@@ -3331,21 +3403,58 @@ function ContentStudio({
                 variant="ghost"
                 size="small"
                 onClick={() => {
+                  editorialRequestEpoch.current++;
                   setData(null);
                   setToken("");
+                  setNotes("");
+                  setBusy(false);
+                  setReviewing(false);
                 }}
               >
                 Lock workspace
               </Button>
             </div>
+            <dl
+              className="editor-catalog-counts"
+              aria-label="Filtered editorial inventory"
+            >
+              <div>
+                <dt>Matching items</dt>
+                <dd>{data.counts.matching.toLocaleString()}</dd>
+              </div>
+              <div>
+                <dt>Pending review</dt>
+                <dd>{data.counts.pending.toLocaleString()}</dd>
+              </div>
+              <div>
+                <dt>Recorded approvals</dt>
+                <dd>{data.counts.approved.toLocaleString()}</dd>
+              </div>
+              <div>
+                <dt>Published</dt>
+                <dd>{data.counts.published.toLocaleString()}</dd>
+              </div>
+            </dl>
+            {busy && (
+              <p className="editor-catalog-status" role="status">
+                {reviewing
+                  ? "Saving review decision…"
+                  : "Loading review items…"}
+              </p>
+            )}
             {q ? (
-              <div className="editor-layout">
+              <div className="editor-layout" aria-busy={busy}>
                 <div className="editor-queue">
                   {data.questions.map((q, i) => (
                     <button
                       key={q.id}
                       className={selected === i ? "selected" : ""}
-                      onClick={() => setSelected(i)}
+                      disabled={reviewing}
+                      aria-pressed={selected === i}
+                      onClick={() => {
+                        setSelected(i);
+                        setNotes("");
+                      }}
                     >
                       <span>{q.id}</span>
                       <small>
@@ -3368,10 +3477,13 @@ function ContentStudio({
                   </h3>
                   {q.table && (
                     <table className="question-table">
+                      <caption>Question data for editorial review</caption>
                       <thead>
                         <tr>
                           {q.table.headers.map((h) => (
-                            <th key={h}>{h}</th>
+                            <th key={h} scope="col">
+                              {h}
+                            </th>
                           ))}
                         </tr>
                       </thead>
@@ -3400,6 +3512,7 @@ function ContentStudio({
                   <p>
                     <MathText text={q.explanation} />
                   </p>
+                  <EditorialMethodReview question={q} />
                   {q.answerEvidence && (
                     <details open>
                       <summary>Passage evidence for review</summary>
@@ -3465,6 +3578,7 @@ function ContentStudio({
                     Named human reviewer
                     <input
                       value={reviewer}
+                      disabled={busy}
                       onChange={(e) => setReviewer(e.target.value)}
                       minLength={3}
                     />
@@ -3473,6 +3587,7 @@ function ContentStudio({
                     Review notes
                     <textarea
                       value={notes}
+                      disabled={busy}
                       onChange={(e) => setNotes(e.target.value)}
                       minLength={15}
                       placeholder="Record the answer verification, ambiguity review, distractor quality, and any concerns."
@@ -3482,7 +3597,10 @@ function ContentStudio({
                     <Button
                       onClick={() => review("approve")}
                       disabled={
-                        busy || reviewer.length < 3 || notes.length < 15
+                        busy ||
+                        !!error ||
+                        reviewer.length < 3 ||
+                        notes.length < 15
                       }
                     >
                       Approve
@@ -3491,7 +3609,10 @@ function ContentStudio({
                       variant="secondary"
                       onClick={() => review("reject")}
                       disabled={
-                        busy || reviewer.length < 3 || notes.length < 15
+                        busy ||
+                        !!error ||
+                        reviewer.length < 3 ||
+                        notes.length < 15
                       }
                     >
                       Reject
@@ -3507,6 +3628,7 @@ function ContentStudio({
                       }
                       disabled={
                         busy ||
+                        !!error ||
                         q.editorialStatus !== "approved" ||
                         reviewer.length < 3 ||
                         notes.length < 15
@@ -3520,7 +3642,20 @@ function ContentStudio({
                 </article>
               </div>
             ) : (
-              <p>No candidates match this filter.</p>
+              <div className="editor-empty">
+                <p>No candidates match this filter.</p>
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    setFilter("");
+                    setFamily("");
+                    setGenerationVersion("3.0.0");
+                    void fetchQueue(0, "", "3.0.0", "");
+                  }}
+                >
+                  Show English method catalog
+                </Button>
+              </div>
             )}
             <h3>Student reports</h3>
             {data.reports.length ? (

@@ -1,0 +1,46 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /private/tmp/aptmark-editorial-clean.TzPnsc
+
+
+ Test Files  10 passed (10)
+      Tests  188 passed (188)
+   Start at  01:41:24
+   Duration  2.17s (tests 46%, import 30%, transform 15%, worker 10%)
+
+    Isolate  10 workers spawned · ~599ms startup each (spawn + environment, per file)
+             at least ~257ms faster with isolate: false — reuses workers across files instead of one per file
+
+
+> aptmark@0.1.0 typecheck
+> tsc --noEmit
+
+
+> aptmark@0.1.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.ts took 67ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.0s
+  Running TypeScript ...
+  Finished TypeScript in 10.4s ...
+  Collecting page data using 6 workers ...
+  Generating static pages using 6 workers (0/3) ...
+✓ Generating static pages using 6 workers (3/3) in 1065ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ƒ /[[...page]]
+├ ƒ /api/[...path]
+└ ○ /icon.svg
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

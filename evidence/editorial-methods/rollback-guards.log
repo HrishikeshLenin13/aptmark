@@ -1,0 +1,3 @@
+command=evidence/editorial-methods/ROLLBACK.sh src/components/aptmark-app.tsx
+Use a disposable regular copy, not the live component or a link.
+exit=2

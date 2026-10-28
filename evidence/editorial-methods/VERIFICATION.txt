@@ -1,0 +1,78 @@
+APTmark private English method review — verification, 2026-10-28
+CWD=/Users/HrishiL/Documents/ChatGPT/Lm
+MODIFIED_FILE=/Users/HrishiL/Documents/ChatGPT/Lm/src/components/aptmark-app.tsx
+DIFF_FILE=/Users/HrishiL/Documents/ChatGPT/Lm/evidence/editorial-methods/app.diff
+VERIFICATION=/Users/HrishiL/Documents/ChatGPT/Lm/evidence/editorial-methods/VERIFICATION.txt
+ROLLBACK=/Users/HrishiL/Documents/ChatGPT/Lm/evidence/editorial-methods/ROLLBACK.sh
+Changed branches/fields: ContentStudio defaults generationVersion to 3.0.0; family filter; private solutionMethod inspector; editorialRequestEpoch stale-response guards; request-local review busy state and notes isolation.
+Original snapshot SHA256=31cff924115896f4c6c0ced738e065be08653e4fe688d3a2108a2f6503fbc7de
+Live modified component SHA256=187ebd3ea06fb6a6b4d9c52149818ff871fe67c590f94e2ba07c623e00d0f2ab
+Clean release component SHA256=e2576a986b1fe150424855b6d74553e55491d62d8e1f61ca40611de5ff8393a5
+The live snapshot preserves pre-existing pacing edits; the release export excludes them. The diff applies to the original snapshot and reproduces the modified live file exactly.
+Content bank SHA256=87b9fe51d744965a275fec4231bee5ce63acb676f086c6539496c2b901f0c3c0. Byte-identical before/after; 5,617 candidates, 817 English, 4,800 Math, 212 English method contexts, 53 method families. No source-bank approval/publication/calibration changes.
+
+BASELINE
+Command: .venv/bin/python scripts/check-editorial-integration.py evidence/editorial-methods/aptmark-app.original.txt
+Input: evidence/editorial-methods/aptmark-app.original.txt
+Literal output:
+{"methodCatalog": false, "familyFilter": false, "methodReview": false, "staleResponseGuard": false}
+Exit status: 0
+
+MODIFIED
+Command: .venv/bin/python scripts/check-editorial-integration.py src/components/aptmark-app.tsx
+Input: src/components/aptmark-app.tsx
+Literal output:
+{"methodCatalog": true, "familyFilter": true, "methodReview": true, "staleResponseGuard": true}
+Exit status: 0
+
+ROLLBACK
+Command: cp src/components/aptmark-app.tsx /tmp/aptmark-editorial-rollback.tsx && evidence/editorial-methods/ROLLBACK.sh /tmp/aptmark-editorial-rollback.tsx && .venv/bin/python scripts/check-editorial-integration.py /tmp/aptmark-editorial-rollback.tsx
+Input: A disposable byte-for-byte copy of the modified live component
+Literal output:
+restored_sha256=31cff924115896f4c6c0ced738e065be08653e4fe688d3a2108a2f6503fbc7de
+{"methodCatalog": false, "familyFilter": false, "methodReview": false, "staleResponseGuard": false}
+Exit status: 0
+
+BASELINE TESTS
+Command: npm test
+Input: pre-change workspace / original component snapshot.
+Literal result: Tests  187 passed (187)
+Exit status: 0
+
+MODIFIED / RELEASE TESTS
+Command: npm test
+Input: current workspace, including five pre-existing pacing unit tests.
+Literal result: Tests  193 passed (193)
+Exit status: 0
+Command: (cd "$VERIFY_DIR" && npm test && npm run typecheck && NEXT_DIST_DIR=.next-verify npm run build)
+Input: clean staged-index export recorded in clean-tree.path; dependencies hard-linked from the installed runtime. No pacing feature files or source changes are included.
+Result excerpts: Tests  188 passed (188); tsc --noEmit; optimized production build completed; routes /_not-found, /[[...page]], /api/[...path], /icon.svg.
+Exit status: 0; full output in clean-tree-final.log.
+Command: (cd "$VERIFY_DIR" && npm run typecheck)
+Result: tsc --noEmit, no diagnostics. Exit status: 0; clean-typecheck-final.log.
+Command: .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py
+Literal result: 167 passed in 19.29s
+Exit status: 0
+Command: .venv/bin/python python/pipeline.py validate --replay
+Literal output: {"checked": 5617, "replayed": 5617, "failures": []}
+Exit status: 0
+Command: (cd "$VERIFY_DIR" && npm run test:e2e -- tests/editorial-methods.spec.ts tests/english-depth.spec.ts tests/english-content.spec.ts tests/app.spec.ts tests/calendar.spec.ts tests/learning.spec.ts tests/studio.spec.ts)
+Literal result: 27 passed (2.5m)
+Exit status: 0; clean-browser.log. Covers existing learning/study/answer/publication/identity boundaries and the five editorial contracts.
+Command: (cd "$VERIFY_DIR" && npm run test:e2e -- tests/editorial-methods.spec.ts)
+Literal result: 5 passed (22.3s)
+Exit status: 0; clean-focused.log. Final screenshots come from this fresh run, not the broader publication-gate QA fixtures.
+
+ROLLBACK RESTORED STATUS
+The disposable component copy is byte-identical to the pre-change snapshot, SHA256 31cff924115896f4c6c0ced738e065be08653e4fe688d3a2108a2f6503fbc7de. All four source integration markers are absent again. This is a single-file source rollback test, not a full deployed-application rollback. The live MODIFIED_FILE retains all four changes.
+Command: evidence/editorial-methods/ROLLBACK.sh src/components/aptmark-app.tsx
+Literal stderr: Use a disposable regular copy, not the live component or a link.
+Exit status: 2 (expected live-file guard); live source unchanged.
+Command: patch /tmp/aptmark-editorial-apply.tsx < evidence/editorial-methods/app.diff; cmp /tmp/aptmark-editorial-apply.tsx src/components/aptmark-app.tsx
+Input: another copy of aptmark-app.original.txt. Result: patch applied and cmp emitted no differences; exit status 0.
+
+ATTEMPTS / SCOPE
+Retained failed attempts: initial missing guest readiness; unscoped framework route-announcer alerts; getByLabel exact matching of wrapped textarea/select content. Final tests use scoped alerts and accessible-role locators. The 27-test acceptance run is passing; failed attempts are not counted as acceptance.
+Review writes in the new tests are intercepted and aborted before upstream delivery. Old publication-gate integration tests use isolated QA fixtures, never the live bank. Final editorial screenshots are captured in a fresh test database with no recorded editorial decisions.
+Automated axe, keyboard and overflow checks cover 1440, 820 and 390 px. Screenshots were visually inspected. No accessibility certification or human editorial approval is implied.
+Backend commit 50a71683f98625640dfd4df3c3ee78856082a41d was pushed to origin/main; both Core regression and Content regression succeeded (backend-ci.json), with GitHub author linkage verified (backend-author.json). UI commit/CI are checked after publishing the feature commit and reported separately.

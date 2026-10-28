@@ -1,0 +1,23 @@
+[
+  {
+    "name": "BASELINE",
+    "command": ".venv/bin/python scripts/check-editorial-integration.py evidence/editorial-methods/aptmark-app.original.txt",
+    "input": "evidence/editorial-methods/aptmark-app.original.txt",
+    "output": "{\"methodCatalog\": false, \"familyFilter\": false, \"methodReview\": false, \"staleResponseGuard\": false}",
+    "exit": 0
+  },
+  {
+    "name": "MODIFIED",
+    "command": ".venv/bin/python scripts/check-editorial-integration.py src/components/aptmark-app.tsx",
+    "input": "src/components/aptmark-app.tsx",
+    "output": "{\"methodCatalog\": true, \"familyFilter\": true, \"methodReview\": true, \"staleResponseGuard\": true}",
+    "exit": 0
+  },
+  {
+    "name": "ROLLBACK",
+    "command": "cp src/components/aptmark-app.tsx /tmp/aptmark-editorial-rollback.tsx && evidence/editorial-methods/ROLLBACK.sh /tmp/aptmark-editorial-rollback.tsx && .venv/bin/python scripts/check-editorial-integration.py /tmp/aptmark-editorial-rollback.tsx",
+    "input": "A disposable byte-for-byte copy of the modified live component",
+    "output": "restored_sha256=31cff924115896f4c6c0ced738e065be08653e4fe688d3a2108a2f6503fbc7de\n{\"methodCatalog\": false, \"familyFilter\": false, \"methodReview\": false, \"staleResponseGuard\": false}",
+    "exit": 0
+  }
+]

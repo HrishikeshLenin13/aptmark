@@ -1,0 +1,13 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /Users/HrishiL/Documents/ChatGPT/Lm
+
+
+ Test Files  10 passed (10)
+      Tests  187 passed (187)
+   Start at  01:24:16
+   Duration  1.29s (transform 36%, tests 33%, import 28%, worker 4%)
+

@@ -1,0 +1,50 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /private/tmp/aptmark-editorial-clean.TzPnsc
+
+
+ Test Files  10 passed (10)
+      Tests  188 passed (188)
+   Start at  01:35:20
+   Duration  1.52s (tests 41%, transform 33%, import 23%, worker 2%)
+
+
+> aptmark@0.1.0 typecheck
+> tsc --noEmit
+
+
+> aptmark@0.1.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.ts took 1995ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 9.4s
+  Running TypeScript ...
+
+  We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+  	- include was updated to add '.next-verify/types/**/*.ts'
+  	- include was updated to add '.next-verify/dev/types/**/*.ts'
+
+  Finished TypeScript in 11.0s ...
+  Collecting page data using 6 workers ...
+  Generating static pages using 6 workers (0/3) ...
+✓ Generating static pages using 6 workers (3/3) in 815ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ƒ /[[...page]]
+├ ƒ /api/[...path]
+└ ○ /icon.svg
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
