@@ -1,0 +1,3 @@
+Rollback target must be a regular disposable copy, not the live component.
+rollback_live_guard_exit=2
+defaultSection=rw; introductoryPanel=false

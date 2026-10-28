@@ -1,0 +1,13 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /private/tmp/aptmark-pacing-clean.ZggGD3
+
+
+ Test Files  11 passed (11)
+      Tests  196 passed (196)
+   Start at  10:49:28
+   Duration  1.59s (tests 47%, import 37%, transform 9%, worker 6%)
+

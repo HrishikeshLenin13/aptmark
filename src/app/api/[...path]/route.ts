@@ -1,4 +1,5 @@
 import { editorialCatalog } from "@/lib/editorial-catalog";
+import { createPacingSession } from "@/lib/pacing";
 import { studyCalendar } from "@/lib/study-calendar";
 import { LESSONS, publicLesson } from "@/lib/lessons";
 import { lessonProgress, recordLessonCheck } from "@/lib/lesson-store";
@@ -104,6 +105,7 @@ function recordAnswer(
   assisted: boolean,
   requestId: string,
   note = "",
+  timingSource: Attempt["timingSource"] = "question-elapsed",
 ): Grade {
   const prior = db()
     .prepare("SELECT user_id,data FROM attempts WHERE id=?")
@@ -154,6 +156,7 @@ function recordAnswer(
     answer,
     correct,
     seconds,
+    timingSource,
     assisted: helped,
     first: old.length === 0,
     createdAt,
@@ -319,6 +322,12 @@ async function handler(req: NextRequest) {
           createdAt: e.createdAt,
           correct: e.modules.reduce((n, m) => n + (m.correct ?? 0), 0),
           total: e.modules.reduce((n, m) => n + m.questionIds.length, 0),
+          ...(e.mode === "drill"
+            ? {
+                section: e.modules[0].section,
+                durationSeconds: e.modules[0].durationSeconds,
+              }
+            : {}),
         };
       });
       return json({
@@ -555,69 +564,129 @@ async function handler(req: NextRequest) {
       });
     }
     if (path === "exam/start" && write) {
-      const mode = z
-        .enum(["diagnostic", "math-preview", "full"])
-        .parse(body.mode);
-      const bank = eligibleQuestions();
-      if (mode === "full")
-        throw new APIError(
-          "Full-length release is gated: approved, calibrated test forms and independent editorial review are still required.",
-          409,
-        );
-      const existing = (
-        db().prepare("SELECT data FROM exams WHERE user_id=?").all(user.id) as {
-          data: string;
-        }[]
-      )
-        .map((r) => JSON.parse(r.data) as Exam)
-        .find((e) => e.status !== "complete");
-      if (existing) return json({ id: existing.id });
-      const qs =
-        mode === "math-preview"
-          ? selectQuestions(bank, skills(), attempts(user.id), {
-              section: "math",
-              count: 22,
+      return transaction(() => {
+        const mode = z
+          .enum(["diagnostic", "math-preview", "full", "drill"])
+          .parse(body.mode);
+        const bank = eligibleQuestions();
+        if (mode === "full")
+          throw new APIError(
+            "Full-length release is gated: approved, calibrated test forms and independent editorial review are still required.",
+            409,
+          );
+        const existing = (
+          db()
+            .prepare("SELECT data FROM exams WHERE user_id=?")
+            .all(user.id) as {
+            data: string;
+          }[]
+        )
+          .map((r) => JSON.parse(r.data) as Exam)
+          .find((e) => e.status !== "complete");
+        if (existing) return json({ id: existing.id, resumed: true });
+        if (!rateLimit("exam-start:" + user.id, 20))
+          throw new APIError(
+            "Please wait before starting another timed session.",
+            429,
+          );
+        if (mode === "drill") {
+          const config = z
+            .object({
+              section: z.enum(["math", "rw"]),
+              skill: z.string().min(1).max(100).optional(),
+              difficulty: z
+                .enum(["all", "easy", "medium", "hard"])
+                .default("all"),
+              count: z.union([
+                z.literal(5),
+                z.literal(10),
+                z.literal(15),
+                z.literal(20),
+              ]),
+              seconds: z.union([
+                z.literal(180),
+                z.literal(300),
+                z.literal(600),
+                z.literal(900),
+              ]),
             })
-          : ["rw", "math"].flatMap((section) =>
-              selectQuestions(bank, skills(), attempts(user.id), {
-                section,
-                count: 6,
-              }),
+            .parse(body);
+          if (
+            config.skill &&
+            !skills().some(
+              (skill) =>
+                skill.id === config.skill && skill.section === config.section,
+            )
+          )
+            throw new APIError("Choose a skill in the selected section.");
+          const questions = selectQuestions(
+            bank,
+            skills(),
+            attempts(user.id),
+            config,
+          );
+          if (questions.length !== config.count)
+            throw new APIError(
+              "There are not enough eligible questions for these filters. Try all difficulties or another skill.",
+              409,
             );
-      if (qs.length < (mode === "math-preview" ? 22 : 12))
-        throw new APIError(
-          "There are not enough eligible questions to assemble this preview.",
-          409,
-        );
-      const groups =
-        mode === "math-preview" ? [qs] : [qs.slice(0, 6), qs.slice(6)];
-      const exam: Exam = {
-        id: id(),
-        userId: user.id,
-        mode: mode === "diagnostic" ? "diagnostic" : "simulation",
-        modules: groups.map((qq, index) => ({
-          index,
-          section: qq[0].section,
-          durationSeconds: mode === "math-preview" ? 2100 : 480,
-          questionIds: qq.map((q) => q.id),
-          answers: {},
-          flags: [],
-          notes: {},
-          startedAt: null,
-          deadline: null,
-          submittedAt: null,
-          route: "preview-uncalibrated",
-        })),
-        current: 0,
-        status: "active",
-        breakUntil: null,
-        createdAt: now(),
-        completedAt: null,
-        preview: previewEnabled(),
-      };
-      startModule(exam.modules[0]);
-      saveExam(exam);
-      return json({ id: exam.id });
+          const exam = createPacingSession({
+            id: id(),
+            owner: user.id,
+            config,
+            questions,
+            preview: previewEnabled(),
+          });
+          saveExam(exam);
+          return json({ id: exam.id });
+        }
+        const qs =
+          mode === "math-preview"
+            ? selectQuestions(bank, skills(), attempts(user.id), {
+                section: "math",
+                count: 22,
+              })
+            : ["rw", "math"].flatMap((section) =>
+                selectQuestions(bank, skills(), attempts(user.id), {
+                  section,
+                  count: 6,
+                }),
+              );
+        if (qs.length < (mode === "math-preview" ? 22 : 12))
+          throw new APIError(
+            "There are not enough eligible questions to assemble this preview.",
+            409,
+          );
+        const groups =
+          mode === "math-preview" ? [qs] : [qs.slice(0, 6), qs.slice(6)];
+        const exam: Exam = {
+          id: id(),
+          userId: user.id,
+          mode: mode === "diagnostic" ? "diagnostic" : "simulation",
+          modules: groups.map((qq, index) => ({
+            index,
+            section: qq[0].section,
+            durationSeconds: mode === "math-preview" ? 2100 : 480,
+            questionIds: qq.map((q) => q.id),
+            answers: {},
+            flags: [],
+            notes: {},
+            startedAt: null,
+            deadline: null,
+            submittedAt: null,
+            route: "preview-uncalibrated",
+          })),
+          current: 0,
+          status: "active",
+          breakUntil: null,
+          createdAt: now(),
+          completedAt: null,
+          preview: previewEnabled(),
+        };
+        startModule(exam.modules[0]);
+        saveExam(exam);
+        return json({ id: exam.id });
+      });
     }
     if (path === "exam" && !write) {
       const e = loadExam(req.nextUrl.searchParams.get("id") ?? "", user.id);
@@ -816,6 +885,8 @@ function persistExamAttempts(user: string, e: Exam) {
         ) / m.questionIds.length,
         false,
         requestId,
+        "",
+        "module-average",
       );
     }
   }

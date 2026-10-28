@@ -1059,3 +1059,332 @@ output,
   margin: -8px 0 24px;
   max-width: 75ch;
 }
+/* The pacing lab shares the calm reading rhythm, without score pressure. */
+.pacing-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 24px;
+  align-items: start;
+}
+.pacing-builder,
+.pacing-guide {
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 28px;
+  min-width: 0;
+}
+.pacing-builder h2,
+.pacing-guide h2 {
+  font-size: 20px;
+  letter-spacing: -0.4px;
+  margin-bottom: 12px;
+}
+.pacing-presets {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 24px 0;
+}
+.pacing-presets button {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  text-align: left;
+  padding: 16px 12px;
+  line-height: 1.5;
+}
+.pacing-presets strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.pacing-presets span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.pacing-presets button[aria-pressed="true"],
+.pacing-section button[aria-pressed="true"] {
+  border-color: var(--green);
+  background: #eef5ee;
+}
+.pacing-section {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.pacing-section button {
+  min-height: 44px;
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+}
+.pacing-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 16px;
+}
+.pacing-fields label {
+  min-width: 0;
+  line-height: 1.5;
+  font-size: 13px;
+}
+.pacing-fields select {
+  min-height: 44px;
+  width: 100%;
+  min-width: 0;
+  font-size: 14px;
+}
+.pacing-budget {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 24px 0;
+  padding: 18px;
+  border-radius: 8px;
+  background: #f6f8f4;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.pacing-budget svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--green);
+}
+.pacing-budget strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+.pacing-guide ul {
+  list-style: none;
+  display: grid;
+  gap: 24px;
+  padding: 0;
+  margin: 24px 0;
+}
+.pacing-guide li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.pacing-guide li svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--green);
+}
+.pacing-guide li strong {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.pacing-guide li p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 8px 0 0;
+}
+.pacing-guide > a {
+  border-top: 1px solid var(--rule);
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--green);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.pacing-guide > a svg {
+  flex-shrink: 0;
+}
+.pacing-resume {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #ccdacc;
+  background: #f2f6ef;
+  border-radius: 10px;
+}
+.pacing-resume > svg {
+  flex-shrink: 0;
+  color: var(--green);
+}
+.pacing-resume h2 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+.pacing-resume p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+}
+.pacing-resume .button {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.pacing-empty {
+  padding: 40px 24px;
+  background: #fff;
+  border: 1px dashed var(--rule);
+  border-radius: 10px;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+}
+.pacing-empty svg {
+  color: var(--green);
+}
+.pacing-empty h3 {
+  font-size: 17px;
+}
+.pacing-empty p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+}
+.pacing-history {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: #fff;
+}
+.pacing-history > a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+}
+.pacing-history > a + a {
+  border-top: 1px solid var(--rule);
+}
+.pacing-history strong {
+  font-size: 14px;
+}
+.pacing-history small {
+  display: block;
+  margin-top: 7px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.pacing-history > a > span:last-child {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--green);
+}
+.pacing-results {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 24px 0 32px;
+  padding: 24px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-variant-numeric: tabular-nums;
+}
+.pacing-results dt {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.pacing-results dd {
+  font-size: 24px;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+@media (max-width: 1200px) {
+  .pacing-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pacing-guide ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .pacing-builder,
+  .pacing-guide {
+    padding: 24px 20px;
+  }
+  .pacing-presets {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pacing-presets button {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .pacing-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pacing-guide ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pacing-resume {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 24px 20px;
+  }
+  .pacing-resume > div {
+    flex: 1;
+    min-width: 0;
+  }
+  .pacing-resume .button {
+    margin: 0;
+  }
+  .pacing-results {
+    gap: 24px;
+    padding: 24px 0;
+  }
+  .pacing-results dd {
+    font-size: 21px;
+  }
+  .pacing-history > a {
+    gap: 12px;
+    padding: 20px 16px;
+  }
+  .pacing-history > a > .round-icon {
+    display: none;
+  }
+}
+
+/* Timed-workspace tools remain usable when compact labels collapse. */
+.exam-workspace .tool-button {
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+}
+@media (max-width: 760px) {
+  .exam-workspace .exam-header.math-tools {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+  }
+  .exam-workspace .math-tools .exam-tools {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    gap: 12px;
+  }
+  .exam-workspace .math-tools .tool-button {
+    flex: 1;
+    flex-direction: row;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+  .exam-workspace .math-tools .tool-button span {
+    display: inline;
+  }
+}

@@ -6,6 +6,11 @@ import { Modal } from "./ui/dialog";
 import type { Skill } from "@/lib/types";
 const pages = [
   {
+    title: "Pacing lab",
+    description: "Configurable timed sets and saved review",
+    href: "/drills",
+  },
+  {
     title: "Learning center",
     description: "Short lessons, worked examples and understanding checks",
     href: "/learn",

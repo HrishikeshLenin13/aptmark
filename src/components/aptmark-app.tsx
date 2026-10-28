@@ -9,6 +9,8 @@ import type {
   EditorialFamily,
   EditorialPagination,
 } from "@/lib/editorial-catalog";
+import { PacingLab } from "./pacing-lab";
+import { pacingSummary } from "@/lib/pacing-summary";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   ArrowUpRight,
@@ -52,9 +54,10 @@ import {
   Layers3,
   GraduationCap,
   Download,
+  Timer,
 } from "lucide-react";
 import { Button } from "./ui/button";
-import { Modal } from "./ui/dialog";
+import { Modal, SubmissionConfirmation } from "./ui/dialog";
 import { MathText } from "./math-text";
 import { Figure } from "./figure";
 import { calculate } from "@/lib/calculator";
@@ -112,6 +115,8 @@ type AppState = {
     createdAt: string;
     correct: number;
     total: number;
+    section?: "math" | "rw";
+    durationSeconds?: number;
   }[];
   readiness: { rw: number; math: number; ready: boolean; reason: string };
   serverTime: string;
@@ -120,6 +125,7 @@ const nav = [
   { path: "/", label: "Overview", icon: LayoutDashboard },
   { path: "/practice", label: "Question bank", icon: BookOpen },
   { path: "/learn", label: "Learning center", icon: GraduationCap },
+  { path: "/drills", label: "Pacing lab", icon: Timer },
   { path: "/planner", label: "Study plan", icon: CalendarDays },
   { path: "/analytics", label: "Your progress", icon: ChartNoAxesCombined },
   { path: "/mistakes", label: "Mistake studio", icon: RotateCcw },
@@ -424,6 +430,7 @@ export default function AptmarkApp() {
           </header>
           <main
             id="main-content"
+            tabIndex={-1}
             className={
               pathname === "/exam" ? "main-content exam-main" : "main-content"
             }
@@ -440,6 +447,13 @@ export default function AptmarkApp() {
               <Practice state={state} refresh={refresh} notify={notify} />
             )}
             {pathname === "/learn" && <LearningCenter />}
+            {pathname === "/drills" && (
+              <PacingLab
+                skills={state.skills}
+                sessions={state.exams}
+                preview={state.preview}
+              />
+            )}
             {pathname === "/planner" && (
               <Planner
                 state={state}
@@ -469,6 +483,7 @@ export default function AptmarkApp() {
               "/",
               "/practice",
               "/learn",
+              "/drills",
               "/planner",
               "/analytics",
               "/mistakes",
@@ -755,11 +770,11 @@ function Dashboard({
               </strong>
             </div>
             <div>
-              <span>Time invested</span>
+              <span>Recorded answer time</span>
               <strong>
                 {totalMinutes}
                 <em> min</em>
-                <small>Every focused minute counts</small>
+                <small>Timed sets use module averages</small>
               </strong>
             </div>
           </div>
@@ -2176,6 +2191,10 @@ function Analytics({
           <h2>Recent response history</h2>
           <span className="muted">{s.attempts.length} saved attempts</span>
         </div>
+        <p className="muted">
+          Timed-assessment entries use a module average, not measured time on
+          each question.
+        </p>
         {s.attempts.length ? (
           <div className="table-scroll">
             <table className="data-table">
@@ -2184,7 +2203,7 @@ function Analytics({
                   <th scope="col">Question skill</th>
                   <th scope="col">Result</th>
                   <th scope="col">Evidence type</th>
-                  <th scope="col">Time</th>
+                  <th scope="col">Recorded time</th>
                 </tr>
               </thead>
               <tbody>
@@ -2206,7 +2225,12 @@ function Analytics({
                             ? "Independent"
                             : "Retry"}
                       </td>
-                      <td>{a.seconds} sec</td>
+                      <td>
+                        {Math.round(a.seconds)} sec
+                        {a.timingSource === "module-average" && (
+                          <small className="muted"> (module average)</small>
+                        )}
+                      </td>
                     </tr>
                   ))}
               </tbody>
@@ -2491,7 +2515,9 @@ function Tests({
                   <strong>
                     {e.mode === "diagnostic"
                       ? "Short diagnostic"
-                      : "Math module preview"}
+                      : e.mode === "drill"
+                        ? "Pacing set"
+                        : "Math module preview"}
                   </strong>
                   <small>
                     {date(e.createdAt)} ·{" "}
@@ -2556,7 +2582,8 @@ function ExamWorkspace({
     [calcResult, setCalcResult] = useState(""),
     [busy, setBusy] = useState(false);
   const queue = useRef(Promise.resolve()),
-    moduleIndex = useRef(-1);
+    moduleIndex = useRef(-1),
+    navigatorTrigger = useRef<HTMLButtonElement>(null);
   const load = useCallback(async () => {
     if (!examId) return;
     try {
@@ -2586,6 +2613,11 @@ function ExamWorkspace({
   const e = data?.exam,
     m = e?.modules[e.current],
     q = data?.questions[index];
+  const summary = e?.mode === "drill" ? pacingSummary(e) : null;
+  const warningAt =
+    e?.mode === "drill"
+      ? Math.min(60, Math.round((m?.durationSeconds ?? 0) * 0.15))
+      : 300;
   const remaining = m?.deadline
     ? Math.max(0, Math.ceil((Date.parse(m.deadline) - tick - offset) / 1000))
     : 0;
@@ -2631,6 +2663,7 @@ function ExamWorkspace({
   };
   const submit = async () => {
     if (!e) return;
+    setError("");
     setBusy(true);
     try {
       await queue.current;
@@ -2672,7 +2705,11 @@ function ExamWorkspace({
     return (
       <>
         <PageHeading
-          title="A clearer starting point."
+          title={
+            e.mode === "drill"
+              ? "Your timed set is complete."
+              : "A clearer starting point."
+          }
           description="Raw results from your original-content preview. This is not an official-equivalent SAT score."
         />
         <div className="assessment-result">
@@ -2687,12 +2724,39 @@ function ExamWorkspace({
             </span>
           </h2>
           <p>
-            {e.mode === "diagnostic" ? "Diagnostic" : "Math module"} complete.
-            Skipped questions count as incorrect in this result.
+            {e.mode === "diagnostic"
+              ? "Diagnostic"
+              : e.mode === "drill"
+                ? "Pacing set"
+                : "Math module"}{" "}
+            complete. Skipped questions count as incorrect in this result.
           </p>
+          {summary && (
+            <dl className="pacing-results">
+              <div>
+                <dt>Time used</dt>
+                <dd>
+                  {Math.floor(summary.elapsed / 60)}:
+                  {String(summary.elapsed % 60).padStart(2, "0")}
+                </dd>
+              </div>
+              <div>
+                <dt>Answered</dt>
+                <dd>
+                  {summary.answered} / {summary.total}
+                </dd>
+              </div>
+              <div>
+                <dt>Time budget</dt>
+                <dd>{Math.round(m.durationSeconds / 60)} min</dd>
+              </div>
+            </dl>
+          )}
           <Button asChild>
-            <Link href="/planner">
-              See your next steps
+            <Link href={e.mode === "drill" ? "/drills" : "/planner"}>
+              {e.mode === "drill"
+                ? "Plan another pacing set"
+                : "See your next steps"}
               <ArrowRight size={15} />
             </Link>
           </Button>
@@ -2768,23 +2832,33 @@ function ExamWorkspace({
     <>
       {e.preview && <PreviewNotice />}
       <section className={"exam-workspace " + (zoom ? "zoomed" : "")}>
-        <header className="exam-header">
+        <header
+          className={
+            "exam-header " + (m.section === "math" ? "math-tools" : "")
+          }
+        >
           <div>
             <small>
               {e.mode === "diagnostic"
                 ? "Short diagnostic"
-                : "Timed module preview"}
+                : e.mode === "drill"
+                  ? "Pacing practice"
+                  : "Timed module preview"}
             </small>
             <h1>
-              {m.section === "math" ? "Math" : "Reading & Writing"} · Module{" "}
-              {e.current + 1}
+              {m.section === "math" ? "Math" : "Reading & Writing"}
+              {e.mode === "drill"
+                ? " · Timed set"
+                : ` · Module ${e.current + 1}`}
             </h1>
           </div>
           <div
-            className={"exam-timer " + (remaining <= 300 ? "timer-low" : "")}
+            className={
+              "exam-timer " + (remaining <= warningAt ? "timer-low" : "")
+            }
           >
             <strong aria-label="Time remaining">
-              {!hidden || remaining <= 300
+              {!hidden || remaining <= warningAt
                 ? `${Math.floor(remaining / 60)}:${String(remaining % 60).padStart(2, "0")}`
                 : "Timer hidden"}
             </strong>
@@ -2798,6 +2872,7 @@ function ExamWorkspace({
               <>
                 <button
                   className="tool-button"
+                  aria-label="Calculator"
                   onClick={() => setModal("calculator")}
                 >
                   <Calculator size={17} />
@@ -2805,6 +2880,7 @@ function ExamWorkspace({
                 </button>
                 <button
                   className="tool-button"
+                  aria-label="Math reference"
                   onClick={() => setModal("reference")}
                 >
                   <FileText size={17} />
@@ -2814,6 +2890,7 @@ function ExamWorkspace({
             )}
             <button
               className="tool-button"
+              aria-label="Text size"
               onClick={() => setZoom(!zoom)}
               aria-pressed={zoom}
             >
@@ -2822,11 +2899,13 @@ function ExamWorkspace({
             </button>
           </div>
         </header>
-        {remaining <= 300 && (
+        {remaining <= warningAt && (
           <div className="five-minute" role="status">
             {remaining === 0
               ? "Time is up. This module is being locked."
-              : "Five minutes or less remain. The timer stays visible."}
+              : e.mode === "drill"
+                ? "Your time budget is almost used. The timer stays visible."
+                : "Five minutes or less remain. The timer stays visible."}
           </div>
         )}
         {q && (
@@ -2945,7 +3024,7 @@ function ExamWorkspace({
             </div>
           </>
         )}
-        {error && (
+        {error && modal !== "submit" && (
           <p className="error" role="alert">
             {error}
             <button className="text-button" onClick={() => load()}>
@@ -2958,6 +3037,7 @@ function ExamWorkspace({
             {saving}
           </span>
           <button
+            ref={navigatorTrigger}
             className="question-nav-button"
             onClick={() => setModal("navigator")}
           >
@@ -3013,27 +3093,35 @@ function ExamWorkspace({
             </button>
           ))}
         </div>
-        <Button onClick={() => setModal("submit")}>End this module</Button>
+        <Button onClick={() => setModal("submit")}>
+          {e.mode === "drill" ? "End timed set" : "End this module"}
+        </Button>
       </Modal>
-      <Modal
+      <SubmissionConfirmation
         open={modal === "submit"}
-        onOpenChange={(o) => !o && setModal("")}
-        title="Ready to submit this module?"
-        description="Submission locks your answers. You will not be able to return to change this module."
+        onOpenChange={(open) => !open && setModal("")}
+        title={
+          e.mode === "drill"
+            ? "Ready to submit this timed set?"
+            : "Ready to submit this module?"
+        }
+        actionLabel={
+          e.mode === "drill" ? "Submit & lock set" : "Submit & lock module"
+        }
+        busy={busy}
+        error={error}
+        onConfirm={submit}
+        restoreFocus={() =>
+          (
+            navigatorTrigger.current ?? document.getElementById("main-content")
+          )?.focus()
+        }
       >
         <p>
           {m.questionIds.filter((id) => !m.answers[id]).length} unanswered ·{" "}
           {m.flags.length} marked for review
         </p>
-        <div className="summary-actions">
-          <Button variant="secondary" onClick={() => setModal("navigator")}>
-            Return to review
-          </Button>
-          <Button onClick={submit} disabled={busy}>
-            {busy ? "Saving…" : "Submit & lock module"}
-          </Button>
-        </div>
-      </Modal>
+      </SubmissionConfirmation>
       <Modal
         open={modal === "reference"}
         onOpenChange={(o) => !o && setModal("")}

@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
-const testDatabase = `./data/e2e-${Date.now()}.sqlite`;
+const testDatabase =
+  process.env.APTMARK_E2E_DB ?? `./data/e2e-${Date.now()}.sqlite`;
+process.env.APTMARK_E2E_DB = testDatabase;
 export default defineConfig({
   testDir: "./tests",
   testMatch: "**/*.spec.ts",

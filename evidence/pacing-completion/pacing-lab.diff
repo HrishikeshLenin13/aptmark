@@ -1,0 +1,98 @@
+--- pacing-lab.original
++++ pacing-lab.modified
+@@ -13,13 +13,15 @@
+ import { Button } from "./ui/button";
+ import type { Skill } from "@/lib/types";
+ import type { DrillConfig } from "@/lib/pacing";
+-type Session = {
++export type PacingSessionSummary = {
+   id: string;
+   mode: string;
+   status: string;
+   createdAt: string;
+   correct: number;
+   total: number;
++  section?: "math" | "rw";
++  durationSeconds?: number;
+ };
+ export function PacingLab({
+   skills,
+@@ -27,12 +29,12 @@
+   preview,
+ }: {
+   skills: Skill[];
+-  sessions: Session[];
++  sessions: PacingSessionSummary[];
+   preview: boolean;
+ }) {
+   const router = useRouter();
+   const [config, setConfig] = useState<DrillConfig>({
+-    section: "math",
++    section: "rw",
+     difficulty: "all",
+     count: 5,
+     seconds: 300,
+@@ -73,7 +75,7 @@
+       const body = await response.json();
+       if (!response.ok)
+         throw Error(body.error ?? "Your timed set could not be started.");
+-      router.push("/exam?id=" + body.id);
++      router.push("/exam?id=" + encodeURIComponent(body.id));
+     } catch (error) {
+       setError((error as Error).message);
+       setBusy(false);
+@@ -91,28 +93,6 @@
+           Pacing lab
+         </span>
+       </div>
+-      <section className="pacing-intro">
+-        <div>
+-          <span className="focus-label">Deliberate practice</span>
+-          <h2>
+-            Steady is a skill.
+-            <br />
+-            Build it one set at a time.
+-          </h2>
+-          <p>
+-            Choose your question count and time budget. Work without answer
+-            reveals, then review your reasoning after you lock the set.
+-          </p>
+-        </div>
+-        <div className="pacing-intro-detail">
+-          <Clock3 size={36} />
+-          <strong>Your pace, not a race.</strong>
+-          <p>
+-            No leaderboard. No invented score. Just your saved work and the next
+-            useful observation.
+-          </p>
+-        </div>
+-      </section>
+       {preview && (
+         <p className="lesson-preview-note">
+           Local preview uses original, unreviewed question candidates.
+@@ -350,13 +330,24 @@
+                   <Timer size={18} />
+                 </span>
+                 <span>
+-                  <strong>{session.total}-question timed set</strong>
++                  <strong>
++                    {session.section === "rw"
++                      ? "Reading & Writing"
++                      : session.section === "math"
++                        ? "Math"
++                        : "Timed set"}
++                    {" — "}
++                    {session.total} questions
++                  </strong>
+                   <small>
+                     {new Date(session.createdAt).toLocaleDateString("en-US", {
+                       month: "short",
+                       day: "numeric",
+                     })}{" "}
+                     ·{" "}
++                    {session.durationSeconds
++                      ? `${session.durationSeconds / 60} minutes · `
++                      : ""}
+                     {session.status === "complete"
+                       ? `${session.correct} of ${session.total} correct`
+                       : "In progress"}

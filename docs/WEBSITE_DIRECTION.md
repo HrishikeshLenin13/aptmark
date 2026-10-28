@@ -15,7 +15,7 @@ Aptmark uses these capabilities as product requirements, not a source of questio
 | Planning and analytics | Actual-record local features; add schedule export and clearer pacing insights |
 | Lessons and guided practice | Implemented local preview: 12 original short lessons, server-graded comprehension checks and version-aware owner-scoped completion |
 | Vocabulary and challenging practice | Implemented explicit entry points into context vocabulary, hard practice and saved questions |
-| Timed drills | Next website behavior milestone: persistent bounded sessions, not an ornamental timer |
+| Timed drills | Implemented local pacing lab: English/Math filters, bounded count/time, saved deadlines, review locks and owner-isolated history; no official timing or score claim |
 | Conversational AI | Static grounded guide works; provider, operating budget and evaluation remain open |
 | Calendar sync | Portable all-day .ics export implemented; no external provider connection or live sync |
 | Full-length tests / predicted scores | Not advertised as ready without reviewed forms and psychometric support |

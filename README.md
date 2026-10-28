@@ -13,6 +13,7 @@
 - **Understand the reasoning.** Review worked explanations, progressive hints, and common-mistake notes alongside each question.
 - **Make space for study.** Shape a weekly plan around your available days and export its real study reminders to a portable calendar file.
 - **Keep your progress honest.** See actual practice history, skill-level signals, review reminders, and study plans—without invented activity or unsupported score predictions.
+- **Choose your pace.** Build timed English or Math sets around a skill, difficulty, question count, and time budget. Your deadline and answers survive refreshes; explanations open after the set is locked.
 - **Prepare with structure.** Use a short diagnostic, a timed Math assessment preview, a formula reference, and a simple calculator.
 - **Keep content accountable.** Aptmark separates generated candidates from reviewed and published questions; private review tools expose question methods, reasoning steps, distractor patterns, validation, and editorial release status.
 
@@ -35,17 +36,3 @@ Aptmark is independent of College Board. SAT is a trademark of College Board.
 - [Roadmap](docs/PROJECT_ROADMAP.md)
 
 See [question quality and the review workflow](docs/CONTENT_QUALITY.md) for the current content expansion and its review gates.
-
-## Study calculator
-
-The workspace calculator accepts pasted `×`, `÷`, and `−` symbols as well as keyboard arithmetic operators. Parentheses and normal arithmetic precedence are preserved. Stray decimal punctuation, incomplete expressions, and non-finite results are rejected rather than silently rewritten.
-
-Check it with `npm test`; the full project checks remain in [Development notes](docs/DEVELOPMENT.md). This utility change does not publish questions, change answer keys, or alter assessment scoring.
-
-## Developer resources
-
-- [Feature usage and API contracts](docs/RECENT_IMPROVEMENTS.md)
-- [Troubleshooting and recovery](docs/TROUBLESHOOTING.md)
-- [Contributor checks and change review](docs/CONTRIBUTOR_CHECKLIST.md)
-
-See [English methods and question structures](docs/ENGLISH_METHODS.md) for the latest original Reading and Writing batch.

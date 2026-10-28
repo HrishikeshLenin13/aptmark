@@ -113,6 +113,8 @@ export type Attempt = {
   answer: string;
   correct: boolean;
   seconds: number;
+  /** Timed assessments allocate a module average, not measured per-item time. */
+  timingSource?: "question-elapsed" | "module-average";
   assisted: boolean;
   first: boolean;
   createdAt: string;
@@ -166,7 +168,8 @@ export type ModuleState = {
 export type Exam = {
   id: string;
   userId: string;
-  mode: "simulation" | "diagnostic";
+  mode: "simulation" | "diagnostic" | "drill";
+  drill?: import("./pacing").DrillConfig;
   modules: ModuleState[];
   current: number;
   status: "active" | "break" | "complete";

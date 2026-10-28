@@ -1,0 +1,385 @@
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+  ArrowRight,
+  BookmarkCheck,
+  CheckCircle2,
+  Clock3,
+  Timer,
+  RotateCcw,
+} from "lucide-react";
+import { Button } from "./ui/button";
+import type { Skill } from "@/lib/types";
+import type { DrillConfig } from "@/lib/pacing";
+type Session = {
+  id: string;
+  mode: string;
+  status: string;
+  createdAt: string;
+  correct: number;
+  total: number;
+};
+export function PacingLab({
+  skills,
+  sessions,
+  preview,
+}: {
+  skills: Skill[];
+  sessions: Session[];
+  preview: boolean;
+}) {
+  const router = useRouter();
+  const [config, setConfig] = useState<DrillConfig>({
+    section: "math",
+    difficulty: "all",
+    count: 5,
+    seconds: 300,
+  });
+  const [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
+  const active = sessions.find((session) => session.status !== "complete");
+  const history = sessions.filter((session) => session.mode === "drill");
+  const presets = [
+    {
+      title: "A short warm-up",
+      detail: "5 questions · 3 minutes",
+      count: 5,
+      seconds: 180,
+    },
+    {
+      title: "A steadier rhythm",
+      detail: "10 questions · 10 minutes",
+      count: 10,
+      seconds: 600,
+    },
+    {
+      title: "Room to think",
+      detail: "10 questions · 15 minutes",
+      count: 10,
+      seconds: 900,
+    },
+  ] as const;
+  async function start() {
+    setBusy(true);
+    setError("");
+    try {
+      const response = await fetch("/api/exam/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mode: "drill", ...config }),
+      });
+      const body = await response.json();
+      if (!response.ok)
+        throw Error(body.error ?? "Your timed set could not be started.");
+      router.push("/exam?id=" + body.id);
+    } catch (error) {
+      setError((error as Error).message);
+      setBusy(false);
+    }
+  }
+  return (
+    <>
+      <div className="page-heading">
+        <div>
+          <h1>Find a pace you can trust.</h1>
+          <p>A small timed set. A little space to notice how you work.</p>
+        </div>
+        <span className="tag">
+          <Timer size={14} />
+          Pacing lab
+        </span>
+      </div>
+      <section className="pacing-intro">
+        <div>
+          <span className="focus-label">Deliberate practice</span>
+          <h2>
+            Steady is a skill.
+            <br />
+            Build it one set at a time.
+          </h2>
+          <p>
+            Choose your question count and time budget. Work without answer
+            reveals, then review your reasoning after you lock the set.
+          </p>
+        </div>
+        <div className="pacing-intro-detail">
+          <Clock3 size={36} />
+          <strong>Your pace, not a race.</strong>
+          <p>
+            No leaderboard. No invented score. Just your saved work and the next
+            useful observation.
+          </p>
+        </div>
+      </section>
+      {preview && (
+        <p className="lesson-preview-note">
+          Local preview uses original, unreviewed question candidates.
+          Difficulty labels are provisional; this is not an official SAT timing
+          or score model.
+        </p>
+      )}
+      {active && (
+        <section className="pacing-resume">
+          <RotateCcw size={22} />
+          <div>
+            <h2>Your timed workspace is still here.</h2>
+            <p>
+              One timed session can be active at a time. Its clock continues
+              while you’re away.
+            </p>
+          </div>
+          <Button asChild>
+            <Link href={`/exam?id=${active.id}`}>
+              Resume active session
+              <ArrowRight size={16} />
+            </Link>
+          </Button>
+        </section>
+      )}
+      <div className="pacing-columns">
+        <section className="pacing-builder">
+          <h2>Make the set yours.</h2>
+          <p className="muted">Start with a rhythm, then adjust it.</p>
+          <div
+            className="pacing-presets"
+            role="group"
+            aria-label="Pacing presets"
+          >
+            {presets.map((preset) => (
+              <button
+                key={preset.title}
+                aria-pressed={
+                  config.count === preset.count &&
+                  config.seconds === preset.seconds
+                }
+                onClick={() =>
+                  setConfig({
+                    ...config,
+                    count: preset.count,
+                    seconds: preset.seconds,
+                  })
+                }
+              >
+                <strong>{preset.title}</strong>
+                <span>{preset.detail}</span>
+              </button>
+            ))}
+          </div>
+          <div
+            className="pacing-section"
+            role="group"
+            aria-label="Pacing section"
+          >
+            {[
+              ["math", "Math"],
+              ["rw", "Reading & Writing"],
+            ].map(([value, label]) => (
+              <button
+                key={value}
+                aria-pressed={config.section === value}
+                onClick={() =>
+                  setConfig({
+                    ...config,
+                    section: value as "math" | "rw",
+                    skill: undefined,
+                  })
+                }
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <div className="pacing-fields">
+            <label>
+              Focus skill
+              <select
+                aria-label="Pacing skill"
+                value={config.skill ?? ""}
+                onChange={(event) =>
+                  setConfig({
+                    ...config,
+                    skill: event.target.value || undefined,
+                  })
+                }
+              >
+                <option value="">All skills in this section</option>
+                {skills
+                  .filter((skill) => skill.section === config.section)
+                  .map((skill) => (
+                    <option key={skill.id} value={skill.id}>
+                      {skill.name}
+                    </option>
+                  ))}
+              </select>
+            </label>
+            <label>
+              Difficulty
+              <select
+                aria-label="Pacing difficulty"
+                value={config.difficulty}
+                onChange={(event) =>
+                  setConfig({
+                    ...config,
+                    difficulty: event.target.value as DrillConfig["difficulty"],
+                  })
+                }
+              >
+                {["all", "easy", "medium", "hard"].map((value) => (
+                  <option value={value} key={value}>
+                    {value === "all"
+                      ? "All difficulties"
+                      : value[0].toUpperCase() + value.slice(1)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Question count
+              <select
+                aria-label="Pacing question count"
+                value={config.count}
+                onChange={(event) =>
+                  setConfig({
+                    ...config,
+                    count: Number(event.target.value) as DrillConfig["count"],
+                  })
+                }
+              >
+                {[5, 10, 15, 20].map((value) => (
+                  <option value={value} key={value}>
+                    {value} questions
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Time budget
+              <select
+                aria-label="Pacing time budget"
+                value={config.seconds}
+                onChange={(event) =>
+                  setConfig({
+                    ...config,
+                    seconds: Number(
+                      event.target.value,
+                    ) as DrillConfig["seconds"],
+                  })
+                }
+              >
+                {[180, 300, 600, 900].map((value) => (
+                  <option value={value} key={value}>
+                    {value / 60} minutes
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className="pacing-budget">
+            <Clock3 size={18} />
+            <span>
+              {config.count} questions in {config.seconds / 60} minutes
+              <strong>
+                About {Math.round(config.seconds / config.count)} seconds per
+                question, as a planning average.
+              </strong>
+            </span>
+          </div>
+          {error && (
+            <p className="error" role="alert">
+              {error}
+            </p>
+          )}
+          <Button disabled={busy || !!active} onClick={() => void start()}>
+            {busy ? "Preparing your timed set…" : "Begin timed set"}
+            <ArrowRight size={16} />
+          </Button>
+        </section>
+        <aside className="pacing-guide">
+          <h2>Know what to expect.</h2>
+          <ul>
+            <li>
+              <Timer size={20} />
+              <div>
+                <strong>A fixed, saved deadline</strong>
+                <p>
+                  The clock continues across refreshes and when you leave this
+                  page. You can submit early, but you cannot pause it.
+                </p>
+              </div>
+            </li>
+            <li>
+              <BookmarkCheck size={20} />
+              <div>
+                <strong>Room to review</strong>
+                <p>
+                  Move between questions, mark uncertain answers, and change
+                  your work before submission.
+                </p>
+              </div>
+            </li>
+            <li>
+              <CheckCircle2 size={20} />
+              <div>
+                <strong>Reasoning after the set</strong>
+                <p>
+                  Answer keys and explanations stay hidden until the session is
+                  locked. Skipped questions count as incorrect in the raw
+                  result.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <Link href="/learn">
+            Build a method before adding time
+            <ArrowRight size={15} />
+          </Link>
+        </aside>
+      </div>
+      <section className="section">
+        <div className="section-header">
+          <h2>Your recent pacing sets</h2>
+          <span className="tag">Saved on this server</span>
+        </div>
+        {history.length ? (
+          <div className="pacing-history">
+            {history.map((session) => (
+              <Link href={`/exam?id=${session.id}`} key={session.id}>
+                <span className="round-icon">
+                  <Timer size={18} />
+                </span>
+                <span>
+                  <strong>{session.total}-question timed set</strong>
+                  <small>
+                    {new Date(session.createdAt).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    })}{" "}
+                    ·{" "}
+                    {session.status === "complete"
+                      ? `${session.correct} of ${session.total} correct`
+                      : "In progress"}
+                  </small>
+                </span>
+                <span>
+                  {session.status === "complete" ? "Review" : "Resume"}
+                  <ArrowRight size={15} />
+                </span>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="pacing-empty">
+            <Timer size={25} />
+            <h3>Your first set is a starting point.</h3>
+            <p>
+              Completed sets will appear here. There’s no pace history to
+              estimate yet.
+            </p>
+          </div>
+        )}
+      </section>
+    </>
+  );
+}

@@ -1,0 +1,63 @@
+Aptmark pacing lab — 2026-10-28
+Branch: codex/website-studio -> origin/main
+Changed field: PacingLab config.section math -> rw; redundant introductory panel removed.
+Feature: bounded owner-scoped English/Math timed sets, saved deadlines and review locks.
+Mobile assessment tools have accessible names and 44px minimum targets; Math tools use a separate compact row.
+
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/src/components/pacing-lab.tsx
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/pacing-completion/pacing-lab.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/pacing-completion/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/pacing-completion/ROLLBACK.sh (executable)
+Original SHA256: 4f8517055a9556a033636fe38256b8c87a17fe3cd0f2353d018a0492c4b65bdf
+Modified SHA256: 6d8b7edc5a9ac1915fd30dc2bbab843ff7dc2cb8dca9cc965ac50d65529514a3
+
+Command variables (cwd /Users/HrishiL/Documents/ChatGPT/Lm):
+E=/Users/HrishiL/Documents/ChatGPT/Lm/evidence/pacing-completion
+F=/Users/HrishiL/Documents/ChatGPT/Lm/src/components/pacing-lab.tsx
+
+BASELINE command: node "$E/probe.mjs" "$E/pacing-lab.original.txt"
+Input: preserved original component snapshot.
+Literal output: defaultSection=math; introductoryPanel=true
+Exit: 0
+Additional baseline: npm run test:e2e -- tests/pacing.spec.ts
+Literal summary: 2 failed; 1 passed (28.6s)
+Exit: 1
+The old test incorrectly expected five hard linear-one questions although this pool has none; the server correctly rejected that configuration. Compact tool buttons also lacked accessible names. The new test verifies the unavailable-inventory error and then starts a real eligible English set.
+
+MODIFIED command: node "$E/probe.mjs" "$F"
+Input: live modified component.
+Literal output: defaultSection=rw; introductoryPanel=false
+Exit: 0
+
+ROLLBACK command: cp "$F" "$E/rollback-copy.txt" && "$E/ROLLBACK.sh" "$E/rollback-copy.txt" && node "$E/probe.mjs" "$E/rollback-copy.txt"
+Input: disposable copy of the modified component; no live file is restored.
+Literal output:
+restored_sha256=4f8517055a9556a033636fe38256b8c87a17fe3cd0f2353d018a0492c4b65bdf
+defaultSection=math; introductoryPanel=true
+Exit: 0
+Restored behavior/status: disposable component again contains the Math default and introductory panel; original bytes/hash match. This is component-only rollback, not a whole-repository revert. The live component remains modified: defaultSection=rw; introductoryPanel=false.
+Live-file rollback guard: rejected with exit 2; modified SHA256 still matches. See rollback-live-guard.log.
+
+Final clean-index checkout validation (no local environment file or working-tree-only source dependency):
+- npm test -> Tests 196 passed (196); exit 0. All 32 section/count/time combinations, response/deadline boundaries, grading and immutable configuration snapshots are covered.
+- npm run typecheck -> tsc --noEmit; exit 0.
+- NEXT_DIST_DIR=.next-publish npm run build -> successful static/dynamic route build; exit 0.
+- .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py tests/test_english_precision.py tests/test_english_precision_bank.py -> 277 passed in 22.00s; exit 0.
+- .venv/bin/python python/pipeline.py validate --replay -> {"checked": 5749, "replayed": 5749, "failures": []}; exit 0.
+- npm run test:e2e -> 38 passed (4.1m); exit 0. All 11 English skills assemble/grade/review; owner isolation, key privacy, recovery, expiry, start idempotency, irreversible-confirmation focus/retry, mobile tool names/targets, axe/overflow at 1440/820/390px are covered.
+- shasum -a 256 -c evidence/pacing-completion/bank-before.sha256 -> content/bank.json: OK; exit 0.
+
+An intermediate clean browser run found the Math tool targets were only 19px, despite their corrected names. Its 37-pass/1-failure result is retained in clean-browser-before-target-fix.log, with math-touch-target-before.png. The final run includes the target-size correction and all 38 tests pass. Earlier failures are not acceptance results.
+
+Live preview command: python3 evidence/pacing-completion/check-live.py
+Literal output:
+live: preview=true; inventory=5749/949 English/4800 Math; English set=5; keys hidden until locked; review=5
+ephemeral guest deleted; no learner history retained
+Exit: 0
+Production gate command: python3 evidence/pacing-completion/check-live.py --url http://127.0.0.1:3002 --production
+Literal output:
+production: preview=false; unpublished candidates excluded; start=409; sessions=0
+ephemeral guest deleted; no learner history retained
+Exit: 0. This was an isolated local production build, not a hosted deployment.
+
+No questions or provenance fields changed. Generated inventory remains 5749 (949 English, 4800 Math); human approved=0, published=0, empirically calibrated=0. Per-item timed-attempt seconds are explicitly labelled module-average, not a precise individual response measurement. No paid API, official-score prediction, or public application release was added.
