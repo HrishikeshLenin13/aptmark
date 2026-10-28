@@ -6,8 +6,9 @@ def registry():
     import english_information
     import english_craft_expression
     import english_conventions
+    import english_detail_boundaries
     rows = []
-    for module in (english_information, english_craft_expression, english_conventions):
+    for module in (english_information, english_craft_expression, english_conventions, english_detail_boundaries):
         for skill, families in module.FAMILIES.items():
             for family in families:
                 blueprint = module.BLUEPRINTS[family]

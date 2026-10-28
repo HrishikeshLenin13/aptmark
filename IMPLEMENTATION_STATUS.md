@@ -17,7 +17,7 @@ Updated: 2026-10-27. Active local development; not a complete or hosted release.
 - PostgreSQL/Supabase migration scaffold; no active cloud adapter.
 
 ## Content inventory
-The pipeline contains 4,800 Math and 761 Reading and Writing candidates (5,561 total), across 30 skills and 114 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
+The pipeline contains 4,800 Math and 773 Reading and Writing candidates (5,573 total), across 30 skills and 117 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
 
 ## Earlier website verification record
 - 48 TypeScript tests and 83 Python tests passed.
@@ -67,3 +67,10 @@ See [Development notes](docs/DEVELOPMENT.md) for local preview, content workflow
 - See docs/ENGLISH_METHODS.md, content/blueprints/english-methods.json, the complete editorial pack and evidence/english-methods/. No human approvals, publications or empirical calibration are asserted.
 - Prior uncommitted pacing work remains separate from this English content change; its earlier browser failures are not represented as passing verification.
 - English verification: 129 Python tests; 187 TypeScript workspace tests (182 excluding the separate pacing work); typecheck and production build passed. The corrected focused browser run passed five English/studio tests. Earlier failing browser attempts are retained in the evidence and are not acceptance runs. The broader English integration run is recorded separately when complete.
+
+## Detail and boundaries extension — 2026-10-27
+- Added 12 further original candidates: explicit-detail retrieval, simple series separators, and semicolon/conjunctive-adverb boundaries. English inventory is now 773; total inventory 5,573 across 117 families.
+- All 5,561 records from the prior catalog commit remain unchanged, including all 4,800 Math records. The complete English catalog is 168 candidates across 42 finite families.
+- Added a read-only, pinned-action GitHub content workflow for Python contracts, complete seed replay, and fresh-clone English idempotency; it does not publish or deploy content.
+- Final supplemental verification: 134 Python tests; 187 workspace TypeScript tests (182 excluding the separate pacing work); typecheck and production build; 20 selected browser integration tests all passed. All 5,573 seeds replayed without mismatches, and real full-bank fresh-clone generation was byte-identical. The three uncommitted pacing browser tests are not included in that 20-test claim.
+- GitHub Content regression and Core regression passed on the new content-workflow commit (5be87ea); final supplemental-commit workflow status is checked after push. See docs/CONTENT_CHECKS.md.

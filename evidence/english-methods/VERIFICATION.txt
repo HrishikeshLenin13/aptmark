@@ -1,62 +1,75 @@
-Aptmark English method catalog — verification record (2026-10-27)
+Aptmark English method catalog — final local verification (2026-10-27)
 Branch: codex/website-studio
-Changed field/branch: python/pipeline.py CLI expand-english; generatorVersion 3.0.0; private solutionMethod metadata.
+Changed branch/field: python/pipeline.py expand-english CLI; generatorVersion 3.0.0; private hashed solutionMethod.
 MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/python/pipeline.py
 DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-methods/pipeline.diff
 VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-methods/VERIFICATION.txt
 ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-methods/ROLLBACK.sh
 Original SHA-256: b87830c27a943a7353826a42de930d38afa49cf8eac6f033a1d4b8310957d553
 Modified SHA-256: a0a73d4efe37db4f87ffbde423f91fd182b245d778bbbebf12015dba87dd9e07
+All commands below use working directory /Users/HrishiL/Documents/ChatGPT/Lm.
 
-All commands below run from /Users/HrishiL/Documents/ChatGPT/Lm.
 BASELINE command: .venv/bin/python scripts/check-english-cli.py evidence/english-methods/pipeline.original.py
-Input: preserved original pipeline; parser --help, no database mutation.
+Input: preserved original parser; --help only; no database mutation.
 Literal output: expand-english=absent
 Exit: 0
 BASELINE tests command: .venv/bin/python -m pytest -q tests/test_content.py
-Input: original 5,405-record bank and original pipeline.
+Input: original pipeline and 5,405-record bank before this catalog.
 Literal final output: 83 passed in 3.98s
 Exit: 0; full output baseline-tests.log.
 
 MODIFIED command: .venv/bin/python scripts/check-english-cli.py python/pipeline.py
-Input: active modified pipeline; parser --help.
+Input: live modified parser; --help only.
 Literal output: expand-english=present
 Exit: 0
-MODIFIED generation command: .venv/bin/python python/pipeline.py expand-english --per-family 4
-Input: 39 families, four authored variants each, existing 5,405-record bank.
+MODIFIED first batch command: .venv/bin/python python/pipeline.py expand-english --per-family 4
+Input: initial 39 authored families, 4 contexts each; original 5,405 records.
 Literal final output: {"inserted": 156, "englishCandidates": 156, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
-Exit: 0
+Exit: 0; generation.log. First catalog committed/pushed as a52ab6a.
+MODIFIED supplemental command: .venv/bin/python python/pipeline.py expand-english --per-family 4
+Input: extended 42-family catalog and prior 5,561-record bank.
+Literal final output: {"inserted": 12, "englishCandidates": 168, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
+Exit: 0; supplement-generation.log.
 MODIFIED replay command: .venv/bin/python python/pipeline.py validate --replay
-Input: 5,561 candidates including all earlier records.
-Literal output: {"checked": 5561, "replayed": 5561, "failures": []}
-Exit: 0
+Input: final 5,573-record bank.
+Literal output: {"checked": 5573, "replayed": 5573, "failures": []}
+Exit: 0; validation.log.
 MODIFIED repeat command: .venv/bin/python python/pipeline.py expand-english --per-family 4
-Literal final output: {"inserted": 0, "englishCandidates": 156, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
-Exit: 0; content/bank.json: OK under recorded SHA-256 check.
+Input: final bank and all 42 authored families.
+Literal final output: {"inserted": 0, "englishCandidates": 168, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
+Exit: 0; repeat-generation.log. SHA-256 check literal output: content/bank.json: OK (exit 0).
 
 ROLLBACK preparation: cp python/pipeline.py /tmp/aptmark-english-rollback.py
 ROLLBACK command: evidence/english-methods/ROLLBACK.sh /tmp/aptmark-english-rollback.py
-Input: disposable copy matching the recorded modified SHA-256.
+Input: a disposable copy matching the modified SHA-256.
 Literal output: restored_sha256=b87830c27a943a7353826a42de930d38afa49cf8eac6f033a1d4b8310957d553
 Exit: 0
 ROLLBACK behavior command: .venv/bin/python scripts/check-english-cli.py /tmp/aptmark-english-rollback.py
 Literal output: expand-english=absent
-Exit: 0; original parser behavior and hash restored on the disposable copy.
+Exit: 0; original hash and parser behavior restored on the disposable copy.
 Active modified file remains changed: expand-english=present (exit 0).
-Rollback intentionally restores only the parser file on a disposable copy; it does not erase the question bank or unrelated work.
+The executable rollback restores the parser on a disposable copy only; it does not erase the bank or unrelated work.
+DIFF test: patch /tmp/aptmark-english-apply.py < evidence/english-methods/pipeline.diff
+Input: a second preserved-original copy. cmp against python/pipeline.py passes (exit 0); literal result: diff_reproduces_modified=true.
 
-Preservation: all 5,405 prior complete records byte-equivalent under canonical full-record digest; all 4,800 Math records unchanged. New candidates remain pending human review; no publications, approvals or calibrations.
-Python tests: 129 passed, exit 0 (python-tests.log); covers late-transaction rollback and isolation of returned table data.
-TypeScript unit tests: 187 passed, exit 0 (unit-tests.log); 182 passed when the five separate uncommitted pacing unit tests are excluded (committed-unit-tests.log).
-Typecheck: npm run typecheck, exit 0 (typecheck.log).
-Build: NEXT_DIST_DIR=.next-publish npm run build, exit 0 (build.log).
-Initial browser run: 19 passed, 1 failed due to workspace search visible-name mismatch; retained in playwright.initial.log. Corrected rerun is recorded separately on completion.
-Prior pacing browser failures remain outside this English batch; its source changes are preserved, not included in the content commit.
+Final contracts command: .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py
+Literal final output: 134 passed in 22.65s
+Exit: 0; python-tests.log. Covers every authored context, finite seeds, late-transaction collision rollback, table isolation, unchanged prior records and byte-identical full-bank fresh-clone generation.
+Unit command: npm test
+Result: 187 tests passed; exit 0; unit-tests.log. Includes five prior, uncommitted pacing tests.
+Committed-unit command: npm test -- --exclude tests/pacing.test.ts
+Result: 182 tests passed; exit 0; committed-unit-tests.log.
+Typecheck command: npm run typecheck
+Result: tsc --noEmit; exit 0; typecheck.log.
+Build command: NEXT_DIST_DIR=.next-publish npm run build
+Result: production build succeeds; exit 0; build.log.
+Browser command: npm run test:e2e -- tests/english-content.spec.ts tests/app.spec.ts tests/calendar.spec.ts tests/learning.spec.ts tests/studio.spec.ts
+Literal final output: 20 passed (2.2m)
+Exit: 0; playwright.log. Includes all-eleven-skill grading, key/method privacy, tables/notes/paired passages, saved state, ownership, publication gates, keyboard navigation, calendar, lessons and automated axe/overflow checks.
+The separate unfinished pacing browser tests are not included in that 20-test claim. Its pre-existing work is preserved outside these commits.
 
-Corrected focused browser command: npm run test:e2e -- tests/english-content.spec.ts tests/studio.spec.ts
-Literal final output: 5 passed (46.0s)
-Exit: 0; all-eleven-skill server grading, private method/key serialization, paired text/notes/table rendering, desktop/mobile automated axe and overflow checks, navigation and search tested.
-Three failed intermediate full runs are retained: initial 19 passed/1 failed; second 19 passed/1 failed; third 16 passed/4 failed. The final correction aligns visible and accessible search text including its shortcut hint and retains an icon-only mobile label.
-Mobile paired text, notes and table screenshots were produced for visual inspection.
-Draft-only corrections before first content commit are listed in draft-corrections*.json. They include a word-or-phrase stem, grammatical vocabulary distractors, and removal of an ambiguous noun-modifier option. No earlier committed item changed.
-Upstream GitHub main advanced by 138 commits; origin/main a55225d was integrated by fast-forward without rewriting that history. The tested accessibility fix was pushed separately as 3196ad2.
+Preservation: every original 5,405 complete record is unchanged; every record in the first 5,561-record commit is unchanged in the supplemental batch; all 4,800 Math records are unchanged. See preservation.json and both baseline inventories.
+Inventory: 5,573 total; 773 English; 168 new English contexts; 42 new families; 11 English skills; 117 total families. No exact problem-hash duplicates. All pending; 0 human-approved, 0 published, 0 empirically calibrated.
+Three failed intermediate browser runs remain archived: initial 19 passed/1 failed, second 19 passed/1 failed, third 16 passed/4 failed. The final search-label correction was tested and pushed separately as 3196ad2. Corrected focused run: 5 passed (46.0s). No failed attempt is an acceptance result.
+Draft-only precommit corrections are recorded in draft-corrections*.json; no earlier committed question changed. The three mobile English screenshots were reopened and visually inspected.
+Upstream main a55225d (138 newer commits) was integrated by fast-forward without rewriting its history. Content CI was committed/pushed as 5be87ea. Its actual GitHub Content regression and Core regression both succeeded; ci-first-catalog.json/log record the initial 156-item catalog check. Final supplemental-commit checks are inspected on GitHub after pushing.

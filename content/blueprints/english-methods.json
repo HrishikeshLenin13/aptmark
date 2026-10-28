@@ -37,6 +37,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-conjunctive-adverb",
+      "seedBase": 9169987552,
+      "skill": "boundaries",
+      "method": "Check both independent clauses; a sentence-level adverb cannot perform a coordinating conjunction’s job.",
+      "formula": "independent clause ; however/therefore/moreover/nevertheless , independent clause",
+      "structure": "A conjunctive adverb signals a relationship between two complete clauses that require a valid boundary.",
+      "misconceptions": [
+        "comma splice around a conjunctive adverb",
+        "adverb mistaken for a coordinator",
+        "punctuation placed on the wrong side of the adverb"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-context-polysemy",
       "seedBase": 11839568856,
       "skill": "words-context",
@@ -145,6 +159,20 @@
         "absence of record as absence of event",
         "unobserved population generalization",
         "measurement proxy as direct measurement"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-explicit-detail",
+      "seedBase": 11020816,
+      "skill": "central-ideas",
+      "method": "Locate the detail named by the question, preserving who did what, when, and for what stated reason.",
+      "formula": "question constraint -> relevant statement -> accurate bounded paraphrase",
+      "structure": "A short account gives several related details; the stem singles out one stated reason or procedure.",
+      "misconceptions": [
+        "neighboring detail substituted for requested detail",
+        "reversed agency or sequence",
+        "unsupported motive"
       ],
       "variants": 4
     },
@@ -369,6 +397,20 @@
         "discarding one observation",
         "asserting an untested cause",
         "overgeneralizing the reconciliation"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-series-elements",
+      "seedBase": 15684472232,
+      "skill": "boundaries",
+      "method": "Identify parallel elements in a simple series and separate them without splitting a verb from its objects.",
+      "formula": "verb + element 1, element 2, and element 3",
+      "structure": "Three short parallel objects or complements form a series within an otherwise complete sentence.",
+      "misconceptions": [
+        "missing separator between list elements",
+        "colon before a completed verb complement",
+        "period creating a fragment"
       ],
       "variants": 4
     },

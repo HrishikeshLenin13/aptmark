@@ -1,14 +1,12 @@
 {
-  "priorRecordsUnchanged": 5405,
-  "mathRecordsUnchanged": 4800,
-  "addedEnglish": 156,
-  "skills": 11,
-  "families": 39,
-  "structuralDuplicates": 0,
-  "status": "candidate-pending-human-review",
-  "difficulty": {
-    "easy": 15,
-    "medium": 114,
-    "hard": 27
-  }
+  "bankTotal": 5573,
+  "englishTotal": 773,
+  "newEnglishCatalog": 168,
+  "old5405Preserved": true,
+  "previous5561Preserved": true,
+  "math4800Preserved": true,
+  "approved": 0,
+  "published": 0,
+  "newFamilies": 42,
+  "skills": 11
 }

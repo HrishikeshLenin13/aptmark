@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "targetPublished": 10000,
-  "candidates": 5561,
+  "candidates": 5573,
   "published": 0,
   "publishableTargetMet": false,
   "candidateTargetMet": false,
@@ -11,14 +11,14 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 358,
-      "candidates": 67,
+      "candidates": 71,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 358,
-      "candidateDeficit": 291,
-      "families": 6,
+      "candidateDeficit": 287,
+      "families": 7,
       "difficulty": {
-        "medium": 38,
+        "medium": 42,
         "hard": 29
       },
       "missingDifficultyBands": [
@@ -181,14 +181,14 @@
       "domain": "Standard English Conventions",
       "section": "rw",
       "target": 715,
-      "candidates": 79,
+      "candidates": 87,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 715,
-      "candidateDeficit": 636,
-      "families": 9,
+      "candidateDeficit": 628,
+      "families": 11,
       "difficulty": {
-        "medium": 71,
+        "medium": 79,
         "easy": 5,
         "hard": 3
       },

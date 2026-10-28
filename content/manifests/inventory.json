@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generated": 5561,
-  "structurallyValidated": 5561,
+  "generated": 5573,
+  "structurallyValidated": 5573,
   "approved": 0,
   "published": 0,
   "rejected": 0,
   "sections": {
     "math": 4800,
-    "rw": 761
+    "rw": 773
   },
-  "families": 114,
+  "families": 117,
   "clusters": {
     "linear-isolate": 107,
     "linear-distribute": 103,
@@ -124,11 +124,14 @@
     "rw3-transition-causal": 4,
     "rw3-transition-concessive": 4,
     "rw3-transition-elaboration": 4,
-    "rw3-unbroken-core-clause": 4
+    "rw3-unbroken-core-clause": 4,
+    "rw3-conjunctive-adverb": 4,
+    "rw3-explicit-detail": 4,
+    "rw3-series-elements": 4
   },
   "difficulty": {
     "easy": 562,
-    "medium": 4176,
+    "medium": 4188,
     "hard": 823
   },
   "skills": {
@@ -151,7 +154,7 @@
     "lines-triangles": 169,
     "trigonometry": 194,
     "circles": 194,
-    "central-ideas": 67,
+    "central-ideas": 71,
     "textual-evidence": 67,
     "quantitative-evidence": 67,
     "inferences": 67,
@@ -160,7 +163,7 @@
     "cross-text": 67,
     "synthesis": 67,
     "transitions": 67,
-    "boundaries": 79,
+    "boundaries": 87,
     "form-structure": 79
   },
   "target": 10000,

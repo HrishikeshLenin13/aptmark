@@ -1,0 +1,4 @@
+content	Content contracts and prior-record preservation	2026-10-28T01:48:17.6632943Z 129 passed in 5.97s
+content	Replay every committed candidate from its recorded seed	2026-10-28T01:48:31.3827624Z {"checked": 5561, "replayed": 5561, "failures": []}
+content	Fresh-clone English generation must be idempotent	2026-10-28T01:48:31.5323149Z ^[[36;1mgit diff --exit-code -- content/bank.json^[[0m
+content	Fresh-clone English generation must be idempotent	2026-10-28T01:48:32.8424538Z {"inserted": 0, "englishCandidates": 156, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}

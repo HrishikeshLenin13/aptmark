@@ -2,7 +2,7 @@
 
 ## Current expansion
 
-Aptmark now contains **5,561 original candidates**: **4,800 Math** and **761 Reading and Writing**, spanning **114 explicit generator families** and all 30 taxonomy skills. The earlier v2 expansion added 850 candidates from 34 families to the 4,555-item foundation; the English-only v3 catalog adds 156 separately authored contexts in 39 further families, preserving all 5,405 earlier records. Family variants remain family variants, not claims of 850 different problem structures. Every item is pending review; **0 human-approved and 0 published**.
+Aptmark now contains **5,573 original candidates**: **4,800 Math** and **773 Reading and Writing**, spanning **117 explicit generator families** and all 30 taxonomy skills. The earlier v2 expansion added 850 candidates from 34 families to the 4,555-item foundation; the English-only v3 catalog adds 168 separately authored contexts in 42 further families, preserving all 5,405 earlier records. Family variants remain family variants, not claims of 850 different problem structures. Every item is pending review; **0 human-approved and 0 published**.
 
 ## Official alignment, original content
 
@@ -52,4 +52,4 @@ it unless a named human reviewer has actually made and recorded that decision.
 
 ## English method-first catalog — 2026-10-27
 
-See [English methods](ENGLISH_METHODS.md) for the 156-item batch, all-skill matrix, finite seed registry, full editorial pack, validation and remaining structural gaps. These items add explicit solution-method metadata to the hashed, private editorial record. No Math questions were generated or revised by this batch.
+See [English methods](ENGLISH_METHODS.md) for the 168-item catalog, all-skill matrix, finite seed registry, full editorial pack, validation and remaining structural gaps. These items add explicit solution-method metadata to the hashed, private editorial record. No Math questions were generated or revised by this batch.

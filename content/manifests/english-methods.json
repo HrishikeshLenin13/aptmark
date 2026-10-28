@@ -1,6 +1,6 @@
 {
   "generatorVersion": "3.0.0",
-  "candidates": 156,
+  "candidates": 168,
   "families": [
     {
       "skill": "textual-evidence",
@@ -11,6 +11,12 @@
     {
       "skill": "boundaries",
       "family": "rw3-complete-clause-colon",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "boundaries",
+      "family": "rw3-conjunctive-adverb",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -59,6 +65,12 @@
     {
       "skill": "inferences",
       "family": "rw3-evidence-boundary",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "central-ideas",
+      "family": "rw3-explicit-detail",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -159,6 +171,12 @@
       "authoredVariants": 4
     },
     {
+      "skill": "boundaries",
+      "family": "rw3-series-elements",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
       "skill": "form-structure",
       "family": "rw3-subject-verb-agreement",
       "candidates": 4,
@@ -238,8 +256,8 @@
     }
   ],
   "skills": {
-    "boundaries": 24,
-    "central-ideas": 12,
+    "boundaries": 32,
+    "central-ideas": 16,
     "cross-text": 12,
     "form-structure": 24,
     "inferences": 12,
@@ -251,10 +269,10 @@
     "words-context": 12
   },
   "keyPositions": {
-    "A": 34,
-    "B": 43,
+    "A": 36,
+    "B": 48,
     "C": 43,
-    "D": 36
+    "D": 41
   },
   "approved": 0,
   "published": 0,
