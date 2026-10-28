@@ -1,0 +1,41 @@
+{
+  "stateStatus": 200,
+  "inventory": {
+    "generated": 5749,
+    "validated": 5749,
+    "approved": 0,
+    "published": 0,
+    "rejected": 0,
+    "families": 161,
+    "math": 4800,
+    "rw": 949,
+    "target": 10000
+  },
+  "newFamilyRepresentativesLoaded": 22,
+  "itemIds": [
+    "boundaries-10395939416",
+    "boundaries-1658344832",
+    "central-ideas-3312028300",
+    "central-ideas-8837088920",
+    "cross-text-14216501148",
+    "cross-text-5458553456",
+    "form-structure-16913241560",
+    "form-structure-7445730180",
+    "inferences-14018003608",
+    "inferences-6236295192",
+    "quantitative-evidence-12959048004",
+    "quantitative-evidence-3798446468",
+    "synthesis-15614963364",
+    "synthesis-725360492",
+    "text-purpose-12147398004",
+    "text-purpose-12977620360",
+    "textual-evidence-2012618908",
+    "textual-evidence-4918849160",
+    "transitions-10348819440",
+    "transitions-689886336",
+    "words-context-14751556208",
+    "words-context-4235439660"
+  ],
+  "privateFieldsAbsent": true,
+  "practiceAnswersSubmitted": 0
+}

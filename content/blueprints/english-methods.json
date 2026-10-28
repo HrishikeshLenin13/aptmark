@@ -37,6 +37,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-competing-aims",
+      "seedBase": 8837088920,
+      "skill": "central-ideas",
+      "method": "Identify the two legitimate aims and the adjustment that accommodates both.",
+      "formula": "aim A + aim B + practical accommodation -> central balancing claim",
+      "structure": "An account preserves competing needs instead of treating either as irrelevant.",
+      "misconceptions": [
+        "one aim substituted for the whole argument",
+        "accommodation mistaken for abandonment",
+        "local solution made universal"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-complete-clause-colon",
       "seedBase": 11158504552,
       "skill": "boundaries",
@@ -65,6 +79,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-compound-predicate-boundary",
+      "seedBase": 1658344832,
+      "skill": "boundaries",
+      "method": "Track the shared subject across coordinated predicates before inserting a clause boundary.",
+      "formula": "one subject + predicate 1 and predicate 2; no independent-clause boundary before the subjectless second predicate",
+      "structure": "A long first predicate is followed by and plus a second predicate with the same subject.",
+      "misconceptions": [
+        "shared predicate mistaken for independent clause",
+        "period creates a subjectless fragment",
+        "colon misidentifies continuation as an introduced explanation"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-conjunctive-adverb",
       "seedBase": 9169987552,
       "skill": "boundaries",
@@ -75,6 +103,34 @@
         "comma splice around a conjunctive adverb",
         "adverb mistaken for a coordinator",
         "punctuation placed on the wrong side of the adverb"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-constraint-reconciliation",
+      "seedBase": 6236295192,
+      "skill": "inferences",
+      "method": "Combine an unchanged whole with an exhaustive set of parts to infer a compensating change.",
+      "formula": "whole fixed; A + B exhaust whole; A increases -> B decreases",
+      "structure": "A stated constraint reconciles an increase in one component with a stable overall total.",
+      "misconceptions": [
+        "both parts increase while total stays fixed",
+        "unstated third part introduced",
+        "compensating direction reversed"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-context-degree",
+      "seedBase": 4235439660,
+      "skill": "words-context",
+      "method": "Use the stated strength, extent or regularity of an observation to choose its precise description.",
+      "formula": "contextual evidence + degree qualifier -> word with matching strength and direction",
+      "structure": "A passage distinguishes partial from complete, gradual from sudden, or sporadic from continuous.",
+      "misconceptions": [
+        "degree overstated",
+        "opposite evaluative direction",
+        "different property substituted"
       ],
       "variants": 4
     },
@@ -117,6 +173,20 @@
         "opposite meaning",
         "topic association without contextual fit",
         "excessive certainty"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-context-relation",
+      "seedBase": 14751556208,
+      "skill": "words-context",
+      "method": "Identify the relationship between the two actions, accounts or processes described.",
+      "formula": "relationship in context -> precise relational verb, not a merely related action",
+      "structure": "Context distinguishes replacement, confirmation, coordination and temporal order.",
+      "misconceptions": [
+        "relationship reversed",
+        "compatible but unsupported action",
+        "mere sequence mistaken for causation"
       ],
       "variants": 4
     },
@@ -191,6 +261,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-cross-definition",
+      "seedBase": 5458553456,
+      "skill": "cross-text",
+      "method": "Compare the operational definitions attached to a shared evaluative term.",
+      "formula": "same term + different stated criteria -> apparent disagreement may be definitional",
+      "structure": "Two texts use the same word but evaluate different properties of a shared subject.",
+      "misconceptions": [
+        "different definitions treated as opposite measurements",
+        "one definition attributed to both",
+        "unsupported claim about author motives"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-cross-disagreement",
       "seedBase": 15264116780,
       "skill": "cross-text",
@@ -229,6 +313,34 @@
         "agreement made absolute",
         "one author’s view attributed to both",
         "shared topic mistaken for shared claim"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-cross-revision",
+      "seedBase": 14216501148,
+      "skill": "cross-text",
+      "method": "Identify the proposed additional test and the uncertainty it addresses in the first text.",
+      "formula": "unresolved inference in text 1 -> targeted comparison proposed in text 2",
+      "structure": "The second author recommends a test rather than claiming to have already resolved the first author’s question.",
+      "misconceptions": [
+        "proposed evidence treated as completed evidence",
+        "test scope expanded beyond the uncertainty",
+        "investigation mistaken for categorical rejection"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-detail-sequence",
+      "seedBase": 3312028300,
+      "skill": "central-ideas",
+      "method": "Locate the requested action in the stated sequence, retaining its timing or condition.",
+      "formula": "stem constraint -> matching event -> exact temporal or conditional relation",
+      "structure": "Several procedures are described, but the stem requests one particular step or trigger.",
+      "misconceptions": [
+        "neighboring step substituted",
+        "before and after reversed",
+        "unstated prerequisite added"
       ],
       "variants": 4
     },
@@ -341,6 +453,34 @@
         "condition dropped",
         "comparison reversed",
         "possible explanation stated as certainty"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-integrated-quotation",
+      "seedBase": 10395939416,
+      "skill": "boundaries",
+      "method": "Identify the grammatical slot occupied by the quotation before punctuating its lead-in.",
+      "formula": "verb or preposition + quoted complement -> no boundary separating required parts",
+      "structure": "Quoted wording completes the surrounding syntax rather than following a complete introductory clause.",
+      "misconceptions": [
+        "colon separates a required complement",
+        "comma splits integrated syntax",
+        "semicolon after an incomplete clause"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-inverted-agreement",
+      "seedBase": 16913241560,
+      "skill": "form-structure",
+      "method": "Locate the subject after an introductory location or inverted verb and agree with that subject.",
+      "formula": "location + finite verb + actual subject; the location noun does not control agreement",
+      "structure": "An introductory phrase precedes a verb whose true subject follows it.",
+      "misconceptions": [
+        "nearby singular noun mistaken for subject",
+        "plural agreement ignored",
+        "nonfinite form leaves the sentence incomplete"
       ],
       "variants": 4
     },
@@ -471,6 +611,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-perfect-time-reference",
+      "seedBase": 7445730180,
+      "skill": "form-structure",
+      "method": "Anchor the completed earlier action to the explicitly past reference event.",
+      "formula": "past reference event + earlier completed action -> had + past participle",
+      "structure": "A dated past account locates one completed event before another past event.",
+      "misconceptions": [
+        "present perfect substituted for an earlier-past relation",
+        "nonfinite auxiliary leaves clause incomplete",
+        "auxiliary number and time ignored"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-pronoun-antecedent",
       "seedBase": 5239791364,
       "skill": "form-structure",
@@ -485,6 +639,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-purpose-analogy",
+      "seedBase": 12977620360,
+      "skill": "text-purpose",
+      "method": "Map the familiar comparison to the unfamiliar relationship it clarifies without treating it as direct evidence.",
+      "formula": "familiar relation -> analogous unfamiliar relation; illustration is not independent proof",
+      "structure": "A specified comparison explains an abstract distinction through a concrete analogy.",
+      "misconceptions": [
+        "analogy treated as a literal mechanism",
+        "illustration mistaken for experimental proof",
+        "comparison used to reject the explained idea"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-purpose-concession",
       "seedBase": 5530552024,
       "skill": "text-purpose",
@@ -495,6 +663,20 @@
         "concession mistaken for total endorsement",
         "qualification mistaken for total rejection",
         "function replaced by unrelated literal detail"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-purpose-counterexample",
+      "seedBase": 12147398004,
+      "skill": "text-purpose",
+      "method": "Identify the generalization an example limits and the narrower claim that remains.",
+      "formula": "universal claim + counterexample -> limit on scope, not denial of every instance",
+      "structure": "A particular case qualifies an initially broad rule within an original argument.",
+      "misconceptions": [
+        "one counterexample made universal",
+        "qualified claim mistaken for total rejection",
+        "example detached from the proposition it tests"
       ],
       "variants": 4
     },
@@ -569,6 +751,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-quotation-contrast",
+      "seedBase": 4918849160,
+      "skill": "textual-evidence",
+      "method": "Select the pair of original textual details that jointly demonstrates the specified contrast.",
+      "formula": "claim about contrast -> evidence for both sides, not two details from one side",
+      "structure": "An original narrative supplies distinct observations whose relationship supports an interpretation.",
+      "misconceptions": [
+        "two details support only one side",
+        "chronology substituted for the specified contrast",
+        "contradictory attitude assigned to a detail"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-quotation-support",
       "seedBase": 14128111144,
       "skill": "textual-evidence",
@@ -607,6 +803,20 @@
         "possessive relative confused with who is",
         "object pronoun used as a determiner",
         "nonpossessive relative leaves the noun phrase unconnected"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-representation-selection",
+      "seedBase": 14018003608,
+      "skill": "inferences",
+      "method": "Distinguish a record collection from the underlying population by using the stated selection rule.",
+      "formula": "observed subset selected by rule R -> apparent frequency may reflect R, not population prevalence",
+      "structure": "An archive or survey disproportionately retains a defined kind of evidence.",
+      "misconceptions": [
+        "missing from record treated as absent in reality",
+        "selection effect ignored",
+        "a possible explanation declared exhaustive"
       ],
       "variants": 4
     },
@@ -695,6 +905,34 @@
       "variants": 4
     },
     {
+      "id": "rw3-synthesis-define",
+      "seedBase": 725360492,
+      "skill": "synthesis",
+      "method": "Select a definition and relevant illustration for an audience unfamiliar with the term.",
+      "formula": "unfamiliar term + distinguishing definition + relevant instance -> effective introduction",
+      "structure": "Notes mix a term’s meaning, examples and incidental dates or labels.",
+      "misconceptions": [
+        "example without the needed definition",
+        "incidental fact substituted for meaning",
+        "definition broadened beyond the notes"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-synthesis-emphasize",
+      "seedBase": 15614963364,
+      "skill": "synthesis",
+      "method": "State the requested change while preserving the feature the notes say remained constant.",
+      "formula": "changed dimension + unchanged dimension -> accurate contrast across versions",
+      "structure": "Notes describe a revision along one axis without a change in every feature.",
+      "misconceptions": [
+        "continuity erased",
+        "direction of revision reversed",
+        "accurate detail misses the requested comparison"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-synthesis-exemplify",
       "seedBase": 3457147016,
       "skill": "synthesis",
@@ -733,6 +971,20 @@
         "operations reversed",
         "accurate but irrelevant descriptive notes",
         "unstated step or causal guarantee added"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-table-baseline-change",
+      "seedBase": 3798446468,
+      "skill": "quantitative-evidence",
+      "method": "Compute the change from each stated baseline before comparing final measurements.",
+      "formula": "change = final - initial; a larger final value need not imply a larger change",
+      "structure": "A before/after table distinguishes the ranking of changes from the ranking of endpoints.",
+      "misconceptions": [
+        "endpoint mistaken for change",
+        "difference sign reversed",
+        "percentage points confused with a population claim"
       ],
       "variants": 4
     },
@@ -793,6 +1045,20 @@
       "variants": 4
     },
     {
+      "id": "rw3-table-reference",
+      "seedBase": 12959048004,
+      "skill": "quantitative-evidence",
+      "method": "Apply the stated reference or inclusive threshold to every relevant table entry.",
+      "formula": "comparison rule + units + all required entries -> bounded evidence statement",
+      "structure": "A table supports a claim relative to an explicit target, minimum or range.",
+      "misconceptions": [
+        "equality excluded from an inclusive bound",
+        "one row substituted for all rows",
+        "group measure generalized to every individual"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-table-trajectory",
       "seedBase": 3575627860,
       "skill": "quantitative-evidence",
@@ -817,6 +1083,34 @@
         "future tense in a completed past sequence",
         "present perfect with a closed past event",
         "past perfect without the required past reference"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-test-prediction",
+      "seedBase": 2012618908,
+      "skill": "textual-evidence",
+      "method": "Derive the conditional pattern predicted by a hypothesis and compare the findings against it.",
+      "formula": "effect attributed to A through B -> removing B should remove the A-related difference",
+      "structure": "A hypothetical explanation predicts a specific interaction rather than any general improvement.",
+      "misconceptions": [
+        "improvement without the predicted condition",
+        "shared feature mistaken for a discriminating test",
+        "direction of the prediction reversed"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-transition-alternative",
+      "seedBase": 689886336,
+      "skill": "transitions",
+      "method": "Recognize a second available approach when the first has not been rejected.",
+      "formula": "possible approach A + possible approach B -> alternative, not correction or consequence",
+      "structure": "Two valid routes to a stated aim are presented as choices.",
+      "misconceptions": [
+        "alternative mistaken for refutation",
+        "second option treated as consequence of first",
+        "example mistaken for separate approach"
       ],
       "variants": 4
     },
@@ -887,6 +1181,20 @@
         "example marker reverses the level of generality",
         "unsupported contrast",
         "time sequence substituted for a logical relationship"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-transition-residual",
+      "seedBase": 10348819440,
+      "skill": "transitions",
+      "method": "Connect a response to the limitation that persists after that response.",
+      "formula": "problem -> partial response -> remaining limitation = concession, not complete resolution",
+      "structure": "A remedy improves one issue but a subsequent sentence retains a different or residual concern.",
+      "misconceptions": [
+        "result marker implies the remedy caused the remaining problem",
+        "example marker misstates the relationship",
+        "sequence substituted for concession"
       ],
       "variants": 4
     },

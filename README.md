@@ -22,7 +22,7 @@ Aptmark is designed around transparent recommendations and an explicit editorial
 
 ## Current preview
 
-Aptmark is an active local preview, not a finished hosted service. Its content pipeline currently contains **5,661 generated candidates**—4,800 Math and 861 Reading and Writing—across **30 skill areas** and **139 generator families**. No candidates have received human editorial approval, none are published, and the learning model has not been empirically calibrated. Automated checks are useful quality controls, not a substitute for editorial review or student-outcome research. Full-length SAT forms, hosted accounts, cloud synchronization, and a production deployment remain future work.
+Aptmark is an active local preview, not a finished hosted service. Its content pipeline currently contains **5,749 generated candidates**—4,800 Math and 949 Reading and Writing—across **30 skill areas** and **161 generator families**. No candidates have received human editorial approval, none are published, and the learning model has not been empirically calibrated. Automated checks are useful quality controls, not a substitute for editorial review or student-outcome research. Full-length SAT forms, hosted accounts, cloud synchronization, and a production deployment remain future work.
 
 Aptmark is independent of College Board. SAT is a trademark of College Board.
 

@@ -1,0 +1,66 @@
+Aptmark English precision batch — 2026-10-28
+Changed branch/field: registry() imports and registers english_precision, adding 22 finite families and 88 original contexts across all 11 English skills.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/python/english_methods.py
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-precision/registry.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-precision/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-precision/ROLLBACK.sh
+Original SHA256: 25524b4ed31dc685d279706b0a01b55cc3c223953c2fab4af12382111f0e212c
+Modified SHA256: 4d62b0c5f381065d0e820071a44f87f2b6a8ecb2181e878e2d1487f746c5f172
+Working directory: /Users/HrishiL/Documents/ChatGPT/Lm
+
+BASELINE
+Command: .venv/bin/python scripts/check-english-catalog.py evidence/english-precision/english_methods.original.txt
+Input: immutable pre-change registry source snapshot.
+Literal output: {"families": 64, "authoredVariants": 256, "skills": 11}
+Exit status: 0
+Baseline tests: .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py
+Literal result: 204 passed in 11.95s
+Exit status: 0
+
+MODIFIED
+Command: .venv/bin/python scripts/check-english-catalog.py python/english_methods.py
+Input: live modified registry source.
+Literal output: {"families": 86, "authoredVariants": 344, "skills": 11}
+Exit status: 0
+Generation: .venv/bin/python python/pipeline.py expand-english --per-family 4
+Literal output: {"inserted": 88, "englishCandidates": 344, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
+Exit status: 0
+Final bank: 5,749 candidates, including 949 English and 4,800 Math, across 161 full-bank families. Modern method catalog: 344 contexts in 86 families. New batch: 88 contexts / 22 families / eight per English skill. No prior record changed; approvals/publications/empirical calibration remain zero.
+All 5,661 prior complete records and every Math record match saved canonical full-record digests and exact content hashes (baseline.json, preservation.json).
+
+ROLLBACK
+Preparation: cp python/english_methods.py /tmp/aptmark-precision-rollback.py
+Command: evidence/english-precision/ROLLBACK.sh /tmp/aptmark-precision-rollback.py && .venv/bin/python scripts/check-english-catalog.py /tmp/aptmark-precision-rollback.py
+Input: disposable modified registry copy.
+Literal output:
+restored_sha256=25524b4ed31dc685d279706b0a01b55cc3c223953c2fab4af12382111f0e212c
+{"families": 64, "authoredVariants": 256, "skills": 11}
+Exit status: 0
+Restored behavior/status: the copy registers the original 64 families / 256 contexts / 11 skills and is byte-identical to the snapshot. The live registry remains modified at 86 / 344 / 11. This source-copy test does not delete bank candidates or roll back the full application.
+Another original copy patched with registry.diff matched the modified source with cmp; exit 0. The executable rollback script rejected the live registry with exit 2 (expected), leaving it unchanged.
+
+QA
+Authoring command: .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py tests/test_english_precision.py
+Literal result: 252 passed in 8.29s
+Exit status: 0; this was before global registry activation.
+Integration command adds tests/test_english_precision_bank.py to the command above.
+Literal result: 277 passed in 11.24s
+Exit status: 0; tests recompute eight table cases, bounded grammar forms, exact evidence membership, pending states and complete prior-record preservation.
+Command: .venv/bin/python python/pipeline.py validate --replay
+Literal output: {"checked": 5749, "replayed": 5749, "failures": []}
+Exit status: 0
+Commands: npm test; npm run typecheck; NEXT_DIST_DIR=.next-publish npm run build
+Results: 193 workspace unit tests (including five separate pacing tests), strict typecheck and production build passed; all exit 0.
+Clean index export: npm test && npm run typecheck && NEXT_DIST_DIR=.next-verify npm run build && .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py tests/test_english_precision.py tests/test_english_precision_bank.py && .venv/bin/python python/pipeline.py validate --replay && .venv/bin/python python/pipeline.py expand-english --per-family 4
+Results: 188 committed-scope unit tests, typecheck/build, 277 Python tests, all 5,749 seed replays and fresh-clone generation with zero inserts passed; exit 0. Source export excludes unfinished pacing changes. See clean-tree.log.
+Repeat command: .venv/bin/python python/pipeline.py expand-english --per-family 4
+Literal output: {"inserted": 0, "englishCandidates": 344, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}
+Exit status: 0; bank-before-repeat.sha256 check returned content/bank.json: OK.
+Browser command: npm run typecheck && npm run test:e2e -- tests/english-precision.spec.ts tests/english-reasoning.spec.ts tests/editorial-methods.spec.ts tests/english-depth.spec.ts tests/english-content.spec.ts tests/app.spec.ts tests/calendar.spec.ts tests/learning.spec.ts tests/studio.spec.ts (inside the clean index export).
+Literal result: 31 passed (3.4m)
+Exit status: 0. All 88 new keys and 22 wrong options, content hashes, private payloads and notes/tables/quotes/grammar/paired-text layouts passed. Screenshots were visually inspected; automated axe and overflow checks passed on phone and desktop. This is not an accessibility certification.
+Local preview: before refresh, 5,661 total / 861 English. After refreshing the verified project-local Next dev process with the same npm run dev command and configuration, live inventory reports 5,749 total / 949 English / 4,800 Math. Twenty-two new family representatives loaded with matching hashes and without private fields; no practice answers submitted, ephemeral guest deleted (live-preview-before.json, live-preview-after.json).
+Public task references: College Board Reading and Writing question-stem guide; Assessment Framework version 4, Appendix B. Texts, quotations, data and choices are original. No official item was reconstructed. Source catalog timestamps retain the generator epoch; actual batch authoring date is recorded separately.
+Authoring catalog commit b7de3c5 was pushed before integration and both GitHub regression workflows passed (authoring-ci.json). Final integration checks are verified after push and reported separately.
+Failed attempts are not acceptance: four early quoted evidence spans omitted internal terminal punctuation; exact inner spans were fixed before authoring commit/insertion. Three authoring test failures came from eagerly reading a third cell in two-column tables; lazy case construction fixed the test without changing data. Initial browser run graded 88 keys and 22 distractors but failed a copied 55-attempt assertion; the final test derives 110 attempts and separately asserts 88 correct and 22 families.
+Independent human editorial, privacy, accessibility, security and psychometric release gates remain open. No automatic publication, paid API or hosted deployment was used. Automated checks and provisional labels do not certify educational effectiveness.

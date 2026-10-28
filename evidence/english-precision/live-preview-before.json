@@ -1,0 +1,14 @@
+{
+  "stateStatus": 200,
+  "inventory": {
+    "generated": 5661,
+    "validated": 5661,
+    "approved": 0,
+    "published": 0,
+    "rejected": 0,
+    "families": 139,
+    "math": 4800,
+    "rw": 861,
+    "target": 10000
+  }
+}

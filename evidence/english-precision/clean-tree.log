@@ -1,0 +1,80 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /private/tmp/aptmark-precision-clean.WEeLFs
+
+
+ Test Files  10 passed (10)
+      Tests  188 passed (188)
+   Start at  08:27:29
+   Duration  1.54s (tests 43%, transform 28%, import 27%, worker 2%)
+
+
+> aptmark@0.1.0 typecheck
+> tsc --noEmit
+
+
+> aptmark@0.1.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.ts took 1311ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.1s
+  Running TypeScript ...
+
+  We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+  	- include was updated to add '.next-verify/types/**/*.ts'
+  	- include was updated to add '.next-verify/dev/types/**/*.ts'
+
+  Finished TypeScript in 5.9s ...
+  Collecting page data using 6 workers ...
+  Generating static pages using 6 workers (0/3) ...
+✓ Generating static pages using 6 workers (3/3) in 510ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /_not-found
+├ ƒ /[[...page]]
+├ ƒ /api/[...path]
+└ ○ /icon.svg
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+........................................................................ [ 25%]
+........................................................................ [ 51%]
+........................................................................ [ 77%]
+.............................................................            [100%]
+277 passed in 11.73s
+{"checked": 5749, "replayed": 5749, "failures": []}
+{
+  "schemaVersion": 1,
+  "generated": 5749,
+  "structurallyValidated": 5749,
+  "approved": 0,
+  "published": 0,
+  "rejected": 0,
+  "sections": {
+    "math": 4800,
+    "rw": 949
+  },
+  "families": 161,
+  "difficulty": {
+    "medium": 4277,
+    "easy": 562,
+    "hard": 910
+  },
+  "target": 10000,
+  "estimatedGenerationCostUSD": 0,
+  "calibration": "uncalibrated",
+  "exactProblemDuplicates": 0,
+  "note": "Structural validation is not educational approval. No candidates count toward the 10,000 published target."
+}
+{"inserted": 0, "englishCandidates": 344, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}

@@ -4,7 +4,7 @@ Updated 2026-10-28. Reading and Writing comes first; this batch adds no Math.
 
 ## What was added
 
-**256 independently authored candidate contexts across 64 structural families and all 11 Reading and Writing skills.** There are four written variants per family, not an unlimited stream of noun swaps. The bank now contains **861 Reading and Writing** and **4,800 unchanged Math** candidates: **5,661 total**, across 139 reported families. All 5,405 pre-catalog records retain their complete data and content hashes. A second 12-item batch also preserves every record from the first 156-item catalog commit.
+**344 independently authored candidate contexts across 86 structural families and all 11 Reading and Writing skills.** There are four written variants per family, not an unlimited stream of noun swaps. The bank now contains **949 Reading and Writing** and **4,800 unchanged Math** candidates: **5,749 total**, across 161 reported families. All 5,405 pre-catalog records retain their complete data and content hashes. A second 12-item batch also preserves every record from the first 156-item catalog commit.
 
 These are original SAT-style practice candidates. They follow public task patterns and the four-option format, but are not official questions, reconstructions of secure items, or a claim of equivalent difficulty. The sources used for task alignment are College Board’s [public question-stem guide](https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing) and [Assessment Framework, version 4, September 2026](https://satsuite.collegeboard.org/media/pdf/assessment-framework-for-digital-sat-suite.pdf), especially Appendix B. Their passages and options were not used as templates.
 
@@ -12,17 +12,17 @@ These are original SAT-style practice candidates. They follow public task patter
 
 | Skill | New families | New candidates | Method focus |
 | --- | ---: | ---: | --- |
-| Central ideas and details | 6 | 24 | Integrate a narrative shift, preserve a qualified argument, reconcile observations, retrieve a constrained explicit detail. |
-| Textual evidence | 5 | 20 | Match a quotation to an interpretation, distinguish mechanisms, test an alternative cause. |
-| Quantitative evidence | 5 | 20 | Match a table comparison to a claim, track a full sequence, compare groups within conditions. |
-| Inferences | 5 | 20 | Apply necessary conditions, bound a conclusion by available evidence, trace a mechanism. |
-| Words in context | 5 | 20 | Predict precise meaning, select a local sense, use contrast or restatement. |
-| Text structure and purpose | 5 | 20 | Identify the overall aim, a portion’s contribution, and the sequence of rhetorical moves. |
-| Cross-text connections | 5 | 20 | Find qualified agreement, isolate a disputed proposition, apply counterevidence without overclaiming. |
-| Rhetorical synthesis | 5 | 20 | Select notes for a named audience, compare on a requested dimension, connect an example to a goal. |
-| Transitions | 5 | 20 | Distinguish result, concession, example, clarification, and procedural order. |
-| Boundaries | 10 | 40 | Check clause completeness, paired insertions, colon introductions, unbroken dependencies, coordination, subordination, series separators, and conjunctive-adverb joins. |
-| Form, structure, and sense | 8 | 32 | Subject–verb and pronoun agreement, finite/nonfinite verbs, tense/aspect, modifiers, and possessives/plurals. |
+| Central ideas and details | 8 | 32 | Integrate a narrative shift, preserve a qualified argument, reconcile observations, retrieve a constrained explicit detail. |
+| Textual evidence | 7 | 28 | Match a quotation to an interpretation, distinguish mechanisms, test an alternative cause. |
+| Quantitative evidence | 7 | 28 | Match a table comparison to a claim, track a full sequence, compare groups within conditions. |
+| Inferences | 7 | 28 | Apply necessary conditions, bound a conclusion by available evidence, trace a mechanism. |
+| Words in context | 7 | 28 | Predict precise meaning, select a local sense, use contrast or restatement. |
+| Text structure and purpose | 7 | 28 | Identify the overall aim, a portion’s contribution, and the sequence of rhetorical moves. |
+| Cross-text connections | 7 | 28 | Find qualified agreement, isolate a disputed proposition, apply counterevidence without overclaiming. |
+| Rhetorical synthesis | 7 | 28 | Select notes for a named audience, compare on a requested dimension, connect an example to a goal. |
+| Transitions | 7 | 28 | Distinguish result, concession, example, clarification, and procedural order. |
+| Boundaries | 12 | 48 | Check clause completeness, paired insertions, colon introductions, unbroken dependencies, coordination, subordination, series separators, and conjunctive-adverb joins. |
+| Form, structure, and sense | 10 | 40 | Subject–verb and pronoun agreement, finite/nonfinite verbs, tense/aspect, modifiers, and possessives/plurals. |
 
 The [machine-readable catalog](../content/blueprints/english-methods.json) records each family’s method, rule or heuristic, structure, misconceptions, finite variant count and stable seed base. “Formula” means a grammatical rule or instructional reasoning aid—not a universal English-solving algorithm or an SAT score formula. The catalog covers every taxonomy skill, not every possible SAT item or difficulty level. More demanding series, punctuation around quotations, nuanced inferences, complex prose, and further independently authored contexts remain next expansion areas.
 
@@ -35,7 +35,7 @@ The [machine-readable catalog](../content/blueprints/english-methods.json) recor
 - Original-content provenance and separate candidate, editorial and publication states.
 - Quantitative items supply labeled, rectangular tables with units and self-contained invented data.
 
-New method metadata participates in the content fingerprint and stays private in student API payloads before grading. The server retains answer checking. Paired passages and bulleted research notes render using the existing passage layout. The full [256-item editorial pack](../content/reviewed/english-methods.md) includes the keys and blank reviewer/decision/notes fields; it is not a student quiz.
+New method metadata participates in the content fingerprint and stays private in student API payloads before grading. The server retains answer checking. Paired passages and bulleted research notes render using the existing passage layout. The full [344-item editorial pack](../content/reviewed/english-methods.md) includes the keys and blank reviewer/decision/notes fields; it is not a student quiz.
 
 ## Generation and quality controls
 
@@ -75,3 +75,7 @@ The next 44 contexts add four per skill, retaining all 5,573 records from the pr
 ## Reasoning and structure batch — 2026-10-28
 
 The next 44 contexts add narrative reappraisal, challenges to exclusive explanations, condition-dependent table rankings, necessity controls, precise verb senses, concessions, scales of analysis, procedural synthesis, summary transitions, complex series and relative possession. See [the batch record](ENGLISH_REASONING.md). All 5,617 earlier records remain unchanged; this is original English expansion, not Math expansion or automatic publication.
+
+## Precision batch — 2026-10-28
+
+The next 88 contexts add two finite families per English skill. They extend conditional evidence, baseline changes and inclusive references, selection effects and fixed-part constraints, definitions and proposed tests across texts, integrated quotations, compound predicates, inverted agreement and past-perfect reference. All 5,661 prior records remain unchanged. See [the precision batch](ENGLISH_PRECISION.md).

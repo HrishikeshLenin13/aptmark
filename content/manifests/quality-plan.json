@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "targetPublished": 10000,
-  "candidates": 5661,
+  "candidates": 5749,
   "published": 0,
   "publishableTargetMet": false,
   "candidateTargetMet": false,
@@ -11,14 +11,14 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 358,
-      "candidates": 79,
+      "candidates": 87,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 358,
-      "candidateDeficit": 279,
-      "families": 9,
+      "candidateDeficit": 271,
+      "families": 11,
       "difficulty": {
-        "medium": 43,
+        "medium": 51,
         "hard": 36
       },
       "missingDifficultyBands": [
@@ -30,15 +30,15 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 357,
-      "candidates": 75,
+      "candidates": 83,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 357,
-      "candidateDeficit": 282,
-      "families": 8,
+      "candidateDeficit": 274,
+      "families": 10,
       "difficulty": {
-        "medium": 35,
-        "hard": 40
+        "medium": 39,
+        "hard": 44
       },
       "missingDifficultyBands": [
         "easy"
@@ -49,14 +49,14 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 358,
-      "candidates": 75,
+      "candidates": 83,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 358,
-      "candidateDeficit": 283,
-      "families": 8,
+      "candidateDeficit": 275,
+      "families": 10,
       "difficulty": {
-        "medium": 38,
+        "medium": 46,
         "hard": 34,
         "easy": 3
       },
@@ -67,15 +67,15 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 358,
-      "candidates": 75,
+      "candidates": 83,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 358,
-      "candidateDeficit": 283,
-      "families": 8,
+      "candidateDeficit": 275,
+      "families": 10,
       "difficulty": {
-        "medium": 40,
-        "hard": 35
+        "medium": 44,
+        "hard": 39
       },
       "missingDifficultyBands": [
         "easy"
@@ -86,14 +86,14 @@
       "domain": "Craft and Structure",
       "section": "rw",
       "target": 513,
-      "candidates": 75,
+      "candidates": 83,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 513,
-      "candidateDeficit": 438,
-      "families": 8,
+      "candidateDeficit": 430,
+      "families": 10,
       "difficulty": {
-        "medium": 69,
+        "medium": 77,
         "hard": 6
       },
       "missingDifficultyBands": [
@@ -105,14 +105,14 @@
       "domain": "Craft and Structure",
       "section": "rw",
       "target": 513,
-      "candidates": 75,
+      "candidates": 83,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 513,
-      "candidateDeficit": 438,
-      "families": 8,
+      "candidateDeficit": 430,
+      "families": 10,
       "difficulty": {
-        "medium": 40,
+        "medium": 48,
         "hard": 35
       },
       "missingDifficultyBands": [
@@ -124,15 +124,15 @@
       "domain": "Craft and Structure",
       "section": "rw",
       "target": 513,
-      "candidates": 75,
+      "candidates": 83,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 513,
-      "candidateDeficit": 438,
-      "families": 8,
+      "candidateDeficit": 430,
+      "families": 10,
       "difficulty": {
         "medium": 13,
-        "hard": 62
+        "hard": 70
       },
       "missingDifficultyBands": [
         "easy"
@@ -143,14 +143,14 @@
       "domain": "Expression of Ideas",
       "section": "rw",
       "target": 550,
-      "candidates": 75,
+      "candidates": 83,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 550,
-      "candidateDeficit": 475,
-      "families": 8,
+      "candidateDeficit": 467,
+      "families": 10,
       "difficulty": {
-        "medium": 67,
+        "medium": 75,
         "hard": 8
       },
       "missingDifficultyBands": [
@@ -162,14 +162,14 @@
       "domain": "Expression of Ideas",
       "section": "rw",
       "target": 550,
-      "candidates": 75,
+      "candidates": 83,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 550,
-      "candidateDeficit": 475,
-      "families": 8,
+      "candidateDeficit": 467,
+      "families": 10,
       "difficulty": {
-        "medium": 72,
+        "medium": 80,
         "hard": 3
       },
       "missingDifficultyBands": [
@@ -181,14 +181,14 @@
       "domain": "Standard English Conventions",
       "section": "rw",
       "target": 715,
-      "candidates": 95,
+      "candidates": 103,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 715,
-      "candidateDeficit": 620,
-      "families": 13,
+      "candidateDeficit": 612,
+      "families": 15,
       "difficulty": {
-        "medium": 81,
+        "medium": 89,
         "easy": 5,
         "hard": 9
       },
@@ -199,14 +199,14 @@
       "domain": "Standard English Conventions",
       "section": "rw",
       "target": 715,
-      "candidates": 87,
+      "candidates": 95,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 715,
-      "candidateDeficit": 628,
-      "families": 11,
+      "candidateDeficit": 620,
+      "families": 13,
       "difficulty": {
-        "medium": 75,
+        "medium": 83,
         "hard": 5,
         "easy": 7
       },

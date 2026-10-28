@@ -1,0 +1,76 @@
+........................................................................ [ 28%]
+........................................................................ [ 57%]
+........................................................................ [ 85%]
+...............F.FF.................                                     [100%]
+=================================== FAILURES ===================================
+____ test_reference_tables_apply_inclusive_bounds_to_all_required_cells[0] _____
+
+variant = 0
+
+    @pytest.mark.parametrize('variant',range(4))
+    def test_reference_tables_apply_inclusive_bounds_to_all_required_cells(variant):
+        raw=content.make('rw3-table-reference',4_000_000+variant)
+        table=raw['table'];rows=table['rows']
+        expected=[((5,),(7,),(11,)),((14,13),(12,15),(10,11)),((8,),(4,),(6,)),((18,),(21,),(20,))][variant]
+        assert tuple(tuple(row[1:]) for row in rows)==expected
+        predicates=[lambda n:n<=8,lambda n:n>=12,lambda n:4<=n<=7,lambda n:n>=20]
+        accepted=tuple(all(predicates[variant](n) for n in row) for row in expected)
+        assert accepted==[(True,True,False),(True,True,False),(False,True,True),(False,True,True)][variant]
+        keys=[
+            f'C’s mean is {rows[2][1]} errors, above 8, whereas A’s {rows[0][1]} and B’s {rows[1][1]} are both below 8.',
+>           f'A records {rows[0][1]} and {rows[0][2]} liters per minute, B records {rows[1][1]} and {rows[1][2]}, and C records {rows[2][1]} and {rows[2][2]}.',
+            f'P’s gap is {rows[0][1]} millimeters, while Q’s {rows[1][1]} and R’s {rows[2][1]} both fall within the inclusive 4-to-7-millimeter range.',
+            f'South’s mean is {rows[1][1]} and West’s is {rows[2][1]}, meeting the minimum of 20, while North’s {rows[0][1]} falls below it.',
+        ]
+E       IndexError: list index out of range
+
+tests/test_english_precision.py:77: IndexError
+____ test_reference_tables_apply_inclusive_bounds_to_all_required_cells[2] _____
+
+variant = 2
+
+    @pytest.mark.parametrize('variant',range(4))
+    def test_reference_tables_apply_inclusive_bounds_to_all_required_cells(variant):
+        raw=content.make('rw3-table-reference',4_000_000+variant)
+        table=raw['table'];rows=table['rows']
+        expected=[((5,),(7,),(11,)),((14,13),(12,15),(10,11)),((8,),(4,),(6,)),((18,),(21,),(20,))][variant]
+        assert tuple(tuple(row[1:]) for row in rows)==expected
+        predicates=[lambda n:n<=8,lambda n:n>=12,lambda n:4<=n<=7,lambda n:n>=20]
+        accepted=tuple(all(predicates[variant](n) for n in row) for row in expected)
+        assert accepted==[(True,True,False),(True,True,False),(False,True,True),(False,True,True)][variant]
+        keys=[
+            f'C’s mean is {rows[2][1]} errors, above 8, whereas A’s {rows[0][1]} and B’s {rows[1][1]} are both below 8.',
+>           f'A records {rows[0][1]} and {rows[0][2]} liters per minute, B records {rows[1][1]} and {rows[1][2]}, and C records {rows[2][1]} and {rows[2][2]}.',
+            f'P’s gap is {rows[0][1]} millimeters, while Q’s {rows[1][1]} and R’s {rows[2][1]} both fall within the inclusive 4-to-7-millimeter range.',
+            f'South’s mean is {rows[1][1]} and West’s is {rows[2][1]}, meeting the minimum of 20, while North’s {rows[0][1]} falls below it.',
+        ]
+E       IndexError: list index out of range
+
+tests/test_english_precision.py:77: IndexError
+____ test_reference_tables_apply_inclusive_bounds_to_all_required_cells[3] _____
+
+variant = 3
+
+    @pytest.mark.parametrize('variant',range(4))
+    def test_reference_tables_apply_inclusive_bounds_to_all_required_cells(variant):
+        raw=content.make('rw3-table-reference',4_000_000+variant)
+        table=raw['table'];rows=table['rows']
+        expected=[((5,),(7,),(11,)),((14,13),(12,15),(10,11)),((8,),(4,),(6,)),((18,),(21,),(20,))][variant]
+        assert tuple(tuple(row[1:]) for row in rows)==expected
+        predicates=[lambda n:n<=8,lambda n:n>=12,lambda n:4<=n<=7,lambda n:n>=20]
+        accepted=tuple(all(predicates[variant](n) for n in row) for row in expected)
+        assert accepted==[(True,True,False),(True,True,False),(False,True,True),(False,True,True)][variant]
+        keys=[
+            f'C’s mean is {rows[2][1]} errors, above 8, whereas A’s {rows[0][1]} and B’s {rows[1][1]} are both below 8.',
+>           f'A records {rows[0][1]} and {rows[0][2]} liters per minute, B records {rows[1][1]} and {rows[1][2]}, and C records {rows[2][1]} and {rows[2][2]}.',
+            f'P’s gap is {rows[0][1]} millimeters, while Q’s {rows[1][1]} and R’s {rows[2][1]} both fall within the inclusive 4-to-7-millimeter range.',
+            f'South’s mean is {rows[1][1]} and West’s is {rows[2][1]}, meeting the minimum of 20, while North’s {rows[0][1]} falls below it.',
+        ]
+E       IndexError: list index out of range
+
+tests/test_english_precision.py:77: IndexError
+=========================== short test summary info ============================
+FAILED tests/test_english_precision.py::test_reference_tables_apply_inclusive_bounds_to_all_required_cells[0]
+FAILED tests/test_english_precision.py::test_reference_tables_apply_inclusive_bounds_to_all_required_cells[2]
+FAILED tests/test_english_precision.py::test_reference_tables_apply_inclusive_bounds_to_all_required_cells[3]
+3 failed, 249 passed in 8.42s

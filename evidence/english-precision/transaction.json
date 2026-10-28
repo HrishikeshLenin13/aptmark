@@ -1,0 +1,23 @@
+[
+  {
+    "name": "BASELINE",
+    "command": ".venv/bin/python scripts/check-english-catalog.py evidence/english-precision/english_methods.original.txt",
+    "input": "evidence/english-precision/english_methods.original.txt",
+    "output": "{\"families\": 64, \"authoredVariants\": 256, \"skills\": 11}",
+    "exit": 0
+  },
+  {
+    "name": "MODIFIED",
+    "command": ".venv/bin/python scripts/check-english-catalog.py python/english_methods.py",
+    "input": "python/english_methods.py",
+    "output": "{\"families\": 86, \"authoredVariants\": 344, \"skills\": 11}",
+    "exit": 0
+  },
+  {
+    "name": "ROLLBACK",
+    "command": "cp python/english_methods.py /tmp/aptmark-precision-rollback.py && evidence/english-precision/ROLLBACK.sh /tmp/aptmark-precision-rollback.py && .venv/bin/python scripts/check-english-catalog.py /tmp/aptmark-precision-rollback.py",
+    "input": "disposable modified registry copy",
+    "output": "restored_sha256=25524b4ed31dc685d279706b0a01b55cc3c223953c2fab4af12382111f0e212c\n{\"families\": 64, \"authoredVariants\": 256, \"skills\": 11}",
+    "exit": 0
+  }
+]
