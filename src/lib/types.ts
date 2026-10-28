@@ -57,6 +57,17 @@ export type Question = {
   calibration: { difficulty: number; n: number };
   source: string;
   generatorVersion?: string;
+  solutionMethod?: {
+    blueprintId: string;
+    skill: string;
+    method: string;
+    formula: string;
+    structure: string;
+    misconceptions: string[];
+    variantIndex: number;
+    authoredVariantCount: number;
+    formulaStatus: string;
+  };
   answerEvidence?: { quotes: string[]; reasoning: string };
   alignment?: { source: string; basis: string; frameworkVersion: string };
   qualityMetadata?: {

@@ -1,3 +1,4 @@
+import { editorialCatalog } from "@/lib/editorial-catalog";
 import { studyCalendar } from "@/lib/study-calendar";
 import { LESSONS, publicLesson } from "@/lib/lessons";
 import { lessonProgress, recordLessonCheck } from "@/lib/lesson-store";
@@ -708,21 +709,15 @@ async function handler(req: NextRequest) {
     if (path === "admin" && !write) {
       admin(req);
       const u = req.nextUrl.searchParams;
-      const limit = 50;
       const all = allQuestions();
       return json({
-        questions: all
-          .filter(
-            (q) =>
-              (!u.get("skill") || q.skill === u.get("skill")) &&
-              (!u.get("status") || q.editorialStatus === u.get("status")) &&
-              (!u.get("version") || q.generatorVersion === u.get("version")) &&
-              (!u.get("family") || q.family === u.get("family")),
-          )
-          .slice(
-            Math.max(0, Number(u.get("offset")) || 0),
-            Math.max(0, Number(u.get("offset")) || 0) + limit,
-          ),
+        ...editorialCatalog(all, {
+          skill: u.get("skill"),
+          version: u.get("version"),
+          status: u.get("status"),
+          family: u.get("family"),
+          offset: u.get("offset"),
+        }),
         reports: db()
           .prepare(
             "SELECT id,question_id,message,created_at FROM reports ORDER BY rowid DESC LIMIT 100",
