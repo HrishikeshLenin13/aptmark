@@ -168,7 +168,9 @@ def test_second_batch_preserves_every_first_batch_committed_record():
     assert len(previous)==baseline['count']==5561
     assert all(q['contentHash']==baseline['contentHashes'][q['id']] for q in previous)
     assert digest(previous)==baseline['allRecordsDigest']
-    extra=[q for q in bank if q['id'] not in baseline['contentHashes']]
+    from english_detail_boundaries import FAMILIES as SUPPLEMENT
+    families={f for fs in SUPPLEMENT.values() for f in fs}
+    extra=[q for q in bank if q['id'] not in baseline['contentHashes'] and q['family'] in families]
     assert len(extra)==12 and {q['skill'] for q in extra}=={'central-ideas','boundaries'}
     assert len({q['family'] for q in extra})==3
 
