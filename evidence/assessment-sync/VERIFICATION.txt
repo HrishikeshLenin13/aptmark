@@ -1,0 +1,48 @@
+Assessment save recovery — 2026-10-28
+Branch: codex/website-studio -> origin/main
+Changed field: ExamWorkspace promise-tail writes -> versioned AssessmentSync; retry control false -> true; controlled notes false -> true. Server scoring, keys, ownership and publication gates are unchanged.
+
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/src/components/aptmark-app.tsx
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/assessment-sync/assessment-sync.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/assessment-sync/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/assessment-sync/ROLLBACK.sh (executable)
+Original SHA256: 0d94d63a08b693f30b6a488ecb214bcfa3d4bcc5e2cfa7aaf63114b82df41ba8
+Modified SHA256: f4ce7a482d3e03abae5e5799ca34e3678448851d01c527cac5e8b72112839e28
+
+Command variables:
+E=/Users/HrishiL/Documents/ChatGPT/Lm/evidence/assessment-sync
+F=/Users/HrishiL/Documents/ChatGPT/Lm/src/components/aptmark-app.tsx
+BASELINE command: node "$E/probe.mjs" "$E/aptmark-app.original.txt"
+Input: preserved original workspace component.
+Literal output: writeQueue=promise-tail; retry=false; controlledNotes=false
+Exit: 0
+Browser baseline command: npm run test:e2e -- tests/assessment-sync.spec.ts
+Input: two real delayed/failed-save regressions against the original component.
+Literal summary: 2 failed
+Exit: 1. Both original tests observed an edited radio becoming unchecked after a heartbeat. See baseline-browser-final.log; the earlier baseline log also retains an intermediate locator mismatch.
+
+MODIFIED command: node "$E/probe.mjs" "$F"
+Input: live modified component.
+Literal output: writeQueue=versioned; retry=true; controlledNotes=true
+Exit: 0
+ROLLBACK command: cp "$F" "$E/rollback-copy.txt" && "$E/ROLLBACK.sh" "$E/rollback-copy.txt" && node "$E/probe.mjs" "$E/rollback-copy.txt"
+Input: disposable copy of the modified component.
+Literal output:
+restored_sha256=0d94d63a08b693f30b6a488ecb214bcfa3d4bcc5e2cfa7aaf63114b82df41ba8
+writeQueue=promise-tail; retry=false; controlledNotes=false
+Exit: 0
+Restored status: original component bytes/queue/notes branch are restored only on the disposable copy. This is not a whole-repository rollback. Live component remains versioned/retryable/controlled; the guard rejects the live file with exit 2.
+
+Final clean-index validation, with no local environment file or untracked source dependency:
+- npm test -> Tests 206 passed (206), 12 test files; exit 0. Includes 10 new queue contracts for acknowledgement order, coalescing, retry, drain races, scope, locked work and diagnostic retirement.
+- npm run typecheck -> tsc --noEmit; exit 0.
+- NEXT_DIST_DIR=.next-publish npm run build -> successful static/dynamic route build; exit 0.
+- .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py tests/test_english_precision.py tests/test_english_precision_bank.py -> 277 passed in 36.66s; exit 0.
+- .venv/bin/python python/pipeline.py validate --replay -> {"checked": 5749, "replayed": 5749, "failures": []}; exit 0.
+- npm run test:e2e -> 45 passed (4.9m); exit 0. Includes 7 real network-fault cases and all previous study/editorial/content/assessment workflows. New cases verify pending/failed work survives heartbeat reads, stale reads cannot replace acknowledged answers, saved status waits for the final acknowledgement, a native close can be cancelled, connection restoration retries, deadline expiry does not grade unsent work, and retired diagnostic work does not block the next module.
+- shasum -a 256 -c evidence/assessment-sync/bank-before.sha256 -> content/bank.json: OK; exit 0.
+- Error/retry layouts passed automated axe and document-overflow checks at 1440/820/390px; screenshots are retained. Phone rendering was visually inspected. Automated checks are not independent accessibility certification.
+
+Retained intermediate failure: a compact-layout rule hid saving feedback; studio.css now restores it. A browser test also incorrectly awaited a cancelled reload; it now uses Playwright's documented runBeforeUnload close/cancel flow. The final seven targeted tests and the full 45-test run pass. Intermediate failures are not acceptance results.
+
+The queue is in memory and scoped to a mounted account/assessment. It is not durable offline storage or cross-device conflict resolution. Closing/reloading after accepting the browser prompt, an internal route change, or a crash may lose unsent changes. The UI states this explicitly; locked unsent work is inspectable, not silently counted as graded evidence. Question data stays byte-identical: 949 English + 4800 Math candidates, 0 human approved, 0 published, 0 empirically calibrated. No paid API or hosted deployment was added.

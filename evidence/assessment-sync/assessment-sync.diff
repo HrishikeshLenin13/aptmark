@@ -1,0 +1,351 @@
+diff --git a/src/components/aptmark-app.tsx b/src/components/aptmark-app.tsx
+index 8d0d1b4..3fccbc3 100644
+--- a/src/components/aptmark-app.tsx
++++ b/src/components/aptmark-app.tsx
+@@ -1,5 +1,12 @@
+ "use client";
+-import { useCallback, useEffect, useRef, useState } from "react";
++import {
++  useCallback,
++  useEffect,
++  useRef,
++  useState,
++  useSyncExternalStore,
++} from "react";
++import { AssessmentSync } from "@/lib/assessment-sync";
+ import Link from "next/link";
+ import * as NavigationDialog from "@radix-ui/react-dialog";
+ import { WorkspaceSearch } from "./workspace-search";
+@@ -2558,17 +2565,80 @@ type ExamData = {
+     explanation: string;
+   }[];
+ };
+-function ExamWorkspace({
+-  state: s,
+-  refresh,
+-  notify,
++function UnsentAssessmentWork({
++  sync,
++  exam,
+ }: {
++  sync: AssessmentSync;
++  exam: Exam;
++}) {
++  return (
++    <section className="error assessment-unsent" role="status">
++      <p>
++        {exam.status === "complete"
++          ? "This session is locked."
++          : "A previous module is locked."}{" "}
++        Unsent local changes were not graded. Copy any work you want to keep
++        before leaving this page.
++      </p>
++      <details>
++        <summary>View unsent work in this tab</summary>
++        {sync.unsent(exam.status !== "complete").map((write) => (
++          <div key={`${write.index}:${write.questionId}`}>
++            <strong>
++              Module {write.index + 1}, question{" "}
++              {(exam.modules[write.index]?.questionIds.indexOf(
++                write.questionId,
++              ) ?? -1) + 1}
++            </strong>
++            <p>Local answer: {write.answer || "No response"}</p>
++            {write.note && <p>Local notes: {write.note}</p>}
++          </div>
++        ))}
++      </details>
++    </section>
++  );
++}
++type ExamWorkspaceProps = {
+   state: AppState;
+   refresh: () => Promise<void>;
+   notify: (s: string) => void;
+-}) {
+-  const params = useSearchParams(),
+-    examId = params.get("id");
++};
++function ExamWorkspace(props: ExamWorkspaceProps) {
++  const examId = useSearchParams().get("id");
++  return (
++    <ExamSessionWorkspace
++      key={`${props.state.user.id}:${examId ?? ""}`}
++      examId={examId}
++      {...props}
++    />
++  );
++}
++function ExamSessionWorkspace({
++  state: s,
++  refresh,
++  notify,
++  examId,
++}: ExamWorkspaceProps & { examId: string | null }) {
++  const [sync] = useState(
++    () =>
++      new AssessmentSync(examId ?? "", async (payload) => {
++        await api("exam/save", payload);
++      }),
++  );
++  const syncState = useSyncExternalStore(
++    sync.subscribe,
++    sync.getSnapshot,
++    sync.getSnapshot,
++  );
++  const saving =
++    syncState.pending > 0
++      ? "Saving…"
++      : syncState.unsaved > 0
++        ? "Changes not saved — retry before leaving"
++        : syncState.stranded
++          ? "Current module changes saved"
++          : "All changes saved";
+   const [data, setData] = useState<ExamData | null>(null),
+     [index, setIndex] = useState(0),
+     [tick, setTick] = useState(Date.now()),
+@@ -2577,39 +2647,77 @@ function ExamWorkspace({
+     [hidden, setHidden] = useState(false),
+     [modal, setModal] = useState(""),
+     [zoom, setZoom] = useState(false),
+-    [saving, setSaving] = useState("All changes saved"),
+     [calc, setCalc] = useState(""),
+     [calcResult, setCalcResult] = useState(""),
+     [busy, setBusy] = useState(false);
+-  const queue = useRef(Promise.resolve()),
++  const dataRef = useRef<ExamData | null>(null),
++    mounted = useRef(false),
++    readSequence = useRef(0),
+     moduleIndex = useRef(-1),
+     navigatorTrigger = useRef<HTMLButtonElement>(null);
+   const load = useCallback(async () => {
+     if (!examId) return;
++    const request = ++readSequence.current;
++    const revision = sync.getSnapshot().revision;
+     try {
+       const d = await api<ExamData>("exam?id=" + examId);
+-      setData(d);
++      if (!mounted.current || request !== readSequence.current) return;
++      // Locks and module advancement are authoritative even while local writes remain unresolved.
++      const advanced =
++        dataRef.current && d.exam.current > dataRef.current.exam.current;
++      if (
++        d.exam.status !== "complete" &&
++        !advanced &&
++        revision !== sync.getSnapshot().revision
++      )
++        return;
++      sync.retireLocked(d.exam);
++      if (d.exam.status === "complete") sync.close();
++      const next = { ...d, exam: sync.overlay(d.exam) };
++      dataRef.current = next;
++      setData(next);
+       setOffset(Date.parse(d.serverTime) - Date.now());
+       if (moduleIndex.current !== d.exam.current) {
+         moduleIndex.current = d.exam.current;
+         setIndex(0);
+       }
+       if (d.exam.status === "complete") await refresh();
+-    } catch (e) {
+-      setError((e as Error).message);
++    } catch (error) {
++      if (mounted.current && request === readSequence.current)
++        setError((error as Error).message);
+     }
+-  }, [examId, refresh]);
++  }, [examId, refresh, sync]);
+   useEffect(() => {
++    mounted.current = true;
+     void load();
+     const t = setInterval(() => setTick(Date.now()), 1000);
+     const p = setInterval(() => {
+       void load();
+     }, 15000);
++    const online = () => {
++      sync.retry();
++      void load();
++    };
++    window.addEventListener("online", online);
+     return () => {
++      mounted.current = false;
++      ++readSequence.current;
+       clearInterval(t);
+       clearInterval(p);
++      window.removeEventListener("online", online);
++    };
++  }, [load, sync]);
++  useEffect(() => {
++    if (!syncState.unsaved && !syncState.stranded) return;
++    const warn = (event: BeforeUnloadEvent) => {
++      const current = sync.getSnapshot();
++      if (!current.unsaved && !current.stranded) return;
++      event.preventDefault();
++      event.returnValue = "";
+     };
+-  }, [load]);
++    window.addEventListener("beforeunload", warn);
++    return () => window.removeEventListener("beforeunload", warn);
++  }, [sync, syncState.unsaved, syncState.stranded]);
+   const e = data?.exam,
+     m = e?.modules[e.current],
+     q = data?.questions[index];
+@@ -2625,56 +2733,47 @@ function ExamWorkspace({
+     if (e?.status === "active" && m?.deadline && remaining === 0) void load();
+   }, [remaining, e?.status, m?.deadline, load]);
+   const save = (change: { answer?: string; flag?: boolean; note?: string }) => {
+-    if (!e || !m || !q) return;
+-    const answer = change.answer ?? m.answers[q.id] ?? "",
+-      flag = change.flag ?? m.flags.includes(q.id),
+-      note = change.note ?? m.notes[q.id] ?? "";
+-    setData((prev) => {
+-      if (!prev) return prev;
+-      const next = structuredClone(prev),
+-        mm = next.exam.modules[next.exam.current];
+-      mm.answers[q.id] = answer;
+-      mm.notes[q.id] = note;
+-      mm.flags = flag
+-        ? [...new Set([...mm.flags, q.id])]
+-        : mm.flags.filter((x) => x !== q.id);
+-      return next;
++    const previous = dataRef.current;
++    if (!previous || !q || previous.exam.status !== "active") return;
++    const next = structuredClone(previous),
++      exam = next.exam,
++      module = exam.modules[exam.current];
++    const answer = change.answer ?? module.answers[q.id] ?? "",
++      flag = change.flag ?? module.flags.includes(q.id),
++      note = change.note ?? module.notes[q.id] ?? "";
++    module.answers[q.id] = answer;
++    module.notes[q.id] = note;
++    module.flags = flag
++      ? [...new Set([...module.flags, q.id])]
++      : module.flags.filter((id) => id !== q.id);
++    dataRef.current = next;
++    setData(next);
++    sync.enqueue({
++      id: exam.id,
++      index: exam.current,
++      questionId: q.id,
++      answer,
++      flag,
++      note,
+     });
+-    setSaving("Saving…");
+-    queue.current = queue.current
+-      .then(async () => {
+-        try {
+-          await api("exam/save", {
+-            id: e.id,
+-            index: e.current,
+-            questionId: q.id,
+-            answer,
+-            flag,
+-            note,
+-          });
+-          setSaving("All changes saved");
+-        } catch (err) {
+-          setSaving("Not saved — retry before leaving");
+-          setError((err as Error).message);
+-          throw err;
+-        }
+-      })
+-      .catch(() => {});
+   };
+   const submit = async () => {
+     if (!e) return;
+     setError("");
+     setBusy(true);
+     try {
+-      await queue.current;
+-      for (const qid of m!.questionIds) {
++      sync.retry();
++      await sync.drain();
++      const latest = dataRef.current!;
++      const module = latest.exam.modules[latest.exam.current];
++      for (const qid of module.questionIds) {
+         await api("exam/save", {
+           id: e.id,
+           index: e.current,
+           questionId: qid,
+-          answer: m!.answers[qid] ?? "",
+-          flag: m!.flags.includes(qid),
+-          note: m!.notes[qid] ?? "",
++          answer: module.answers[qid] ?? "",
++          flag: module.flags.includes(qid),
++          note: module.notes[qid] ?? "",
+         });
+       }
+       await api("exam/submit", { id: e.id, index: e.current });
+@@ -2712,6 +2811,9 @@ function ExamWorkspace({
+           }
+           description="Raw results from your original-content preview. This is not an official-equivalent SAT score."
+         />
++        {(syncState.unsaved > 0 || syncState.stranded > 0) && (
++          <UnsentAssessmentWork sync={sync} exam={e} />
++        )}
+         <div className="assessment-result">
+           <span className="round-icon">
+             <CheckCircle2 size={26} />
+@@ -2831,6 +2933,7 @@ function ExamWorkspace({
+   return (
+     <>
+       {e.preview && <PreviewNotice />}
++      {syncState.stranded > 0 && <UnsentAssessmentWork sync={sync} exam={e} />}
+       <section className={"exam-workspace " + (zoom ? "zoomed" : "")}>
+         <header
+           className={
+@@ -3016,21 +3119,45 @@ function ExamWorkspace({
+                   <textarea
+                     key={q.id}
+                     aria-label="Assessment notes"
+-                    defaultValue={m.notes[q.id] ?? ""}
+-                    onBlur={(event) => save({ note: event.target.value })}
++                    value={m.notes[q.id] ?? ""}
++                    onChange={(event) => save({ note: event.target.value })}
+                   />
+                 </details>
+               </div>
+             </div>
+           </>
+         )}
+-        {error && modal !== "submit" && (
+-          <p className="error" role="alert">
+-            {error}
+-            <button className="text-button" onClick={() => load()}>
+-              Reload saved state
+-            </button>
+-          </p>
++        {(error || syncState.error) && modal !== "submit" && (
++          <div className="error" role="alert">
++            <p>{syncState.error || error}</p>
++            {syncState.unsaved > 0 ? (
++              <Button
++                variant="secondary"
++                size="small"
++                disabled={syncState.pending > 0}
++                onClick={() => {
++                  setError("");
++                  sync.retry();
++                }}
++              >
++                Retry unsaved changes
++              </Button>
++            ) : (
++              <button
++                className="text-button"
++                onClick={() => {
++                  setError("");
++                  void load();
++                }}
++              >
++                Refresh connection
++              </button>
++            )}
++            <p>
++              Your latest changes remain in this open workspace. Keep it open
++              until saving finishes; closing or reloading may lose unsaved work.
++            </p>
++          </div>
+         )}
+         <footer className="exam-footer">
+           <span className="autosave" role="status">

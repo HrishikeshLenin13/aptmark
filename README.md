@@ -13,7 +13,7 @@
 - **Understand the reasoning.** Review worked explanations, progressive hints, and common-mistake notes alongside each question.
 - **Make space for study.** Shape a weekly plan around your available days and export its real study reminders to a portable calendar file.
 - **Keep your progress honest.** See actual practice history, skill-level signals, review reminders, and study plans—without invented activity or unsupported score predictions.
-- **Choose your pace.** Build timed English or Math sets around a skill, difficulty, question count, and time budget. Your deadline and answers survive refreshes; explanations open after the set is locked.
+- **Choose your pace.** Build timed English or Math sets around a skill, difficulty, question count, and time budget. Your deadline and answers survive refreshes; explanations open after the set is locked. Connection errors keep unsaved work visible in the open workspace, with a retry control and clear saving status.
 - **Prepare with structure.** Use a short diagnostic, a timed Math assessment preview, a formula reference, and a simple calculator.
 - **Keep content accountable.** Aptmark separates generated candidates from reviewed and published questions; private review tools expose question methods, reasoning steps, distractor patterns, validation, and editorial release status.
 

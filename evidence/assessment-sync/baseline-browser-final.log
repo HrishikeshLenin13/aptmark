@@ -1,0 +1,128 @@
+
+> aptmark@0.1.0 test:e2e
+> playwright test tests/assessment-sync.spec.ts
+
+[WebServer] (node:48419) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48459) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:48479) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48485) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48501) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48503) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48515) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48523) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/assessment-sync.spec.ts:19:1 › a heartbeat never replaces a newer answer while its save is delayed (13.6s)
+[WebServer] (node:48529) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:48531) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48539) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48542) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48544) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48545) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48549) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:48563) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/assessment-sync.spec.ts:56:1 › failed work survives heartbeat reads and can be explicitly retried (12.7s)
+
+
+  1) [chromium] › tests/assessment-sync.spec.ts:19:1 › a heartbeat never replaces a newer answer while its save is delayed 
+
+    Error: expect(locator).toBeChecked() failed
+
+    Locator:  getByRole('radio').first()
+    Expected: checked
+    Received: unchecked
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toBeChecked" getByRole('radio').first() with timeout 10000ms
+      - waiting for getByRole('radio').first()
+        24 × locator resolved to <input type="radio" name="exam-boundaries-00000001"/>
+           - unexpected value "unchecked"
+
+
+      40 |     await page.clock.fastForward(16000);
+      41 |     await heartbeat;
+    > 42 |     await expect(page.getByRole("radio").first()).toBeChecked();
+         |                                                   ^
+      43 |     expect(
+      44 |       (await (await page.request.get("/api/exam?id=" + id)).json()).exam
+      45 |         .modules[0].answers,
+        at /Users/HrishiL/Documents/ChatGPT/Lm/tests/assessment-sync.spec.ts:42:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/assessment-sync-a-heartbea-62f1a-r-while-its-save-is-delayed-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/assessment-sync-a-heartbea-62f1a-r-while-its-save-is-delayed-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/assessment-sync-a-heartbea-62f1a-r-while-its-save-is-delayed-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/assessment-sync-a-heartbea-62f1a-r-while-its-save-is-delayed-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/assessment-sync.spec.ts:56:1 › failed work survives heartbeat reads and can be explicitly retried 
+
+    Error: expect(locator).toBeChecked() failed
+
+    Locator:  getByRole('radio').first()
+    Expected: checked
+    Received: unchecked
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toBeChecked" getByRole('radio').first() with timeout 10000ms
+      - waiting for getByRole('radio').first()
+        24 × locator resolved to <input type="radio" name="exam-boundaries-00000001"/>
+           - unexpected value "unchecked"
+
+
+      77 |   await page.clock.fastForward(16000);
+      78 |   await heartbeat;
+    > 79 |   await expect(page.getByRole("radio").first()).toBeChecked();
+         |                                                 ^
+      80 |   await expect(
+      81 |     page.getByRole("button", { name: "Retry unsaved changes" }),
+      82 |   ).toBeVisible();
+        at /Users/HrishiL/Documents/ChatGPT/Lm/tests/assessment-sync.spec.ts:79:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/assessment-sync-failed-wor-6f70b-d-can-be-explicitly-retried-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/assessment-sync-failed-wor-6f70b-d-can-be-explicitly-retried-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/assessment-sync-failed-wor-6f70b-d-can-be-explicitly-retried-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/assessment-sync-failed-wor-6f70b-d-can-be-explicitly-retried-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests/assessment-sync.spec.ts:19:1 › a heartbeat never replaces a newer answer while its save is delayed 
+    [chromium] › tests/assessment-sync.spec.ts:56:1 › failed work survives heartbeat reads and can be explicitly retried 

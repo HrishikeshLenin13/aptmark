@@ -1,0 +1,13 @@
+
+> aptmark@0.1.0 test
+> vitest run --run tests/assessment-sync.test.ts
+
+
+ RUN  v5.0.5 /Users/HrishiL/Documents/ChatGPT/Lm
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  11:12:49
+   Duration  168ms (transform 62%, import 18%, tests 13%, worker 6%)
+

@@ -1388,3 +1388,15 @@ output,
     display: inline;
   }
 }
+
+/* Saving feedback must remain visible beside compact assessment navigation. */
+@media (max-width: 980px) {
+  .exam-workspace .exam-footer > .autosave {
+    display: block;
+    flex-basis: 100%;
+    font-size: 12px;
+  }
+}
+.assessment-unsent {
+  overflow-wrap: anywhere;
+}

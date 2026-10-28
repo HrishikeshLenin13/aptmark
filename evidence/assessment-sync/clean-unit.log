@@ -1,0 +1,13 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /private/tmp/aptmark-sync-clean.rJihGb
+
+
+ Test Files  12 passed (12)
+      Tests  206 passed (206)
+   Start at  13:44:56
+   Duration  1.06s (tests 41%, import 33%, transform 24%, worker 2%)
+

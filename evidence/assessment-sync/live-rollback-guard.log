@@ -1,0 +1,2 @@
+Use a disposable component copy, not the live workspace.
+live_rollback_guard_exit=2
