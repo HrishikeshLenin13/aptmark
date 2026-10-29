@@ -18,7 +18,9 @@
     "content:plan": ".venv/bin/python python/pipeline.py plan",
     "content:review-pack": ".venv/bin/python python/pipeline.py review-pack --per-family 1 --output content/reviewed/review-pack.md",
     "content:english": ".venv/bin/python python/pipeline.py expand-english --per-family 4",
-    "content:english-review": ".venv/bin/python python/pipeline.py review-pack --version 3.0.0 --per-family 4 --output content/reviewed/english-methods.md"
+    "content:english-review": ".venv/bin/python python/pipeline.py review-pack --version 3.0.0 --per-family 4 --output content/reviewed/english-methods.md",
+    "compare:check": "node --import tsx scripts/check-reference-audit.mjs",
+    "development:status": "node scripts/development-status.mjs"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.2.1",

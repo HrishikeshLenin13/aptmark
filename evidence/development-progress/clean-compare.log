@@ -1,0 +1,5 @@
+
+> aptmark@0.1.0 compare:check
+> node --import tsx scripts/check-reference-audit.mjs
+
+comparison=valid; providers=college-board,oneprep; capabilities=8; checkedAt=2026-10-28; cadence=every-feature-milestone

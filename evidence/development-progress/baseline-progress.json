@@ -1,0 +1,30 @@
+{
+  "repository": "HrishikeshLenin13/aptmark",
+  "ref": "origin/main",
+  "sha": "3a7b205ef399dbe0eeb9166b6c34459bf5c566bc",
+  "git": {
+    "totalCommits": 166,
+    "nonEmptyNonMergeCommits": 166,
+    "emptyCommits": 0,
+    "mergeCommits": 0
+  },
+  "github": {
+    "authorLogin": "HrishikeshLenin13",
+    "verifiedAt": "2026-10-28T19:19:05.943Z",
+    "sha": "3a7b205ef399dbe0eeb9166b6c34459bf5c566bc",
+    "authorAssociatedCommits": 166,
+    "targetUnits": 166,
+    "unlinkedCommits": 0,
+    "otherAccountCommits": 0,
+    "profileGraphContributionCount": null,
+    "graphNote": "Author association and default-branch history are verified; the profile contribution graph is not queried or inferred."
+  },
+  "target": {
+    "requested": 1000,
+    "unit": "pushed-nonempty-nonmerge-author-associated-commits",
+    "counted": 166,
+    "remaining": 834,
+    "percent": 16.6
+  },
+  "note": "Counts describe real nonempty, nonmerge commits, not learning outcomes or a certified profile-graph total."
+}

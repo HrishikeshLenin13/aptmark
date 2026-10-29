@@ -1,0 +1,34 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /private/tmp/aptmark-progress-clean.4OxqHH
+
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+
+ Test Files  14 passed (14)
+      Tests  227 passed (227)
+   Start at  00:55:30
+   Duration  8.07s (tests 67%, import 18%, transform 14%, worker 1%)
+
+    Isolate  14 workers spawned · ~464ms startup each (spawn + environment, per file)
+             at least ~464ms faster with isolate: false — reuses workers across files instead of one per file
+

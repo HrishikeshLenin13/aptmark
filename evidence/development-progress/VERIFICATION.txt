@@ -1,0 +1,56 @@
+GENUINE DEVELOPMENT PROGRESS — verified 2026-10-29
+Branch: codex/website-studio; delivery HEAD:origin/main.
+Changed field: package.json:scripts.development:status (plus scripts.compare:check registration); CI full-history/reference-audit/offline-summary integration. No dependencies, student bank records or runtime UI behavior changed.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/package.json
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/development-progress/development-progress.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/development-progress/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/development-progress/ROLLBACK.sh (executable)
+Original SHA256: 9d0ab9c3e6339bac540d59f624f49da40a78a3844e4547a9084654c80b82bfaf
+Modified SHA256: 536304d2919830cd6233d89a0a51a742740594f93e1ab68a656acc744cc0da11
+
+Command variables:
+E=/Users/HrishiL/Documents/ChatGPT/Lm/evidence/development-progress
+F=/Users/HrishiL/Documents/ChatGPT/Lm/package.json
+BASELINE command: node "$E/probe.mjs" "$E/package.original.txt"
+Input: preserved original package manifest.
+Literal output: development:status=absent
+Exit: 0
+MODIFIED command: node "$E/probe.mjs" "$F"
+Input: live modified package manifest.
+Literal output: development:status=node scripts/development-status.mjs
+Exit: 0
+ROLLBACK command: cp "$F" "$E/rollback-copy.txt" && "$E/ROLLBACK.sh" "$E/rollback-copy.txt" && node "$E/probe.mjs" "$E/rollback-copy.txt"
+Input: disposable copy of modified manifest.
+Literal output:
+restored_sha256=9d0ab9c3e6339bac540d59f624f49da40a78a3844e4547a9084654c80b82bfaf
+development:status=absent
+Exit: 0
+Restored status: disposable manifest equals original and has no development:status script; live manifest remains modified with both new script registrations. This verifies a package-only rollback, not a whole-feature revert.
+
+Clean-index export: /tmp/aptmark-progress-clean.4OxqHH
+Eight code/config files matched the tested export byte-for-byte; later roadmap/status/receipt changes are documentation only. The roadmap no longer repeats stale inventory and pacing implementation figures.
+Final commands in that export, all exit 0:
+- npm test: 227 passed across 14 files, including 13 development-history/profile contracts; clean-unit.log
+- npm run typecheck: passed; clean-typecheck.log
+- npm run compare:check: comparison=valid; providers=college-board,oneprep; capabilities=8; checkedAt=2026-10-28; cadence=every-feature-milestone; clean-compare.log
+- NEXT_DIST_DIR=.next-publish npm run build: production build passed; clean-build.log
+- npm run test:e2e: 45 passed (5.2m); clean-browser.log
+- .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py tests/test_english_precision.py tests/test_english_precision_bank.py: 277 passed in 9.79s; clean-python.log
+- .venv/bin/python python/pipeline.py validate --replay: {"checked": 5749, "replayed": 5749, "failures": []}; clean-replay.log
+Root read-only script registration check: npm run --silent development:status -- --markdown; exit 0; offline-summary.md explicitly leaves author/profile counts unqueried.
+
+Real API verification before this commit:
+Command: node scripts/development-status.mjs --github --profile
+Input: full origin/main pinned to 150782956c3bdff05555a4647ace6fcaa800c4a1, standalone repository HrishikeshLenin13/aptmark, configured author HrishikeshLenin13.
+Result: 167 nonempty/nonmerge GitHub-author-associated work units; 1,000 target; 833 remaining. Separate observed Aptmark profile-window count: 83, window 2025-10-26T05:00:00Z to 2026-10-30T04:59:59Z. Exit 0; pre-push-progress.json retains full timestamps. The current commit and later CI are not included in this pre-push snapshot.
+Earlier baseline was 166 work units and 82 profile-window contributions (baseline-full-progress.json). These are observations, not a promised profile-graph increment.
+The report reads history; it does not create commits, alter dates/authors, rewrite history or purchase services. Local fixture histories are disposable and are never pushed.
+Missing/truncated/inconsistent profile data stays unknown. Complete weighted daily buckets are summed by commitCount and reconciled with the declared connection total; node count is not treated as contribution count.
+
+Prior milestone remote verification: 150782956c3bdff05555a4647ace6fcaa800c4a1.
+Core regression 40826037361: success; browser/check jobs success.
+Content regression 40826037366: success.
+JSON receipts: reference-core-ci.json and reference-content-ci.json. No remote result for this not-yet-created commit is asserted here.
+
+Bank SHA256 unchanged: 12904d182d3bfebb645140d727e737555de3f211f6a6a3820ba11e39130f8105
+Inventory remains 949 English + 4,800 Math candidates; zero human approval/publication/calibration. The broader platform and requested approximate 1,000-commit development target remain open.

@@ -1,0 +1,53 @@
+{
+  "name": "aptmark",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "content:generate": ".venv/bin/python python/pipeline.py generate --math 4500",
+    "content:validate": ".venv/bin/python python/pipeline.py validate",
+    "content:report": ".venv/bin/python python/pipeline.py report",
+    "model:evaluate": "node --env-file=.env.local --import tsx scripts/evaluate.ts",
+    "format": "prettier --write src tests scripts *.ts *.json",
+    "content:expand": ".venv/bin/python python/pipeline.py expand --per-family 25 --max-per-family 25",
+    "content:plan": ".venv/bin/python python/pipeline.py plan",
+    "content:review-pack": ".venv/bin/python python/pipeline.py review-pack --per-family 1 --output content/reviewed/review-pack.md",
+    "content:english": ".venv/bin/python python/pipeline.py expand-english --per-family 4",
+    "content:english-review": ".venv/bin/python python/pipeline.py review-pack --version 3.0.0 --per-family 4 --output content/reviewed/english-methods.md"
+  },
+  "dependencies": {
+    "@radix-ui/react-alert-dialog": "^1.2.1",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "katex": "0.19.0",
+    "lucide-react": "^0.468.0",
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwind-merge": "^3.3.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.56.0",
+    "@types/katex": "^0.16.7",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "prettier": "^3.9.10",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "5.0.5"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "repository": "HrishikeshLenin13/aptmark",
+  "ref": "origin/main",
+  "sha": "3a7b205ef399dbe0eeb9166b6c34459bf5c566bc",
+  "git": {
+    "totalCommits": 166,
+    "nonEmptyNonMergeCommits": 166,
+    "emptyCommits": 0,
+    "mergeCommits": 0
+  },
+  "github": {
+    "authorLogin": "HrishikeshLenin13",
+    "verifiedAt": "2026-10-28T20:21:31.198Z",
+    "sha": "3a7b205ef399dbe0eeb9166b6c34459bf5c566bc",
+    "authorAssociatedCommits": 166,
+    "targetUnits": 166,
+    "unlinkedCommits": 0,
+    "otherAccountCommits": 0,
+    "profileGraphContributionCount": null,
+    "graphNote": "Author association and default-branch history are verified; profile-window observations are handled separately."
+  },
+  "profile": {
+    "observedAt": "2026-10-28T20:21:32.020Z",
+    "windowStart": "2025-10-26T05:00:00Z",
+    "windowEnd": "2026-10-29T04:59:59Z",
+    "repository": "HrishikeshLenin13/aptmark",
+    "repositoryCommitContributions": 82,
+    "reason": "complete-returned-window",
+    "accountCommitContributions": 1659,
+    "note": "GitHub profile-window commit contributions; not all-time repository history, issue/PR activity, or a learning-outcome measure."
+  },
+  "target": {
+    "requested": 1000,
+    "unit": "pushed-nonempty-nonmerge-author-associated-commits",
+    "counted": 166,
+    "remaining": 834,
+    "percent": 16.6
+  },
+  "note": "Counts describe real nonempty, nonmerge commits, not learning outcomes or a certified profile-graph total."
+}

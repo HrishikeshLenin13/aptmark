@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "repository": "HrishikeshLenin13/aptmark",
+  "authorLogin": "HrishikeshLenin13",
+  "defaultBranch": "main",
+  "ref": "origin/main",
+  "targetCommits": 1000,
+  "unit": "pushed-nonempty-nonmerge-author-associated-commits",
+  "profileGraphIsSeparate": true
+}

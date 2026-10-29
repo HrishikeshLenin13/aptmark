@@ -1,0 +1,31 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /Users/HrishiL/Documents/ChatGPT/Lm
+
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+
+ Test Files  14 passed (14)
+      Tests  227 passed (227)
+   Start at  15:19:17
+   Duration  3.97s (tests 76%, import 20%, transform 3%, worker 2%)
+
