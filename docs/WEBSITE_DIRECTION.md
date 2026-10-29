@@ -66,3 +66,7 @@ inspect 1440/820/390px screenshots, run the documented checks, update evidence,
 and push a meaningful feature commit. Do not generate the proposed 20,000-item
 bank until the website foundation and editorial plan are ready.
 ```
+
+
+## English application milestone — 2026-10-29
+Rechecked the College Board public Reading and Writing stem guide and OnePrep’s public question-bank description. College Board describes consistent task patterns; OnePrep describes skill/difficulty filtering, explanations and progress. Aptmark’s new 44 original candidates extend all 11 local English skills with four distinct contexts each, retaining private methods and option-specific explanations. See docs/ENGLISH_APPLICATION.md and the batch manifest. The new hypothetical stimuli are not reconstructed official items. Candidate volume does not establish equivalence to official questions, superior learning outcomes or calibrated difficulty. Prior dated descriptions of other capabilities remain unchanged.

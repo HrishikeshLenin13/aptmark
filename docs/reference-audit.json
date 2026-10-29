@@ -1,11 +1,14 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-28",
+  "checkedAt": "2026-10-29",
   "maxAgeDays": 30,
   "reviewCadence": "every-feature-milestone",
   "scope": "public-primary-descriptions-vs-tested-local-preview",
   "superiorityClaim": false,
-  "providers": ["college-board", "oneprep"],
+  "providers": [
+    "college-board",
+    "oneprep"
+  ],
   "sources": [
     {
       "id": "cb-bank",
@@ -19,7 +22,7 @@
       "id": "cb-stems",
       "provider": "college-board",
       "url": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
-      "checkedAt": "2026-10-28",
+      "checkedAt": "2026-10-29",
       "verification": "public-description",
       "observation": "Public stem guide distinguishes reading, synthesis, transition and grammar task patterns."
     },
@@ -35,7 +38,7 @@
       "id": "op-bank",
       "provider": "oneprep",
       "url": "https://www.oneprep.com/question-bank",
-      "checkedAt": "2026-10-28",
+      "checkedAt": "2026-10-29",
       "verification": "public-description",
       "observation": "Public bank page advertises filtering, explanations and progress; its displayed section counts differ from its headline total."
     },
@@ -73,7 +76,10 @@
       "aptmark": {
         "status": "local-preview",
         "observation": "Practice filters, server grading, bookmarks and history work locally.",
-        "evidence": ["tests/app.spec.ts", "src/lib/public-question.ts"]
+        "evidence": [
+          "tests/app.spec.ts",
+          "src/lib/public-question.ts"
+        ]
       },
       "nextAcceptance": "Keep identity/key checks and improve discovery; verify behavior rather than equating library counts."
     },
@@ -93,7 +99,13 @@
       "aptmark": {
         "status": "partial",
         "observation": "All 11 skills have original candidates and private method metadata.",
-        "evidence": ["docs/ENGLISH_METHODS.md", "tests/english-content.spec.ts"]
+        "evidence": [
+          "docs/ENGLISH_METHODS.md",
+          "tests/english-content.spec.ts",
+          "tests/test_english_application.py",
+          "tests/english-application.spec.ts",
+          "content/manifests/english-application.json"
+        ]
       },
       "nextAcceptance": "Add varied original passages and independent editorial review; distinguish family reuse from independently written contexts."
     },
@@ -113,7 +125,10 @@
       "aptmark": {
         "status": "gated",
         "observation": "Candidate content remains subject to explicit human-review, publication and calibration gates.",
-        "evidence": ["IMPLEMENTATION_STATUS.md", "src/lib/content-policy.ts"]
+        "evidence": [
+          "IMPLEMENTATION_STATUS.md",
+          "src/lib/content-policy.ts"
+        ]
       },
       "nextAcceptance": "Obtain named human review and empirical evidence; automated validation and inventory size do not establish equivalence."
     },
@@ -133,7 +148,10 @@
       "aptmark": {
         "status": "local-preview",
         "observation": "Bounded English/Math pacing sets preserve deadlines and lock explanations.",
-        "evidence": ["tests/pacing.spec.ts", "tests/assessment-sync.spec.ts"]
+        "evidence": [
+          "tests/pacing.spec.ts",
+          "tests/assessment-sync.spec.ts"
+        ]
       },
       "nextAcceptance": "Keep personal pacing separate from validated forms and avoid unsupported improvement or speed-reward claims."
     },
@@ -153,7 +171,10 @@
       "aptmark": {
         "status": "gated",
         "observation": "Only diagnostic and Math engineering previews; no validated full-length form or predicted SAT score.",
-        "evidence": ["src/lib/assessment.ts", "docs/PROJECT_ROADMAP.md"]
+        "evidence": [
+          "src/lib/assessment.ts",
+          "docs/PROJECT_ROADMAP.md"
+        ]
       },
       "nextAcceptance": "Require approved forms, route-pool assembly, independent review and psychometric support before score/form claims."
     },
@@ -173,7 +194,10 @@
       "aptmark": {
         "status": "local-preview",
         "observation": "Actual-record planning/analytics and portable calendar export are implemented.",
-        "evidence": ["tests/calendar.spec.ts", "src/lib/study-calendar.ts"]
+        "evidence": [
+          "tests/calendar.spec.ts",
+          "src/lib/study-calendar.ts"
+        ]
       },
       "nextAcceptance": "Evaluate recommendation usefulness with real outcomes and distinguish calendar export from provider synchronization."
     },
@@ -193,7 +217,10 @@
       "aptmark": {
         "status": "partial",
         "observation": "Worked explanations and a grounded static guide; no connected generative tutor.",
-        "evidence": ["src/app/api/[...path]/route.ts", "tests/app.spec.ts"]
+        "evidence": [
+          "src/app/api/[...path]/route.ts",
+          "tests/app.spec.ts"
+        ]
       },
       "nextAcceptance": "Evaluate grounded provider behavior and operating budgets before advertising connected AI tutoring."
     },
@@ -213,7 +240,10 @@
       "aptmark": {
         "status": "planned",
         "observation": "Local-first SAT preview; broader courses and hosted cross-device accounts remain open.",
-        "evidence": ["docs/PROJECT_ROADMAP.md", "IMPLEMENTATION_STATUS.md"]
+        "evidence": [
+          "docs/PROJECT_ROADMAP.md",
+          "IMPLEMENTATION_STATUS.md"
+        ]
       },
       "nextAcceptance": "Prioritize SAT foundations and original content; broader-course parity and hosted operations require separate acceptance."
     }

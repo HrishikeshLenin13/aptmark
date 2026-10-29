@@ -1,6 +1,6 @@
 # Aptmark implementation status
 
-Updated: 2026-10-28. Active local development; not a complete or hosted release.
+Updated: 2026-10-29. Active local development; not a complete or hosted release.
 
 ## Implemented
 - SAT specification and source research, a 30-skill taxonomy, and weighted coverage allocation.
@@ -17,7 +17,7 @@ Updated: 2026-10-28. Active local development; not a complete or hosted release.
 - PostgreSQL/Supabase migration scaffold; no active cloud adapter.
 
 ## Content inventory
-The pipeline contains 4,800 Math and 949 Reading and Writing candidates (5,749 total), across 30 skills and 161 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
+The pipeline contains 4,800 Math and 993 Reading and Writing candidates (5,793 total), across 30 skills and 172 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
 
 ## Earlier website verification record
 - 48 TypeScript tests and 83 Python tests passed.
@@ -133,3 +133,10 @@ See [Development notes](docs/DEVELOPMENT.md) for local preview, content workflow
 - Repository history, author-associated work units and GitHub's separate profile contribution window are independently labelled. Missing, truncated or inconsistent profile data remains unknown; daily bucket counts are weighted by commitCount rather than mistaken for contribution totals.
 - CI now fetches complete history, checks the dated College Board/OnePrep evidence audit and emits an offline history summary without inferring GitHub profile contributions. No student workflow, bank record, public deployment or quality/publication gate changed.
 - Clean-index acceptance passed 227 TypeScript tests, 277 Python tests, all 5,749 seed replays, typecheck, production build and 45 browser tests. Real pre-push verification observed 167 author-associated main commits and 83 separate profile-window contributions; these dated observations are not a promise of future graph totals. See docs/DEVELOPMENT_PROGRESS.md and evidence/development-progress/VERIFICATION.txt.
+
+
+## English application families — 2026-10-29
+- Added 44 original contexts in 11 finite families, four per English skill. The batch includes revised interpretations, discriminating controls, condition-specific mean gaps, necessary conditions, contextual word senses, concessions, cross-text evaluation criteria, audience-aware notes, contrast transitions, conjunctive-adverb boundaries and modifier attachment.
+- Original stimuli, four choices, answer-specific rationales, exact evidence spans, methods, instructional heuristics, stable disjoint seed slots and provisional difficulty labels are retained. Existing 5,749 records and all 4,800 Math records are preserved; this is no Math expansion.
+- Current inventory: 993 English + 4,800 Math candidates; 0 human-approved, 0 published, 0 empirically calibrated. A pending editorial pack and explicit batch manifest support independent review; generation is not publication.
+- Clean-index checks passed 228 TypeScript tests, 321 Python tests, all 5,793 seed replays, zero-insert/byte-identical bank regeneration, typecheck, production build and 47 browser tests. All 44 keys and 132 distractors were server-graded; desktop/mobile checks and retained failures are documented in evidence/english-application/VERIFICATION.txt.

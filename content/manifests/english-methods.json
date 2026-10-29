@@ -1,10 +1,76 @@
 {
   "generatorVersion": "3.0.0",
-  "candidates": 344,
+  "candidates": 388,
   "families": [
     {
       "skill": "textual-evidence",
       "family": "rw3-alternative-cause",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "boundaries",
+      "family": "rw3-application-boundary-conjunctive",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "central-ideas",
+      "family": "rw3-application-central-revision",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "words-context",
+      "family": "rw3-application-context-sense",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "cross-text",
+      "family": "rw3-application-cross-criterion",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "textual-evidence",
+      "family": "rw3-application-evidence-control",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "form-structure",
+      "family": "rw3-application-form-modifier",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "inferences",
+      "family": "rw3-application-inference-requirement",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "synthesis",
+      "family": "rw3-application-notes-audience",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "text-purpose",
+      "family": "rw3-application-purpose-objection",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "quantitative-evidence",
+      "family": "rw3-application-table-interaction",
+      "candidates": 4,
+      "authoredVariants": 4
+    },
+    {
+      "skill": "transitions",
+      "family": "rw3-application-transition-reversal",
       "candidates": 4,
       "authoredVariants": 4
     },
@@ -520,23 +586,23 @@
     }
   ],
   "skills": {
-    "boundaries": 48,
-    "central-ideas": 32,
-    "cross-text": 28,
-    "form-structure": 40,
-    "inferences": 28,
-    "quantitative-evidence": 28,
-    "synthesis": 28,
-    "text-purpose": 28,
-    "textual-evidence": 28,
-    "transitions": 28,
-    "words-context": 28
+    "boundaries": 52,
+    "central-ideas": 36,
+    "cross-text": 32,
+    "form-structure": 44,
+    "inferences": 32,
+    "quantitative-evidence": 32,
+    "synthesis": 32,
+    "text-purpose": 32,
+    "textual-evidence": 32,
+    "transitions": 32,
+    "words-context": 32
   },
   "keyPositions": {
-    "A": 72,
-    "B": 94,
-    "C": 85,
-    "D": 93
+    "A": 79,
+    "B": 109,
+    "C": 97,
+    "D": 103
   },
   "approved": 0,
   "published": 0,

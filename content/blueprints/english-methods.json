@@ -23,6 +23,160 @@
       "variants": 4
     },
     {
+      "id": "rw3-application-boundary-conjunctive",
+      "seedBase": 17039417348,
+      "skill": "boundaries",
+      "method": "Separate two independent clauses and attach the conjunctive adverb to the second clause.",
+      "formula": "independent clause ; conjunctive adverb , independent clause",
+      "structure": "A conjunctive adverb relates two clauses but cannot by itself join them with a comma.",
+      "misconceptions": [
+        "comma splice",
+        "missing clause boundary",
+        "adverb isolated as an independent clause"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-central-revision",
+      "seedBase": 50830652,
+      "skill": "central-ideas",
+      "method": "Identify the observation that changes an initial interpretation and retain the limited revised claim.",
+      "formula": "initial interpretation + contrary observation -> bounded revision, not total reversal",
+      "structure": "An account introduces an explanation and then narrows it in response to further evidence.",
+      "misconceptions": [
+        "initial view mistaken for final claim",
+        "qualified revision exaggerated",
+        "supporting detail substituted for main idea"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-context-sense",
+      "seedBase": 13074922888,
+      "skill": "words-context",
+      "method": "Use the surrounding action to choose the context-specific meaning of a familiar word.",
+      "formula": "word + local action + contrast -> contextual sense rather than familiar alternate sense",
+      "structure": "A familiar word has multiple possible meanings, but the neighboring details fix one.",
+      "misconceptions": [
+        "unrelated familiar sense",
+        "opposite relation",
+        "unsupported intensity"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-cross-criterion",
+      "seedBase": 10781392920,
+      "skill": "cross-text",
+      "method": "Distinguish agreement about an observation from disagreement about the criterion used to evaluate it.",
+      "formula": "shared fact + different evaluation criteria -> qualified disagreement",
+      "structure": "Two texts accept a result but assess its significance using different standards.",
+      "misconceptions": [
+        "shared fact treated as disputed",
+        "different standards collapsed",
+        "position exaggerated beyond stated scope"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-evidence-control",
+      "seedBase": 16614750256,
+      "skill": "textual-evidence",
+      "method": "Isolate the proposed cause by holding the specified competing explanation constant.",
+      "formula": "same alternative condition + different proposed cause + predicted outcome -> discriminating support",
+      "structure": "A proposed explanation competes with an explicitly stated confounder.",
+      "misconceptions": [
+        "confounder left uncontrolled",
+        "opposite outcome selected",
+        "compatible but nondiscriminating observation"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-form-modifier",
+      "seedBase": 6000317780,
+      "skill": "form-structure",
+      "method": "Place the person or thing performing the introductory action immediately after the modifying phrase.",
+      "formula": "introductory participial phrase + actual performer as subject",
+      "structure": "A participial introduction must modify the subject of the main clause.",
+      "misconceptions": [
+        "object substituted for performer",
+        "passive construction leaves a dangling modifier",
+        "related location mistaken for agent"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-inference-requirement",
+      "seedBase": 1666914744,
+      "skill": "inferences",
+      "method": "Apply every stated prerequisite without treating a necessary condition as sufficient.",
+      "formula": "eligible -> requirements A and B; A alone does not imply eligible",
+      "structure": "A selection rule and partial records constrain what can be concluded.",
+      "misconceptions": [
+        "necessary condition treated as sufficient",
+        "missing requirement ignored",
+        "unobserved outcome asserted"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-notes-audience",
+      "seedBase": 7499353892,
+      "skill": "synthesis",
+      "method": "Use the audience’s stated prior knowledge to select only the information needed for the rhetorical goal.",
+      "formula": "audience knowledge + requested new relation -> relevant accurate synthesis",
+      "structure": "Notes contain definitions and details, but the audience already knows some of them.",
+      "misconceptions": [
+        "known definition repeated instead of new relation",
+        "unrelated detail selected",
+        "unsupported benefit or limitation invented"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-purpose-objection",
+      "seedBase": 11030251736,
+      "skill": "text-purpose",
+      "method": "Identify the concession or objection and determine how the next sentence responds to it.",
+      "formula": "limited objection acknowledged + retained argument -> qualification, not abandonment",
+      "structure": "A writer anticipates a concern before specifying the limits of a proposal.",
+      "misconceptions": [
+        "objection mistaken for final rejection",
+        "concession treated as empirical proof",
+        "concern disconnected from ensuing response"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-table-interaction",
+      "seedBase": 681456344,
+      "skill": "quantitative-evidence",
+      "method": "Compare the between-group gaps within each condition before interpreting the pattern.",
+      "formula": "absolute mean gap = |A - B|; compare gaps across conditions and limit inference to listed means",
+      "structure": "Two conditions produce different between-group gaps in a labeled table.",
+      "misconceptions": [
+        "within-group change replaces between-group gap",
+        "zero gap overlooked",
+        "group means generalized to all individuals"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-application-transition-reversal",
+      "seedBase": 10917581516,
+      "skill": "transitions",
+      "method": "Track the shift from an expectation or tentative plan to the contrasting observed result.",
+      "formula": "expected or planned A + actual not-A -> contrast rather than consequence or example",
+      "structure": "A sentence presents an expectation and the following sentence overturns it.",
+      "misconceptions": [
+        "contrast mistaken for consequence",
+        "result treated as example",
+        "chronology substituted for logical opposition"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-claim-assumption",
       "seedBase": 10715328460,
       "skill": "textual-evidence",

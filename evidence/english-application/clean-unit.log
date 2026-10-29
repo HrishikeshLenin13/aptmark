@@ -1,0 +1,31 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /private/tmp/aptmark-application-clean.fuovfD
+
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+
+ Test Files  14 passed (14)
+      Tests  228 passed (228)
+   Start at  01:34:16
+   Duration  3.33s (tests 80%, import 15%, transform 3%, worker 1%)
+

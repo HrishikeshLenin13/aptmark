@@ -1,0 +1,18 @@
+.................F............                                           [100%]
+=================================== FAILURES ===================================
+_ test_evidence_keys_control_the_explicit_competing_explanation[1-equal size] __
+
+variant = 1, control = 'equal size'
+
+    @pytest.mark.parametrize('variant,control',[(0,'same measured light exposure'),(1,'equal size'),(2,'matched for mass'),(3,'shelf distance held constant')])
+    def test_evidence_keys_control_the_explicit_competing_explanation(variant,control):
+        case=content.CASES['rw3-application-evidence-control'][variant]
+        assert control in case['right']
+>       assert any('confound' in x or 'comparison' in x for x in case['steps'])
+E       assert False
+E        +  where False = any(<generator object test_evidence_keys_control_the_explicit_competing_explanation.<locals>.<genexpr> at 0x109f77c30>)
+
+tests/test_english_application.py:75: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_english_application.py::test_evidence_keys_control_the_explicit_competing_explanation[1-equal size]
+1 failed, 29 passed in 1.73s

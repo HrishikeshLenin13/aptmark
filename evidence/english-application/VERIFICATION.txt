@@ -1,0 +1,56 @@
+ENGLISH APPLICATION FAMILIES — verified 2026-10-29
+Branch: codex/website-studio; delivery HEAD:origin/main.
+Changed field: content/bank.json adds 44 rw3-application-* candidates across all 11 English skills; all prior 5,749 complete records and all Math records remain unchanged.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/content/bank.json
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-application/english-application.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-application/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-application/ROLLBACK.sh (executable)
+Diff format: semantic added-record diff keyed by immutable ID, not a unified text patch of the minified bank. Exactly 44 additions, zero prior changes/removals, zero Math changes.
+Original SHA256: 12904d182d3bfebb645140d727e737555de3f211f6a6a3820ba11e39130f8105
+Modified SHA256: 26999a03ad1d3e87a8d33d5e31e2e05cfe01527bc1510326458d2e765a25ff70
+
+Command variables:
+E=/Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-application
+F=/Users/HrishiL/Documents/ChatGPT/Lm/content/bank.json
+R=/Users/HrishiL/Documents/ChatGPT/Lm/data/english-application/rollback-bank.json
+BASELINE command: python3 "$E/probe.py" /Users/HrishiL/Documents/ChatGPT/Lm/data/english-application/bank.original.json
+Input: preserved original bank.
+Literal output: total=5749; application=0
+Exit: 0
+MODIFIED command: python3 "$E/probe.py" "$F"
+Input: live expanded bank.
+Literal output: total=5793; application=44
+Exit: 0
+ROLLBACK command: cp "$F" "$R" && "$E/ROLLBACK.sh" "$R" && python3 "$E/probe.py" "$R"
+Input: disposable expanded-bank copy.
+Literal output:
+restored_sha256=12904d182d3bfebb645140d727e737555de3f211f6a6a3820ba11e39130f8105
+total=5749; application=0
+Exit: 0
+Restored status: disposable bank equals original, with zero application candidates. Live bank remains expanded. This tests bank-only rollback on a copy, not a full code/catalog revert. The live-target guard separately exited 2 without changing the live bank (live-guard.log).
+The ignored full original can be recreated in a fresh clone with:
+git show 23382ec3ce6c3e0508a8dac0c78db658db21880f:content/bank.json > data/english-application/bank.original.json
+The executable rollback also has that hash-checked Git fallback if the local backup is absent.
+
+Clean-index export: /tmp/aptmark-application-clean.fuovfD
+Nine source/config/bank inputs were byte-identical to the tested export; parity.log. The bank also remained byte-identical after fresh-clone generation with zero inserted items. Later receipt/status edits are documentation only.
+Final commands from export, all exit 0:
+- .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py tests/test_english_precision.py tests/test_english_precision_bank.py tests/test_english_application.py: 321 passed in 19.39s; clean-python.log
+- .venv/bin/python python/pipeline.py validate --replay: {"checked": 5793, "replayed": 5793, "failures": []}; clean-replay.log
+- .venv/bin/python python/pipeline.py expand-english --per-family 4: inserted=0, englishCandidates=388, skills=11, mathGenerated=0, publishedByGeneration=0; clean-idempotence.log
+- npm test: 228 passed across 14 files; clean-unit.log
+- npm run typecheck: passed; clean-typecheck.log
+- npm run compare:check: comparison=valid; providers=college-board,oneprep; capabilities=8; checkedAt=2026-10-29; cadence=every-feature-milestone; clean-compare.log
+- NEXT_DIST_DIR=.next-publish npm run build: production build passed; clean-build.log
+- npm run test:e2e: 47 passed (4.9m); clean-browser.log
+Browser scope: all 44 keys and all 132 distractors were graded by the real server; pre-submit methods/keys/evidence/rationales stayed absent. Four isolated guest histories respect the unchanged 120-answer/minute/account production limit. Six representative layouts at 1440/390px passed automated axe/overflow checks. Twelve screenshots retained; desktop table and mobile notes were visually inspected. These are not a WCAG conformance or educational-validity certification.
+
+Corrections and retained failures:
+- Initial authoring test used an irrelevant wording keyword; replaced it with the actual case-specific control-term assertion. authoring-first-attempt.log retains 1 failed/29 passed; reviewed direct contracts passed 33.
+- Partial reference refresh exposed a test that assumed every source had the summary's date. The test now uses the oldest individual review for its boundary and separately verifies that refreshing the summary never extends an old source's freshness. clean-unit-first-attempt.log retains 1 failed/226 passed; final suite passed 228.
+- Initial exhaustive browser fixture exceeded the existing 120-answer/minute/account limit and received HTTP 429; trace inspection confirmed the endpoint/status. clean-browser-first-attempt.log retains 1 failed/46 passed. Splitting into four fresh guest histories preserved all 176 grading assertions without relaxing production behavior. Final complete run passed 47.
+- Before commit, authoring review clarified absolute mean gaps, removed an unsupported spatial relation from a synthesis key, and made the questionnaire transition compare answer detail on identical prompts. Only the new uncommitted cohort was regenerated in copied local databases; all earlier full records remain identical.
+
+Current inventory: 5,793 candidates = 993 English + 4,800 Math, 172 families. Modern finite English catalog: 388 authored contexts in 97 families. Approved=0, published=0, empirically calibrated=0. Full-record baseline digests and hashes are in baseline.json; tests enforce preservation and the pending review pack matches current keys.
+Sources: current public College Board stem guide and OnePrep bank description rechecked 2026-10-29; task categories only, no copied passage/options/explanation or unsupported superiority claim. Other dated comparison observations retain their actual earlier review dates.
+No Math expansion, paid API call, student publication or public deployment was performed. The wider platform and approximately 1,000 genuine-commit target remain open.

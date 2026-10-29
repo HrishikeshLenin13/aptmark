@@ -19,16 +19,32 @@ describe("dated primary-source comparison contract", () => {
     ])
       expect(check({ ...audit, checkedAt: date }).length).toBeGreaterThan(0);
   });
-  it("allows the last freshness day but rejects the next day", () => {
+  it("allows the oldest source's last freshness day but rejects the next day", () => {
+    const oldest = Math.min(
+      ...[audit.checkedAt, ...audit.sources.map((s) => s.checkedAt)].map(
+        (date) => new Date(date + "T19:00:00Z").getTime(),
+      ),
+    );
     expect(
       validateReferenceAudit(audit, {
-        today: new Date(today.getTime() + 30 * 86400000),
+        today: new Date(oldest + 30 * 86400000),
       }),
     ).toEqual([]);
     expect(
       validateReferenceAudit(audit, {
-        today: new Date(today.getTime() + 31 * 86400000),
+        today: new Date(oldest + 31 * 86400000),
       }).some((e) => e.includes("stale")),
+    ).toBe(true);
+  });
+  it("does not let a refreshed summary extend an older individual source review", () => {
+    const value = structuredClone(audit);
+    value.sources[0].checkedAt = new Date(today.getTime() - 31 * 86400000)
+      .toISOString()
+      .slice(0, 10);
+    expect(
+      check(value).some(
+        (e) => e.includes(value.sources[0].id) && e.includes("stale"),
+      ),
     ).toBe(true);
   });
   it("rejects missing, mismatched and unverified provider evidence", () => {

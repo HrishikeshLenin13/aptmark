@@ -1,0 +1,64 @@
+
+> aptmark@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /private/tmp/aptmark-application-clean.fuovfD
+
+ ❯ tests/reference-audit.test.ts (8 tests | 1 failed) 70ms
+   ❯ dated primary-source comparison contract (8)
+     × allows the last freshness day but rejects the next day 30ms
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+Switched to a new branch 'feature'
+Switched to branch 'main'
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/reference-audit.test.ts > dated primary-source comparison contract > allows the last freshness day but rejects the next day
+AssertionError: expected [ …(4) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "cb-bank: review is future-dated or stale.",
++   "cb-tests: review is future-dated or stale.",
++   "op-rush: review is future-dated or stale.",
++   "op-home: review is future-dated or stale.",
++ ]
+
+ ❯ tests/reference-audit.test.ts:27:7
+     25|         today: new Date(today.getTime() + 30 * 86400000),
+     26|       }),
+     27|     ).toEqual([]);
+       |       ^
+     28|     expect(
+     29|       validateReferenceAudit(audit, {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 13 passed (14)
+      Tests  1 failed | 226 passed (227)
+   Start at  01:21:49
+   Duration  8.62s (tests 73%, transform 15%, import 10%, worker 1%)
+
+    Isolate  14 workers spawned · ~567ms startup each (spawn + environment, per file)
+             at least ~567ms faster with isolate: false — reuses workers across files instead of one per file
+
