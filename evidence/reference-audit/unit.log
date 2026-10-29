@@ -1,0 +1,13 @@
+
+> aptmark@0.1.0 test
+> vitest run --run tests/reference-audit.test.ts
+
+
+ RUN  v5.0.5 /Users/HrishiL/Documents/ChatGPT/Lm
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  14:15:39
+   Duration  306ms (transform 55%, tests 20%, import 19%, worker 5%)
+

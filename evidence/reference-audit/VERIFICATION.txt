@@ -1,0 +1,40 @@
+REFERENCE COMPARISON — verified 2026-10-29
+Branch: codex/website-studio; delivery HEAD:origin/main.
+Changed field: docs/WEBSITE_DIRECTION.md primary College Board references and per-feature milestone cadence; structured source/evidence audit has 8 capabilities and 6 primary references. No student content or runtime app behavior changed.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/docs/WEBSITE_DIRECTION.md
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/reference-audit.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/ROLLBACK.sh (executable)
+Original SHA256: 2eaaf5a8150ebdbf961f58240bd86f109f6cc74d3c18f9f14c6f8e1c465fc8c7
+Modified SHA256: 6f97d576b0f8f48287fb9c5946019e119a361f8d2f89ecf4843ef1024c4b320d
+
+BASELINE command: node "/Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/probe.mjs" "/Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/website-direction.original.txt"
+Input: preserved original comparison document.
+Literal output: collegeBoardPrimary=false; milestoneCadence=false
+Exit: 0
+MODIFIED command: node "/Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/probe.mjs" "/Users/HrishiL/Documents/ChatGPT/Lm/docs/WEBSITE_DIRECTION.md"
+Input: live updated comparison document.
+Literal output: collegeBoardPrimary=true; milestoneCadence=true
+Exit: 0
+ROLLBACK command: cp "/Users/HrishiL/Documents/ChatGPT/Lm/docs/WEBSITE_DIRECTION.md" "/Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/rollback-copy.txt" && "/Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/ROLLBACK.sh" "/Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/rollback-copy.txt" && node "/Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/probe.mjs" "/Users/HrishiL/Documents/ChatGPT/Lm/evidence/reference-audit/rollback-copy.txt"
+Input: disposable copy of the modified document.
+Literal output:
+restored_sha256=2eaaf5a8150ebdbf961f58240bd86f109f6cc74d3c18f9f14c6f8e1c465fc8c7
+collegeBoardPrimary=false; milestoneCadence=false
+Exit: 0
+Restored status: disposable document equals original; live document remains modified. This is a document-only rollback, not an entire feature revert.
+
+Clean-index source export: /tmp/aptmark-reference-clean.P3HlLQ
+6/6 feature source files matched the tested export byte-for-byte (AGENTS, direction, manifest, validator CLI, validator library, validator tests). Subsequent receipt/status additions are documentation only.
+Commands from that export, all exit 0 on final runs:
+- npm test: 214 tests passed; clean-unit.log
+- npm run typecheck: passed; clean-typecheck.log
+- node --import tsx scripts/check-reference-audit.mjs: comparison=valid; providers=college-board,oneprep; capabilities=8; checkedAt=2026-10-28; cadence=every-feature-milestone; clean-check.log
+- NEXT_DIST_DIR=.next-publish npm run build: production build passed; clean-build.log
+- .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py tests/test_english_precision.py tests/test_english_precision_bank.py: 277 passed; clean-python.log
+- .venv/bin/python python/pipeline.py validate --replay: {"checked": 5749, "replayed": 5749, "failures": []}; clean-replay.log
+- npm run test:e2e: 45 passed (3.8m); clean-browser.log
+Retained first browser attempt: 42 passed, 3 failed (dashboard stayed loading, content-render wait and answer-loop timeouts). clean-browser-first-attempt.log contains failures. The complete rerun passed with no application or assertion changes; the first attempt is not acceptance evidence.
+
+The audit checks dates/schema/URLs/evidence paths, not competitor outcomes. Primary-source review date is 2026-10-28; official College Board student bank and OnePrep claims remain separately attributed. No superiority claim, deployment, editorial approval, publication or calibration was added.
+Unchanged bank SHA256: 12904d182d3bfebb645140d727e737555de3f211f6a6a3820ba11e39130f8105

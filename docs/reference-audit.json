@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-28",
+  "maxAgeDays": 30,
+  "reviewCadence": "every-feature-milestone",
+  "scope": "public-primary-descriptions-vs-tested-local-preview",
+  "superiorityClaim": false,
+  "providers": ["college-board", "oneprep"],
+  "sources": [
+    {
+      "id": "cb-bank",
+      "provider": "college-board",
+      "url": "https://satsuite.collegeboard.org/practice/student-question-bank",
+      "checkedAt": "2026-10-28",
+      "verification": "public-description",
+      "observation": "Student bank describes official questions, student sign-in and assessment/domain/skill/difficulty filters."
+    },
+    {
+      "id": "cb-stems",
+      "provider": "college-board",
+      "url": "https://satsuite.collegeboard.org/practice/student-question-bank/reading-writing",
+      "checkedAt": "2026-10-28",
+      "verification": "public-description",
+      "observation": "Public stem guide distinguishes reading, synthesis, transition and grammar task patterns."
+    },
+    {
+      "id": "cb-tests",
+      "provider": "college-board",
+      "url": "https://satsuite.collegeboard.org/practice/practice-tests",
+      "checkedAt": "2026-10-28",
+      "verification": "public-description",
+      "observation": "Official digital full-length practice is offered in Bluebook; paper forms are separately identified as nonadaptive."
+    },
+    {
+      "id": "op-bank",
+      "provider": "oneprep",
+      "url": "https://www.oneprep.com/question-bank",
+      "checkedAt": "2026-10-28",
+      "verification": "public-description",
+      "observation": "Public bank page advertises filtering, explanations and progress; its displayed section counts differ from its headline total."
+    },
+    {
+      "id": "op-rush",
+      "provider": "oneprep",
+      "url": "https://www.oneprep.com/question-rush",
+      "checkedAt": "2026-10-28",
+      "verification": "public-description",
+      "observation": "Public pacing description lists section/skill/difficulty/count/pace controls and speed/accuracy stars."
+    },
+    {
+      "id": "op-home",
+      "provider": "oneprep",
+      "url": "https://www.oneprep.com/",
+      "checkedAt": "2026-10-28",
+      "verification": "public-description",
+      "observation": "Public home page promotes diagnostics, tailored planning, tutoring and broader exam/college tools; authenticated execution was not tested."
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "bank-filtering",
+      "title": "Student practice and filters",
+      "references": {
+        "college-board": {
+          "source": "cb-bank",
+          "observation": "Official student account and targeted question filters."
+        },
+        "oneprep": {
+          "source": "op-bank",
+          "observation": "Advertised in-app filters, explanations and solved/accuracy tracking."
+        }
+      },
+      "aptmark": {
+        "status": "local-preview",
+        "observation": "Practice filters, server grading, bookmarks and history work locally.",
+        "evidence": ["tests/app.spec.ts", "src/lib/public-question.ts"]
+      },
+      "nextAcceptance": "Keep identity/key checks and improve discovery; verify behavior rather than equating library counts."
+    },
+    {
+      "id": "english-structure",
+      "title": "English task structure",
+      "references": {
+        "college-board": {
+          "source": "cb-stems",
+          "observation": "Official task/stem categories are the alignment reference."
+        },
+        "oneprep": {
+          "source": "op-bank",
+          "observation": "Public skill-organized Reading and Writing bank."
+        }
+      },
+      "aptmark": {
+        "status": "partial",
+        "observation": "All 11 skills have original candidates and private method metadata.",
+        "evidence": ["docs/ENGLISH_METHODS.md", "tests/english-content.spec.ts"]
+      },
+      "nextAcceptance": "Add varied original passages and independent editorial review; distinguish family reuse from independently written contexts."
+    },
+    {
+      "id": "content-quality",
+      "title": "Content provenance and validity",
+      "references": {
+        "college-board": {
+          "source": "cb-bank",
+          "observation": "Official questions come from the assessment developer."
+        },
+        "oneprep": {
+          "source": "op-home",
+          "observation": "Publicly describes its content as human-written; editorial process was not independently audited."
+        }
+      },
+      "aptmark": {
+        "status": "gated",
+        "observation": "Candidate content remains subject to explicit human-review, publication and calibration gates.",
+        "evidence": ["IMPLEMENTATION_STATUS.md", "src/lib/content-policy.ts"]
+      },
+      "nextAcceptance": "Obtain named human review and empirical evidence; automated validation and inventory size do not establish equivalence."
+    },
+    {
+      "id": "pacing",
+      "title": "Timed study",
+      "references": {
+        "college-board": {
+          "source": "cb-tests",
+          "observation": "Official full-length digital practice uses Bluebook, not Aptmark timers."
+        },
+        "oneprep": {
+          "source": "op-rush",
+          "observation": "Advertises configurable speed/accuracy drills with stars."
+        }
+      },
+      "aptmark": {
+        "status": "local-preview",
+        "observation": "Bounded English/Math pacing sets preserve deadlines and lock explanations.",
+        "evidence": ["tests/pacing.spec.ts", "tests/assessment-sync.spec.ts"]
+      },
+      "nextAcceptance": "Keep personal pacing separate from validated forms and avoid unsupported improvement or speed-reward claims."
+    },
+    {
+      "id": "full-forms",
+      "title": "Full-length forms and scores",
+      "references": {
+        "college-board": {
+          "source": "cb-tests",
+          "observation": "Official digital forms and separate nonadaptive paper forms are available."
+        },
+        "oneprep": {
+          "source": "op-home",
+          "observation": "Advertises practice tests and projected scores; validity has not been independently evaluated here."
+        }
+      },
+      "aptmark": {
+        "status": "gated",
+        "observation": "Only diagnostic and Math engineering previews; no validated full-length form or predicted SAT score.",
+        "evidence": ["src/lib/assessment.ts", "docs/PROJECT_ROADMAP.md"]
+      },
+      "nextAcceptance": "Require approved forms, route-pool assembly, independent review and psychometric support before score/form claims."
+    },
+    {
+      "id": "planning",
+      "title": "Planning and actual-record progress",
+      "references": {
+        "college-board": {
+          "source": "cb-bank",
+          "observation": "Student bank supports targeted self-directed practice; this source does not establish live calendar synchronization."
+        },
+        "oneprep": {
+          "source": "op-home",
+          "observation": "Promotes plans that respond to test date and practice accuracy."
+        }
+      },
+      "aptmark": {
+        "status": "local-preview",
+        "observation": "Actual-record planning/analytics and portable calendar export are implemented.",
+        "evidence": ["tests/calendar.spec.ts", "src/lib/study-calendar.ts"]
+      },
+      "nextAcceptance": "Evaluate recommendation usefulness with real outcomes and distinguish calendar export from provider synchronization."
+    },
+    {
+      "id": "guidance",
+      "title": "Explanations and tutoring",
+      "references": {
+        "college-board": {
+          "source": "cb-stems",
+          "observation": "Skill/stem guidance explains the official task categories."
+        },
+        "oneprep": {
+          "source": "op-home",
+          "observation": "Promotes instant follow-up tutoring and walkthroughs."
+        }
+      },
+      "aptmark": {
+        "status": "partial",
+        "observation": "Worked explanations and a grounded static guide; no connected generative tutor.",
+        "evidence": ["src/app/api/[...path]/route.ts", "tests/app.spec.ts"]
+      },
+      "nextAcceptance": "Evaluate grounded provider behavior and operating budgets before advertising connected AI tutoring."
+    },
+    {
+      "id": "broader-platform",
+      "title": "Broader courses and hosted service",
+      "references": {
+        "college-board": {
+          "source": "cb-tests",
+          "observation": "Reference is SAT Suite practice; unrelated admissions tooling is not inferred."
+        },
+        "oneprep": {
+          "source": "op-home",
+          "observation": "Promotes ACT/AP and college-application services in addition to SAT study."
+        }
+      },
+      "aptmark": {
+        "status": "planned",
+        "observation": "Local-first SAT preview; broader courses and hosted cross-device accounts remain open.",
+        "evidence": ["docs/PROJECT_ROADMAP.md", "IMPLEMENTATION_STATUS.md"]
+      },
+      "nextAcceptance": "Prioritize SAT foundations and original content; broader-course parity and hosted operations require separate acceptance."
+    }
+  ],
+  "countCaveat": "OnePrep page headline says 4000+, while displayed section figures 1492 and 2390 sum to 3882. These are reported public figures, not an independently audited inventory or a quality ranking."
+}
