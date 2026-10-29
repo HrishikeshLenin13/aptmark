@@ -1,0 +1,61 @@
+ORIGINAL LITERARY READING — verified 2026-10-29
+Branch: codex/website-studio; delivery HEAD:origin/main.
+Changed field: content/bank.json adds 24 rw3-literary-* candidates across six reading skills. All 5,793 prior complete records and all Math records remain unchanged.
+MODIFIED_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/content/bank.json
+DIFF_FILE: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-literary/english-literary.diff
+VERIFICATION: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-literary/VERIFICATION.txt
+ROLLBACK: /Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-literary/ROLLBACK.sh (executable)
+Diff format: semantic added-record diff keyed by immutable item ID; 24 additions, zero prior removals/changes, zero Math changes.
+Original SHA256: 26999a03ad1d3e87a8d33d5e31e2e05cfe01527bc1510326458d2e765a25ff70
+Modified SHA256: 9880ce5a1daf70314182c0b8f54924fc076ad4ffbadaf66820eba3d10f70685e
+
+Command variables:
+E=/Users/HrishiL/Documents/ChatGPT/Lm/evidence/english-literary
+F=/Users/HrishiL/Documents/ChatGPT/Lm/content/bank.json
+R=/Users/HrishiL/Documents/ChatGPT/Lm/data/english-literary/rollback-bank.json
+BASELINE command: python3 "$E/probe.py" /Users/HrishiL/Documents/ChatGPT/Lm/data/english-literary/bank.original.json
+Input: preserved original 5,793-record bank.
+Literal output: total=5793; literary=0
+Exit: 0
+MODIFIED command: python3 "$E/probe.py" "$F"
+Input: live expanded bank.
+Literal output: total=5817; literary=24
+Exit: 0
+ROLLBACK command: cp "$F" "$R" && "$E/ROLLBACK.sh" "$R" && python3 "$E/probe.py" "$R"
+Input: disposable expanded-bank copy.
+Literal output:
+restored_sha256=26999a03ad1d3e87a8d33d5e31e2e05cfe01527bc1510326458d2e765a25ff70
+total=5793; literary=0
+Exit: 0
+Restored status: disposable copy equals the original bank and contains zero literary-batch candidates. The live bank remains expanded. This is bank-only copy rollback, not a full catalog/code revert.
+The ignored local original can be recreated in a fresh clone:
+git show 3c0ecab6e85b34160ce7ff1a3e0b9bb51e08f88a:content/bank.json > data/english-literary/bank.original.json
+The executable rollback includes that hash-checked Git fallback when the local backup is absent.
+
+Clean-index export: /tmp/aptmark-literary-clean.tgPbJC
+Nine code/config/bank/document inputs matched the tested export byte-for-byte; parity.log. Subsequent receipt/status edits are documentation only.
+Final commands from that export, all exit 0:
+- .venv/bin/python -m pytest -q tests/test_content.py tests/test_english_methods.py tests/test_english_depth.py tests/test_english_reasoning.py tests/test_english_precision.py tests/test_english_precision_bank.py tests/test_english_application.py tests/test_english_literary.py: 361 passed in 15.37s; clean-python.log
+- .venv/bin/python python/pipeline.py validate --replay: {"checked": 5817, "replayed": 5817, "failures": []}; clean-replay.log
+- .venv/bin/python python/pipeline.py expand-english --per-family 4: inserted=0, englishCandidates=412, skills=11, mathGenerated=0, publishedByGeneration=0; clean-idempotence.log. Bank byte parity was separately checked.
+- npm test: 228 passed in 14 files; clean-unit.log
+- npm run typecheck: passed; clean-typecheck.log
+- npm run compare:check: comparison=valid; providers=college-board,oneprep; capabilities=8; checkedAt=2026-10-29; cadence=every-feature-milestone; clean-compare.log
+- NEXT_DIST_DIR=.next-publish npm run build: production build passed; clean-build.log
+- npm run test:e2e: 49 passed (6.2m); clean-browser.log
+The full clean-index suite passed on its first run for this cohort.
+
+Content evidence:
+- 24 current keys and all 72 distractors were graded by the real server; private methods, keys, evidence, rationales and quality metadata stayed absent before grading.
+- Three isolated guest histories keep exhaustive checks below the unchanged 120-answer/minute/account production limit.
+- All 16 evidence-choice quotations are exact spans of their original narratives; interpretation, sequence, conditional and local word-sense anchors have direct contracts.
+- Original genre provenance and literary-interpretation review flags remain in the private record; all four contexts per family have finite disjoint seeds.
+- The pending pack matches every current key and ID. The manifest recomputes genres, key positions and descriptive choice lengths. Ten of 24 keys are strictly longest by word count; this is an exposed editorial diagnostic, not a validity judgment.
+- Six representative layouts at 1440/390px passed automated axe/overflow checks. Twelve screenshots retained. Mobile original poetry and desktop poem/commentary were visually inspected; verse line breaks and readable columns were preserved. This is not a WCAG conformance certification.
+
+The pre-generation authoring pass clarified the direction of a narrative return, made a lantern’s unlit state explicit, kept the supported inference separate from motive, and selected a nondiagnostic architectural distractor rather than a second strongly attentive action. No committed prior item was revised.
+The formerly stale undated current-inventory paragraph in docs/CONTENT_QUALITY.md now agrees with the bank and manifests.
+Comparison sources rechecked 2026-10-29: College Board public stem guide, OnePrep bank overview and its Text Structure and Purpose guide. Public descriptions are not authenticated-platform or educational-outcome testing; no superiority claim is made.
+
+Current bank: 5,817 candidates = 1,017 English + 4,800 Math, 178 families. Finite modern English catalog: 412 contexts in 103 families. All 11 English skills remain covered; this cohort focuses on six reading skills. Approved=0, published=0, empirically calibrated=0. Generated counts are not publication or learning-outcome counts.
+No Math expansion, paid API, public deployment, invented human reviewer or student publication was performed. Broader platform acceptance and the approximate 1,000 genuine-commit target remain open.

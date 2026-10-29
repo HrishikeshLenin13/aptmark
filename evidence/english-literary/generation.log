@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "generated": 5817,
+  "structurallyValidated": 5817,
+  "approved": 0,
+  "published": 0,
+  "rejected": 0,
+  "sections": {
+    "math": 4800,
+    "rw": 1017
+  },
+  "families": 178,
+  "difficulty": {
+    "easy": 562,
+    "medium": 4294,
+    "hard": 961
+  },
+  "target": 10000,
+  "estimatedGenerationCostUSD": 0,
+  "calibration": "uncalibrated",
+  "exactProblemDuplicates": 0,
+  "note": "Structural validation is not educational approval. No candidates count toward the 10,000 published target."
+}
+{"inserted": 24, "englishCandidates": 412, "skills": 11, "mathGenerated": 0, "publishedByGeneration": 0}

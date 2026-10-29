@@ -57,6 +57,14 @@
       "checkedAt": "2026-10-28",
       "verification": "public-description",
       "observation": "Public home page promotes diagnostics, tailored planning, tutoring and broader exam/college tools; authenticated execution was not tested."
+    },
+    {
+      "id": "op-purpose",
+      "provider": "oneprep",
+      "url": "https://www.oneprep.com/question-bank/reading-writing/text-structure-and-purpose",
+      "checkedAt": "2026-10-29",
+      "verification": "public-description",
+      "observation": "Public guide frames purpose questions as functional analysis using neighboring context, rather than content summary alone."
     }
   ],
   "capabilities": [
@@ -92,8 +100,8 @@
           "observation": "Official task/stem categories are the alignment reference."
         },
         "oneprep": {
-          "source": "op-bank",
-          "observation": "Public skill-organized Reading and Writing bank."
+          "source": "op-purpose",
+          "observation": "Purpose guide distinguishes a sentence\u2019s role from a summary of its content and recommends considering surrounding context."
         }
       },
       "aptmark": {
@@ -104,7 +112,10 @@
           "tests/english-content.spec.ts",
           "tests/test_english_application.py",
           "tests/english-application.spec.ts",
-          "content/manifests/english-application.json"
+          "content/manifests/english-application.json",
+          "tests/test_english_literary.py",
+          "tests/english-literary.spec.ts",
+          "content/manifests/english-literary.json"
         ]
       },
       "nextAcceptance": "Add varied original passages and independent editorial review; distinguish family reuse from independently written contexts."

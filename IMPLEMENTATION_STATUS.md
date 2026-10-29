@@ -17,7 +17,7 @@ Updated: 2026-10-29. Active local development; not a complete or hosted release.
 - PostgreSQL/Supabase migration scaffold; no active cloud adapter.
 
 ## Content inventory
-The pipeline contains 4,800 Math and 993 Reading and Writing candidates (5,793 total), across 30 skills and 172 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
+The pipeline contains 4,800 Math and 1,017 Reading and Writing candidates (5,817 total), across 30 skills and 178 generator families/clusters. All require human editorial review. **0 approved, 0 published, 0 empirically calibrated.** Automated validation does not establish educational validity. The target of 10,000 published questions remains open.
 
 ## Earlier website verification record
 - 48 TypeScript tests and 83 Python tests passed.
@@ -140,3 +140,10 @@ See [Development notes](docs/DEVELOPMENT.md) for local preview, content workflow
 - Original stimuli, four choices, answer-specific rationales, exact evidence spans, methods, instructional heuristics, stable disjoint seed slots and provisional difficulty labels are retained. Existing 5,749 records and all 4,800 Math records are preserved; this is no Math expansion.
 - Current inventory: 993 English + 4,800 Math candidates; 0 human-approved, 0 published, 0 empirically calibrated. A pending editorial pack and explicit batch manifest support independent review; generation is not publication.
 - Clean-index checks passed 228 TypeScript tests, 321 Python tests, all 5,793 seed replays, zero-insert/byte-identical bank regeneration, typecheck, production build and 47 browser tests. All 44 keys and 132 distractors were server-graded; desktop/mobile checks and retained failures are documented in evidence/english-application/VERIFICATION.txt.
+
+
+## Original literary reading — 2026-10-29
+- Added 24 finite original contexts in six reading families: held tension in poems, action-based quotation evidence, limited narrative perspective, contextual word shades, final-image function and evidence-constrained cross-text interpretation.
+- Eight original poems (four paired with original commentary) and sixteen fictional prose contexts carry specific interpretation-review flags, two-step reasoning and explained distractors. No real author, publication or study is falsely cited. All 5,793 prior records and all 4,800 Math records remain unchanged.
+- The pending pack and manifest expose actual key positions, genres and descriptive option-length diagnostics. Current inventory is 1,017 English + 4,800 Math candidates, with 0 human approvals, 0 publications and 0 empirical calibrations. Reaching 1,000 English candidates does not satisfy the independent-review or larger platform gates.
+- Clean-index acceptance passed 228 TypeScript tests, 361 Python tests, all 5,817 replays, byte-identical zero-insert bank generation, typecheck, build and 49 browser tests. All 24 keys/72 distractors were server-graded; poetry/paired-text screenshots were inspected. See docs/ENGLISH_LITERARY.md and evidence/english-literary/VERIFICATION.txt.

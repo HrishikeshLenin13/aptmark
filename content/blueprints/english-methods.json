@@ -639,6 +639,90 @@
       "variants": 4
     },
     {
+      "id": "rw3-literary-action-evidence",
+      "seedBase": 6016583680,
+      "skill": "textual-evidence",
+      "method": "Select the action that directly bears on the stated interpretation rather than an adjacent descriptive detail.",
+      "formula": "bounded interpretation -> diagnostic action in an exact quotation",
+      "structure": "An original narrative gives several quotable details but only one directly demonstrates the requested response.",
+      "misconceptions": [
+        "setting treated as evidence of motive",
+        "reported habit substitutes for present action",
+        "a related object substitutes for the relevant behavior"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-literary-context-shade",
+      "seedBase": 4927603052,
+      "skill": "words-context",
+      "method": "Use the action and evaluation surrounding a word to distinguish its literary sense from another familiar sense.",
+      "formula": "local behavior or stylistic features -> context-specific sense and degree",
+      "structure": "An original prose scene fixes the intended sense through nearby contrasting details.",
+      "misconceptions": [
+        "academic or literal sense replaces contextual sense",
+        "opposite degree selected",
+        "an associated action substitutes for the word’s actual meaning"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-literary-cross-reading",
+      "seedBase": 11239668460,
+      "skill": "cross-text",
+      "method": "Test the commentary against the poem’s actual sequence, conditions and remaining qualifications.",
+      "formula": "interpretation claim + complete textual evidence -> support, limitation or direction correction",
+      "structure": "An original poem and an original commentary must be compared, not read as automatically agreeing.",
+      "misconceptions": [
+        "ending erases earlier qualification",
+        "conditional action becomes completed action",
+        "a change in direction is overlooked"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-literary-final-image",
+      "seedBase": 9111903964,
+      "skill": "text-purpose",
+      "method": "Explain how the last image modifies the significance of the earlier concern instead of merely naming its objects.",
+      "formula": "earlier concern + final concrete image -> reframed relationship or qualified change",
+      "structure": "A final image brings two earlier details into a new relationship without asserting complete resolution.",
+      "misconceptions": [
+        "image summarized without its function",
+        "partial accommodation becomes complete resolution",
+        "figurative relationship becomes a literal event"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-literary-held-tension",
+      "seedBase": 14167871040,
+      "skill": "central-ideas",
+      "method": "Retain the speaker’s competing responses when the final gesture preserves rather than resolves their tension.",
+      "formula": "attachment + recognition of change + unresolved final gesture -> qualified central idea",
+      "structure": "An original poem expresses two simultaneous attitudes through concrete images.",
+      "misconceptions": [
+        "one attitude substitutes for the whole poem",
+        "an unresolved gesture becomes a final decision",
+        "physical setting replaces the speaker’s response"
+      ],
+      "variants": 4
+    },
+    {
+      "id": "rw3-literary-perspective-limit",
+      "seedBase": 13535966324,
+      "skill": "inferences",
+      "method": "Distinguish what the narrator observes from the motive the narrator cannot yet establish.",
+      "formula": "observed behavior + unavailable explanation -> uncertainty about motive, not certainty about intention",
+      "structure": "A first-person narrator notices an ambiguous act and explicitly lacks its explanatory context.",
+      "misconceptions": [
+        "a possible motive becomes an established fact",
+        "unavailable information is treated as a negative finding",
+        "the narrator’s earlier guess overrides later uncertainty"
+      ],
+      "variants": 4
+    },
+    {
       "id": "rw3-mechanism-completion",
       "seedBase": 2390430128,
       "skill": "inferences",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "targetPublished": 10000,
-  "candidates": 5793,
+  "candidates": 5817,
   "published": 0,
   "publishableTargetMet": false,
   "candidateTargetMet": false,
@@ -11,15 +11,15 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 358,
-      "candidates": 91,
+      "candidates": 95,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 358,
-      "candidateDeficit": 267,
-      "families": 12,
+      "candidateDeficit": 263,
+      "families": 13,
       "difficulty": {
         "medium": 52,
-        "hard": 39
+        "hard": 43
       },
       "missingDifficultyBands": [
         "easy"
@@ -30,15 +30,15 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 357,
-      "candidates": 87,
+      "candidates": 91,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 357,
-      "candidateDeficit": 270,
-      "families": 11,
+      "candidateDeficit": 266,
+      "families": 12,
       "difficulty": {
         "medium": 40,
-        "hard": 47
+        "hard": 51
       },
       "missingDifficultyBands": [
         "easy"
@@ -67,15 +67,15 @@
       "domain": "Information and Ideas",
       "section": "rw",
       "target": 358,
-      "candidates": 87,
+      "candidates": 91,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 358,
-      "candidateDeficit": 271,
-      "families": 11,
+      "candidateDeficit": 267,
+      "families": 12,
       "difficulty": {
         "medium": 45,
-        "hard": 42
+        "hard": 46
       },
       "missingDifficultyBands": [
         "easy"
@@ -86,15 +86,15 @@
       "domain": "Craft and Structure",
       "section": "rw",
       "target": 513,
-      "candidates": 87,
+      "candidates": 91,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 513,
-      "candidateDeficit": 426,
-      "families": 11,
+      "candidateDeficit": 422,
+      "families": 12,
       "difficulty": {
-        "medium": 79,
-        "hard": 8
+        "medium": 81,
+        "hard": 10
       },
       "missingDifficultyBands": [
         "easy"
@@ -105,15 +105,15 @@
       "domain": "Craft and Structure",
       "section": "rw",
       "target": 513,
-      "candidates": 87,
+      "candidates": 91,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 513,
-      "candidateDeficit": 426,
-      "families": 11,
+      "candidateDeficit": 422,
+      "families": 12,
       "difficulty": {
-        "medium": 49,
-        "hard": 38
+        "medium": 50,
+        "hard": 41
       },
       "missingDifficultyBands": [
         "easy"
@@ -124,15 +124,15 @@
       "domain": "Craft and Structure",
       "section": "rw",
       "target": 513,
-      "candidates": 87,
+      "candidates": 91,
       "approved": 0,
       "published": 0,
       "publishedDeficit": 513,
-      "candidateDeficit": 426,
-      "families": 11,
+      "candidateDeficit": 422,
+      "families": 12,
       "difficulty": {
         "medium": 14,
-        "hard": 73
+        "hard": 77
       },
       "missingDifficultyBands": [
         "easy"

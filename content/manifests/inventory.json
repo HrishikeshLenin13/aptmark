@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generated": 5793,
-  "structurallyValidated": 5793,
+  "generated": 5817,
+  "structurallyValidated": 5817,
   "approved": 0,
   "published": 0,
   "rejected": 0,
   "sections": {
     "math": 4800,
-    "rw": 993
+    "rw": 1017
   },
-  "families": 172,
+  "families": 178,
   "clusters": {
     "linear-isolate": 107,
     "linear-distribute": 103,
@@ -182,12 +182,18 @@
     "rw3-application-notes-audience": 4,
     "rw3-application-purpose-objection": 4,
     "rw3-application-table-interaction": 4,
-    "rw3-application-transition-reversal": 4
+    "rw3-application-transition-reversal": 4,
+    "rw3-literary-action-evidence": 4,
+    "rw3-literary-context-shade": 4,
+    "rw3-literary-cross-reading": 4,
+    "rw3-literary-final-image": 4,
+    "rw3-literary-held-tension": 4,
+    "rw3-literary-perspective-limit": 4
   },
   "difficulty": {
     "easy": 562,
-    "medium": 4291,
-    "hard": 940
+    "medium": 4294,
+    "hard": 961
   },
   "skills": {
     "linear-one": 315,
@@ -209,13 +215,13 @@
     "lines-triangles": 169,
     "trigonometry": 194,
     "circles": 194,
-    "central-ideas": 91,
-    "textual-evidence": 87,
+    "central-ideas": 95,
+    "textual-evidence": 91,
     "quantitative-evidence": 87,
-    "inferences": 87,
-    "words-context": 87,
-    "text-purpose": 87,
-    "cross-text": 87,
+    "inferences": 91,
+    "words-context": 91,
+    "text-purpose": 91,
+    "cross-text": 91,
     "synthesis": 87,
     "transitions": 87,
     "boundaries": 107,

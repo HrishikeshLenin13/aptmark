@@ -1,0 +1,332 @@
+{
+  "name": "english-literary-2026-10-29",
+  "candidates": 24,
+  "families": [
+    "rw3-literary-action-evidence",
+    "rw3-literary-context-shade",
+    "rw3-literary-cross-reading",
+    "rw3-literary-final-image",
+    "rw3-literary-held-tension",
+    "rw3-literary-perspective-limit"
+  ],
+  "itemIds": [
+    "central-ideas-14167871040",
+    "central-ideas-14167871041",
+    "central-ideas-14167871042",
+    "central-ideas-14167871043",
+    "cross-text-11239668460",
+    "cross-text-11239668461",
+    "cross-text-11239668462",
+    "cross-text-11239668463",
+    "inferences-13535966324",
+    "inferences-13535966325",
+    "inferences-13535966326",
+    "inferences-13535966327",
+    "text-purpose-9111903964",
+    "text-purpose-9111903965",
+    "text-purpose-9111903966",
+    "text-purpose-9111903967",
+    "textual-evidence-6016583680",
+    "textual-evidence-6016583681",
+    "textual-evidence-6016583682",
+    "textual-evidence-6016583683",
+    "words-context-4927603052",
+    "words-context-4927603053",
+    "words-context-4927603054",
+    "words-context-4927603055"
+  ],
+  "skills": {
+    "central-ideas": 4,
+    "cross-text": 4,
+    "inferences": 4,
+    "text-purpose": 4,
+    "textual-evidence": 4,
+    "words-context": 4
+  },
+  "genres": {
+    "original fictional prose": 16,
+    "original poetry": 4,
+    "original poetry and commentary": 4
+  },
+  "keyPositions": {
+    "A": 5,
+    "B": 12,
+    "C": 4,
+    "D": 3
+  },
+  "choiceLengthReview": {
+    "strictlyLongestKeys": 10,
+    "items": [
+      {
+        "id": "central-ideas-14167871040",
+        "keyWords": 15,
+        "optionWords": [
+          15,
+          16,
+          15,
+          15
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "central-ideas-14167871041",
+        "keyWords": 15,
+        "optionWords": [
+          15,
+          16,
+          15,
+          16
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "central-ideas-14167871042",
+        "keyWords": 17,
+        "optionWords": [
+          13,
+          17,
+          17,
+          15
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "central-ideas-14167871043",
+        "keyWords": 15,
+        "optionWords": [
+          17,
+          15,
+          18,
+          14
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "cross-text-11239668460",
+        "keyWords": 19,
+        "optionWords": [
+          14,
+          19,
+          15,
+          14
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "cross-text-11239668461",
+        "keyWords": 18,
+        "optionWords": [
+          18,
+          15,
+          13,
+          14
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "cross-text-11239668462",
+        "keyWords": 21,
+        "optionWords": [
+          16,
+          21,
+          17,
+          13
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "cross-text-11239668463",
+        "keyWords": 21,
+        "optionWords": [
+          16,
+          21,
+          15,
+          14
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "inferences-13535966324",
+        "keyWords": 14,
+        "optionWords": [
+          14,
+          14,
+          14,
+          13
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "inferences-13535966325",
+        "keyWords": 14,
+        "optionWords": [
+          14,
+          14,
+          16,
+          15
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "inferences-13535966326",
+        "keyWords": 18,
+        "optionWords": [
+          14,
+          18,
+          16,
+          14
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "inferences-13535966327",
+        "keyWords": 17,
+        "optionWords": [
+          14,
+          17,
+          15,
+          13
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "text-purpose-9111903964",
+        "keyWords": 20,
+        "optionWords": [
+          20,
+          16,
+          16,
+          18
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "text-purpose-9111903965",
+        "keyWords": 14,
+        "optionWords": [
+          14,
+          13,
+          13,
+          14
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "text-purpose-9111903966",
+        "keyWords": 18,
+        "optionWords": [
+          13,
+          14,
+          15,
+          18
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "text-purpose-9111903967",
+        "keyWords": 18,
+        "optionWords": [
+          13,
+          18,
+          16,
+          16
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "textual-evidence-6016583680",
+        "keyWords": 14,
+        "optionWords": [
+          15,
+          14,
+          9,
+          13
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "textual-evidence-6016583681",
+        "keyWords": 16,
+        "optionWords": [
+          7,
+          16,
+          9,
+          14
+        ],
+        "keyIsStrictlyLongest": true
+      },
+      {
+        "id": "textual-evidence-6016583682",
+        "keyWords": 11,
+        "optionWords": [
+          11,
+          14,
+          13,
+          7
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "textual-evidence-6016583683",
+        "keyWords": 15,
+        "optionWords": [
+          17,
+          15,
+          15,
+          11
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "words-context-4927603052",
+        "keyWords": 1,
+        "optionWords": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "words-context-4927603053",
+        "keyWords": 1,
+        "optionWords": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "words-context-4927603054",
+        "keyWords": 1,
+        "optionWords": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "keyIsStrictlyLongest": false
+      },
+      {
+        "id": "words-context-4927603055",
+        "keyWords": 1,
+        "optionWords": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "keyIsStrictlyLongest": false
+      }
+    ],
+    "interpretation": "descriptive screening only; not a validity or difficulty score"
+  },
+  "approved": 0,
+  "published": 0,
+  "calibration": "provisional-uncalibrated",
+  "mathGeneratedByThisBatch": 0,
+  "sourceUse": "Public task conventions only; original poems, fiction and commentary, not published excerpts."
+}

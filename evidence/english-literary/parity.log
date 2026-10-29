@@ -1,0 +1,1 @@
+clean-index code/config/bank/document parity: 9/9; bank also byte-identical after zero-insert generation

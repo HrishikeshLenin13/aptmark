@@ -2,7 +2,7 @@
 
 ## Current expansion
 
-Aptmark now contains **5,617 original candidates**: **4,800 Math** and **817 Reading and Writing**, spanning **128 explicit generator families** and all 30 taxonomy skills. The earlier v2 expansion added 850 candidates from 34 families to the 4,555-item foundation; the English-only v3 catalog adds 212 separately authored contexts in 53 further families, preserving all 5,405 earlier records. Family variants remain family variants, not claims of 850 different problem structures. Every item is pending review; **0 human-approved and 0 published**.
+As of 2026-10-29, Aptmark contains **5,817 original candidates**: **4,800 Math** and **1,017 Reading and Writing**, spanning **178 explicit generator families** across the 30-skill local taxonomy. The modern finite English catalog contains **412 separately authored contexts in 103 families**, four contexts per family. The older 5,405-record foundation remains unchanged; subsequent English cohorts also preserve their recorded predecessors. Family counts, contexts and numerical variants are separate measurements, not interchangeable claims of educational independence. Every candidate still requires review: **0 human-approved, 0 published, 0 empirically calibrated**. See the [current status](../IMPLEMENTATION_STATUS.md) and [inventory manifest](../content/manifests/inventory.json) for the authoritative snapshot.
 
 ## Official alignment, original content
 
@@ -55,3 +55,7 @@ it unless a named human reviewer has actually made and recorded that decision.
 See [English methods](ENGLISH_METHODS.md) for the 212-item catalog, all-skill matrix, finite seed registry, full editorial pack, validation and remaining structural gaps. These items add explicit solution-method metadata to the hashed, private editorial record. No Math questions were generated or revised by this batch.
 
 The [44-item depth batch](ENGLISH_DEPTH.md) adds explicit denominator oracles and more qualified argumentative contexts. Every prior 5,573-record entry is preserved; Math remains unchanged.
+
+
+## Literary close-reading cohort — 2026-10-29
+The [24-item literary cohort](ENGLISH_LITERARY.md) adds eight original poems (four paired with original commentary) and sixteen fictional prose contexts across six reading skills. These are not attributed to real authors or taken from published works. Explicit interpretation-review flags, exact quotation spans and option-specific explanations accompany the pending pack. The manifest reports choice-length diagnostics without treating them as a validity score. All 5,793 preceding records and all Math records remain unchanged.
